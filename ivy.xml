@@ -1,0 +1,107 @@
+<ivy-module version="2.0">
+  <info organisation="RSI" module="ama-main"/>
+
+  <dependencies>
+
+    <dependency org="rsi" name="rsuite-api" rev="5.1.3"/>
+<!--    <dependency org="rsi" name="rsuite-workflow-visualizer-plugin" rev="4.0.0"/>--> <!-- no v5 version exists yet (as of 20161013) -->
+    <dependency org="rsi" name="rsuite-tools-zip" rev="20090327"/>
+    <dependency org="rsi" name="rsuite-lmd-editor-plugin" rev="1.2"/>
+    <dependency org="rsi" name="rsuite-zip-downloader-plugin" rev="1.3"/>
+    <dependency org="rsi" name="team-edition-workflow-quick-plugin" rev="3.0"/>
+    <!--<dependency org="rsi" name="rsuite-system-monitoring-plugin" rev="4.0.13"/>
+    <dependency org="rsi" name="rsuite-system-monitoring-module" rev="4.0.13">
+      <artifact name="system-monitoring" type="xqy"/>     
+    </dependency>-->
+    <dependency org="rsi" name="team-edition-dashboard-plugin" rev="2.1-qa002"/>
+
+    <!-- DITA-related zip and jar files. -->
+    <dependency org="rsi" name="rsuite-dita-support-plugin" rev="2.1-qa002" />
+	<dependency org="rsi" name="rsuite-dita-ot-plugin" rev="1.4" />
+	<dependency org="rsi" name="rsuite-dita-support-workflows-plugin" rev="2.0"/>
+	<!-- <dependency org="rsi" name="rsuite-dita-support-actions-plugin" rev="2.0"/>  -->
+    
+    <!-- RSuite-related libs -->
+    <dependency org="rsuite-community" name="rsuite-conf-utils-lib" rev="0.0.1" transitive="true" conf="default"/>
+    <dependency org="rsuite-community" name="rsuite-message-props-lib" rev="0.0.1" transitive="true" conf="default"/>
+    <dependency org="rsuite-community" name="rsuite-mo-utils-lib" rev="1.0.1" transitive="true" conf="default"/>
+    <dependency org="rsuite-community" name="rsuite-operation-lib" rev="0.0.1" transitive="true" conf="default"/>
+    <dependency org="rsuite-community" name="rsuite-search-utils-lib" rev="0.0.1" transitive="true" conf="default"/>
+    <dependency org="rsuite-community" name="rsuite-web-services-lib" rev="0.0.1" transitive="true" conf="default"/>
+    <dependency org="rsuite-community" name="rsuite-xml-utils-lib" rev="1.0.0" transitive="true" conf="default"/>
+    
+    
+	<!-- RSuite Team Edition Plugins -->
+	<dependency org="rsi" name="team-edition-results-reporter-plugin" rev="2.0"/>
+    
+    <!-- Libraries used for activiti workflow -->
+    <dependency org="org.activiti" name="activiti-engine" rev="5.16.4"/>
+    
+    <!-- streaming related libs -->
+    <dependency org="streamflyer" name="streamflyer-core" rev="1.0.1"/>
+    <dependency org="streamflyer" name="streamflyer-regex-fast" rev="1.0.1"/>
+    
+    <!-- Apache -->
+    <dependency org="apache" name="ant" rev="1.7.1" />
+    <dependency org="apache" name="commons-io" rev="1.4"/>
+    <dependency org="apache" name="commons-logging" rev="1.1.1"/>
+	<dependency org="apache" name="commons-lang" rev="3.3.1"/>
+	<dependency org="apache" name="commons-fileupload" rev="1.2.1"/>
+
+    <dependency org="xerces" name="xercesImpl" rev="2.9.1"/>
+    <dependency org="log4j" name="log4j" rev="1.2.15" transitive="false"/>
+
+    <dependency org="saxonica" name="saxon9" rev="9.1.0.7" />
+    <dependency org="saxonica" name="saxon9-ant" rev="9.1.0.7" />
+    <dependency org="saxonica" name="saxon9-dom" rev="9.1.0.7" />
+    <dependency org="saxonica" name="saxon9-xpath" rev="9.1.0.7" />
+    <dependency org="saxonica" name="saxon9-s9api" rev="9.1.0.7" />
+    
+    <dependency org="deltaxml" name="deltaxml-merge-dita-toolkit" rev="0.2">
+      <artifact name="deltaxml-merge-dita-toolkit" type="zip"/>
+    </dependency> <!-- required by this project's doctypes -->
+    <!-- 
+        Required by the DeltaXML Merge integration.
+    -->
+    
+<!--    <dependency org="ibm" name="icu4j" rev="49.1" />
+    <dependency org="deltaxml" name="DeltaXMLCore" rev="7.1" />
+    -->
+    <!-- DeltaXML-RSI partner licensed version of DeltaXML Merge -->
+<!--    <dependency org="deltaxml" name="DeltaXMLMerge" rev="4.3"/>-->
+
+    <!-- Some custom web services return JSON. -->
+    <dependency org="org.json" name="org.json" rev="2.0"/>
+    
+    <!-- Used when creating XML, in order to efficiently strip out RSuite IDs. -->
+    <!--<dependency org="streamflyer" name="streamflyer-core" rev="1.0.1"/>
+    <dependency org="streamflyer" name="streamflyer-regex-fast" rev="1.0.1"/>-->
+
+    <!-- deployment -->
+	<dependency org="ant" name="ant-contrib" rev="1.0b3" />
+	<dependency org="rsi" name="rsuite-tools-groovy" rev="20130208" />
+
+    <!-- Powermock is part of our automated test harness.  It wraps Mockito and uses TestNG.  
+         When transitive=true, we get it all. -->
+    <dependency org="org.powermock" name="powermock-mockito" rev="1.6.5-full" transitive="true" conf="default"/>
+    <dependency org="junit" name="junit" rev="4.12"/>
+	
+	<!-- The automated XSLT tests use XMLUnit and XML-resolver -->
+    <dependency org="xmlunit" name="xmlunit-core" rev="2.0.0-20150530.073346-8"/>
+    <dependency org="xml-resolver" name="xml-resolver" rev="1.2"/>
+    
+    <!-- Libraries to help the automated tests consume custom RSuite web services. -->
+    <dependency org="apache" name="commons-codec" rev="1.6"/>
+    
+    <!-- Libraries used to make the test report better.  
+         ReportNG is no longer supported, but offers better than the default. -->
+    <dependency org="apache" name="velocity-dep" rev="1.4"/>
+    <dependency org="google" name="guice" rev="4.0"/>
+    <dependency org="uncommons" name="reportng" rev="1.1.4"/>
+    
+    <!-- Libraries used for selenium -->
+    <!--<dependency org="selenium" name="selenium-client" rev="2.52.0"/>
+    <dependency org="selenium" name="selenium-server-standalone" rev="2.52.0"/>-->
+    
+  </dependencies>
+</ivy-module>
