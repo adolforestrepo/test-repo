@@ -1,0 +1,9 @@
+<suite name="^javaPackage^" verbose="1">
+  
+  <test name="Package Tests">
+    <packages>
+      <package name="^javaPackage^" />
+    </packages>
+  </test>
+ 
+</suite>

@@ -1,0 +1,58 @@
+# Ivy repository configuration URLs
+rsi.ivy.shared.repository=http://ivy.reallysi.com/ivy-repo
+rsi.ivy.prof_serv.repository=http://ivy.reallysi.com/prof_serve-ivy-repo
+
+# Set this property (to any value) in order to clear the project's Ivy cache.
+#clear.ivy.cache=value doesn't matter
+
+# RSuite installation and data directories, and any sub-directories thereof the 
+# build script needs to know about.
+rsuite.home=/opt/RSuite
+rsuite.data.dir=/var/opt/RSuite
+rsuite.plugins.dir=${rsuite.home}/plugins
+rsuite.admin.home=${rsuite.home}/clients/admin
+
+# RSuite data directory, and any sub-directories thereof the build script
+# needs to know about.
+dita-ot-version=1.8.5
+dita-ot-dirname=DITA-OT${dita-ot-version}
+dita-ot-src-dir=${rsuite.home}/integration/${dita-ot-dirname}
+dita-ot-runtime-dir=${rsuite.data.dir}/${dita-ot-dirname}
+
+# DeltaXML JARs include license files and checksums.  Licenses may only be good for one
+# environment.  Use the following to vary this by environment.  The build script expects
+# these relative paths to resolve within ${lib.parent.home} (${rootdir}/java).
+# DeltaXML-RSI partner license:
+#deltaxml.merge.jar.location=lib/DeltaXMLMerge.jar
+
+# Configure how long to let RSuite load the plugins.  The defaults are defined in build-deploy.xml; 
+# at one point, the default was 15 seconds.  The seconds property only supports up to 60. 
+#wait.after.deploying.plugins.in.minutes=1
+#wait.after.deploying.plugins.in.seconds=30
+
+# Relative to the working copy, configure where the build script may
+# find the groovy scripts.
+groovy.scripts.dir=scripts/groovy
+groovy.script.name.create.user.accounts=ConfigureLocalUnsecuredUserAccounts.groovy
+
+# The RSuite admin user account used to execute Groovy scripts.
+# FIXME: Security hole.  Pass credentials in from a secure source, or prompt user.
+rsuite.user=user
+rsuite.pass=pass
+rsuite.host=localhost
+rsuite.port=8080
+
+# The RSuite admin user account used by the automated tests to connect to RSuite.
+# FIXME: Security hole.  Pass credentials in from a secure source, or prompt user.
+testing.user=${rsuite.user}
+testing.pass=${rsuite.pass}
+testing.host=${rsuite.host}
+testing.port=${rsuite.port}
+
+# Enable if Firefox is installed in the environment running the tests and you wish for
+# the editor's automated tests to be executed with the rest of the automated tests.
+#testing.runEditorTests=false
+
+# Configure which Java package or class that the testng-run-a-java-*-unit-tests targets use.
+#testing.java.package=
+#testing.java.class=

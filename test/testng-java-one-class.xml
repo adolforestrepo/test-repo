@@ -1,0 +1,9 @@
+<suite name="^javaClass^" verbose="1">
+  
+  <test name="Class Tests">
+    <classes>
+      <class name="^javaClass^" />
+    </classes>
+  </test>
+ 
+</suite>

@@ -1,0 +1,260 @@
+<?xml version="1.0"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant"
+         name="astd" 
+         basedir="."
+         default="build">	
+
+  <tstamp>
+    <format property="TODAY" pattern="yyyy-MM-dd'T'HH-mm-ss" locale="en,UK" />
+  </tstamp>
+  
+  <property file="build.properties"/>
+  <property file="${user.home}/.build.properties"/>
+  <property file="${user.home}/build.properties"/>
+	
+  <property name="project.display.name" value="AMA"/>
+  <property name="plugin.name" value="ama-main" />
+	
+  <property name="target.home"         value="target"/>
+  <property name="main.project.target.jar"          value="${plugin.name}-plugin.jar"/>
+  <property name="rootdir" value="${basedir}" />
+  <property name="lib.parent.home" value="${rootdir}/java"/>
+  <property name="lib.home" value="${lib.parent.home}/lib" />
+  <property name="lib.licensed.home" value="${lib.parent.home}/lib-licensed" />
+  <property name="src.home" value="${rootdir}/src" />
+  <property name="src.main.home" value="${src.home}/main" />
+  <property name="src.java.home" value="${src.main.home}/java" />
+  <property name="src.main.resources.home" value="${src.main.home}/resources" />
+  <property name="webcontent.home" value="${basedir}/WebContent" />
+  <property name="classes.home" value="${target.home}/classes"/>
+  <property name="sampledata.home" value="${rootdir}/sample_data" />
+	
+  <property name="doctypes.file.basename" value="${plugin.name}-doctypes-plugin"/>
+  <property name="doctypes.plugin.target.home" value="${target.home}/doctypes-plugin"/>
+  <property name="doctypes.plugin.target.jar" value="${doctypes.file.basename}.jar"/>
+  
+  <property name="toolkit.plugins.file.basename" value="${plugin.name}-toolkit-plugins-plugin"/>
+  <property name="toolkit.plugins.plugin.target.home" value="${target.home}/toolkit-plugins-plugin"/>
+  <property name="toolkit.plugins.plugin.target.jar" value="${toolkit.plugins.file.basename}.jar"/>
+  
+  <property name="deploy.rsuite.tomcat.dir" value="${rsuite.home}/tomcat"/>
+  <property name="deploy.rsuite.webapps.dir" value="${deploy.rsuite.tomcat.dir}/webapps"/>
+  <property name="deploy.rsuite.lib.dir" location="${deploy.rsuite.webapps.dir}/rsuite/WEB-INF/lib"/>
+  
+  <ivy:settings id="ivy.instance" file="ivy-settings.xml" />
+  <property name="project.ivy.cache.dir" value="${basedir}/ivy-cache"/>
+
+  <import file="build-groovy-utils.xml" />
+
+  <import file="build-testng.xml" />
+  <import file="build-deploy.xml" />
+  <import file="webapps/sso/build-webapps-sso.xml"/>
+  
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-->
+    
+  <path id="classpath.base">
+  	<pathelement path="${classes.home}"/>
+    <fileset dir="${lib.home}">
+        <include name="*.jar"/>
+    </fileset>
+  </path>
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-->
+
+  <target name="resolve" description="Retrieve dependencies with ivy" depends="clear-ivy-cache">
+    <ivy:retrieve pattern="${ivy.lib.dir}/[artifact].[ext]"/>
+  </target>
+
+  <target name="clear-ivy-cache" description="Delete the project's Ivy cache" if="clear.ivy.cache">
+  	<echo>Clearing the project's Ivy cache, ${project.ivy.cache.dir}...</echo>
+    <delete includeemptydirs="true" failonerror="true" quiet="true">
+      <fileset dir="${project.ivy.cache.dir}" includes="**/*"/>
+    </delete>
+  </target>
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-->
+
+  <target name="clean" description="Delete build files">
+  	<delete includeemptydirs="true">
+      <fileset dir="." includes="${target.home}/**/*" excludes="${test.output.home}/${test.suite.conf.failed.filename}"/>
+    </delete>
+  </target>
+
+  <tstamp>
+    <format property="build-date-time"
+            pattern="yyyy-MM-dd HH:mm:SSS z"/>
+  </tstamp>
+  <tstamp>
+    <format property="build-year"
+            pattern="yyyy"/>
+  </tstamp>
+
+  <target name="init">
+    <tstamp/>
+  </target>
+
+  <target name="build" description="Compile, package and deploy locally the project's plugin. Subset of 'deploy-full'. Use after only editing the project's Java code." 
+  	      depends="deploy-minimal">
+  </target>
+	
+  <target name="compile" depends="init">
+    <mkdir dir="${classes.home}"/>
+    <javac       
+      srcdir="${src.java.home}"
+      destdir="${classes.home}"
+      debug="on">
+      <classpath refid="classpath.base"/>
+    </javac>
+  </target>
+
+  
+  <!-- TODO: There's a dependency between these two that will occassionally bite: the configuration
+    plugin enables the main plugin to load the sample data; yet, the main plugin contains an event(s)
+    to respond to new content. (This comment came from the project we seeded this project from. Not sure if it applies to us.) -->
+  <target name="package-rsuite-plugins" 
+  	 description="Package all RSuite plugins owned by this project." 
+  	 depends="package-doctypes-plugin, package-rsuite-main-project-plugin, package-toolkit-plugins-plugin"/>
+
+  <target name="package-rsuite-main-project-plugin" depends="compile">
+    
+  	<!-- We need to know where to copy the licensed DeltaXML Merge JAR from. -->
+    <!-- TODO: Examine when we implement DeltaXML on this project. -->
+<!--  	<fail unless="deltaxml.merge.jar.location">Property 'deltaxml.merge.jar.location'! is not set</fail>-->
+
+    <copy file="${src.main.resources.home}/rsuite-plugin.xml" todir="${classes.home}"/>
+    <copy 
+      file="${src.main.resources.home}/project-rsuite-messages.properties" 
+      tofile="${classes.home}/WebContent/project-rsuite-messages_en_US.properties"/>
+    <copy todir="${classes.home}/WebContent" >
+      <fileset dir="${webcontent.home}">
+      </fileset>
+    </copy>
+    <copy todir="${classes.home}/WebContent/xqy">
+      <fileset dir="${src.main.home}/xqy">
+        <include name="**/**.*" />
+      </fileset>
+    </copy>
+    <copy todir="${classes.home}/WebContent/workflow">
+      <fileset dir="${rootdir}/workflow">
+        <include name="**/**.*" />
+      </fileset>
+    </copy>
+    <copy todir="${classes.home}/WebContent/xslt">
+      <fileset dir="${src.main.home}/xslt">
+        <include name="**/**.*" />
+        <exclude name="preview/*.*" />
+      </fileset>
+    </copy>
+    <copy todir="${classes.home}">
+      <fileset dir="${lib.home}">
+      	<include name="rsuite-search-utils-lib.jar"/>
+        <include name="rsuite-xml-utils-lib.jar"/>
+        <include name="commons-lang.jar"/>
+        <include name="streamflyer-core.jar"/>
+        <include name="streamflyer-regex-fast.jar"/>
+      </fileset>
+    </copy>
+
+    <jar destfile="${target.home}/${main.project.target.jar}" >
+      <fileset dir="${classes.home}" >
+        <include name="**.*" />
+        <include name="**/**.*" />
+      </fileset>
+    </jar>
+  </target>
+ 
+  <target name="package-doctypes-plugin" depends="package-project-doctypes-dita-toolkit-plugin">
+    <copy file="${src.main.resources.home}/rsuite-doctypes-plugin.xml" tofile="${doctypes.plugin.target.home}/rsuite-plugin.xml"/>
+    <copy file="${lib.home}/deltaxml-merge-dita-toolkit.zip" tofile="${doctypes.plugin.target.home}/com.deltaxml.doctypes.zip" />
+
+    <copy todir="${doctypes.plugin.target.home}/WebContent/xslt">
+      <fileset dir="${src.main.home}/xslt">
+        <include name="preview/*.*" />
+      </fileset>
+    </copy>
+
+    <jar destfile="${target.home}/${doctypes.plugin.target.jar}" >
+      <fileset dir="${doctypes.plugin.target.home}" >
+        <include name="**.*" />
+        <include name="**/**.*" />
+      </fileset>
+    </jar>
+  </target>
+  
+  <target name="package-toolkit-plugins-plugin" depends="package-project-dita-toolkit-plugins-no-doctypes">
+    <copy file="${src.main.resources.home}/rsuite-toolkit-plugins-plugin.xml" tofile="${toolkit.plugins.plugin.target.home}/rsuite-plugin.xml"/>
+    
+    <jar destfile="${target.home}/${toolkit.plugins.plugin.target.jar}" >
+      <fileset dir="${toolkit.plugins.plugin.target.home}" >
+        <include name="**.*" />
+        <include name="**/**.*" />
+      </fileset>
+    </jar>
+  </target>
+  
+  <target name="deploy-typical"
+		  description="Covers a bit more than the minimum"
+		  depends="resolve, clean, deploy-minimal"/>
+	
+  <target name="deploy-minimal" 
+	      description="Compile and deploy the project's plugin"
+	      depends="deploy-minimal-doctypes-plugin, deploy-minimal-project-plugin, deploy-minimal-toolkit-plugins-plugin" />
+  
+  <!-- The next two targets allow a developer to deploy only one of the plugins;
+       Note: We are no longer using ant's uptodate check to see if the doctypes
+       plugin should be built and deployed; if deploy-minimal-doctypes-plugin is
+       called, then we will build and deploy it -->
+  <target name="deploy-minimal-project-plugin" 
+    description="Compile and deploy the project's plugin"
+    depends="package-rsuite-main-project-plugin, delete-old-plugins-project-main">
+    <fail unless="rsuite.plugins.dir">Property 'rsuite.plugins.dir'! is not set</fail>
+    <copy todir="${rsuite.plugins.dir}"
+      file="${target.home}/${main.project.target.jar}" />
+  </target>
+  
+  <target name="deploy-minimal-doctypes-plugin" 
+    description="Compile and deploy the project's doctypes plugin"
+    depends="package-doctypes-plugin, delete-old-plugins-project-doctypes">
+    <fail unless="rsuite.plugins.dir">Property 'rsuite.plugins.dir'! is not set</fail>
+    <copy todir="${rsuite.plugins.dir}"
+      file="${target.home}/${doctypes.plugin.target.jar}" />
+  </target>
+  
+  <target name="deploy-minimal-toolkit-plugins-plugin" 
+    description="Compile and deploy the project's DITA Open Toolkit plugins plugin"
+    depends="package-toolkit-plugins-plugin, delete-old-plugins-project-toolkit-plugins">
+    <fail unless="rsuite.plugins.dir">Property 'rsuite.plugins.dir'! is not set</fail>
+    <copy todir="${rsuite.plugins.dir}"
+      file="${target.home}/${toolkit.plugins.plugin.target.jar}" />
+  </target>
+  
+  <target name="prepare-for-deploy" 
+          depends="package-rsuite-plugins"
+          description="Build the plugin and the ancillary dependencies">
+  </target> 
+
+  <target name="run-tests-and-deploy-results" 
+          description="Execute the automated tests, and deploy the results">
+    <!-- FIXME: When we want to enable tests, add @depends="testng-deploy-xslt-results" to target -->
+  </target>
+	
+  <target name="deploy-full"
+    depends="resolve, deploy-full-less-resolve"
+    description="Everything except the initial setup.">
+  </target>
+	
+  <target name="deploy-full-less-resolve"
+    depends="clean, prepare-for-deploy, deploy, deploy-tests-and-docs"
+    description="Everything except the initial setup and resolve.">
+  </target>
+    
+  <target name="deploy-tests-and-docs"
+    depends="run-tests-and-deploy-results"
+    description="Runs tests. Deploys tests results and docs.">
+  </target>
+  
+	    
+</project>

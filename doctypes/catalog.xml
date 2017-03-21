@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+  
+  <!-- domain modules -->
+
+  	<nextCatalog catalog="learning2Domain/catalog.xml"/>
+	<nextCatalog catalog="ama_annotationDomain/catalog.xml"/>			
+	<nextCatalog catalog="ama_ant_annotationAttDomain/catalog.xml"/>			
+	<nextCatalog catalog="ama_ant_annotation_idAttDomain/catalog.xml"/>				
+	<nextCatalog catalog="ama_ant_idAttDomain/catalog.xml"/>			
+	<nextCatalog catalog="ama_ant_selectedAttDomain/catalog.xml"/>				
+	<nextCatalog catalog="ama_ant_titleAttDomain/catalog.xml"/>		
+	<nextCatalog catalog="ama_application_question_idAttDomain/catalog.xml"/>			
+	<nextCatalog catalog="ama_associated_organization_acronymAttDomain/catalog.xml"/>					
+	<nextCatalog catalog="ama_associated_organization_codeAttDomain/catalog.xml"/>					
+	<nextCatalog catalog="ama_associated_organizationAttDomain/catalog.xml"/>
+	<nextCatalog catalog="ama_assertionDomain/catalog.xml"/>
+	<nextCatalog catalog="ama_cover_frontDomain/catalog.xml"/>		
+	<nextCatalog catalog="ama_highlightsDomain/catalog.xml"/>	
+	<nextCatalog catalog="ama_hrDomain/catalog.xml"/>		
+	<nextCatalog catalog="ama_reviewcompareDomain/catalog.xml"/>
+	<nextCatalog catalog="ama_priorversioncompareDomain/catalog.xml"/>
+	<nextCatalog catalog="ama_semanticAttDomain/catalog.xml"/>
+	<nextCatalog catalog="ama_supporting_document_refAttDomain/catalog.xml"/>
+	<nextCatalog catalog="ama_trackchangesDomain/catalog.xml"/>	
+	<nextCatalog catalog="ama_tc_cidAttDomain/catalog.xml"/>		
+	<nextCatalog catalog="ama_tc_classAttDomain/catalog.xml"/>			
+	<nextCatalog catalog="ama_tc_dataAttDomain/catalog.xml"/>			
+	<nextCatalog catalog="ama_tc_lastchangetimeAttDomain/catalog.xml"/>			
+	<nextCatalog catalog="ama_tc_useridAttDomain/catalog.xml"/>	
+	<nextCatalog catalog="ama_tc_usernameAttDomain/catalog.xml"/>	
+	<nextCatalog catalog="ama_tc_timeAttDomain/catalog.xml"/>		
+	<nextCatalog catalog="rsi_annotationDomain/catalog.xml"/>	
+	<nextCatalog catalog="rsi_ant_evidencebox_statusAttDomain/catalog.xml"/>		
+	<nextCatalog catalog="rsi_ant_evidencebox_timeAttDomain/catalog.xml"/>		
+	<nextCatalog catalog="rsi_ant_evidencebox_userAttDomain/catalog.xml"/>			
+	<nextCatalog catalog="rsi_ant_rsiannotion_idAttDomain/catalog.xml"/>		
+	<nextCatalog catalog="rsi_footnote_idAttDomain/catalog.xml"/>
+	<nextCatalog catalog="rsi_mergeGroupDomain/catalog.xml"/>
+	<nextCatalog catalog="rsi_merge_choiceAttDomain/catalog.xml"/>
+	<nextCatalog catalog="rsi_merge_seenAttDomain/catalog.xml"/>	
+	<!-- Topic types -->
+	<nextCatalog catalog="agenda_item/catalog.xml"/>
+	<nextCatalog catalog="application/catalog.xml"/>
+	<nextCatalog catalog="application_question/catalog.xml"/>
+	<nextCatalog catalog="chapter/catalog.xml"/>
+	<nextCatalog catalog="common/catalog.xml"/>
+  	<nextCatalog catalog="concept/catalog.xml"/>
+	<nextCatalog catalog="glossentry/catalog.xml"/>
+	<nextCatalog catalog="part/catalog.xml"/>
+	<nextCatalog catalog="reference/catalog.xml"/>
+  	<nextCatalog catalog="subjectScheme/catalog.xml"/>
+	<nextCatalog catalog="subsection/catalog.xml"/>	
+	<nextCatalog catalog="supporting_document_info/catalog.xml"/>
+  	<nextCatalog catalog="task/catalog.xml"/>
+  	<nextCatalog catalog="topic/catalog.xml"/>
+  
+  <!-- Map types -->
+
+  	<nextCatalog catalog="map/catalog.xml"/>
+  	<nextCatalog catalog="pubmap/catalog.xml"/>
+  
+  <!-- Non-DITA types -->
+  
+  
+</catalog>

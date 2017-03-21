@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="dita" basedir=".">
+
+    <property name="target.home" value="target"/>
+    <property name="dita.plugins.deploy" value="${dita-ot-runtime-dir}/plugins" />
+        
+    <target name="dita-init">
+        <fail unless="rsuite.home">Property 'rsuite.home' is not set</fail>
+    	<fail unless="dita-ot-src-dir">Property 'dita-ot-src-dir' is not set</fail>
+        <fail unless="dita-ot-runtime-dir">Property 'dita-ot-runtime-dir' is not set</fail>
+        <echo>
+Properties:
+        rsuite.home:         ${rsuite.home}
+        dita-ot-version:     ${dita-ot-version} 
+        dita-ot-src-dir:     ${dita-ot-src-dir}
+        dita-ot-runtime-dir: ${dita-ot-runtime-dir}
+      </echo>
+    </target>
+
+	<target name="package-project-doctypes-dita-toolkit-plugin" 
+    	    description="Package this project's DITA toolkit doctypes plugin - only the doctypes" 
+    	    depends="dita-init">
+	    <delete dir="${target.home}/${toolkit.dirname}" />
+        <copy todir="${target.home}/${toolkit.dirname}/org.ama_assn.doctypes/doctypes">
+            <fileset dir="${basedir}/doctypes" includes="**" />
+        </copy>
+	    <copy todir="${target.home}/${toolkit.dirname}">
+	        <fileset dir="${basedir}/${toolkit.dirname}" includes="**/org.ama_assn.doctypes/**" />
+	    </copy>
+        <zip destfile="${doctypes.plugin.target.home}/${doctypes.file.basename}.zip" basedir="${target.home}/${toolkit.dirname}" update="true" />
+    </target>
+    
+    <target name="package-project-dita-toolkit-plugins-no-doctypes" 
+        description="Package this project's DITA toolkit plugin(s) as a zip within the RSuite plugin but do not include the doctypes plugin" 
+        depends="dita-init">
+        <delete dir="${target.home}/${toolkit.dirname}" />
+        <copy todir="${target.home}/${toolkit.dirname}">
+            <fileset dir="${basedir}/${toolkit.dirname}" excludes="**/org.ama_assn.doctypes/**" />
+        </copy>
+        <zip destfile="${toolkit.plugins.plugin.target.home}/${toolkit.plugins.file.basename}.zip" basedir="${target.home}/${toolkit.dirname}" update="true" />
+    </target>
+    
+	<target name="recreate-ditaot"
+		    description="DELETES and recreates the DITA OT runtime directory."
+	        depends="dita-init">
+		<echo message="Deleting and recreating the DITA OT runtime directory..."/>
+        <delete dir="${dita-ot-runtime-dir}" />
+		<copy todir="${dita-ot-runtime-dir}">
+            <fileset dir="${dita-ot-src-dir}" includes="**" />
+		</copy>
+	</target>
+
+</project>

@@ -1,0 +1,25 @@
+<!-- 
+  Plugin descriptor for the DITA doctypes
+  
+  Copyright (c) 2013 RSI Content Solutions
+    
+  To enable resolution of references to the doctypes and schemas, you 
+  must perform the following one-time action after adding the plugin
+  to the Toolkit's plugins directory:
+  
+  1. From a command window, navigate to the Toolkit's installation
+     directory (e.g., cd c:\DITA-OT1.4.3)
+     
+  2. Run the command:
+  
+     ant -f integrator.xml
+     
+  This will add the documentation-specific catalog entries to the catalog-dita.xml 
+  catalog.
+  -->
+<plugin id="org.ama_assn.doctypes">
+  <require plugin="org.dita4publishers.doctypes"/>   
+  <require plugin="com.reallysi.rsuite.doctypes"/>  	
+  <feature extension="dita.specialization.catalog.relative" value="catalog.xml" type="file"/>
+  <!-- Add dependencies here on D4P and RSuite plugins -->
+</plugin>

@@ -1,0 +1,9 @@
+<suite name="Java Local Unit Tests" verbose="1">
+  
+  <test name="Java Local Unit Tests">
+    <packages>
+      <package name="test.org.ama_assn.rsuite.*" />
+    </packages>
+  </test>
+ 
+</suite>

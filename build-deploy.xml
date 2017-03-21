@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<project basedir="." default="deploy">
+
+	<property file="build.properties" />
+	<property file="${user.home}/.build.properties" />
+	<property file="${user.home}/build.properties" />
+
+	<import file="build-groovy-utils.xml" />
+    <import file="build-dita.xml"/>
+    <import file="build.xml"/>
+
+    <property name="lib.home" value="${basedir}/java/lib" />
+    <property name="src.home" value="${basedir}/src" />
+    <property name="target.home" value="target"/>
+	<property name="conf.home" value="conf" />		
+    
+    <property name="doctypes.src" value="${basedir}/doctypes" />
+	<property name="toolkit.dirname" value="toolkit_plugins"/>
+    <property name="dita.plugins.src" value="${basedir}/${toolkit.dirname}" />
+    <property name="dita.plugins.target" location="${target.home}/dita/plugins" />
+	<property name="dita.plugins.deploy" value="${dita-ot-runtime-dir}/plugins" />
+	
+    <!-- Defaults for how long to wait for RSuite to load the plugins. -->
+    <property name="wait.after.deploying.plugins.in.minutes" value="2"/>
+    <property name="wait.after.deploying.plugins.in.seconds" value="0"/>
+
+	<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+    <target name="deploy-init">
+      <fail unless="rsuite.user">Property 'rsuite.user'! is not set</fail>
+      <fail unless="rsuite.pass">Property 'rsuite.pass'! is not set</fail>
+      <fail unless="rsuite.host">Property 'rsuite.host'! is not set</fail>
+      <fail unless="rsuite.port">Property ''! is not set</fail>
+      <fail unless="groovy.scripts.dir">Property 'groovy.scripts.dir'! is not set</fail>
+      <fail unless="dita-ot-runtime-dir">Property 'dita-ot-runtime-dir'! is not set</fail>
+      <fail unless="rsuite.home">Property 'rsuite.home'! is not set</fail>
+      <fail unless="rsuite.plugins.dir">Property 'rsuite.plugins.dir'! is not set</fail>
+      <fail unless="deploy.rsuite.lib.dir">Property 'deploy.rsuite.lib.dir'! is not set</fail>
+      <fail unless="lib.parent.home">Property 'lib.parent.home'! is not set</fail>
+      <fail unless="lib.home">Property 'lib.home'! is not set</fail>
+      <echo>
+Properties:
+        rsuite.user: ${rsuite.user}
+        rsuite.pass: ************
+        rsuite.host: ${rsuite.host}
+        rsuite.port: ${rsuite.port}
+        groovy.scripts.dir: ${groovy.scripts.dir}
+        groovy.script.name.create.user.accounts: ${groovy.script.name.create.user.accounts}
+        dita-ot-runtime-dir: ${dita-ot-runtime-dir}
+        rsuite.home: ${rsuite.home}
+        rsuite.plugins.dir: ${rsuite.plugins.dir}
+      	deploy.rsuite.lib.dir: ${deploy.rsuite.lib.dir}
+        lib.parent.home: ${lib.parent.home}
+        lib.home: ${lib.home}
+      </echo>
+    </target>
+    
+    <target name="delete-old-plugins-project-doctypes">
+        <!-- This project's plugin file names have changed over time.  The following helps prevent having older ones installed. -->
+        <delete file="${rsuite.plugins.dir}/${doctypes.plugin.target.jar}" failonerror="true"/>
+    </target>
+    
+    <target name="delete-old-plugins-project-main">
+        <!-- This project's plugin file names have changed over time.  The following helps prevent having older ones installed. -->
+        <delete file="${rsuite.plugins.dir}/${main.project.target.jar}" failonerror="true"/>
+    </target>
+    
+    <target name="delete-old-plugins-project-toolkit-plugins">
+        <!-- This project's plugin file names have changed over time.  The following helps prevent having older ones installed. -->
+        <delete file="${rsuite.plugins.dir}/${toolkit.plugins.plugin.target.jar}" failonerror="true"/>
+    </target>
+    
+    <target name="delete-old-plugins" depends="delete-old-plugins-project-doctypes, delete-old-plugins-project-main, delete-old-plugins-project-toolkit-plugins">
+	    <!-- This project's plugin file names have changed over time.  The following helps prevent having older ones installed. -->
+	</target>
+
+    <target name="deploy-rsuite-plugins" depends="package-rsuite-plugins, delete-old-plugins">
+    	
+        <copy todir="${rsuite.plugins.dir}" verbose="true" overwrite="true" force="true" failonerror="true">
+            <fileset dir="${lib.home}">
+                <!-- DITA plugins -->
+                <include name="rsuite-dita-ot-plugin.jar"/>
+                <include name="rsuite-dita-support-plugin.jar"/>
+            </fileset>
+            <fileset dir="${target.home}">
+                <!-- Project schemas and customizations and toolkit plugins-->
+                <include name="${doctypes.plugin.target.jar}"/>
+                <include name="${main.project.target.jar}"/>
+                <include name="${toolkit.plugins.plugin.target.jar}"/>
+            </fileset>
+            <fileset dir="${lib.home}">
+                <!-- Other required plugins -->
+                <include name="team-edition-dashboard-plugin.jar"/>
+                <include name="rsuite-zip-downloader-plugin.jar"/>
+                
+                <include name="rsuite-lmd-editor-plugin.jar"/>
+                <!-- TBD if desired on this project --> 
+<!--                <include name="team-edition-workflow-quick-plugin.jar"/>-->
+<!--                <include name="team-edition-results-reporter-plugin.jar"/>-->
+<!--                <include name="rsuite-workflow-visualizer-plugin.jar"/>--> <!-- no v5.0.5 equivalent yet -->
+<!--                <include name="rsuite-system-monitoring-plugin.jar"/>-->
+            </fileset>
+        </copy>
+        
+        <!-- In lieu of a more elegant solution, allow each environment to 
+             tune how long to give RSuite to load the plugins.  This wait is
+             needed to ensure the schemas are loaded before we try to load
+             sample data. -->
+        <echo>Waiting ${wait.after.deploying.plugins.in.minutes} minute(s) and ${wait.after.deploying.plugins.in.seconds} second(s) for RSuite to load the plugins...</echo>
+        <sleep minutes="${wait.after.deploying.plugins.in.minutes}" 
+        	   seconds="${wait.after.deploying.plugins.in.seconds}"/>
+    </target>
+    
+    <target name="deploy-remove-schemas">
+      <run-groovy-script script="RemoveAllSchemas.groovy" />
+    </target>
+    
+    <target name="deploy-datatypes">
+      <run-groovy-script script="DefineDatatypes.groovy" />
+    </target>
+
+    <target name="deploy-lmd-config">
+      <run-groovy-script script="ConfigureLayeredMetadata.groovy" />
+    </target>
+
+    <target name="deploy-roles">
+      <run-groovy-script script="ConfigureRoles.groovy" />
+    </target>
+    
+    <target name="deploy-workflows">
+      <echo>Workflow definitions are now loaded via the plugin descriptor for the main project plugin.</echo>
+	</target>
+    
+    <target name="deploy-ca-types">
+      <run-groovy-script script="DefineCaTypes.groovy" />
+    </target>
+    
+	<target name="deploy-initial-content">
+      <run-groovy-script script="LoadInitialContent.groovy" />
+    </target>
+	
+	<target name="deploy-local-users">
+	    <run-groovy-script script="ConfigureLocalUnsecuredUserAccounts.groovy" />
+	  <run-groovy-script script="ConfigureLocalSecuredUserAccounts.groovy" />
+    </target>
+	
+    <target name="deploy-custom-runtime-xquery-files">
+        <!-- FIXME: Come up with a viable way to automatically deploy the xquery config -->
+<!--        <copy file="${lib.home}/system-monitoring.xqy" todir="${rsuite.home}/modules_1_0"/>-->
+        <!--<copy todir="${rsuite.home}/modules_1_0">
+            <fileset dir="src/xqy">
+                <exclude name="apply-project-configuration.xqy"/>
+            </fileset>
+        </copy>-->
+    </target>
+	
+    <target name="deploy-deltaxml-merge-libraries"
+          description="Deploy the libraries required by our DeltaXML Merge integration">
+        <!-- NOTE: Project will eventually use DeltaXML but isn't yet -->
+<!--        <copy file="${lib.home}/icu4j.jar" todir="${deploy.rsuite.lib.dir}"/>
+        <copy file="${lib.home}/DeltaXMLCore.jar" todir="${deploy.rsuite.lib.dir}"/>
+        <copy file="${lib.parent.home}/${deltaxml.merge.jar.location}" todir="${deploy.rsuite.lib.dir}"/>-->
+    </target>
+
+	<target name="deploy-all-configurations"
+	    depends="deploy-roles,
+                 deploy-local-users,
+                 deploy-datatypes,
+                 deploy-lmd-config,
+                 deploy-ca-types,
+                 deploy-workflows,
+                 deploy-remove-schemas,
+                 deploy-custom-runtime-xquery-files,
+                 deploy-deltaxml-merge-libraries,
+                 deploy-rsuite-plugins,
+                 deploy-initial-content
+                " 
+            />
+
+	<target name="deploy"
+            depends="deploy-init,deploy-all-configurations"
+            description="Deploy all customizations to RSuite Server.">
+    </target>
+
+	<target name="deploy-configuration-files">
+      <copy file="conf/dita-open-toolkits.properties" todir="${rsuite.home}/conf" >
+        <filterchain>
+          <replacetokens>
+            <token key="INSTANCE_DITAOT_ROOT" value="${dita-ot-runtime-dir}"/>		            
+          </replacetokens>
+	    </filterchain>
+      </copy>
+	</target>
+
+    <target name="deploy-initial-setup"
+            depends="deploy-init, deploy-configuration-files, recreate-ditaot"
+            description="Deploy intial setup for customizations to RSuite Server. It will require an RSuite restart.">
+    </target>
+    
+    <target name="deploy-new-environment"
+        depends="deploy-initial-setup, deploy-full"
+        description="Execute ant targets needed to deploy the project to a new environment.">
+    </target>
+    
+    <!-- The following are utility scripts, not currently tied to anything -->
+    <target name="deploy-remove-roles">
+        <run-groovy-script script="developer-and-maintenance/RemoveAllRoles.groovy" />
+    </target>
+    
+    <target name="deploy-remove-users">
+        <run-groovy-script script="developer-and-maintenance/RemoveAllLocalUsers.groovy" />
+    </target>
+    
+    <target name="deploy-create-local-users">
+        <run-groovy-script script="ConfigureLocalUnsecuredUserAccounts.groovy" />
+    </target>
+</project>

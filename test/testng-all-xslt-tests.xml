@@ -1,0 +1,9 @@
+<suite name="All XSLT Tests Suite" verbose="1">
+
+  <suite-files>
+    <suite-file path="^testngFilesDir^/testng-dita2xhtml-xslt-tests.xml" />
+    <suite-file path="^testngFilesDir^/testng-xhtml2dita-xslt-tests.xml" />
+    <suite-file path="^testngFilesDir^/testng-merge-xslt-tests.xml" />    
+  </suite-files>
+  
+</suite>

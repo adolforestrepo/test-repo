@@ -1,0 +1,16 @@
+# Template file for optional features we may want in this project
+rsuite.graphviz.dot.executable.path=/usr/bin/dot
+ditaot.kindlegen.executable=/usr/local/bin/kindlegen
+rsuite.ditaXmlExportDir=INSTANCE_DATA/dita-export/xml
+
+# LMD Editor plugin configuration
+rsuite.lmd.plugin.name=astd-main
+rsuite.lmd.edit.configuration.uri=WebContent/lmd/conf/lmdConfiguration.xml
+
+# Configure if the testing service should be enabled (true) or disabled (false).
+astd.testing.service.enabled=true
+
+# The number of seconds notifications will stay on the screen before automatically 
+# being dismissed.  Unfortunately, this property only controls notifications created
+# by custom web services.  
+astd.notification.duration.in.seconds=10

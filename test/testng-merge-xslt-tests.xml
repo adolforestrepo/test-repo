@@ -1,0 +1,223 @@
+<suite name="Merge XSLT Tests" verbose="1">
+  <!-- The build script can add some values, including build props.  See the "adjust-suite-conf-file" Ant target. -->
+  <parameter name="rsuiteHost" value="^rsuiteHost^"/>
+  <parameter name="rsuitePort" value="^rsuitePort^"/>
+  <parameter name="rsuiteUser" value="^rsuiteUser^"/>
+  <parameter name="rsuitePass" value="^rsuitePass^"/>
+  <parameter name="baseProjectDir" value="^baseProjectDir^"/>
+  
+  <!-- TODO: Update tests for this project -->
+  
+  <!-- Tests for post-merge filters -->
+  <test name="General Post-Merge Filter: general-common-cleanup">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/2-post-filters/general-common-cleanup.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/2-post-filters/general-common-cleanup"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/2-post-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+ <test name="General Post-Merge Filter: lowercase-att-names">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/2-post-filters/lowercase-att-names.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/2-post-filters/lowercase-att-names"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/2-post-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+
+  <test name="General Post-Merge Filter: reconstruct-change-markup">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/2-post-filters/reconstruct-change-markup.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/2-post-filters/reconstruct-change-markup"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/2-post-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+   
+  <test name="General Post-Merge Filter: remove-unimportant-assertion-change">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/2-post-filters/remove-unimportant-assertion-change.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/2-post-filters/remove-unimportant-assertion-change"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/2-post-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="General Post-Merge Filter: create-deluxe-review-markup">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/2-post-filters/create-deluxe-review-markup.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/2-post-filters/create-deluxe-review-markup"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/2-post-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  <test name="General Post-Merge Filter: add-doctype-declaration">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/2-post-filters/add-doctype-declaration.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/2-post-filters/add-doctype-declaration"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/2-post-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  <!-- Below tests cannot be run until we upgrade to RSuite 5 and can use Saxon 9.6/9.7 -->
+  <!--
+  <test name="General Post-Merge Filter: reconstruct-assertions">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/2-post-filters/reconstruct-assertions.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/2-post-filters/reconstruct-assertions"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/2-post-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="General Post-Merge Filter: reconstruct-comments">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/2-post-filters/reconstruct-comments.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/2-post-filters/reconstruct-comments"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/2-post-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>-->
+  
+  
+  <!-- Tests for pre-merge filters -->
+  <test name="General Pre-Merge Filter: flatten-annotations">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/1-pre-filters/flatten-annotations.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/1-pre-filters/flatten-annotations"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/1-pre-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="General Pre-Merge Filter: remove-change-markup">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/1-pre-filters/remove-change-markup.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/1-pre-filters/remove-change-markup"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/1-pre-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="General Pre-Merge Filter: remove-comments-and-pis">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/1-pre-filters/remove-comments-and-pis.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/1-pre-filters/remove-comments-and-pis"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/1-pre-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="General Pre-Merge Filter: remove-deluxe-review-markup">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/1-pre-filters/remove-deluxe-review-markup.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/1-pre-filters/remove-deluxe-review-markup"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/1-pre-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="General Pre-Merge Filter: set-deltaxml-key">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/1-pre-filters/set-deltaxml-key.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/1-pre-filters/set-deltaxml-key"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/1-pre-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="General Pre-Merge Filter: strip-rsuite-ids">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/1-pre-filters/strip-rsuite-ids.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/1-pre-filters/strip-rsuite-ids"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/1-pre-filters"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+
+  <!-- following test disabled until know which sprint it is being taken on -->
+  <test name="Same Start and End Points For Ranges" enabled="false">
+    <parameter name="xslUri"
+      value="rsuite:/res/plugin/ama-main/xslt/merge/2-post-filters/reconstruct-comments.xsl"/>
+    <parameter name="testDataDir"
+      value="testData/xslt/merge/SameStartEndPointsForRanges"/>
+    <parameter name="inputExt" value="in"/>
+    <parameter name="resultExt" value="out"/>
+    <parameter name="testOutputDir"
+      value="target/test-output/xslt-results/merge/SameStartEndPointsForRanges"/>
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+</suite>

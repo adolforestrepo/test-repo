@@ -1,0 +1,7 @@
+<suite name="Java Unit Test Suite" verbose="1">
+  
+  <suite-files>
+    <suite-file path="^testngFilesDir^/testng-java-local-unit-tests.xml" />
+  </suite-files>
+  
+</suite>

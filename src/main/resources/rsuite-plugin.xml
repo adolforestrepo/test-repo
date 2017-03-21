@@ -1,0 +1,293 @@
+<rsuite-plugin
+        id="astd-main"
+        dependsOn="ama-main-doctypes, rsuite-container-wizard-plugin">
+    
+    <lifecycleListener
+        type="org.astd.rsuite.lifecycle.ProjectPluginLifecycleListener" />
+	
+	
+    <extensionProvider id="rsuite.ManagedObjectAdvisor">
+        <managedObjectAdvisor type="org.ama_assn.rsuite.advisors.mo.AliasSettingGlobalManagedObjectAdvisor" />
+        <managedObjectAdvisor type="org.ama_assn.rsuite.advisors.mo.ChecksumGlobalManagedObjectAdvisor" />
+    </extensionProvider>
+
+    <extensionProvider id="rsuite.EventBus">
+        <!-- no event handlers yet -->
+    </extensionProvider>
+
+	<extensionProvider id="rsuite.WebService">
+
+		<staticWebService root="/astd-main" path="/WebContent" />
+
+		<!-- Web services implemented for AMA, alphabetized. -->
+        <remoteApiDefinition id="astd.main.webservice.rsuite5.AddRoleToUser"
+            handler="org.astd.rsuite.webservices.rsuite5.AddRoleToUserWebService"
+            label="Grant a role to a user; fills gap in groovy API in v5..." />
+	    <remoteApiDefinition id="astd.main.webservice.AdjustDynamicConfiguration"
+	        handler="org.astd.rsuite.webservices.AdjustDynamicConfigurationWebService"
+	        label="Adjust Dynamic Configuration" />
+        <remoteApiDefinition id="astd.main.webservice.DeleteContainerAndReferencedContent"
+            handler="org.astd.rsuite.webservices.DeleteContainerAndReferencedContentWebService"
+            label="Delete Container" />
+        <remoteApiDefinition id="astd.main.webservice.GetMetadataAmp"
+            handler="org.astd.rsuite.webservices.GetMetadataAmpWebService"
+            label="Get Metadata (Amp User)" />
+	    <remoteApiDefinition id="astd.main.webservice.KillAllWorkflows"
+	        handler="org.astd.rsuite.webservices.KillAllWorkflowsWebService"
+	        label="Kill all workflows" />
+	    <remoteApiDefinition id="astd.main.webservice.ListAllWorkflows"
+	        handler="org.astd.rsuite.webservices.ListAllWorkflowsWebService"
+	        label="List all workflows" />
+	    <remoteApiDefinition id="astd.main.webservice.rsuite5.PerformProductSearchByProductNumber"
+	        handler="org.astd.rsuite.webservices.rsuite5.PerformProductSearchByProductNumberWebService"
+	        label="Given a product number return search result; fills gap in groovy API in v5..." />
+		<remoteApiDefinition id="astd.main.webservice.SetTemporaryCptCode"
+			handler="org.astd.rsuite.webservices.SetTemporaryCptCodeWebService"
+			description="Web service for setting a temporary CPT code." />
+		<remoteApiDefinition id="astd.main.webservice.StartDitaOtWorkflow"
+			handler="org.astd.rsuite.webservices.StartDitaOtWorkflowWebService"
+			description="Web service for starting a DITA-OT workflow." />
+		<remoteApiDefinition id="astd.main.webservice.TestTransform"
+            handler="org.astd.rsuite.webservices.TestTransformWebService"
+            label="Test Transform" />   
+            
+	</extensionProvider>
+
+	<extensionProvider id="rsuite.ContextMenu">
+
+        <contextMenuRuleSet name="astd.main.contextmenuitem.all.users.system.scope" scope="system">
+            <menuItemList>
+                <menuItem id="ama:viewAutomatedTestResults">
+				    <type>action</type>
+				    <actionName>rsuite:openWindow</actionName>
+				    <label>View Automated Test Results</label>
+				    <property name="rsuite:group" value="productTeamActions" />
+                    <property name="rsuite:icon" value="valid"/>
+                    <property name="windowOptions.href" value="/docs/project/test-output/html/" />
+                    <property name="windowOptions.name" value="automatedTestResults" />
+                    <property name="windowOptions.focus" value="true" />
+                    <property name="windowOptions.width" value="900" />
+                    <property name="windowOptions.height" value="500" />
+                    <property name="windowOptions.left" value="30" />
+				    <property name="windowOptions.top" value="30" />
+				    <property name="windowOptions.tab" value="true" />
+				</menuItem>
+            </menuItemList>
+            <ruleList>
+            </ruleList>
+        </contextMenuRuleSet>
+	    
+	    <contextMenuRuleSet name="astd.main.contextmenuitem.rsuiteadministrators.system.scope" scope="system">
+	        <menuItemList>
+	            <menuItem id="astd:adjustDynamicConfiguration">
+	                <type>action</type>
+	                <actionName>rsuite:invokeWebservice</actionName>
+	                <label>Adjust Dynamic Configuration</label>
+	                <property name="remoteApiName" value="astd.main.webservice.AdjustDynamicConfiguration"/>
+	                <property name="formId" value="ama.main.form.AdjustDynamicConfiguration" />
+	                <property name="formParams.dynamicConfigurationUsername" value="dconfigurator"/>
+	                <property name="formParams.dynamicSettingsPrefixNames" value="ama"/>
+	                <property name="rsuite:path" value="Administer" />
+	                <property name="rsuite:group" value="admin" />
+	                <property name="rsuite:icon" value="configuration2" />
+	            </menuItem>
+	            <menuItem id="astd:killAllWorkflows">
+	                <type>action</type>
+	                <actionName>rsuite:invokeWebservice</actionName>
+	                <label>Kill All Workflows</label>
+	                <property name="remoteApiName" value="astd.main.webservice.KillAllWorkflows"/>
+	                <property name="rsuite:path" value="Administer" />
+	                <property name="rsuite:group" value="admin" />
+	                <property name="showProgressMeter" value="true"/>
+	                <ruleList>
+	                    <rule>include role RSuiteAdministrator</rule>
+	                </ruleList>
+	            </menuItem>
+	            <menuItem id="astd:listAllWorkflows">
+	                <type>action</type>
+	                <actionName>rsuite:invokeWebservice</actionName>
+	                <label>List All Workflows</label>
+	                <property name="remoteApiName" value="astd.main.webservice.ListAllWorkflows"/>
+	                <property name="rsuite:path" value="Administer" />
+	                <property name="rsuite:group" value="admin" />
+	                <property name="showProgressMeter" value="true"/>
+	            </menuItem>
+	        </menuItemList>
+	        <ruleList>
+	            <rule>include role RSuiteAdministrator</rule>
+	        </ruleList>
+	    </contextMenuRuleSet>
+	  
+		
+        <contextMenuRuleSet name="astd.main.contextmenuitem.admin.only.actions" scope="allnodes,searchResults,browseTree,clipboard">
+            <menuItemList>
+                <menuItem id="astd:deleteContainerAndContents" 
+                          label="Permanently delete..."
+                          actionName="rsuite:invokeWebservice">
+                    <property name="formId" value="astd.main.form.ConfirmDeleteContainerAndContents" />
+                    <property name="remoteApiName" value="astd.main.webservice.DeleteContainerAndReferencedContent"/>
+                    <property name="showProgressMeter" value="true" />
+                    <property name="rsuite:icon" value="delete"/>
+                    <property name="rsuite:group" value="rsuite:manage" />
+                    <property name="rsuite:path" value="Organize" />
+                </menuItem>
+            </menuItemList>
+            <ruleList>
+                <rule>include role RSuiteAdministrator</rule>
+                <rule>include nodeType ca,canode,folder</rule>
+            </ruleList>
+        </contextMenuRuleSet>
+        
+	
+	</extensionProvider>
+	
+
+	<extensionProvider id="rsuite.Search">
+
+		<searchResultsConfiguration>
+			<columnList>
+				<column name="displayName" label="/search/columns/displayName" />
+				<column name="kind" label="/search/columns/kind" />
+				<column name="dtModified" label="/search/columns/dtModified"
+					sortOptions="asc" />
+				<column name="userId" label="/search/columns/userId" />
+			</columnList>
+		</searchResultsConfiguration>
+
+		
+	</extensionProvider>
+
+	<extensionProvider id="rsuite.Workflow">
+
+		<taskUIConfiguration scope="user,roles">
+			<inboxRowsPerPage>20</inboxRowsPerPage>
+			<inboxColumnList>
+				<column name="name" label="Task" />
+				<column name="productName" label="Product" />
+				<column name="description" label="Description" />
+				<column name="roles" label="Roles" />
+				<column name="dtCreated" label="Created Date" />
+			</inboxColumnList>
+			<inboxFilterList>
+				<filter name="name" label="Task Type" />
+				<filter name="description" label="Description" />
+			</inboxFilterList>
+		</taskUIConfiguration>
+		<taskUIConfiguration scope="manager">
+			<inboxRowsPerPage>20</inboxRowsPerPage>
+			<inboxColumnList>
+				<column name="name" label="Task" />
+				<column name="productName" label="Product" />
+				<column name="description" label="Description" />
+				<column name="actorId" label="Assignee" />
+				<column name="roles" label="Roles" />
+				<column name="dtCreated" label="Created Date" />
+			</inboxColumnList>
+			<inboxFilterList>
+				<filter name="name" label="Task Type" />
+				<filter name="description" label="Description" />
+				<filter name="actorId" label="Assignee" />
+			</inboxFilterList>
+		</taskUIConfiguration>
+
+		<!-- Action handlers -->
+
+		<actionHandler label="Clear exception"
+					   description="Clear exception"
+					   type="org.astd.rsuite.workflow.actions.nonleaving.ClearExceptionActionHandler" />
+
+        <actionHandler label="Set Layered Metadata (Non-Leaving)"
+                       description="Set a piece of layered metadata on the content associated with the workflow"
+                       type="org.astd.rsuite.workflow.actions.nonleaving.SetLayeredMetadataWorkflowAction" />
+	    
+	    <actionHandler label="Ensure Map for Product"
+	                   description="Creates a DITA Map for a product"
+	                   type="org.astd.rsuite.workflow.actions.leaving.EnsureMapForProductActionHandler" /> 
+	    
+	    <!-- Local copies of Core / supported-plugin action handlers -->
+	    
+	    
+	    <actionHandler label="Local Copy of DitaOtPdfTaskRunningActionHandler"
+	        description="Local Copy of DitaOtPdfTaskRunningActionHandler"
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectDitaOtPdfTaskRunningActionHandler" />
+	    <actionHandler label="Local Copy of DitaOtXhtmlTaskRunningActionHandler"
+	        description="Local Copy of DitaOtXhtmlTaskRunningActionHandler"
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectDitaOtXhtmlTaskRunningActionHandler" />
+	    <actionHandler label="Local Copy of Load Non by Alias"
+	        description="Local Copy of Load Non by Alias"
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler" /> 
+	    
+	    
+	    <actionHandler label="Local Copy of Add Metadata Action Handler"
+	        description="Local Copy of Load Non by Alias"
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAddLayeredMetadataActionHandler" /> 
+	    
+	    <!-- Load workflow definitions   -->
+	    <workflowDefinitions>
+	        <file key="AMA XML MO Open Toolkit DITA To PDF" filename="WebContent/workflow/AMA XML MO Open Toolkit DITA To PDF.bpmn"/>
+	        <file key="AMA Map Open Toolkit DITA To PDF" filename="WebContent/workflow/AMA Map Open Toolkit DITA To PDF.bpmn"/>
+	    </workflowDefinitions>
+	    
+	</extensionProvider>
+
+    <extensionProvider id="rsuite.UI">
+        <scriptInclude src="/astd-main/js/jquery.initialize.js" /> <!-- From: https://github.com/timpler/jquery.initialize -->
+	    <scriptInclude src="/astd-main/js/cms-ui-actions.js" />
+	    <scriptInclude src="/astd-main/js/cms-ui-overrides.js" />
+        <scriptInclude src="/astd-main/js/rsuite-openWindow-action.js" />
+        <scriptInclude src="/astd-main/js/cms-ui-rules.js" />
+        <styleInclude src="/astd-main/css/config/icons.less" /> 
+	    
+		<contentDisplayAdvisor id="astd.main.contentDisplayAdvisor"
+			type="org.astd.rsuite.advisors.content.ProjectContentDisplayAdvisor" />
+
+	</extensionProvider>
+
+    <extensionProvider id="rsuite.TransformationProvider">
+
+        <transformationProvider 
+            name="astd.main.transformProvider"
+            type="org.astd.rsuite.transform.ProjectTransformationProvider"/>
+            
+    </extensionProvider>
+    
+    <extensionProvider id="rsuite.Forms">
+      
+        <formDefinition id="astd.main.form.AdjustDynamicConfiguration"
+            label="Adjust Dynamic Settings" 
+            description="Enables RSuiteAdministrators to change certain settings without restarting RSuite."
+            handler="com.rsicms.rsuite.dynamicconfiguration.advisors.form.DynamicConfigurationFormHandler"
+            >
+            <instructions>Please make your changes.</instructions>
+            <paramList>
+                <param>
+                    <col>1</col>
+                    <name>ama.xslt.and.merge.write.all</name>
+                    <label>Write XSLT and Merge input and output?</label>
+                    <formControlType>radiobutton</formControlType>
+                    <optionList>
+                        <option value="true" label="true"/>
+                        <option value="false" label="false"/>
+                    </optionList>
+                </param>  
+            </paramList>
+        </formDefinition>
+
+    </extensionProvider>
+
+    <extensionProvider id="rsuite.Forms">
+        <formDefinition id="astd.main.form.ConfirmDeleteContainerAndContents"
+            label="Confirm Delete Request" 
+            description="Enables the user to confirm their intent.">
+            <instructions>Please confirm this container(s) and its contents are to be permanently deleted, 
+                even if that content is referenced by other containers or checked out by other users.</instructions>
+            <paramList />
+        </formDefinition>
+    </extensionProvider>
+
+    <extensionProvider id="rsuite.Reporting">
+
+  
+  </extensionProvider>
+  
+</rsuite-plugin>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<project name="ant-common" basedir=".">
+
+	<macrodef name="run-groovy-script">
+
+		<attribute name="user" default="${rsuite.user}" />
+		<attribute name="pass" default="${rsuite.pass}" />
+		<attribute name="host" default="${rsuite.host}" />
+		<attribute name="port" default="${rsuite.port}" />
+		<attribute name="script" />
+		<attribute name="dir" default="${groovy.scripts.dir}"/>
+		<attribute name="fork" default="true" />
+		<attribute name="opts" default="" />
+
+		<sequential>
+
+			<path id="admin.classpath">
+				<fileset dir="${rsuite.admin.home}/lib">
+					<include name="**/*.jar" />
+				</fileset>
+				<!-- 20160427, bhartwig: Excluded project lib dir as it is not needed and 
+				                         prevented execution of InitSchemas.groovy.
+				<fileset dir="${lib.home}">
+				</fileset>
+				-->
+			</path>
+
+			<local name="sourceParam" />
+			<condition property="sourceParam" value="@{script}" else="@{dir}/@{script}">
+				<istrue value="@{fork}" />
+			</condition>
+
+			<local name="params" />
+            <property name="params-no-password" value="run -s ${sourceParam} --user @{user} --password OMITTED -h @{host} -p @{port} @{opts}"/>
+            <property name="params" value="run -s ${sourceParam} --user @{user} --password @{pass} -h @{host} -p @{port} @{opts}"/>
+
+			<echo message="Running params: ${params-no-password} from folder @{dir}" />
+
+			<java classname="com.reallysi.rsuite.admin.client.RSuiteAdminClient" classpathref="admin.classpath" dir="@{dir}" fork="@{fork}" resultproperty="resultText" failonerror="true">
+				<arg line="${params}" />
+			</java>
+
+		</sequential>
+	</macrodef>
+</project>

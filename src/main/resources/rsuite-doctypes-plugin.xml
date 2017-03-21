@@ -1,0 +1,68 @@
+<rsuite-plugin
+        id="astd-main-doctypes"
+        dependsOn="rsuite-dita-ot-plugin,rsuite-dita-support-plugin">
+        
+    <extensionProvider id="rsuite.WebService">
+        <staticWebService root="/ama-main-doctypes" path="/WebContent" />
+    </extensionProvider>
+    
+    <!-- WARNING: When MO definitions change, see if ProjectQName enum also needs to change. -->
+    <extensionProvider id="rsuite.ditaOpenToolkit">
+        <ditaOpenToolkit toolkitName="rsuite:all">
+            <toolkitPlugin toolkitPluginId="com.deltaxml.doctypes">
+                <zipfile>com.deltaxml.doctypes.zip</zipfile>
+            </toolkitPlugin>
+            <toolkitPlugin toolkitPluginId="org.ama_assn.doctypes">
+                <zipfile>ama-main-doctypes-plugin.zip</zipfile>
+                
+                <!-- Map type first -->
+                <doctype type="DTD" publicId="urn:pubid:org.ama_assn:doctypes:dita:map">
+                    <file>doctypes/map/dtd/map.dtd</file>
+                    <managedObjectDefinitions>
+                        <moDef name="map" displayNameXPath="if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else if (@title) then string(@title) else '{No title found}'" />
+                    </managedObjectDefinitions>
+                </doctype>
+                
+                <doctype type="DTD" publicId="urn:pubid:org.ama_assn:doctypes:dita:pubmap">
+                    <file>doctypes/pubmap/dtd/pubmap.dtd</file>
+                    <managedObjectDefinitions>
+                        <moDef name="pubmap" displayNameXPath="if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else if (@title) then string(@title) else '{No title found}'" />
+                    </managedObjectDefinitions>
+                </doctype>
+                
+                <!-- Topic types next -->
+                <doctype type="DTD" publicId="urn:pubid:org.ama_assn:doctypes:dita:agenda_item">
+                    <file>doctypes/agenda_item/dtd/agenda_item.dtd</file>
+                    <managedObjectDefinitions>
+                        <moDef name="agenda_item" displayNameXPath="title" />
+                    </managedObjectDefinitions>
+                </doctype>
+                
+                <doctype type="DTD" publicId="urn:pubid:org.ama_assn:doctypes:dita:application">
+                    <file>doctypes/application/dtd/application.dtd</file>
+                    <managedObjectDefinitions>
+                        <moDef name="application" displayNameXPath="title" />
+                    </managedObjectDefinitions>
+                </doctype>
+                
+                <doctype type="DTD" publicId="urn:pubid:org.ama_assn:doctypes:dita:subsection">
+                    <file>doctypes/subsection/dtd/subsection.dtd</file>
+                    <previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl</previewXsl>
+                    <managedObjectDefinitions>
+                        <moDef name="subsection" displayNameXPath="*[contains(@class, ' topic/title')]" />
+                    </managedObjectDefinitions>
+                </doctype>
+                
+                <doctype type="DTD" publicId="urn:pubid:org.ama_assn:doctypes:dita:topic">
+                    <file>doctypes/topic/dtd/topic.dtd</file>
+                    <previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl</previewXsl>
+                    <managedObjectDefinitions>
+                        <moDef name="topic" displayNameXPath="*[contains(@class, ' topic/title')]" />
+                    </managedObjectDefinitions>
+                </doctype>
+                
+            </toolkitPlugin>
+        </ditaOpenToolkit>
+    </extensionProvider>
+    
+</rsuite-plugin>

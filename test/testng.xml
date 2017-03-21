@@ -1,0 +1,14 @@
+<suite name="Master Test Suite" verbose="1">
+
+  <suite-files>
+    <suite-file path="^testngFilesDir^/testng-all-xslt-tests.xml"/>
+    <suite-file path="^testngFilesDir^/testng-java-all-unit-tests.xml" />
+  </suite-files>
+  
+  <test name="Environment Test">
+    <classes>
+      <class name="org.ama_assn.testng.EnvironmentTest"/>
+    </classes>
+  </test>
+  
+</suite>

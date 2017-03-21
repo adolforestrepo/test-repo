@@ -1,0 +1,291 @@
+<suite name="XHTML-to-DITA XSLT Tests" verbose="1">
+  <!-- The build script can add some values, including build props.  See the "adjust-suite-conf-file" Ant target. -->
+  <parameter name="rsuiteHost" value="^rsuiteHost^"/>
+  <parameter name="rsuitePort" value="^rsuitePort^"/>
+  <parameter name="rsuiteUser" value="^rsuiteUser^"/>
+  <parameter name="rsuitePass" value="^rsuitePass^"/>
+  <parameter name="baseProjectDir" value="^baseProjectDir^"/>
+  
+  <!-- TODO: Update tests for this project -->
+  
+  <!-- NOTE: Please keep tests in alphbetical order -->
+  <!-- XHTML to DITA tests start here -->
+  <!-- DOCTYPES tests start here -->
+ <test name="XHTML to DITA - DOCTYPES - Audit Report">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/audit_report"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>  
+  
+  <test name="XHTML to DITA - DOCTYPES - Abbreviations">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/abbreviations"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - DOCTYPES - Agency Comments">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/agency_comments"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - DOCTYPES - Appendix">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/appendix"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - DOCTYPES - Background">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/background"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - DOCTYPES - Closing">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/closing"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - DOCTYPES - Conclusions">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/conclusions"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - DOCTYPES - Cover Back">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/cover_back"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - DOCTYPES - Cover Front">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/cover_front"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - DOCTYPES - Findings">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/findings"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>  
+  
+  <test name="XHTML to DITA - DOCTYPES - Highlights">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/highlights"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - DOCTYPES - Introduction">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/introduction"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - DOCTYPES - Matters">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/matters"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>  
+  
+  <test name="XHTML to DITA - DOCTYPES - Recomendations">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/doctypes/recommendations"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  <!-- DOCTYPES tests end here -->
+  <!-- Structures tests start here -->
+  <test name="XHTML to DITA - Structures - Blockquote">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/structures/blockquote"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - Structures - Character Styles">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/structures/character-styles"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - Structures - Comments">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/structures/comments"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>  
+  
+  <test name="XHTML to DITA - Structures - Figure-Note-Source">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/structures/figure-note-source"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - Structures - Footnotes">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/structures/footnotes"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - Structures - Images">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/structures/images"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - Structures - Index">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/structures/index"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>  
+  
+  <test name="XHTML to DITA - Structures - Insert-Delete">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/structures/insert-delete"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - Structures - Lists">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/structures/lists"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - Structures - Tables">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/structures/tables"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>
+  
+  <test name="XHTML to DITA - Structures - Semantic Attribute">
+    <parameter name="xslUri" value="rsuite:/res/plugin/ama-main/xslt/xhtml2dita/xhtml2dita.xsl"/>
+    <parameter name="testDataDir" value="testData/xslt/xhtml2dita/structures/semantic_att"/>
+    <parameter name="inputExt" value="html"/>
+    <parameter name="resultExt" value="xml"/>
+    <parameter name="testOutputDir" value="target/test-output/xslt-results"/>    
+    <classes>
+      <class name="org.ama_assn.testng.xslt.ApplyXsltTest"/>
+    </classes>
+  </test>  
+  <!-- Structures tests end here -->  
+  
+</suite>

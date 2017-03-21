@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<project basedir="." default="testng-run">
+
+	<property name="test.src.home" value="${basedir}/testng"/>
+	<property name="test.main.src.home" value="${basedir}/src/java"/>
+	<property name="test.unit-tests.src.home" value="${basedir}/src/test"/>
+	<property name="test.resources.src.home" value="${test.src.home}/resources"/>
+	<property name="test.classes.home" value="${target.home}/test-classes"/>
+	<property name="test.output.dirname" value="test-output"/>
+	<property name="test.output.home" value="${target.home}/${test.output.dirname}"/>
+	<property name="deploy.output.home"
+		value="${rsuite.home}/tomcat/webapps/docs/project/${test.output.dirname}"/>
+	
+    <property name="test.suite.conf.filename" value="testng.xml"/>
+	<property name="test.suite.conf.failed.filename" value="testng-failed.xml"/>
+	
+    <property name="test.src.suite.conf.dir" value="${test.src.home}"/>
+    <property name="test.bld.suite.conf.dir" value="${target.home}/test-suites"/>
+	<property name="test.bld.suite.conf.file" value="${test.bld.suite.conf.dir}/${test.suite.conf.filename}"/>
+
+	<import file="build.xml" />
+
+	<path id="test.classpath.base">
+		<fileset dir="${lib.home}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<condition property="deploy.output.home.exists">
+		<available file="${deploy.output.home}" type="dir"/>
+	</condition>
+	
+	<target name="delete-deploy-output-home-contents" if="${deploy.output.home.exists}">
+		<delete includeEmptyDirs="true">
+			<fileset dir="${deploy.output.home}" includes="**/*"/>
+		</delete>		
+	</target>
+	
+	<target name="testng-deploy-results" depends="delete-deploy-output-home-contents, testng-run-all-enabled-tests"
+		description="Run then deploy the results of the automated tests">
+		<copy todir="${deploy.output.home}">
+			<fileset dir="${test.output.home}"/>
+		</copy>
+	</target>
+			
+    <target name="testng-deploy-xslt-results" depends="delete-deploy-output-home-contents, testng-run-all-xslt-tests"
+        description="Run then deploy the results of the automated XSLT tests">
+        <copy todir="${deploy.output.home}">
+            <fileset dir="${test.output.home}"/>
+        </copy>
+    </target>
+            
+	<target name="testng-run-failed-tests" depends="clean" description="Re-run failed automated tests">
+      <copy file="${test.output.home}/testng-failed.xml" tofile="${test.bld.suite.conf.file}" verbose="true"/>
+      <antcall target="testng-run"/>
+	</target>
+	
+    <target name="testng-run-all-xslt-tests" depends="clean" description="Run all XSLT automated tests">
+      <copy todir="${test.bld.suite.conf.dir}">
+        <fileset dir="${test.src.suite.conf.dir}" includes="*.xml"/>
+      </copy>
+      <move file="${test.bld.suite.conf.dir}/testng-all-xslt-tests.xml" tofile="${test.bld.suite.conf.file}" overwrite="true" verbose="true"/>
+      <antcall target="testng-run"/>
+    </target>
+	
+    <target name="testng-run-all-java-unit-tests" depends="clean" description="Run the Java unit tests">
+      <copy todir="${test.bld.suite.conf.dir}">
+        <fileset dir="${test.src.suite.conf.dir}" includes="testng-java-*.xml"/>
+      </copy>
+      <move file="${test.bld.suite.conf.dir}/testng-java-all-unit-tests.xml" tofile="${test.bld.suite.conf.file}" overwrite="true" verbose="true"/>
+      <antcall target="testng-run"/>
+    </target>
+	
+    <target name="testng-run-a-java-package-unit-tests" depends="clean" description="Run the Java unit tests for a single package">
+      <fail unless="testing.java.package">Property 'testing.java.package' is not set.</fail>
+      <copy file="${test.src.suite.conf.dir}/testng-java-one-package.xml" tofile="${test.bld.suite.conf.file}" verbose="true"/>
+      <antcall target="testng-run"/>
+    </target>
+    
+    <target name="testng-run-a-java-class-unit-tests" depends="clean" description="Run the Java unit tests for a single class">
+      <fail unless="testing.java.class">Property 'testing.java.class' is not set.</fail>
+      <copy file="${test.src.suite.conf.dir}/testng-java-one-class.xml" tofile="${test.bld.suite.conf.file}" verbose="true"/>
+      <antcall target="testng-run"/>
+    </target>
+    
+    <target name="testng-run-dita2xhtml-xslt-tests" depends="clean" description="Run the DITA-to-XHTML XSLT automated tests">
+      <copy file="${test.src.suite.conf.dir}/testng-dita2xhtml-xslt-tests.xml" tofile="${test.bld.suite.conf.file}" verbose="true"/>
+      <antcall target="testng-run"/>
+    </target>
+    
+    <target name="testng-run-xhtml2dita-xslt-tests" depends="clean" description="Run the XHTML-to-DITA XSLT automated tests">
+      <copy file="${test.src.suite.conf.dir}/testng-xhtml2dita-xslt-tests.xml" tofile="${test.bld.suite.conf.file}" verbose="true"/>
+      <antcall target="testng-run"/>
+    </target>
+    
+    <target name="testng-run-merge-xslt-tests" depends="clean" description="Run the merge XSLT automated tests">
+      <copy file="${test.src.suite.conf.dir}/testng-merge-xslt-tests.xml" tofile="${test.bld.suite.conf.file}" verbose="true"/>
+      <antcall target="testng-run"/>
+    </target>
+	
+    <target name="testng-run-all-enabled-tests" depends="clean" description="Run all enabled automated tests">
+	  <copy todir="${test.bld.suite.conf.dir}">
+	    <fileset dir="${test.src.suite.conf.dir}" includes="*.xml"/>
+	  </copy>
+      <antcall target="testng-run"/>
+    </target>
+    
+	<target name="testng-run" depends="adjust-suite-conf-file, testng-compile">
+		<!-- need to define this to as empty because testng task has no default value -->
+		<property name="testng.groups" value="" />
+
+		<!-- Enable use of TestNG.  Note its JAR doesn't have to be in Ant's lib directory. -->
+		<taskdef name="testng" classname="org.testng.TestNGAntTask">
+			<classpath location="${lib.home}/testng.jar"/>
+		</taskdef>
+
+        <echo>Test suite conf: ${test.bld.suite.conf.file}</echo>
+		
+		<testng mode="mixed" 
+			classpathref="test.classpath.base"
+			suitename="${project.display.name} Test Suite"
+			testnames="${testng.testnames}" 
+			groups="${testng.groups}" 
+			parallel="methods" 
+			threadCount="2"
+			dataProviderThreadCount="1" 
+			outputDir="${test.output.home}" 
+			haltOnFailure="false"
+			workingDir="${dita-ot-runtime-dir}" 
+			useDefaultListeners="false" 
+			listeners="org.uncommons.reportng.HTMLReporter,org.testng.reporters.FailedReporter">
+
+            <sysproperty key="org.uncommons.reportng.title" value="AMA Test Report"/>
+			<sysproperty key="org.uncommons.reportng.stylesheet" value="AmaCoreTest.css"/>
+			
+			<jvmarg value="-Dfile.encoding=UTF8" />
+			
+            <!-- Extra project classpath, which is not included in above "test.classpath.base". -->
+		    <classpath>
+		    	<!-- The local classes being tested -->
+                <pathelement path="${classes.home}"/>
+		    	
+		    	<!-- The local tests -->
+		        <pathelement path="${test.classes.home}"/>
+		    </classpath>
+			
+			<!-- Tell Ant what test classes need to run -->
+			<xmlfileset file="${test.bld.suite.conf.file}"/>
+
+		</testng>
+	</target>
+
+	<target name="testng-compile">
+		<mkdir dir="${test.classes.home}"/>
+		<!-- bhartwig, 20161116: removed ${test.unit-tests.src.home} from @srcdir as we're not presently maintaining the Java unit tests. -->
+		<javac srcdir="${test.src.home}:${test.main.src.home}" destdir="${test.classes.home}" debug="on">
+			<classpath refid="test.classpath.base"/>
+		</javac>
+	</target>
+
+	<target name="adjust-suite-conf-file">
+		<echo>Adding build properties within ${test.bld.suite.conf.dir}</echo>
+		<replace dir="${test.bld.suite.conf.dir}" summary="true" includes="testng*.xml" failOnNoReplacements="false">
+            <replacefilter token="^rsuiteHost^" value="${testing.host}"/>
+            <replacefilter token="^rsuitePort^" value="${testing.port}"/>
+            <replacefilter token="^rsuiteUser^" value="${testing.user}"/>
+			<replacefilter token="^rsuitePass^" value="${testing.pass}"/>
+			<replacefilter token="^baseProjectDir^" value="${basedir}"/>
+			<replacefilter token="^useFirefox^" value="${testing.usefirefox}"/>
+			<replacefilter token="^testOutputDir^" value="${test.output.home}"/>
+			<replacefilter token="^testngFilesDir^" value="${basedir}/${test.bld.suite.conf.dir}"/>
+            <replacefilter token="^javaPackage^" value="${testing.java.package}"/>
+            <replacefilter token="^javaClass^" value="${testing.java.class}"/>
+		</replace>
+	</target>
+
+</project>

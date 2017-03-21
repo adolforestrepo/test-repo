@@ -1,0 +1,17 @@
+<rsuite-plugin
+        id="astd-main-toolkit-plugins"
+        dependsOn="rsuite-dita-ot-plugin,rsuite-dita-support-plugin,ama-main-plugin">
+        
+    <extensionProvider id="rsuite.WebService">
+        <staticWebService root="/ama-main-toolkit-plugins" path="/WebContent" />
+    </extensionProvider>
+    
+    <extensionProvider id="rsuite.ditaOpenToolkit">
+        <ditaOpenToolkit toolkitName="rsuite:all">
+            <toolkitPlugin>
+                <zipfile>ama-main-toolkit-plugins-plugin.zip</zipfile>
+            </toolkitPlugin>
+        </ditaOpenToolkit>
+    </extensionProvider>
+    
+</rsuite-plugin>

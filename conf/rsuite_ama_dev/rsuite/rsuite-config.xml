@@ -1,0 +1,113 @@
+<globalConfiguration>
+    <defaultSearchConfig>
+    	<defaultForm role="*" idRef="basicFacet"/>
+    </defaultSearchConfig>
+	<menuConfiguration>
+		<menu id="main">
+			<group id="rsuite:content">
+				<menuItem idRef="rsuite:showContents" />
+				<menuItem idRef="rsuite:inspect" />
+				<menuItem idRef="rsuite:previewHtml" />
+				<menuItem idRef="rsuite:previewXmlAsset" />
+				<menuItem idRef="rsuite:previewAsset" />
+				<menuItem idRef="rsuite:previewSystemXml" />
+				<menuItem idRef="rsuite:previewVersion" />
+				<menuItem idRef="rsuite:previewVersionRSuiteXml" />
+				<menuItem idRef="rsuite:searchFromHere" />
+				<menuItem idRef="rsuite:browseFromHere" />
+				<menuItem idRef="rsuite:downloadMo" />
+			</group>
+			<group id="rsuite:manage">
+				<menuItem idRef="rsuite:clip" />
+				<menuItem idRef="rsuite:addToBriefcase" />
+				<menuItem idRef="rsuite:clipAddTo" />
+				<menuItem idRef="rsuite:addBriefcaseToTarget" />
+				<menuItem idRef="rsuite:addAllToBriefcase" />
+				<menuItem idRef="rsuite:clipRemove" />
+				<menuItem idRef="rsuite:recentLocations" />
+				<menuItem idRef="rsuite:addSelectionToClip" />
+				<menuItem idRef="rsuite:createReference" />
+				<menuItem idRef="rsuite:clone" />
+				<menuItem idRef="rsuite:moveUp" />
+				<menuItem idRef="rsuite:moveDown" />
+				<menuItem idRef="rsuite:reorderContents" />
+				<menuItem idRef="rsuite:attachToRoot" />
+				<menuItem idRef="rsuite:remove" />
+				<menuItem idRef="rsuite:move" />				
+			</group>
+			<group id="rsuite:hierarchy">
+				<menuItem idRef="rsuite:uploadFiles" />
+				<menuItem idRef="rsuite:uploadZipContents" />
+				<menuItem idRef="rsuite:addFromBriefcase" />
+				<menuItem idRef="rsuite:newContainer" />
+				<menuItem idRef="rsuite:newFromTemplate" />
+				<menuItem idRef="rsuite:newFolder" />
+			</group>
+			<group id="rsuite:version">
+				<menuItem idRef="rsuite:checkout" />
+				<menuItem idRef="rsuite:checkin" />
+				<menuItem idRef="rsuite:cancelCheckout" />
+				<menuItem idRef="rsuite:makeCurrent" />
+			</group>
+			<group id="rsuite:modify">
+				<menuItem idRef="rsuite:freeze" />
+				<menuItem idRef="rsuite:unfreeze" />
+				<menuItem idRef="rsuite:replace" />
+				<menuItem idRef="rsuite:replace" />
+				<menuItem idRef="rsuite:uploadVariant" />
+				<menuItem idRef="rsuite:rename" />
+				<menuItem idRef="rsuite:destroy" />
+				<menuItem idRef="rsuite:replaceVariant" />
+				<menuItem idRef="rsuite:removeVariant" />
+			</group>
+			<group id="rsuite:clear-briefcase">
+				<menuItem idRef="rsuite:emptyBriefcase" />
+			</group>
+			<group id="rsuite:search-control">
+				<menuItem idRef="rsuite:resetSearch" />
+				<menuItem idRef="rsuite:saveSearch" />
+				<menuItem idRef="rsuite:createSmartFolder" />
+			</group>
+			<group id="rsuite:search-form">
+				<menuItem idRef="rsuite:search:word" />
+				<menuItem idRef="rsuite:search:id" />
+				<menuItem idRef="rsuite:search:rxs" />
+			</group>
+			<group id="rsuite:manage-selection">
+				<menuItem idRef="rsuite:selectVisible" />
+				<menuItem idRef="rsuite:selectNone" />
+			</group>
+			<group id="rsuite:add-from-selection">
+				<menuItem idRef="rsuite:createReferences" />
+				<menuItem idRef="rsuite:cloneSelection" />
+			</group>
+			<group id="rsuite:modify-selected">
+				<menuItem idRef="rsuite:destroySelection" />
+			</group>
+			<group id="rsuite:access">
+				<menuItem idRef="rsuite:viewVariant" />
+				<menuItem idRef="rsuite:downloadVariant" />
+			</group>
+			<group id="rsuite:navigate">
+				<menuItem idRef="rsuite:contentHome" />
+				<menuItem idRef="rsuite:browseRecent" />
+				<menuItem idRef="rsuite:searchForms" />
+			</group>
+			<group id="rsuite:saved-searches">
+				<menuItem idRef="rsuite:saveSearch" />
+				<menuItem idRef="rsuite:savedSearches" />
+				<menuItem idRef="rsuite:clearSavedSearches" />
+			</group>
+			<group id="rsuite:smart-folders">
+				<menuItem idRef="rsuite:newSmartFolder" />
+			</group>
+			<group id="team-edition:dashboard:content">
+				<menuItem idRef="team-edition-dashboard:saveViewToDashboard" />
+			</group>
+			<group id="rsuite:refresh-sidebar">
+				<menuItem idRef="rsuite:resetSearch" />
+				<menuItem idRef="rsuite:refreshBrowse" />				
+			</group>
+		</menu>
+	</menuConfiguration>
+</globalConfiguration>
