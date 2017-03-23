@@ -11,7 +11,6 @@ import org.astd.rsuite.constants.ConfigurationPropertyConstants;
 import org.astd.rsuite.constants.ProjectConstants;
 import org.astd.rsuite.operation.result.FileOperationResult;
 import org.astd.rsuite.operation.result.OperationResult;
-import org.astd.rsuite.transform.CustomTransformer;
 import org.astd.rsuite.utils.ConfigUtils;
 
 import com.reallysi.rsuite.api.MetaDataItem;
@@ -20,14 +19,12 @@ import com.reallysi.rsuite.api.extensions.ExecutionContext;
 import com.reallysi.rsuite.api.remoteapi.CallArgument;
 import com.reallysi.rsuite.api.remoteapi.CallArgumentList;
 import com.reallysi.rsuite.api.remoteapi.DefaultRemoteApiHandler;
-import com.reallysi.rsuite.api.remoteapi.RemoteApiExecutionContext;
 import com.reallysi.rsuite.api.remoteapi.RemoteApiResult;
 import com.reallysi.rsuite.api.remoteapi.result.MessageDialogResult;
 import com.reallysi.rsuite.api.remoteapi.result.MessageType;
 import com.reallysi.rsuite.api.remoteapi.result.NotificationAction;
 import com.reallysi.rsuite.api.remoteapi.result.RestResult;
 import com.reallysi.rsuite.api.remoteapi.result.UserInterfaceAction;
-import com.reallysi.rsuite.api.transformation.ManagedObjectTransformer;
 import com.rsicms.rsuite.helpers.messages.ProcessMessage;
 
 /**
@@ -52,16 +49,15 @@ public abstract class BaseWebService
    *        retained
    * @return List of call arguments that qualify.
    */
-  protected static List<CallArgument> getArgumentsWithSameNamePrefix(CallArgumentList args,
-      String prefix, boolean stripPrefix, boolean trimValue, boolean keepBlankStrings) {
+  protected static List<CallArgument> getArgumentsWithSameNamePrefix(CallArgumentList args, String prefix, boolean stripPrefix, boolean trimValue,
+      boolean keepBlankStrings) {
     List<CallArgument> withPrefix = new ArrayList<CallArgument>();
     if (args != null) {
       for (CallArgument arg : args.getAll()) {
-        if (arg.getName().startsWith(prefix) && (keepBlankStrings ? true : StringUtils.isNotBlank(
-            arg.getValue()))) {
+        if (arg.getName().startsWith(prefix) && (keepBlankStrings ? true : StringUtils.isNotBlank(arg.getValue()))) {
           if (stripPrefix || trimValue) {
-            withPrefix.add(new CallArgument(stripPrefix ? arg.getName().substring(prefix.length())
-                : arg.getName(), trimValue ? arg.getValue().trim() : arg.getValue()));
+            withPrefix.add(new CallArgument(stripPrefix ? arg.getName().substring(prefix.length()) : arg.getName(), trimValue ? arg.getValue().trim() : arg
+                .getValue()));
           } else {
             withPrefix.add(arg);
           }
@@ -84,12 +80,10 @@ public abstract class BaseWebService
    *        retained
    * @return A list of metadata items from qualifying call arguments.
    */
-  protected static List<MetaDataItem> getArgumentsWithSameNamePrefixAsMetadata(
-      CallArgumentList args, String prefix, boolean stripPrefix, boolean trimValue,
+  protected static List<MetaDataItem> getArgumentsWithSameNamePrefixAsMetadata(CallArgumentList args, String prefix, boolean stripPrefix, boolean trimValue,
       boolean keepBlankStrings) {
     List<MetaDataItem> metaDataItems = new ArrayList<MetaDataItem>();
-    List<CallArgument> qualifyingArgs = getArgumentsWithSameNamePrefix(args, prefix, stripPrefix,
-        trimValue, keepBlankStrings);
+    List<CallArgument> qualifyingArgs = getArgumentsWithSameNamePrefix(args, prefix, stripPrefix, trimValue, keepBlankStrings);
     if (qualifyingArgs != null) {
       for (CallArgument arg : qualifyingArgs) {
         metaDataItems.add(new MetaDataItem(arg.getName(), arg.getValue()));
@@ -116,8 +110,8 @@ public abstract class BaseWebService
    * @return Duration of notifications, in seconds.
    */
   protected static int getNotificationDurationInSeconds(ExecutionContext context) {
-    return ConfigUtils.getPropertyAsInt(context.getConfigurationProperties(),
-        PROP_NAME_NOTIFICATION_DURATION_IN_SECONDS, DEFAULT_NOTIFICATION_DURATION_IN_SECONDS);
+    return ConfigUtils.getPropertyAsInt(context.getConfigurationProperties(), PROP_NAME_NOTIFICATION_DURATION_IN_SECONDS,
+        DEFAULT_NOTIFICATION_DURATION_IN_SECONDS);
   }
 
   /**
@@ -132,8 +126,7 @@ public abstract class BaseWebService
    * @param opResult
    * @return remote API result.
    */
-  protected RemoteApiResult getWebServiceResponse(ExecutionContext context, User user,
-      OperationResult opResult) {
+  protected RemoteApiResult getWebServiceResponse(ExecutionContext context, User user, OperationResult opResult) {
 
     return getWebServiceResponse(context, user, opResult, new ArrayList<String>(), // No need to
                                                                                    // refresh RSuite
@@ -163,10 +156,8 @@ public abstract class BaseWebService
    * @param successMessageParams
    * @return remote API result.
    */
-  protected RemoteApiResult getWebServiceResponse(ExecutionContext context, User user,
-      OperationResult opResult, List<String> refreshUponSuccessIds,
-      boolean refreshChildrenUponSuccess, UserInterfaceAction successUserInterfaceAction,
-      String successMessagePropName, Object... successMessageParams) {
+  protected RemoteApiResult getWebServiceResponse(ExecutionContext context, User user, OperationResult opResult, List<String> refreshUponSuccessIds,
+      boolean refreshChildrenUponSuccess, UserInterfaceAction successUserInterfaceAction, String successMessagePropName, Object... successMessageParams) {
 
     /*
      * If the result is a file result and there were no errors, serve up the file.
@@ -210,8 +201,8 @@ public abstract class BaseWebService
       } else {
 
         closeMessage(buf, opResult);
-        RestResult restResult = getInfoResult(context, user, buf.toString(), refreshUponSuccessIds,
-            refreshChildrenUponSuccess, successMessagePropName, successMessageParams);
+        RestResult restResult =
+            getInfoResult(context, user, buf.toString(), refreshUponSuccessIds, refreshChildrenUponSuccess, successMessagePropName, successMessageParams);
         if (successUserInterfaceAction != null) {
           restResult.addAction(successUserInterfaceAction);
         }
@@ -228,8 +219,7 @@ public abstract class BaseWebService
    * @param includeLessSevereMessages Submit true to include info-level messages.
    * @param opResult the Operation Result.
    */
-  protected void addWarningMessages(StringBuilder buf, boolean includeLessSevereMessages,
-      OperationResult opResult) {
+  protected void addWarningMessages(StringBuilder buf, boolean includeLessSevereMessages, OperationResult opResult) {
     addMessages(buf, opResult.getWarningMessages(), "Warnings: ");
     if (includeLessSevereMessages) {
       addMessages(buf, opResult.getInfoMessages(), "Info: ");
@@ -243,8 +233,7 @@ public abstract class BaseWebService
    * @param includeLessSevereMessages Submit true to include warning- and info-level messages.
    * @param opResult the Operation Result.
    */
-  protected void addFailureMessages(StringBuilder buf, boolean includeLessSevereMessages,
-      OperationResult opResult) {
+  protected void addFailureMessages(StringBuilder buf, boolean includeLessSevereMessages, OperationResult opResult) {
     addMessages(buf, opResult.getFailureMessages(), "Errors: ");
     if (includeLessSevereMessages) {
       addMessages(buf, opResult.getWarningMessages(), "Warnings: ");
@@ -285,12 +274,11 @@ public abstract class BaseWebService
    * @param successMessageParams
    * @return remote API result.
    */
-  protected RemoteApiResult getWebServiceResponse(ExecutionContext context, User user,
-      OperationResult opResult, UserInterfaceAction successUserInterfaceAction,
-      String successMessagePropName, Object... successMessageParams) {
+  protected RemoteApiResult getWebServiceResponse(ExecutionContext context, User user, OperationResult opResult,
+      UserInterfaceAction successUserInterfaceAction, String successMessagePropName, Object... successMessageParams) {
 
-    return getWebServiceResponse(context, user, opResult, new ArrayList<String>(), false,
-        successUserInterfaceAction, successMessagePropName, successMessageParams);
+    return getWebServiceResponse(context, user, opResult, new ArrayList<String>(), false, successUserInterfaceAction, successMessagePropName,
+        successMessageParams);
   }
 
   /**
@@ -300,16 +288,15 @@ public abstract class BaseWebService
    * @param messages
    * @param messageType
    */
-  protected static void addMessages(StringBuilder buf, List<? extends ProcessMessage> messages,
-      String messageType) {
+  protected static void addMessages(StringBuilder buf, List<? extends ProcessMessage> messages, String messageType) {
     if (messages != null && messages.size() > 0) {
       buf.append("<p><b>" + messageType + "</b></p>");
       buf.append("<ul>");
       for (ProcessMessage message : messages) {
         buf.append("<li>")
-            // Message can be truncated when too long; label considered optional.
-            // .append(message.getRelatedObjectLabel())
-            // .append(": ")
+        // Message can be truncated when too long; label considered optional.
+        // .append(message.getRelatedObjectLabel())
+        // .append(": ")
             .append(message.getMessageText()).append("</li>");
       }
       buf.append("</ul>");
@@ -343,12 +330,10 @@ public abstract class BaseWebService
    * @param successMessageParams
    * @return A remote API result appropriate when there were no warnings or failures.
    */
-  protected RestResult getInfoResult(ExecutionContext context, User user, String msg,
-      List<String> refreshUponSuccessIds, boolean refreshChildrenUponSuccess,
+  protected RestResult getInfoResult(ExecutionContext context, User user, String msg, List<String> refreshUponSuccessIds, boolean refreshChildrenUponSuccess,
       String successMessagePropName, Object[] successMessageParams) {
 
-    String msgText = ProjectMessageResource.getMessageText(successMessagePropName,
-        successMessageParams);
+    String msgText = ProjectMessageResource.getMessageText(successMessagePropName, successMessageParams);
     log.info(new StringBuilder(user.getUserId()).append(": ").append(msgText));
 
     RestResult webServiceResult = getNotificationResult(context, msgText, getWebServiceLabel());
@@ -373,12 +358,10 @@ public abstract class BaseWebService
    * @param title
    * @return A <code>RestResult</code> that displays a notification in the CMS UI.
    */
-  protected static RestResult getNotificationResult(ExecutionContext context, String message,
-      String title) {
+  protected static RestResult getNotificationResult(ExecutionContext context, String message, String title) {
     RestResult webServiceResult = new RestResult();
     NotificationAction notification = new NotificationAction(message, title);
-    notification.addProperty(NotificationAction.PROPERTY_DURATION, getNotificationDurationInSeconds(
-        context));
+    notification.addProperty(NotificationAction.PROPERTY_DURATION, getNotificationDurationInSeconds(context));
     webServiceResult.addAction(notification);
     return webServiceResult;
   }
@@ -402,20 +385,6 @@ public abstract class BaseWebService
   protected RemoteApiResult getErrorResult(String msg) {
     return new MessageDialogResult(MessageType.ERROR, getWebServiceLabel(), msg);
   }
-  
-  /**
-   * Returns an instance of a custom transformer.
-   * This method can be overwritten by a subclass to inject a different implementation to transform the managed object.
-   *  
-   * @param context
-   * @param xsltUri
-   * @return ManagedObjectTransformer
-   */
-  protected ManagedObjectTransformer getTransformer(
-      RemoteApiExecutionContext context,
-      String xsltUri) {
-    
-    return new CustomTransformer(context, xsltUri,"result.xml","result");
-  }
+
 
 }

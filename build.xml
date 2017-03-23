@@ -48,7 +48,6 @@
 
   <import file="build-testng.xml" />
   <import file="build-deploy.xml" />
-  <import file="webapps/sso/build-webapps-sso.xml"/>
   
 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 -->

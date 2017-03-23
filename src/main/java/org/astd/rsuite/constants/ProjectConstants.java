@@ -98,27 +98,25 @@ public interface ProjectConstants {
    * <p>
    * Keep in sync with the associated static web service defined in the plugin descriptor.
    */
-  String PLUGIN_WEB_SERVICE_PATH_WEB_CONTENT = SLASH.concat(
-      STATIC_WEB_SERVICE_NAME_WEB_CONTENT_HOST);
+  String PLUGIN_WEB_SERVICE_PATH_WEB_CONTENT = SLASH.concat(STATIC_WEB_SERVICE_NAME_WEB_CONTENT_HOST);
 
   /**
    * The plugin resource path for the messages file.
    */
-  String PLUGIN_RESOURCE_PATH_MESSAGES_FILE = PLUGIN_WEB_SERVICE_PATH_WEB_CONTENT.concat(SLASH)
-      .concat("project-rsuite-messages.properties");
+  String PLUGIN_RESOURCE_PATH_MESSAGES_FILE = PLUGIN_WEB_SERVICE_PATH_WEB_CONTENT.concat(SLASH).concat("project-rsuite-messages.properties");
 
   /**
    * The XHTML-to-DITA XSLT URI
    */
-  String XSL_URI_XHTML_TO_DITA = RSUITE_INTERNAL_URL_STATIC_RESOURCES.concat(
-      STATIC_WEB_SERVICE_NAME_WEB_CONTENT_HOST).concat("/xslt/xhtml2dita/xhtml2dita.xsl");
+  String XSL_URI_XHTML_TO_DITA = RSUITE_INTERNAL_URL_STATIC_RESOURCES.concat(STATIC_WEB_SERVICE_NAME_WEB_CONTENT_HOST)
+      .concat("/xslt/xhtml2dita/xhtml2dita.xsl");
 
   /**
    * The DITA-to-XHTML XSLT URI
    */
-  String XSL_URI_DITA_TO_XHTML = RSUITE_INTERNAL_URL_STATIC_RESOURCES.concat(
-      STATIC_WEB_SERVICE_NAME_WEB_CONTENT_HOST).concat("/xslt/dita2xhtml/dita2xhtml.xsl");
-    
+  String XSL_URI_DITA_TO_XHTML = RSUITE_INTERNAL_URL_STATIC_RESOURCES.concat(STATIC_WEB_SERVICE_NAME_WEB_CONTENT_HOST)
+      .concat("/xslt/dita2xhtml/dita2xhtml.xsl");
+
 
   /**
    * File name alias type.
@@ -133,7 +131,21 @@ public interface ProjectConstants {
   /**
    * Name of dynamic config parameter for writing out all XSLT and Merge inputs and outputs
    */
-  public final static String DYNAMIC_CONFIGURATION_PARAM_XSLT_AND_MERGE_ALL =
-      "ama.xslt.and.merge.write.all";
+  public final static String DYNAMIC_CONFIGURATION_PARAM_XSLT_AND_MERGE_ALL = "ama.xslt.and.merge.write.all";
+
+  /**
+   * The element name for a DITA map.
+   */
+  String ELEMENT_NAME_DITA_MAP = "map";
+
+  /**
+   * The element name for a DITA topic.
+   */
+  String ELEMENT_NAME_DITA_TOPIC = "topic";
+
+  /**
+   * The DITA-to-XHTML transform name
+   */
+  String TRANSFORM_DITA_TO_XHTML_NAME = "dita2xhtml";
 
 }
