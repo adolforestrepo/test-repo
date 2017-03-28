@@ -1,9 +1,9 @@
 <rsuite-plugin
-        id="astd-main-doctypes"
+        id="atd-main-doctypes"
         dependsOn="rsuite-dita-ot-plugin,rsuite-dita-support-plugin">
         
     <extensionProvider id="rsuite.WebService">
-        <staticWebService root="/ama-main-doctypes" path="/WebContent" />
+        <staticWebService root="/atd-main-doctypes" path="/WebContent" />
     </extensionProvider>
     
     <!-- WARNING: When MO definitions change, see if ProjectQName enum also needs to change. -->
@@ -12,8 +12,8 @@
             <toolkitPlugin toolkitPluginId="com.deltaxml.doctypes">
                 <zipfile>com.deltaxml.doctypes.zip</zipfile>
             </toolkitPlugin>
-            <toolkitPlugin toolkitPluginId="org.ama_assn.doctypes">
-                <zipfile>ama-main-doctypes-plugin.zip</zipfile>
+            <toolkitPlugin toolkitPluginId="org.atd.doctypes">
+                <zipfile>atd-main-doctypes-plugin.zip</zipfile>
                 
                 <!-- Map type first -->
                 <doctype type="DTD" publicId="urn:pubid:org.ama_assn:doctypes:dita:map">

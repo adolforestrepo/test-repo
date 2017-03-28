@@ -1,6 +1,6 @@
 <rsuite-plugin
-        id="astd-main"
-        dependsOn="ama-main-doctypes, rsuite-container-wizard-plugin">
+        id="atd-main"
+        dependsOn="atd-main-doctypes, rsuite-container-wizard-plugin">
     
     <lifecycleListener
         type="org.astd.rsuite.lifecycle.ProjectPluginLifecycleListener" />

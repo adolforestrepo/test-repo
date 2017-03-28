@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+  xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+  xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+  typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
+  targetNamespace="http://www.activiti.org/test">
+  <process id="ATD NEW TPM" name="ATD NEW TPM" isExecutable="true">
+       <sequenceFlow id="startToTask" sourceRef="startWorkflow" targetRef="dummyTask"/>
+    
+    <serviceTask id="getMoDetailsTask" name="Get MO Details" activiti:class="com.reallysi.rsuite.system.workflow.actions.SetVariablesFromMoDetails"></serviceTask>
+    
+  
+    <sequenceFlow id="moDetailsToEndWorkflow" sourceRef="getMoDetailsTask" targetRef="endWorkflow"></sequenceFlow>
+    <endEvent id="endWorkflow" name="End Workflow"></endEvent>
+    <dataObject id="EXCEPTION_OCCUR" name="EXCEPTION_OCCUR" itemSubjectRef="xsd:string">
+      <extensionElements>
+        <activiti:value>""</activiti:value>
+      </extensionElements>
+    </dataObject>
+    <dataObject id="rsuiteUserId" name="rsuiteUserId" itemSubjectRef="xsd:string"></dataObject>
+  </process>
+  
+</definitions>
