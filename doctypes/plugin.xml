@@ -17,9 +17,9 @@
   This will add the documentation-specific catalog entries to the catalog-dita.xml 
   catalog.
   -->
-<plugin id="org.ama_assn.doctypes">
+<plugin id="com.astd.doctypes">
   <require plugin="org.dita4publishers.doctypes"/>   
-  <require plugin="com.reallysi.rsuite.doctypes"/>  	
+  <require plugin="com.reallysi.rsuite.doctypes"/>   
   <feature extension="dita.specialization.catalog.relative" value="catalog.xml" type="file"/>
   <!-- Add dependencies here on D4P and RSuite plugins -->
 </plugin>

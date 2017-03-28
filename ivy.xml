@@ -79,6 +79,7 @@
 
     <!-- deployment -->
 	<dependency org="ant" name="ant-contrib" rev="1.0b3" />
+	<dependency org="ant" name="ant-launcher" rev="1.7.1" />
 	<dependency org="rsi" name="rsuite-tools-groovy" rev="20130208" />
 
     <!-- Powermock is part of our automated test harness.  It wraps Mockito and uses TestNG.  

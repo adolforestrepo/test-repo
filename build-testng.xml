@@ -19,6 +19,11 @@
 	<property name="test.bld.suite.conf.file" value="${test.bld.suite.conf.dir}/${test.suite.conf.filename}"/>
 
 	<import file="build.xml" />
+	
+	<import file="build-groovy-utils.xml" />
+	  <import file="build-dita.xml"/>
+	 
+	
 
 	<path id="test.classpath.base">
 		<fileset dir="${lib.home}">
