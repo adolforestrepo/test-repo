@@ -61,6 +61,19 @@
                     </managedObjectDefinitions>
                 </doctype>
                 
+                
+                
+                
+                <doctype type="DTD" publicId="urn:pubid:astd:doctypes:dita:article">
+                    <file>doctypes/article/dtd/article.dtd</file>
+                    <previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl</previewXsl>
+                    <managedObjectDefinitions>
+                        <moDef name="article" displayNameXPath="*[contains(@class, ' topic/title')]" />
+                    </managedObjectDefinitions>
+                </doctype>
+                
+                
+                
             </toolkitPlugin>
         </ditaOpenToolkit>
     </extensionProvider>

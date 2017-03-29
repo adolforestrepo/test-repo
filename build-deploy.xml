@@ -139,13 +139,8 @@ Properties:
       <run-groovy-script script="LoadInitialContent.groovy" />
     </target>
 	
-	<target name="LoadDtds">
-	      <run-groovy-script script="LoadDtds.groovy" />
-	    </target>
 	
-	<target name="ImportWorkflows">
-		      <run-groovy-script script="ImportWorkflows.groovy" />
-		    </target>
+
 	      	
 	 	      	
 	
@@ -163,6 +158,10 @@ Properties:
             </fileset>
         </copy>-->
     </target>
+	
+	
+	
+	
 	
     <target name="deploy-deltaxml-merge-libraries"
           description="Deploy the libraries required by our DeltaXML Merge integration">
@@ -184,8 +183,8 @@ Properties:
                  deploy-deltaxml-merge-libraries,
                  deploy-rsuite-plugins,
                  deploy-initial-content,
-		         LoadDtds,
-		         ImportWorkflows
+		         build-project-package
+		         
 		       
 		
 		
@@ -230,4 +229,15 @@ Properties:
     <target name="deploy-create-local-users">
         <run-groovy-script script="ConfigureLocalUnsecuredUserAccounts.groovy" />
     </target>
+	
+	
+        <target name="build-project-package" description="Pack project into folder">
+			<copy todir="${target.home}/WebContent/workflow">
+				<fileset dir="${basedir}/workflow">
+					<include name="**/**.*" />
+				</fileset>
+			</copy>
+		</target>
+	
+	
 </project>

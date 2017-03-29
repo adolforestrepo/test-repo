@@ -21,11 +21,11 @@ Properties:
     	    description="Package this project's DITA toolkit doctypes plugin - only the doctypes" 
     	    depends="dita-init">
 	    <delete dir="${target.home}/${toolkit.dirname}" />
-        <copy todir="${target.home}/${toolkit.dirname}/org.ama_assn.doctypes/doctypes">
+        <copy todir="${target.home}/${toolkit.dirname}/org.astd.doctypes/doctypes">
             <fileset dir="${basedir}/doctypes" includes="**" />
         </copy>
 	    <copy todir="${target.home}/${toolkit.dirname}">
-	        <fileset dir="${basedir}/${toolkit.dirname}" includes="**/org.ama_assn.doctypes/**" />
+	        <fileset dir="${basedir}/${toolkit.dirname}" includes="**/org.astd.doctypes/**" />
 	    </copy>
         <zip destfile="${doctypes.plugin.target.home}/${doctypes.file.basename}.zip" basedir="${target.home}/${toolkit.dirname}" update="true" />
     </target>
@@ -35,7 +35,7 @@ Properties:
         depends="dita-init">
         <delete dir="${target.home}/${toolkit.dirname}" />
         <copy todir="${target.home}/${toolkit.dirname}">
-            <fileset dir="${basedir}/${toolkit.dirname}" excludes="**/org.ama_assn.doctypes/**" />
+            <fileset dir="${basedir}/${toolkit.dirname}" excludes="**/org.astd.doctypes/**" />
         </copy>
         <zip destfile="${toolkit.plugins.plugin.target.home}/${toolkit.plugins.file.basename}.zip" basedir="${target.home}/${toolkit.dirname}" update="true" />
     </target>

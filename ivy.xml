@@ -1,5 +1,5 @@
 <ivy-module version="2.0">
-  <info organisation="RSI" module="ama-main"/>
+  <info organisation="RSI" module="astd"/>
 
   <dependencies>
 
@@ -19,7 +19,7 @@
     <dependency org="rsi" name="rsuite-dita-support-plugin" rev="2.1-qa002" />
 	<dependency org="rsi" name="rsuite-dita-ot-plugin" rev="1.4" />
 	<dependency org="rsi" name="rsuite-dita-support-workflows-plugin" rev="2.0"/>
-	<!-- <dependency org="rsi" name="rsuite-dita-support-actions-plugin" rev="2.0"/>  -->
+	 <dependency org="rsi" name="rsuite-dita-support-actions-plugin" rev="2.0"/>  
     
     <!-- RSuite-related libs -->
     <dependency org="rsuite-community" name="rsuite-conf-utils-lib" rev="0.0.1" transitive="true" conf="default"/>
@@ -103,6 +103,8 @@
     <!-- Libraries used for selenium -->
     <!--<dependency org="selenium" name="selenium-client" rev="2.52.0"/>
     <dependency org="selenium" name="selenium-server-standalone" rev="2.52.0"/>-->
+    
+    
     
   </dependencies>
 </ivy-module>

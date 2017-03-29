@@ -12,8 +12,8 @@
   <property file="${user.home}/.build.properties"/>
   <property file="${user.home}/build.properties"/>
 	
-  <property name="project.display.name" value="AMA"/>
-  <property name="plugin.name" value="ama-main" />
+  <property name="project.display.name" value="ASTD"/>
+  <property name="plugin.name" value="astd" />
 	
   <property name="target.home"         value="target"/>
   <property name="main.project.target.jar"          value="${plugin.name}-plugin.jar"/>
