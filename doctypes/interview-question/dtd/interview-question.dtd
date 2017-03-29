@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =============================================================
+     ASTD Interview Question Subsection Topic Type Module
+     
+     Subsections that are questions within an interview article.
+     Questions are normally rendered with a "Q" on the title and
+     an "A" to introduce the body.
+     
+     Specializes from topic
+     
+     Copyright (c) 2009 American Society for Training and Development.
+
+     ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ENTITY DECLARATIONS                 -->
+<!-- ============================================================= -->
+
+<!ENTITY % commonDomainIntegrations-dec
+  PUBLIC "urn:pubid:astd.com/doctypes/dita/modules/commonDomainIntegrations/entities"
+         "../common/astd_commonDomainIntegrations.ent"
+>%commonDomainIntegrations-dec;
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE DECLARATIONS              -->
+<!-- ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN EXTENSIONS                          -->
+<!-- ============================================================= -->
+<!--                    One for each extended base element, with
+                        the name of the domain(s) in which the
+                        extension was declared                     -->
+                        
+                        
+<!ENTITY % commonDomainEntityIntegrations-dec
+  PUBLIC "urn:pubid:astd.com/doctypes/dita/modules/commonDomainIntegrations/integrationEntities"
+         "../common/astd_commonDomainEntityIntegrations.ent"
+>%commonDomainEntityIntegrations-dec;
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE EXTENSIONS                -->
+<!-- ============================================================= -->
+<!ENTITY % props-attribute-extensions  ""                            >
+<!ENTITY % base-attribute-extensions   ""                            >
+
+
+<!-- ============================================================= -->
+<!--                    TOPIC NESTING OVERRIDE                     -->
+<!-- ============================================================= -->
+
+<!--                    Redefine the infotype entity to exclude 
+                        other topic types and disallow nesting     -->
+<!ENTITY % article-info-types 
+  "subsection |
+   sidebar |
+   interview-question
+  "
+>
+
+<!ENTITY % subsection-info-types 
+  "subsection |
+   sidebar |
+   interview-question
+  "
+>
+
+<!ENTITY % info-types
+  "%article-info-types;
+  "
+>
+
+<!-- ============================================================= -->
+<!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
+<!-- ============================================================= -->
+<!--                    Must be declared ahead of the DTDs, which
+                        puts @domains first in order               -->
+
+
+<!-- ============================================================= -->
+<!--                    TOPIC ELEMENT INTEGRATION                  -->
+<!-- ============================================================= -->
+
+<!--                    Embed topic to get generic elements        -->
+<!ENTITY % topic-type   PUBLIC 
+"-//OASIS//ELEMENTS DITA Topic//EN" 
+"topic.mod"                                                          >
+%topic-type;
+
+
+<!ENTITY % interview-question-typemod 
+                        PUBLIC 
+"urn:pubid:astd.com/modules/interview-question" 
+"interview-question.mod"                                                        >                                                     
+%interview-question-typemod;
+
+<!ENTITY % subsection-typemod 
+                        PUBLIC 
+"urn:pubid:astd.com/modules/subsection" 
+"subsection.mod"                                                        >                                                     
+%subsection-typemod;
+
+<!ENTITY % sidebar-typemod 
+                        PUBLIC 
+"urn:pubid:astd.com/modules/sidebar" 
+"sidebar.mod"                                                        >                                                     
+%sidebar-typemod;
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ELEMENT INTEGRATION                 -->
+<!-- ============================================================= -->
+
+<!ENTITY % commonDomainIntegrations
+  PUBLIC "urn:pubid:astd.com/doctypes/dita/modules/commonDomainIntegrations"
+         "../common/astd_commonDomainIntegration.mod"
+>%commonDomainIntegrations;
+
+<!-- ================== End interview-question DTD  ==================== -->

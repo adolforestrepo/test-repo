@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- =============================================================
+     Local shell for glossentry topic.
+     
+     Copyright (c) 2013 RSI Content Solutions
+     ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                    TOPIC ENTITY DECLARATIONS                  -->
+<!-- ============================================================= -->
+
+<!ENTITY % concept-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Concept//EN" 
+         "concept.ent"
+>%concept-dec;
+
+<!ENTITY % glossary-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Glossary//EN" 
+         "glossary.ent"
+>%glossary-dec;
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ENTITY DECLARATIONS                 -->
+<!-- ============================================================= -->
+
+<!ENTITY % RSuiteMetadataDecls
+  PUBLIC "urn:www.rsuite.com:domains:rsuite_metadata:entities" 
+         "rsuite_metadataDomain.ent"
+>%RSuiteMetadataDecls;
+
+
+<!ENTITY % hi-d-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Highlight Domain//EN" 
+         "../../base/dtd/highlightDomain.ent"
+>%hi-d-dec;
+
+<!ENTITY % indexing-d-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Indexing Domain//EN" 
+         "../../base/dtd/indexingDomain.ent"                                                 
+>%indexing-d-dec;
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE DECLARATIONS              -->
+<!-- ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN EXTENSIONS                          -->
+<!-- ============================================================= -->
+<!--                    One for each extended base element, with
+                        the name of the domain(s) in which the
+                        extension was declared                     -->
+
+<!ENTITY % ph           "ph | 
+                         %hi-d-ph;
+                        ">
+<!ENTITY % index-base   "index-base | 
+                         %indexing-d-index-base;
+                        ">
+
+<!ENTITY % glossBody   "glossBody"                                   >
+<!ENTITY % glossdef    "glossdef"                                    >
+<!ENTITY % glossterm   "glossterm"                                   >
+<!ENTITY % prolog       "prolog"                                    >
+<!ENTITY % related-links    "related-links"                                    >
+
+                        
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE EXTENSIONS                -->
+<!-- ============================================================= -->
+<!ENTITY % props-attribute-extensions  ""                            >
+<!ENTITY % base-attribute-extensions   ""                            >
+
+
+<!-- ============================================================= -->
+<!--                    TOPIC NESTING OVERRIDE                     -->
+<!-- ============================================================= -->
+
+<!--                    Redefine the infotype entity to exclude 
+                        other topic types and disallow nesting     -->
+<!ENTITY % glossentry-info-types 
+                        "no-topic-nesting"                           >
+
+
+<!ENTITY % glossentry.content
+                       "((%RSuiteMetadata;)?,
+                         (%glossterm;), 
+                         (%glossdef;)?, 
+                         (%prolog;)?, 
+                         (%glossBody;)?, 
+                         (%related-links;)?,
+                         (%glossentry-info-types;)* )"
+>
+
+<!-- ============================================================= -->
+<!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
+<!-- ============================================================= -->
+<!--                    Must be declared ahead of the DTDs, which
+                        puts @domains first in order               -->
+
+<!ENTITY included-domains 
+                          "&concept-att;
+                           &glossentry-att;
+                           &hi-d-att; 
+                           &indexing-d-att;
+  "
+>
+
+
+<!-- ============================================================= -->
+<!--                    TOPIC ELEMENT INTEGRATION                  -->
+<!-- ============================================================= -->
+
+<!--                    Embed topic to get generic elements        -->
+<!ENTITY % topic-type   PUBLIC 
+"-//OASIS//ELEMENTS DITA 1.2 Topic//EN" 
+"../../base/dtd/topic.mod"                                                          >
+%topic-type;
+
+<!ENTITY % concept-typemod 
+                        PUBLIC 
+"-//OASIS//ELEMENTS DITA 1.2 Concept//EN" 
+"concept.mod"                                                        >                                                     
+%concept-typemod;
+
+<!--                    Embed glossary to get specific elements    -->
+<!ENTITY % glossary-typemod 
+                        PUBLIC 
+"-//OASIS//ELEMENTS DITA 1.2 Glossary//EN" 
+"glossary.mod"                                                       >                                                     
+%glossary-typemod;
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ELEMENT INTEGRATION                 -->
+<!-- ============================================================= -->
+
+<!ENTITY % RSuiteMetadataModule
+  PUBLIC "urn:www.rsuite.com:domains:rsuite_metadata:module" 
+         "rsuite_metadataDomain.mod"
+>%RSuiteMetadataModule;
+
+<!ENTITY % hi-d-def     
+  PUBLIC "-//OASIS//ELEMENTS DITA 1.2 Highlight Domain//EN" 
+         "../../base/dtd/highlightDomain.mod"
+>%hi-d-def;
+
+<!ENTITY % indexing-d-def     
+  PUBLIC "-//OASIS//ELEMENTS DITA 1.2 Indexing Domain//EN" 
+         "../../base/dtd/indexingDomain.mod"
+>%indexing-d-def;
+
+
+<!-- ================== End DITA Glossary DTD  =================== -->

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =============================================================
+     Sales Demo Sidebar Topic Type Module
+     
+     Specializes from topic
+     
+     Copyright (c) 2013 RSI Content Solutions.
+
+     ============================================================= -->
+
+<!-- ============================================================= -->
+<!--                    TOPIC ENTITY DECLARATIONS                  -->
+<!-- ============================================================= -->
+
+<!ENTITY % commonDomainIntegrations-dec
+  PUBLIC "urn:pubid:com.rsicms.rsuitebuiltin:doctypes:dita:modules:commonDomainIntegrations:entities"
+         "rsuitebuiltinCommonDomainIntegrations.ent"
+>%commonDomainIntegrations-dec;
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE DECLARATIONS              -->
+<!-- ============================================================= -->
+
+<!ENTITY % commonDomainEntityIntegrations-dec
+  PUBLIC "urn:pubid:com.rsicms.rsuitebuiltin:doctypes:dita:modules:commonDomainIntegrations:integrationEntities"
+         "rsuitebuiltinCommonDomainEntityIntegrations.ent"
+>%commonDomainEntityIntegrations-dec;
+
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE EXTENSIONS                -->
+<!-- ============================================================= -->
+<!ENTITY % props-attribute-extensions  ""                            >
+<!ENTITY % base-attribute-extensions   ""                            >
+
+
+<!-- ============================================================= -->
+<!--                    TOPIC NESTING OVERRIDE                     -->
+<!-- ============================================================= -->
+
+<!--                    Redefine the infotype entity to exclude 
+                        other topic types and disallow nesting     -->
+
+<!ENTITY % sidebar-info-types 
+  "subsection |
+   sidebar
+  "
+>
+
+<!ENTITY % subsection-info-types 
+  "subsection |
+   sidebar
+  "
+>
+
+<!ENTITY % info-types
+  "%sidebar-info-types;
+  "
+>
+
+<!-- ============================================================= -->
+<!--                    CONTENT CONSTRAINT INTEGRATION             -->
+<!-- ============================================================= -->
+
+<!-- ============================================================= -->
+<!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
+<!-- ============================================================= -->
+<!--                    Must be declared ahead of the DTDs, which
+                        puts @domains first in order               -->
+
+<!-- See common domain integrations -->
+
+<!-- ============================================================= -->
+<!--                    TOPIC ELEMENT INTEGRATION                  -->
+<!-- ============================================================= -->
+
+
+<!--                    Embed topic to get generic elements        -->
+<!ENTITY % topic-type   PUBLIC 
+"-//OASIS//ELEMENTS DITA Topic//EN" 
+"topic.mod"                                                          >
+%topic-type;
+
+<!--                    Embed sidebar to get specific elements     -->
+<!ENTITY % sidebar-typemod 
+                        PUBLIC 
+"urn:pubid:dita4publishers.sourceforge.net:modules:sidebar" 
+"sidebar.mod">
+%sidebar-typemod;
+
+<!ENTITY % subsection-typemod 
+                        PUBLIC 
+"urn:pubid:dita4publishers.sourceforge.net:modules:subsection" 
+"subsection.mod"                                                        
+>                                                     
+%subsection-typemod;
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ELEMENT INTEGRATION                 -->
+<!-- ============================================================= -->
+
+<!ENTITY % commonDomainIntegrations
+  PUBLIC "urn:pubid:com.rsicms.rsuitebuiltin:doctypes:dita:modules:commonDomainIntegrations"
+         "rsuitebuiltinCommonDomainIntegrations.mod"
+>%commonDomainIntegrations;
+
+
+<!-- ================== End Chapter DTD  ==================== -->

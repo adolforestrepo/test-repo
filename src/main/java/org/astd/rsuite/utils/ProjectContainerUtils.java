@@ -58,7 +58,7 @@ public class ProjectContainerUtils
   public static ManagedObject getProjectContainerDitaMo(ExecutionContext context, User user,
       ContentAssemblyNodeContainer container) throws RSuiteException {
     return ContainerUtils.getFirstQualifyingReferencedManagedObject(context, user, container,
-        new QNameManagedObjectQualifier(ProjectQName.DITA_TOPIC.getQName()));
+    		new QNameManagedObjectQualifier(ProjectQName.DITA_ARTICLE.getQName()));
   }
 
 }

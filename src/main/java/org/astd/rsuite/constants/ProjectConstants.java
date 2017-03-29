@@ -139,6 +139,11 @@ public interface ProjectConstants {
   String ELEMENT_NAME_DITA_MAP = "map";
 
   /**
+   * The element name for a DITA map.
+   */
+  String ELEMENT_NAME_DITA_ARTICLE = "article";
+  
+  /**
    * The element name for a DITA topic.
    */
   String ELEMENT_NAME_DITA_TOPIC = "topic";

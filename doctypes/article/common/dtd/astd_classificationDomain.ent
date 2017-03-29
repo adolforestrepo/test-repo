@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =============================================================
+     ASTD Classification Domain
+     
+     Defines specializations of data for classifying components
+     of publications (topics, figures, tables, etc.).
+     
+     Copyright (c) 2009 American Society for Training and Development
+     
+     ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                    Legal Content DOMAIN ENTITIES                  -->
+<!-- ============================================================= -->
+
+<!ENTITY % astd_classification-d-data
+   "classification
+   "
+>
+
+<!ENTITY   astd_classification-d-att     
+  "(topic astd_classification-d)"
+>
+
+
+<!-- ================== End Classification Domain Entities ============ -->

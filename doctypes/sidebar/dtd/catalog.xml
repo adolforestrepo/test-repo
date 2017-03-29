@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"          
+  prefer="public">  
+  <public publicId="urn:pubid:com.staywell.doctypes:doctypes:dita:sidebar"
+    uri="sidebar.dtd"
+  />
+  <system systemId="urn:pubid:com.staywell.doctypes:doctypes:dita:sidebar.dtd"
+          uri="sidebar.dtd"
+  />
+
+  <public publicId="urn:pubid:com.staywell.doctypes:doctypes:modules:sidebar"
+        uri="sidebar.mod"
+    />
+  <system systemId="urn:pubid:com.staywell.doctypes:doctypes:modules:sidebar.mod"
+        uri="sidebar.mod"
+    />
+  
+  <public publicId="urn:pubid:com.staywell.doctypes:doctypes:modules:sidebar:entities"
+    uri="sidebar.ent"
+  />
+  <system systemId="urn:pubid:com.staywell.doctypes:doctypes:modules:sidebar:sidebar.ent"
+    uri="sidebar.ent"
+  />
+</catalog>  

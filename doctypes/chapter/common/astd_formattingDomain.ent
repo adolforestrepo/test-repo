@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =============================================================
+     ASTD Formatting Domain
+     
+     Defines specializations of p and ph for requesting specific
+     formatting effects.
+     
+     Copyright (c) 2009 American Society for Training and Development
+     
+     ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                   Formatting DOMAIN ENTITIES                  -->
+<!-- ============================================================= -->
+
+<!ENTITY % astd_formatting-d-ph
+   "br |
+    eqn_inline |
+    tab
+   "
+>
+
+<!ENTITY % astd_formatting-d-p
+   "eqn_block
+   "
+>
+
+<!ENTITY % astd_formatting-d-image
+   "art
+   "
+>
+
+<!ENTITY % astd_formatting-d-foreign
+   "inx_snippet
+   "
+>
+
+
+<!ENTITY   astd_formatting-d-att     
+  "(topic astd_formatting-d)"
+>
+
+
+<!-- ================== End ASTD Formatting Domain Entities ============ -->

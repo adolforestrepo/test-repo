@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ENTITY DECLARATIONS                 -->
+<!--                    These entries should be used by            -->
+<!--                    all built-in map shells                    -->
+<!-- ============================================================= -->
+
+
+<!-- Required for RSuite 3.7+: -->
+<!ENTITY % rsuiteIdAttDomain
+  PUBLIC "urn:www.rsuite.com:domains:rsuite_id_att:entities" 
+         "rsuiteIdAttDomain.ent"
+>%rsuiteIdAttDomain;
+
+<!ENTITY % hi-d-dec     PUBLIC 
+"-//OASIS//ENTITIES DITA Highlight Domain//EN" 
+"highlightDomain.ent"                                                
+>
+%hi-d-dec;
+
+<!ENTITY % d4p_formatting-d-dec     PUBLIC 
+"urn:pubid:dita4publishers.sourceforge.net:doctypes:dita:modules:d4p_formattingDomain:entities" 
+"d4p_formattingDomain.ent"                                                
+>
+%d4p_formatting-d-dec;
+
+<!ENTITY % indexing-d-dec     PUBLIC 
+"-//OASIS//ENTITIES DITA Indexing Domain//EN" 
+"indexingDomain.ent"                                                 >
+%indexing-d-dec;
+
+<!ENTITY % d4p_renditionTargetAtt-d-dec     
+  PUBLIC "urn:pubid:dita4publishers.sourceforge.net:doctypes:dita:modules:d4p_renditionTargetAttDomain:entities" 
+         "d4p_renditionTargetAttDomain.ent"                                                
+>
+%d4p_renditionTargetAtt-d-dec;
+
+<!ENTITY % d4p_enumerationMap-d-dec     PUBLIC 
+"urn:pubid:dita4publishers.sourceforge.net:entities:dtd:dita:d4p_enumerationMap:entities" 
+"d4p_enumerationMapDomain.ent"                                                
+>
+%d4p_enumerationMap-d-dec;
+
+<!ENTITY % d4p_simpleEnumeration-d-dec     PUBLIC 
+"urn:pubid:dita4publishers.sourceforge.net:entities:dtd:dita:d4p_simpleEnumerationDomain:entities" 
+"d4p_simpleEnumerationDomain.ent"                                                
+>
+%d4p_simpleEnumeration-d-dec;
+
+<!ENTITY % d4p_variables-d-dec     PUBLIC 
+"urn:pubid:dita4publishers.sourceforge.net:doctypes:dita:modules:d4p_variablesDomain:entities" 
+"d4p_variablesDomain.ent"                                                
+>
+%d4p_variables-d-dec;
+
+<!ENTITY % xml-d-dec     
+  PUBLIC "urn:pubid:dita4publishers.sourceforge.net:doctypes:dita:modules:xml:entities" 
+         "xmlDomain.ent"                                                
+>
+%xml-d-dec;
+
+<!ENTITY % mapgroup-d-dec 
+                        PUBLIC 
+"-//OASIS//ENTITIES DITA 1.2 Map Group Domain//EN" 
+"mapGroup.ent"                                                 >
+%mapgroup-d-dec;
+
+<!ENTITY % indexing-d-dec     PUBLIC 
+"-//OASIS//ENTITIES DITA 1.2 Indexing Domain//EN" 
+"indexingDomain.ent"                                           >
+%indexing-d-dec;
+
+<!ENTITY % delay-d-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Delayed Resolution Domain//EN" 
+         "delayResolutionDomain.ent"                                                       
+>%delay-d-dec;
+
+<!ENTITY % xnaldomain-d-dec 
+                        PUBLIC 
+"-//OASIS//ENTITIES DITA 1.2 XNAL Domain//EN" 
+"xnalDomain.ent"                                      >
+%xnaldomain-d-dec;
+
+
+<!-- End of common domain integration entities -->

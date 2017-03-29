@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================= -->
+<!--                    DOMAIN EXTENSIONS                          -->
+<!--                    Common (default) integrations              -->
+<!-- ============================================================= -->
+
+
+<!ENTITY % fig          
+  "fig |
+   %learning-d-fig; |
+   %astd_fig-d-fig;
+  "      
+>
+
+<!ENTITY % table          
+  "table |
+   %astd_table-d-table;
+  "      
+>
+
+<!ENTITY % section   
+  "section |
+   %astd_section-d-section; 
+  "      
+>
+
+<!ENTITY % ph
+  "ph | 
+   %hi-d-ph; |
+   %astd_formatting-d-ph; |
+   %astd_phrase-d-ph;
+  "
+>
+
+<!ENTITY % p         
+  "p     | 
+   %astd_formatting-d-p; | 
+   %astd_section-d-p; |
+   %astd_p-d-p;
+  "      
+>
+
+<!ENTITY % data
+  "data |
+   %astd_classification-d-data; |
+   %astd_metadata-d-data;
+  "
+>
+
+<!ENTITY % image
+  "%astd_formatting-d-image;
+  "
+>
+
+<!ENTITY % keyword
+  "keyword |
+   %xml-d-keyword;
+  "
+>
+                      
+<!ENTITY % author       
+  "author | 
+   %astd_author-d-author;
+">
+                      
+<!ENTITY % bodydiv       
+  "bodydiv | 
+   %astd_bodydiv-d-bodydiv;
+">
+                      
+<!ENTITY % ul       
+  "ul | 
+   %astd_list-d-ul;
+">
+                      
+<!ENTITY % ol       
+  "ol | 
+   %astd_list-d-ol;
+">
+                      
+
+<!-- ============================================================= -->
+<!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
+<!-- ============================================================= -->
+<!--                    Must be declared ahead of the DTDs, which
+                        puts @domains first in order               -->
+
+<!ENTITY included-domains 
+    "&hi-d-att; 
+     &indexing-d-att;
+     &learning-d-att;
+     &astd_classification-d-att;
+     &astd_formatting-d-att;
+     &astd_metadata-d-att;
+     &astd_phrase-d-att;
+     &astd_section-d-att;
+     &astd_fig-d-att;
+     &astd_table-d-att;
+     &xml-d-att;
+     &astd_author-d-att;
+    "                
+ >
+
+<!--                    Definitions of declared elements           -->
+<!ENTITY % topicDefns   PUBLIC 
+                       "-//OASIS//ENTITIES DITA Topic Definitions//EN" 
+                       "topicDefn.ent"                              >
+%topicDefns;
+
+
+<!-- =================== End of declaration set ==================== -->

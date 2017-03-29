@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =============================================================
+     ASTD Metadata Domain
+     
+     Defines specializations of data for use within article and
+     map prolog and topicmeta contexts.
+     
+     Copyright (c) 2009 American Society for Training and Development
+     
+     ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                    Legal Content DOMAIN ENTITIES                  -->
+<!-- ============================================================= -->
+
+<!ENTITY % astd_metadata-d-data
+   "disclaimer
+   "
+>
+
+<!ENTITY   astd_metadata-d-att     
+  "(topic astd_metadata-d)"
+>
+
+
+<!-- ================== End Metadata Domain Entities ============ -->

@@ -183,13 +183,8 @@ Properties:
                  deploy-deltaxml-merge-libraries,
                  deploy-rsuite-plugins,
                  deploy-initial-content,
-		         build-project-package
-		         
-		       
-		
-		
-		         
-                " 
+				 ConfigureHotFolders,
+		  		 build-project-package" 
             />
 
 	<target name="deploy"
@@ -230,6 +225,12 @@ Properties:
         <run-groovy-script script="ConfigureLocalUnsecuredUserAccounts.groovy" />
     </target>
 	
+
+	<target name="ConfigureHotFolders">
+        <run-groovy-script script="ConfigureHotFolders.groovy" />
+    </target>
+
+
 	
         <target name="build-project-package" description="Pack project into folder">
 			<copy todir="${target.home}/WebContent/workflow">

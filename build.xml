@@ -167,6 +167,15 @@
  
   <target name="package-doctypes-plugin" depends="package-project-doctypes-dita-toolkit-plugin">
     <copy file="${src.main.resources.home}/rsuite-doctypes-plugin.xml" tofile="${doctypes.plugin.target.home}/rsuite-plugin.xml"/>
+    <copy todir="${doctypes.plugin.target.home}/doctypes">
+        <fileset dir="${basedir}/doctypes"/>
+  	</copy>
+  	<copy todir="${doctypes.plugin.target.home}/WebContent/xslt">
+  	      <fileset dir="${src.main.home}/xslt">
+  	        <include name="preview/*.*" />
+  	      </fileset>
+  	    </copy>
+  	
     <copy file="${lib.home}/deltaxml-merge-dita-toolkit.zip" tofile="${doctypes.plugin.target.home}/com.deltaxml.doctypes.zip" />
 
     <copy todir="${doctypes.plugin.target.home}/WebContent/xslt">

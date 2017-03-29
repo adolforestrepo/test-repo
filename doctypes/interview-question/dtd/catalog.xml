@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"          
+  prefer="public">  
+  <public publicId="urn:pubid:astd.com/doctypes/interview-question"
+    uri="interview-question.dtd"
+  />
+  <system systemId="urn:pubid:astd.com/doctypes/interview-question.dtd"
+          uri="interview-question.dtd"
+  />
+
+    <public publicId="urn:pubid:astd.com/modules/interview-question"
+        uri="interview-question.mod"
+    />
+    <system systemId="urn:pubid:/modules/interview-question.mod"
+        uri="interview-question.mod"
+    />
+</catalog>  

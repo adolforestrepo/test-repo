@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"          
+  prefer="public">  
+  <public publicId="urn:pubid:astd.com/doctypes/dita/modules/commonDomainIntegrations"
+    uri="astd_commonDomainIntegrations.mod"
+  />
+  <system systemId="urn:pubid:astd.com/doctypes/dita/modules/commonDomainIntegrations.mod"
+    uri="astd_commonDomainIntegrations.mod"
+  />
+  
+  <public publicId="urn:pubid:astd.com/doctypes/dita/modules/commonDomainIntegrations/entities"
+    uri="astd_commonDomainIntegrations.ent"
+  />
+  <system systemId="urn:pubid:astd.com/doctypes/dita/modules/commonDomainIntegrations.ent"
+    uri="astd_commonDomainIntegrations.ent"
+  />
+  
+  <public publicId="urn:pubid:astd.com/doctypes/dita/modules/commonDomainIntegrations/integrationEntities"
+    uri="astd_commonDomainEntityIntegrations.ent"
+  />
+  <system systemId="urn:pubid:astd.com/doctypes/dita/modules/astd_commonDomainEntityIntegrations.ent"
+    uri="astd_commonDomainEntityIntegrations.ent"
+  />
+  
+  
+</catalog>  

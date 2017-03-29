@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================= -->
+<!--                    DOMAIN EXTENSIONS                          -->
+<!--                    Common (default) integrations              -->
+<!-- ============================================================= -->
+
+<!ENTITY % ph
+  "ph | 
+   %hi-d-ph; |
+   %d4p_formatting-d-ph;
+  "
+>
+
+<!ENTITY % author       "author | 
+                         %xnal-d-author;
+                        ">
+<!ENTITY % topicref     "topicref |
+                         %mapgroup-d-topicref; |
+                         %d4p_enumerationMap-d-topicref;
+                        ">
+<!ENTITY % index-base   "index-base |
+                         %indexing-d-index-base;
+                        ">
+<!ENTITY % keywords     "keywords | 
+                         %delay-d-keywords;
+                        ">
+
+<!ENTITY % data
+  "data |   
+   %d4p_simpleEnumeration-d-data; |
+   %d4p_variables-d-data;
+  "
+>
+
+<!ENTITY % keyword
+  "keyword |
+   %d4p_variables-d-keyword; |
+   %xml-d-keyword;
+  "
+>
+                                            
+<!ENTITY % text
+  "text |
+   %d4p_variables-d-text;
+  "
+>
+ 
+<!-- ============================================================= -->
+<!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
+<!-- ============================================================= -->
+<!--                    Must be declared ahead of the DTDs, which
+                        puts @domains first in order               -->
+
+ 
+ <!ENTITY included-domains-common 
+    "&hi-d-att; 
+     &indexing-d-att;
+     &d4p_formatting-d-att;
+     &d4p_renditionTargetAtt-d-att;
+     &d4p_variables-d-att;
+     &xml-d-att;
+     &rsuiteIdAtt-d-att;
+     &delay-d-att;
+     &mapgroup-d-att;
+     &xnal-d-att;
+     &d4p_enumerationMap-d-att;
+     &d4p_simpleEnumerationMap-d-att;
+     &d4p_variables-d-att;
+    "                
+ >
+ <!ENTITY included-domains "&included-domains-common;" >
+
+<!ENTITY % props-attribute-extensions "
+%d4p_renditionTargetAtt-d-attribute; 
+%rsuiteIdAtt-d-attribute;" >
+<!ENTITY % base-attribute-extensions "" >
+
+<!-- =================== End of declaration set ==================== -->

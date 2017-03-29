@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =============================================================
+     Local shell for reference topic.
+     
+     Copyright (c) 2013 RSI Content Solutions
+     ============================================================= -->
+
+<!-- ============================================================= -->
+<!--                    TOPIC ENTITY DECLARATIONS                  -->
+<!-- ============================================================= -->
+
+<!ENTITY % reference-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Reference//EN" 
+         "reference.ent"
+>%reference-dec;
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ENTITY DECLARATIONS                 -->
+<!-- ============================================================= -->
+
+
+<!ENTITY % commonDomainIntegrations-dec
+  PUBLIC "urn:pubid:com.astd.doctypes:doctypes:dita:modules:commonDomainIntegrations:entities"
+         "../common/astd_commonDomainIntegrations.ent"
+>%commonDomainIntegrations-dec;
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE DECLARATIONS              -->
+<!-- ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN EXTENSIONS                          -->
+<!-- ============================================================= -->
+<!--                    One for each extended base element, with
+                        the name of the domain(s) in which the
+                        extension was declared                     -->
+
+                       
+<!ENTITY % commonDomainEntityIntegrations-dec
+  PUBLIC "urn:pubid:com.astd.doctypes:doctypes:dita:modules:commonDomainIntegrations:integrationEntities"
+         "../common/astd_commonDomainEntityIntegrations.ent"
+>%commonDomainEntityIntegrations-dec;
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE EXTENSIONS                -->
+<!-- ============================================================= -->
+<!ENTITY % props-attribute-extensions  ""                            >
+<!ENTITY % base-attribute-extensions   ""                            >
+
+
+<!-- ============================================================= -->
+<!--                    TOPIC NESTING OVERRIDE                     -->
+<!-- ============================================================= -->
+
+<!--                    Redefine the infotype entity to exclude 
+                        other topic types and disallow nesting     -->
+<!ENTITY % reference-info-types 
+                        "reference"                                    >
+
+
+<!-- ============================================================= -->
+<!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
+<!-- ============================================================= -->
+<!--                    Must be declared ahead of the DTDs, which
+                        puts @domains first in order               -->
+
+<!ENTITY included-domains 
+  "&reference-att;
+   &hi-d-att; 
+   &indexing-d-att;
+  "
+>
+
+<!-- ============================================================= -->
+<!--                    TOPIC ELEMENT INTEGRATION                  -->
+<!-- ============================================================= -->
+
+<!--                    Embed topic to get generic elements        -->
+<!ENTITY % topic-type   PUBLIC 
+"-//OASIS//ELEMENTS DITA Topic//EN" 
+"topic.mod"                                                          >
+%topic-type;
+
+
+<!--                    Embed reference to get specific elements     -->
+<!ENTITY % reference-typemod 
+                        PUBLIC 
+"-//OASIS//ELEMENTS DITA Reference//EN" 
+"reference.mod"                                                        >                                                     
+%reference-typemod;
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ELEMENT INTEGRATION                 -->
+<!-- ============================================================= -->
+
+
+<!ENTITY % commonDomainIntegrations
+  PUBLIC "urn:pubid:com.astd.doctypes:doctypes:dita:modules:commonDomainIntegrations"
+         "../common/astd_commonDomainIntegration.mod"
+>%commonDomainIntegrations;
+
+
+<!-- ================== End DITA reference DTD  ==================== -->

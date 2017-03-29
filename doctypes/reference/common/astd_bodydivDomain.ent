@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =============================================================
+     ASTD Section Domain
+     
+     Defines specializations of section for use with publications
+     
+     Copyright (c) 2009 American Society for Training and Development
+     
+     ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                    Section DOMAIN ENTITIES                  -->
+<!-- ============================================================= -->
+
+<!ENTITY % astd_bodydiv-d-bodydiv
+   "callout |
+    executive-summary
+   "
+>
+
+<!ENTITY   astd_bodydiv-d-att     
+  "(topic astd_bodydiv-d)"
+>
+
+
+<!-- ================== End Domain Entities ============ -->

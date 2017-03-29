@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- =============================================================
+     ASTD Feature Topic Type
+     
+     Represents a feature within a book publication.
+     
+     Specializes from topic
+     
+     Copyright (c) 2009 American Society of Training and Development
+
+     ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ENTITY DECLARATIONS                 -->
+<!-- ============================================================= -->
+
+<!ENTITY % commonDomainIntegrations-dec
+  PUBLIC "urn:pubid:astd.com/doctypes/dita/modules/commonDomainIntegrations/entities"
+         "../common/astd_commonDomainIntegrations.ent"
+>%commonDomainIntegrations-dec;
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE DECLARATIONS              -->
+<!-- ============================================================= -->
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN EXTENSIONS                          -->
+<!-- ============================================================= -->
+<!--                    One for each extended base element, with
+                        the name of the domain(s) in which the
+                        extension was declared                     -->
+                        
+                        
+<!ENTITY % commonDomainEntityIntegrations-dec
+  PUBLIC "urn:pubid:astd.com/doctypes/dita/modules/commonDomainIntegrations/integrationEntities"
+         "../common/astd_commonDomainEntityIntegrations.ent"
+>%commonDomainEntityIntegrations-dec;
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE EXTENSIONS                -->
+<!-- ============================================================= -->
+<!ENTITY % props-attribute-extensions  ""                            >
+<!ENTITY % base-attribute-extensions   ""                            >
+
+
+<!-- ============================================================= -->
+<!--                    TOPIC NESTING OVERRIDE                     -->
+<!-- ============================================================= -->
+
+<!--                    Redefine the infotype entity to exclude 
+                        other topic types and disallow nesting     -->
+<!ENTITY % feature-info-types 
+  "question_set |
+   subsection |
+   gaining_understanding |
+   feature_example
+  "
+>
+
+<!ENTITY % subsection-info-types 
+  "question_set |
+   subsection |
+   feature_example
+  "
+>
+
+<!ENTITY % info-types
+  "%feature-info-types;
+  "
+>
+
+<!-- ============================================================= -->
+<!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
+<!-- ============================================================= -->
+<!--                    Must be declared ahead of the DTDs, which
+                        puts @domains first in order               -->
+
+<!ENTITY included-domains 
+    "&included-domains;
+    "                
+ >
+
+
+<!-- ============================================================= -->
+<!--                    TOPIC ELEMENT INTEGRATION                  -->
+<!-- ============================================================= -->
+
+<!--                    Embed topic to get generic elements        -->
+<!ENTITY % topic-type   PUBLIC 
+"-//OASIS//ELEMENTS DITA Topic//EN" 
+"topic.mod"                                                          >
+%topic-type;
+
+
+<!ENTITY % feature-typemod 
+                        PUBLIC 
+"urn:pubid:astd.com/modules/feature" 
+"feature.mod"                                                        >                                                     
+%feature-typemod;
+
+<!ENTITY % subsection-typemod 
+                        PUBLIC 
+"urn:pubid:astd.com/modules/subsection" 
+"subsection.mod"                                                        >                                                     
+%subsection-typemod;
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ELEMENT INTEGRATION                 -->
+<!-- ============================================================= -->
+
+<!ENTITY % commonDomainIntegrations
+  PUBLIC "urn:pubid:astd.com/doctypes/dita/modules/commonDomainIntegrations"
+         "../common/astd_commonDomainIntegration.mod"
+>%commonDomainIntegrations;
+
+<!-- ================== End Lesson DTD  ==================== -->

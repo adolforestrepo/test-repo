@@ -16,7 +16,10 @@ import com.reallysi.rsuite.api.RSuiteException;
  */
 public enum ProjectQName implements ProjectConstants {
   DITA_MAP("Map", ProjectNamespace.DITA, ELEMENT_NAME_DITA_MAP, true),
-  DITA_TOPIC("Topic", ProjectNamespace.DITA, ELEMENT_NAME_DITA_TOPIC, true);
+  DITA_ARTICLE("Article", ProjectNamespace.DITA, ELEMENT_NAME_DITA_ARTICLE, true);
+	
+//  DITA_TOPIC("Topic", ProjectNamespace.DITA, ELEMENT_NAME_DITA_TOPIC, true),
+	
 
   /**
    * Class log

@@ -31,6 +31,8 @@
   <nextCatalog catalog="map/catalog.xml"/>
   <nextCatalog catalog="pubmap/catalog.xml"/>
   
+  <nextCatalog catalog="bookpub/catalog.xml"/>
+  
   <!-- Non-DITA types -->
   
   
