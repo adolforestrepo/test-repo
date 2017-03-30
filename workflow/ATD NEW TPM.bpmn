@@ -7,12 +7,25 @@
   typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
   targetNamespace="http://www.activiti.org/test">
   <process id="ATD NEW TPM" name="ATD NEW TPM" isExecutable="true">
-       <sequenceFlow id="startToTask" sourceRef="startWorkflow" targetRef="dummyTask"/>
-    
-    <serviceTask id="getMoDetailsTask" name="Get MO Details" activiti:class="com.reallysi.rsuite.system.workflow.actions.SetVariablesFromMoDetails"></serviceTask>
-    
   
-    <sequenceFlow id="moDetailsToEndWorkflow" sourceRef="getMoDetailsTask" targetRef="endWorkflow"></sequenceFlow>
+  	<startEvent id="startWorkflow" name="Start"/> 
+    
+    <sequenceFlow id="getPIDAndNowString" sourceRef="startWorkflow" targetRef="Get PID and Now String"/>
+    
+    <serviceTask id="Get PID and Now String" name="Ensure Map" activiti:class="com.reallysi.rsuite.system.workflow.actions.SetDynamicValuesToVariablesActionHandler">
+      <activiti:field name="variableNames" stringValue="pId;nowString"/>
+      <activiti:field name="pId;nowString" stringValue="pId;nowString"/>
+    </serviceTask>
+  
+    <sequenceFlow id="fromGetPIDToSetVariablesFromProperties" sourceRef="Get PID and Now String" targetRef="Set Variables From Properties"></sequenceFlow>
+      
+    <serviceTask id="Set Variables From Properties" name="Ensure Map" activiti:class="com.reallysi.rsuite.system.workflow.actions.SetGlobalVariablesActionHandler">
+      <activiti:field name="variableNames" stringValue="exportDir;sharedExportDir"/>
+      <activiti:field name="values" stringValue="${astd.base.export.dir}${astd.xml.export.dir}/${pId};${astd.export.share}${astd.xml.export.dir}/${pId}"/>
+    </serviceTask>
+        
+  
+    <sequenceFlow id="fromServiceTaskToEndWorkflow" sourceRef="Set Variables From Properties" targetRef="endWorkflow"></sequenceFlow>
     <endEvent id="endWorkflow" name="End Workflow"></endEvent>
     <dataObject id="EXCEPTION_OCCUR" name="EXCEPTION_OCCUR" itemSubjectRef="xsd:string">
       <extensionElements>

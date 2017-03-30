@@ -224,16 +224,11 @@
 	    
 	    <!-- Load workflow definitions   -->
 	    <workflowDefinitions>
-	    
-	         
-	     <file key="ASTD Map Open Toolkit DITA To PDF" filename="WebContent/workflow/ASTD Map Open Toolkit DITA To PDF.bpmn"/>
-	      <file key="ASTD XML MO Open Toolkit DITA To PDF" filename="WebContent/workflow/ASTD XML MO Open Toolkit DITA To PDF.bpmn"/>
+	   
 	     <file key="ATD Article Word to XML to InDesign" filename="WebContent/workflow/ATD Article Word to XML to InDesign.bpmn"/>
 	     <file key="ATD CTDO" filename="WebContent/workflow/ATD CTDO.bpmn"/>
 	     <file key="ATD NEW TPM" filename="WebContent/workflow/ATD NEW TPM.bpmn"/>
 	     
-	      
-	       
 	   </workflowDefinitions>
 	    
 	</extensionProvider>

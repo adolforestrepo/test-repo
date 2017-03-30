@@ -14,3 +14,32 @@ astd.testing.service.enabled=true
 # being dismissed.  Unfortunately, this property only controls notifications created
 # by custom web services.  
 astd.notification.duration.in.seconds=10
+
+
+#============================================================================
+# Workflow Variables
+#============================================================================
+
+# Pathname to where AH FO processor is installed
+ditaot.axf.path=C:/Program Files/AntennaHouse/AHFormatterV51
+
+# Root export directory, trailing slash is important
+astd.base.export.dir=c:/Projects/ASTD/RSuite/export/
+
+# Xml export directory, relative to astd.base.export.dir
+astd.xml.export.dir=xml
+
+# Incx export directory, relative to astd.base.export.dir
+astd.incx.export.dir=incx
+
+# Export share drive/path (trailing slash required)
+astd.export.share=//127.0.0.1/export/
+
+# Export share for PDFs
+astd.pdf.export.share=//127.0.0.1/export/pdf
+
+# Export share for HTML
+astd.html.export.share=//127.0.0.1/export/html
+
+# URI to schematron document for validating imported books
+astd.books.schematron.schema.uri=file:///c:/rsuite-data/astd/books.sch
