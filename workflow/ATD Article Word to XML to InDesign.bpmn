@@ -9,12 +9,22 @@
   <process id="ATD Article Word To XML To Indesign" name="ATD Article Word To XML To Indesign" isExecutable="true">
     <startEvent id="startWorkflow" name="Start"/>
     
-    <sequenceFlow id="startToTask" sourceRef="startWorkflow" targetRef="dummyTask"/>
+    <sequenceFlow id="getPIDAndNowString" sourceRef="startWorkflow" targetRef="Get PID and Now String"/>
     
-    <serviceTask id="getMoDetailsTask" name="Get MO Details" activiti:class="com.reallysi.rsuite.system.workflow.actions.SetVariablesFromMoDetails"></serviceTask>
-    
+    <serviceTask id="Get PID and Now String" name="Ensure Map" activiti:class="com.reallysi.rsuite.system.workflow.actions.SetDynamicValuesToVariablesActionHandler">
+      <activiti:field name="variableNames" stringValue="pId;nowString"/>
+      <activiti:field name="pId;nowString" stringValue="pId;nowString"/>
+    </serviceTask>
   
-    <sequenceFlow id="moDetailsToEndWorkflow" sourceRef="getMoDetailsTask" targetRef="endWorkflow"></sequenceFlow>
+    <sequenceFlow id="fromGetPIDToSetVariablesFromProperties" sourceRef="Get PID and Now String" targetRef="Set Variables From Properties"></sequenceFlow>
+      
+    <serviceTask id="Set Variables From Properties" name="Ensure Map" activiti:class="com.reallysi.rsuite.system.workflow.actions.SetGlobalVariablesActionHandler">
+      <activiti:field name="variableNames" stringValue="exportDir;sharedExportDir"/>
+      <activiti:field name="values" stringValue="${astd.base.export.dir}${astd.xml.export.dir}/${pId};${astd.export.share}${astd.xml.export.dir}/${pId}"/>
+    </serviceTask>
+        
+  
+    <sequenceFlow id="fromServiceTaskToEndWorkflow" sourceRef="Set Variables From Properties" targetRef="endWorkflow"></sequenceFlow>
     <endEvent id="endWorkflow" name="End Workflow"></endEvent>
     <dataObject id="EXCEPTION_OCCUR" name="EXCEPTION_OCCUR" itemSubjectRef="xsd:string">
       <extensionElements>

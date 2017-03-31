@@ -162,26 +162,28 @@
 		<taskUIConfiguration scope="user,roles">
 			<inboxRowsPerPage>20</inboxRowsPerPage>
 			<inboxColumnList>
+				<column name="taskId" label="ID" />
 				<column name="name" label="Task" />
-				<column name="productName" label="Product" />
 				<column name="description" label="Description" />
-				<column name="roles" label="Roles" />
-				<column name="dtCreated" label="Created Date" />
+				<column name="dtCreated" label="Start Date" />
+				<column name="actorId" label="Assignee" />
+				<column name="roles" label="Assigned Role" />
 			</inboxColumnList>
 			<inboxFilterList>
 				<filter name="name" label="Task Type" />
 				<filter name="description" label="Description" />
 			</inboxFilterList>
 		</taskUIConfiguration>
+
 		<taskUIConfiguration scope="manager">
 			<inboxRowsPerPage>20</inboxRowsPerPage>
 			<inboxColumnList>
+				<column name="taskId" label="ID" />
 				<column name="name" label="Task" />
-				<column name="productName" label="Product" />
 				<column name="description" label="Description" />
-				<column name="actorId" label="Assignee" />
-				<column name="roles" label="Roles" />
 				<column name="dtCreated" label="Created Date" />
+				<column name="actorId" label="Assignee" />
+				<column name="roles" label="Assigned Role" />
 			</inboxColumnList>
 			<inboxFilterList>
 				<filter name="name" label="Task Type" />
