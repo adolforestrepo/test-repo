@@ -14,8 +14,11 @@ rsuite.login();
 try {
     /* Basic role; RSuiteUser had unexpected results in 5.0.5
      */
-    createRoleIfnotExist("RSuiteBasicUser", "This is a basic user role.");
-      
+    createRoleIfnotExist("Art Director", "Art Director.");
+    createRoleIfnotExist("Managing Editor", "Managing Editor.");
+    createRoleIfnotExist("Associate Editor", "Associate Editor.");
+    createRoleIfnotExist("Editor", "Editor.");
+    
 }
  finally {
 	rsuite.logout();
