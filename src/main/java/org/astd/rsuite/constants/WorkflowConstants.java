@@ -59,12 +59,13 @@ public interface WorkflowConstants {
   /**
    * Workflow variable to identify the qualified class name of the workflow errors.
    */
-  String WF_VAR_NAME_WORKFLOW_ERRORS_QUALIFIED_CLASSNAME =
-      "com.reallysi.rsuite.api.workflow.WorkflowErrors";
+  String WF_VAR_NAME_WORKFLOW_ERRORS_QUALIFIED_CLASSNAME = "com.reallysi.rsuite.api.workflow.WorkflowErrors";
 
   /**
    * The name of the workflow variable identifying the user ID.
    */
   String WF_VAR_NAME_USER_ID = "UserId";
+
+
 
 }

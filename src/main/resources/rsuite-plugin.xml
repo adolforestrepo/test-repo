@@ -223,6 +223,9 @@
 	    <actionHandler label="Local Copy of Add Metadata Action Handler"
 	        description="Local Copy of Load Non by Alias"
 	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAddLayeredMetadataActionHandler" /> 
+	    <actionHandler label="Action handler to validate the file name and set parameter in the workflow. "
+	        description="Validate File Name Structure"
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AtdValidateFileNameActionHandler" /> 
 	    
 	    <!-- Load workflow definitions   -->
 	    <workflowDefinitions>
