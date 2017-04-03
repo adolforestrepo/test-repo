@@ -1,2 +1,0 @@
-recreate-ditaot
-deploy-full
