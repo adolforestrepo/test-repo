@@ -18,6 +18,8 @@ try {
     createRoleIfnotExist("Managing Editor", "Managing Editor.");
     createRoleIfnotExist("Associate Editor", "Associate Editor.");
     createRoleIfnotExist("Editor", "Editor.");
+	createRoleIfnotExist("Reviewer", "Reviewer.");
+	createRoleIfnotExist("Production Specialist", "Production Specialist.");
     
 }
  finally {
