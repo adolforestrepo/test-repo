@@ -158,16 +158,27 @@
 	</extensionProvider>
 
 	<extensionProvider id="rsuite.Workflow">
+	
+	<workflowResultsConfiguration>
+            <columnList>
+                <column name="currentTask.workflowInstanceId" label="ID" />
+                <column name="currentTask.name" label="Task" />
+                <column name="currentTask.description" label="Description" />
+                <column name="currentTask.startDate" label="Start Date" />                
+                <column name="currentTask.assigneeUserId" label="Assignee" />
+                <column name="currentTask.candidateRoles" label="Assigned Role" />
+            </columnList>
+        </workflowResultsConfiguration>
 
 		<taskUIConfiguration scope="user,roles">
 			<inboxRowsPerPage>20</inboxRowsPerPage>
 			<inboxColumnList>
-				<column name="taskId" label="ID" />
-				<column name="name" label="Task" />
-				<column name="description" label="Description" />
-				<column name="dtCreated" label="Start Date" />
-				<column name="actorId" label="Assignee" />
-				<column name="roles" label="Assigned Role" />
+				<column name="currentTask.workflowInstanceId" label="ID" />
+				<column name="currentTask.name" label="Task" />
+				<column name="currentTask.description" label="Description" />
+				<column name="currentTask.startDate" label="Start Date" />
+				<column name="currentTask.assigneeUserId" label="Assignee" />
+				<column name="currentTask.candidateRoles" label="Assigned Role" />
 			</inboxColumnList>
 			<inboxFilterList>
 				<filter name="name" label="Task Type" />
@@ -178,17 +189,17 @@
 		<taskUIConfiguration scope="manager">
 			<inboxRowsPerPage>20</inboxRowsPerPage>
 			<inboxColumnList>
-				<column name="taskId" label="ID" />
-				<column name="name" label="Task" />
-				<column name="description" label="Description" />
-				<column name="dtCreated" label="Created Date" />
-				<column name="actorId" label="Assignee" />
-				<column name="roles" label="Assigned Role" />
+				<column name="currentTask.workflowInstanceId" label="ID" />
+				<column name="currentTask.name" label="Task" />
+				<column name="currentTask.description" label="Description" />
+				<column name="currentTask.startDate" label="Created Date" />
+				<column name="currentTask.assigneeUserId" label="Assignee" />
+				<column name="currentTask.candidateRoles" label="Assigned Role" />
 			</inboxColumnList>
 			<inboxFilterList>
-				<filter name="name" label="Task Type" />
-				<filter name="description" label="Description" />
-				<filter name="actorId" label="Assignee" />
+				<filter name="currentTask.name" label="Task Type" />
+				<filter name="currentTask.description" label="Description" />
+				<filter name="currentTask.assigneeUserId" label="Assignee" />
 			</inboxFilterList>
 		</taskUIConfiguration>
 
