@@ -7,7 +7,7 @@ public enum TPMArticleType {
 
   FE("FE", "Feature"),
   ED("FR", "From the Editor"),
-  CC("CC", "Chairman’s Corner"),
+  CC("CC", "Chairman's Corner"),
   IN("IN", "Insights"),
   SH("SH", "On Our Shelf"),
   AA("AA", "Agency Application"),
