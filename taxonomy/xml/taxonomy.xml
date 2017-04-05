@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE taxonomy PUBLIC "urn:pubid:astd.com:doctypes:taxonomy" "taxonomy.dtd">
+<taxonomy>
+   <taxonomy-options name="Research">
+      <taxonomy-option value="methods"/>
+      <taxonomy-option value="efficacy"/>
+      <taxonomy-option value="efficiency"/>
+      <taxonomy-option value="delivery systems"/>
+      <taxonomy-option value="cognitive"/>
+      <taxonomy-option value="affective"/>
+      <taxonomy-option value="psychomotor"/>
+   </taxonomy-options>
+   <taxonomy-options name="Point of View">
+      <taxonomy-option value="Trainers"/>
+      <taxonomy-option value="Researchers"/>
+      <taxonomy-option value="Learners"/>
+      <taxonomy-option value="Other"/>
+   </taxonomy-options>
+   <taxonomy-options name="Delivery Method">
+      <taxonomy-option value="Conference"/>
+      <taxonomy-option value="Classroom"/>
+      <taxonomy-option value="Workshop"/>
+      <taxonomy-option value="Web (computer)"/>
+      <taxonomy-option value="Web (mobile/pda)"/>
+      <taxonomy-option value="Webinar"/>
+      <taxonomy-option value="Online Classes"/>
+      <taxonomy-option value="Mail"/>
+      <taxonomy-option value="Conference Call"/>
+      <taxonomy-option value="Video"/>
+      <taxonomy-option value="Audio"/>
+   </taxonomy-options>
+   <taxonomy-options name="Delivery Format">
+      <taxonomy-option value="Books"/>
+      <taxonomy-option value="Magazines"/>
+      <taxonomy-option value="Periodicals"/>
+      <taxonomy-option value="Training Series"/>
+      <taxonomy-option value="Reports"/>
+      <taxonomy-option value="Flyers"/>
+      <taxonomy-option value="Downloadable"/>
+      <taxonomy-option value="Streaming"/>
+      <taxonomy-option value="On-demand"/>
+      <taxonomy-option value="Whitepaper"/>
+   </taxonomy-options>
+   <taxonomy-options name="Distribution Frequency">
+      <taxonomy-option value="Daily"/>
+      <taxonomy-option value="Weekly"/>
+      <taxonomy-option value="Monthly"/>
+      <taxonomy-option value="Quarterly"/>
+      <taxonomy-option value="Yearly"/>
+      <taxonomy-option value="Irregular"/>
+      <taxonomy-option value="Other"/>
+      <taxonomy-option value="Once"/>
+   </taxonomy-options>
+   <taxonomy-options name="Audience">
+      <taxonomy-option value="Trainers"/>
+      <taxonomy-option value="Researchers"/>
+      <taxonomy-option value="Learners"/>
+      <taxonomy-option value="Others"/>
+   </taxonomy-options>
+   <taxonomy-options name="Certification">
+      <taxonomy-option value="Certification Level">
+         <taxonomy-children>
+            <taxonomy-option value="[none]"/>
+         </taxonomy-children>
+      </taxonomy-option>
+      <taxonomy-option value="Certification Organization">
+         <taxonomy-children>
+            <taxonomy-option value="[none]"/>
+         </taxonomy-children>
+      </taxonomy-option>
+      <taxonomy-option value="Certification Recognized By">
+         <taxonomy-children>
+            <taxonomy-option value="[none]"/>
+         </taxonomy-children>
+      </taxonomy-option>
+   </taxonomy-options>
+   <taxonomy-options name="Level of Expertise">
+      <taxonomy-option value="Beginner"/>
+      <taxonomy-option value="Intermediate"/>
+      <taxonomy-option value="Advanced"/>
+   </taxonomy-options>
+   <taxonomy-options name="Affiliation with Training Organizations">
+      <taxonomy-option value="ASTD"/>
+      <taxonomy-option value="eLearning Guild"/>
+      <taxonomy-option value="TRAINAIR"/>
+   </taxonomy-options>
+   <taxonomy-options name="Affiliation with Industry Organizations">
+      <taxonomy-option value="Automotive"/>
+      <taxonomy-option value="Technology"/>
+      <taxonomy-option value="Trade Unions"/>
+      <taxonomy-option value="Aviation"/>
+   </taxonomy-options>
+   <taxonomy-options name="Affiliation with Higher Education Organizations">
+      <taxonomy-option value="University of Maryland"/>
+   </taxonomy-options>
+   <taxonomy-options name="Affiliation with Foundations">
+      <taxonomy-option value="Foundation and Institute"/>
+      <taxonomy-option value="Brookings Institute"/>
+      <taxonomy-option value="PNAC"/>
+   </taxonomy-options>
+   <taxonomy-options name="Affiliation with Government Organizations">
+      <taxonomy-option value="County"/>
+      <taxonomy-option value="State"/>
+      <taxonomy-option value="Municipal"/>
+      <taxonomy-option value="Pan-national"/>
+   </taxonomy-options>
+   <taxonomy-options name="Industry">
+      <taxonomy-option value="Accounting/Auditing/Underwriting Industry"/>
+      <taxonomy-option value="Associations &amp; Nonprofit Organizations"/>
+      <taxonomy-option value="Automotive Industry"/>
+      <taxonomy-option value="Aviation &amp; Space Industry"/>
+      <taxonomy-option value="Beverage Brewing &amp; Bottling Industry"/>
+      <taxonomy-option value="Chemicals &amp; Pharmaceutical Industry"/>
+      <taxonomy-option value="Communications, Publications, &amp; Broadcasting Industry"/>
+      <taxonomy-option value="Construction Industry"/>
+      <taxonomy-option value="Criminal Justice Systems"/>
+      <taxonomy-option value="Education Institutions"/>
+      <taxonomy-option value="Electronics Industry"/>
+      <taxonomy-option value="Financial Services Industry"/>
+      <taxonomy-option value="Food Industries"/>
+      <taxonomy-option value="Government (National)"/>
+      <taxonomy-option value="Government (Regional/Local)"/>
+      <taxonomy-option value="Healthcare Industry"/>
+      <taxonomy-option value="Hospitality Industry"/>
+      <taxonomy-option value="Information Technology Industry"/>
+      <taxonomy-option value="Insurance Industry"/>
+      <taxonomy-option value="Manufacturing/Industrial Industry"/>
+      <taxonomy-option value="Military"/>
+      <taxonomy-option value="Mining/Energy/Natural Resources"/>
+      <taxonomy-option value="Petroleum &amp; Natural Gas Industry"/>
+      <taxonomy-option value="Professional/Consulting Services"/>
+      <taxonomy-option value="Real Estate Industry"/>
+      <taxonomy-option value="Recreation/Amusement Industry"/>
+      <taxonomy-option value="Retail Industry"/>
+      <taxonomy-option value="Service Industries"/>
+      <taxonomy-option value="Technology Industry"/>
+      <taxonomy-option value="Telecommunications Industry"/>
+      <taxonomy-option value="Textiles Industry"/>
+      <taxonomy-option value="Transportation Industry"/>
+      <taxonomy-option value="Utilities Industry"/>
+   </taxonomy-options>
+   <taxonomy-options name="Country">
+      <taxonomy-option value="North America" selectable="false">
+         <taxonomy-children>
+            <taxonomy-option value="USA"/>
+            <taxonomy-option value="Mexico"/>
+            <taxonomy-option value="Canada"/>
+         </taxonomy-children>
+      </taxonomy-option>
+      <taxonomy-option value="Central America" selectable="false">
+         <taxonomy-children>
+            <taxonomy-option value="Belize"/>
+            <taxonomy-option value="Costa Rica"/>
+            <taxonomy-option value="El Salvador"/>
+            <taxonomy-option value="Guatemala"/>
+            <taxonomy-option value="Honduras"/>
+            <taxonomy-option value="Nicaragua"/>
+            <taxonomy-option value="Panama"/>
+         </taxonomy-children>
+      </taxonomy-option>
+      <taxonomy-option value="South America" selectable="false">
+         <taxonomy-children>
+            <taxonomy-option value="Argentina"/>
+            <taxonomy-option value="Bolivia"/>
+            <taxonomy-option value="Brazil"/>
+            <taxonomy-option value="Chile"/>
+            <taxonomy-option value="Colombia"/>
+            <taxonomy-option value="Ecuador"/>
+            <taxonomy-option value="Falkland Islands (UK)"/>
+            <taxonomy-option value="French Guiana"/>
+            <taxonomy-option value="Guyana"/>
+            <taxonomy-option value="Paraguay"/>
+            <taxonomy-option value="Peru"/>
+            <taxonomy-option value="Suriname"/>
+            <taxonomy-option value="Uruguay"/>
+            <taxonomy-option value="Venezuela"/>
+         </taxonomy-children>
+      </taxonomy-option>
+      <taxonomy-option value="Europe" selectable="false">
+         <taxonomy-children>
+            <taxonomy-option value="Albania"/>
+            <taxonomy-option value="Andorra"/>
+            <taxonomy-option value="Armenia"/>
+            <taxonomy-option value="Austria"/>
+            <taxonomy-option value="Azerbaijan"/>
+            <taxonomy-option value="Belarus"/>
+            <taxonomy-option value="Belgium"/>
+            <taxonomy-option value="Bosnia and Herzegovina"/>
+            <taxonomy-option value="Bulgaria"/>
+            <taxonomy-option value="Croatia"/>
+            <taxonomy-option value="Cyprus"/>
+            <taxonomy-option value="Czechia"/>
+            <taxonomy-option value="Denmark"/>
+            <taxonomy-option value="Estonia"/>
+            <taxonomy-option value="Finland"/>
+            <taxonomy-option value="France"/>
+            <taxonomy-option value="Georgia"/>
+            <taxonomy-option value="Germany"/>
+            <taxonomy-option value="Greece"/>
+            <taxonomy-option value="Holy See"/>
+            <taxonomy-option value="Hungary"/>
+            <taxonomy-option value="Iceland"/>
+            <taxonomy-option value="Ireland"/>
+            <taxonomy-option value="Italy"/>
+            <taxonomy-option value="Kazakhstan"/>
+            <taxonomy-option value="Latvia"/>
+            <taxonomy-option value="Liechtenstein"/>
+            <taxonomy-option value="Lithuania"/>
+            <taxonomy-option value="Luxembourg"/>
+            <taxonomy-option value="Macedonia"/>
+            <taxonomy-option value="Malta"/>
+            <taxonomy-option value="Moldova"/>
+            <taxonomy-option value="Monaco"/>
+            <taxonomy-option value="Montenegro"/>
+            <taxonomy-option value="Netherlands"/>
+            <taxonomy-option value="Norway"/>
+            <taxonomy-option value="Poland"/>
+            <taxonomy-option value="Portugal"/>
+            <taxonomy-option value="Romania"/>
+            <taxonomy-option value="Russia"/>
+            <taxonomy-option value="San Marino"/>
+            <taxonomy-option value="Serbia"/>
+            <taxonomy-option value="Slovakia"/>
+            <taxonomy-option value="Slovenia"/>
+            <taxonomy-option value="Spain"/>
+            <taxonomy-option value="Sweden"/>
+            <taxonomy-option value="Switzerland"/>
+            <taxonomy-option value="Turkey"/>
+            <taxonomy-option value="Ukraine"/>
+            <taxonomy-option value="United Kingdom"/>
+            <taxonomy-option value="Vatican City"/>
+         </taxonomy-children>
+      </taxonomy-option>
+      <taxonomy-option value="Asia" selectable="false">
+         <taxonomy-children>
+            <taxonomy-option value="Abkhazia"/>
+            <taxonomy-option value="Afghanistan"/>
+            <taxonomy-option value="Armenia"/>
+            <taxonomy-option value="Azerbaijan"/>
+            <taxonomy-option value="Bangladesh"/>
+            <taxonomy-option value="Bhutan"/>
+            <taxonomy-option value="Brunei"/>
+            <taxonomy-option value="Cambodia"/>
+            <taxonomy-option value="China"/>
+            <taxonomy-option value="Christmas Island"/>
+            <taxonomy-option value="Cocos (Keeling) Islands"/>
+            <taxonomy-option value="Cyprus, Northern"/>
+            <taxonomy-option value="Cyprus"/>
+            <taxonomy-option value="Georgia"/>
+            <taxonomy-option value="Hong Kong"/>
+            <taxonomy-option value="India"/>
+            <taxonomy-option value="Indonesia"/>
+            <taxonomy-option value="Japan"/>
+            <taxonomy-option value="Kazakhstan"/>
+            <taxonomy-option value="Korea, North"/>
+            <taxonomy-option value="Korea, South"/>
+            <taxonomy-option value="Kyrgyzstan"/>
+            <taxonomy-option value="Lao"/>
+            <taxonomy-option value="Macau"/>
+            <taxonomy-option value="Malaysia"/>
+            <taxonomy-option value="Maldives"/>
+            <taxonomy-option value="Mongolia"/>
+            <taxonomy-option value="Myanmar (Burma)"/>
+            <taxonomy-option value="Nagorno-Karabakh"/>
+            <taxonomy-option value="Nepal"/>
+            <taxonomy-option value="Pakistan"/>
+            <taxonomy-option value="Philippines"/>
+            <taxonomy-option value="Russia"/>
+            <taxonomy-option value="Singapore"/>
+            <taxonomy-option value="South Ossetia"/>
+            <taxonomy-option value="Sri Lanka"/>
+            <taxonomy-option value="Taiwan"/>
+            <taxonomy-option value="Tajikistan"/>
+            <taxonomy-option value="Thailand"/>
+            <taxonomy-option value="Timor-Leste"/>
+            <taxonomy-option value="Turkey"/>
+            <taxonomy-option value="Turkmenistan"/>
+            <taxonomy-option value="Uzbekistan"/>
+            <taxonomy-option value="Vietnam"/>
+            <taxonomy-option value="Middle East"/>
+            <taxonomy-option value="Bahrain"/>
+            <taxonomy-option value="Egypt"/>
+            <taxonomy-option value="Iran"/>
+            <taxonomy-option value="Iraq"/>
+            <taxonomy-option value="Israel"/>
+            <taxonomy-option value="Jordan"/>
+            <taxonomy-option value="Kuwait"/>
+            <taxonomy-option value="Lebanon"/>
+            <taxonomy-option value="Oman"/>
+            <taxonomy-option value="Qatar"/>
+            <taxonomy-option value="Saudi Arabia"/>
+            <taxonomy-option value="Syria"/>
+            <taxonomy-option value="Turkey"/>
+            <taxonomy-option value="United Arab Emirates"/>
+            <taxonomy-option value="Yemen"/>
+         </taxonomy-children>
+      </taxonomy-option>
+      <taxonomy-option value="Africa" selectable="false">
+         <taxonomy-children>
+            <taxonomy-option value="Algeria"/>
+            <taxonomy-option value="Angola"/>
+            <taxonomy-option value="Benin"/>
+            <taxonomy-option value="Botswana"/>
+            <taxonomy-option value="Burkina Faso"/>
+            <taxonomy-option value="Burundi"/>
+            <taxonomy-option value="Cameroon"/>
+            <taxonomy-option value="Canary Islands"/>
+            <taxonomy-option value="Cape Verde"/>
+            <taxonomy-option value="Central African Republic"/>
+            <taxonomy-option value="Ceuta"/>
+            <taxonomy-option value="Chad"/>
+            <taxonomy-option value="Comoros"/>
+            <taxonomy-option value="Côte d'Ivoire"/>
+            <taxonomy-option value="Democratic Republic of the Congo"/>
+            <taxonomy-option value="Djibouti"/>
+            <taxonomy-option value="Egypt"/>
+            <taxonomy-option value="Equatorial Guinea"/>
+            <taxonomy-option value="Eritrea"/>
+            <taxonomy-option value="Ethiopia"/>
+            <taxonomy-option value="Gabon"/>
+            <taxonomy-option value="Gambia"/>
+            <taxonomy-option value="Ghana"/>
+            <taxonomy-option value="Guinea"/>
+            <taxonomy-option value="Guinea-Bissau"/>
+            <taxonomy-option value="Kenya"/>
+            <taxonomy-option value="Lesotho"/>
+            <taxonomy-option value="Liberia"/>
+            <taxonomy-option value="Libya"/>
+            <taxonomy-option value="Madagascar"/>
+            <taxonomy-option value="Madeira"/>
+            <taxonomy-option value="Malawi"/>
+            <taxonomy-option value="Mali"/>
+            <taxonomy-option value="Mauritania"/>
+            <taxonomy-option value="Mauritius"/>
+            <taxonomy-option value="Mayotte"/>
+            <taxonomy-option value="Melilla"/>
+            <taxonomy-option value="Morocco"/>
+            <taxonomy-option value="Mozambique"/>
+            <taxonomy-option value="Namibia"/>
+            <taxonomy-option value="Niger"/>
+            <taxonomy-option value="Nigeria"/>
+            <taxonomy-option value="Republic of the Congo"/>
+            <taxonomy-option value="Réunion"/>
+            <taxonomy-option value="Rwanda"/>
+            <taxonomy-option value="Saint Helena"/>
+            <taxonomy-option value="São Tomé and Príncipe"/>
+            <taxonomy-option value="Senegal"/>
+            <taxonomy-option value="Seychelles"/>
+            <taxonomy-option value="Sierra Leone"/>
+            <taxonomy-option value="Somalia"/>
+            <taxonomy-option value="South Africa"/>
+            <taxonomy-option value="Sudan"/>
+            <taxonomy-option value="Swaziland"/>
+            <taxonomy-option value="Tanzania"/>
+            <taxonomy-option value="Togo"/>
+            <taxonomy-option value="Tunisia"/>
+            <taxonomy-option value="Uganda"/>
+            <taxonomy-option value="Western Sahara"/>
+            <taxonomy-option value="Zambia"/>
+            <taxonomy-option value="Zimbabwe"/>
+         </taxonomy-children>
+      </taxonomy-option>
+   </taxonomy-options>
+   <taxonomy-options name="Keywords">
+      <taxonomy-option value="Competency Model Terms">
+         <taxonomy-children>
+            <taxonomy-option value="Area of Expertise">
+               <taxonomy-children>
+                  <taxonomy-option value="Career Planning and Talent Management"/>
+                  <taxonomy-option value="Coaching"/>
+                  <taxonomy-option value="Delivering Training"/>
+                  <taxonomy-option value="Designing Learning"/>
+                  <taxonomy-option value="Facilitating Organizational Change"/>
+                  <taxonomy-option value="Improving Human Performance"/>
+                  <taxonomy-option value="Managing Organizational Knowledge"/>
+                  <taxonomy-option value="Managing the Learning Function"/>
+                  <taxonomy-option value="Measuring and Evaluating"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Role">
+               <taxonomy-children>
+                  <taxonomy-option value="Learning Strategist"/>
+                  <taxonomy-option value="Business Partner"/>
+                  <taxonomy-option value="Project Manager"/>
+                  <taxonomy-option value="Professional Specialist"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Competency">
+               <taxonomy-children>
+                  <taxonomy-option value="Analyzing Needs and Proposing Solutions"/>
+                  <taxonomy-option value="Applying Business Acumen"/>
+                  <taxonomy-option value="Building Trust"/>
+                  <taxonomy-option value="Communicating Effectively"/>
+                  <taxonomy-option value="Demonstrating Adaptability"/>
+                  <taxonomy-option value="Driving Results"/>
+                  <taxonomy-option value="Influencing Stakeholders"/>
+                  <taxonomy-option value="Leveraging Diversity"/>
+                  <taxonomy-option value="Modeling Personal Development"/>
+                  <taxonomy-option value="Networking and Partnering"/>
+                  <taxonomy-option value="Planning and Implementing Assignments"/>
+                  <taxonomy-option value="Thinking Strategically"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="TRAINING/HRD Field">
+               <taxonomy-children>
+                  <taxonomy-option value="Awards (Training/HRD)"/>
+                  <taxonomy-option value="Professional Development for Trainers"/>
+                  <taxonomy-option value="Trends (Business)"/>
+                  <taxonomy-option value="Trends (Training)"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Instructional Technology">
+               <taxonomy-children>
+                  <taxonomy-option value="Performance analysis">
+                     <taxonomy-children>
+                        <taxonomy-option value="Job Analysis"/>
+                        <taxonomy-option value="Task Analysis"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Needs Assessment">
+                     <taxonomy-children>
+                        <taxonomy-option value="Needs Assessment Instruments"/>
+                        <taxonomy-option value="Learner Analysis"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Learning Objectives">
+                     <taxonomy-children>
+                        <taxonomy-option value="Competency-Based Training"/>
+                        <taxonomy-option value="Performance-Based Training"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Instructional Systems Design">
+                     <taxonomy-children>
+                        <taxonomy-option value="Corporate Universities"/>
+                        <taxonomy-option value="Course Design &amp; Development"/>
+                        <taxonomy-option value="Curriculum Planning &amp; Design"/>
+                        <taxonomy-option value="Development Time"/>
+                        <taxonomy-option value="Instructional Program Design">
+                          <synonym>Instructional Design</synonym>
+                          <synonym>Designing Learning</synonym>
+                        </taxonomy-option>
+                        <taxonomy-option value="Lesson Plans"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Instructional Strategies">
+                     <taxonomy-children>
+                        <taxonomy-option value="Behavior Modeling &amp; Modification"/>
+                        <taxonomy-option value="Conditions of Learning"/>
+                        <taxonomy-option value="Cross Training"/>
+                        <taxonomy-option value="Instruction Methods">
+                           <taxonomy-children>
+                              <taxonomy-option value="Apprenticeships &amp; Internships"/>
+                              <taxonomy-option value="Case Studies"/>
+                              <taxonomy-option value="Experiential/Adventure Learning"/>
+                              <taxonomy-option value="Games"/>
+                              <taxonomy-option value="Group Learning"/>
+                              <taxonomy-option value="Humor"/>
+                              <taxonomy-option value="Icebreakers"/>
+                              <taxonomy-option value="Individual Action Plans"/>
+                              <taxonomy-option value="Job Rotation"/>
+                              <taxonomy-option value="On-Demand /Just-in-Time Training">
+                                <synonym>Just-in-Time Training</synonym>
+                              </taxonomy-option>
+                              <taxonomy-option value="Lectures"/>
+                              <taxonomy-option value="On-the-Job Training"/>
+                              <taxonomy-option value="Role Plays"/>
+                              <taxonomy-option value="Simulations"/>
+                              <taxonomy-option value="Storytelling"/>
+                           </taxonomy-children>
+                        </taxonomy-option>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Learning Styles">
+                    <synonym>Training Styles</synonym>
+                  </taxonomy-option>
+                  <taxonomy-option value="Learning Theories">
+                     <taxonomy-children>
+                        <taxonomy-option value="Accelerated Learning"/>
+                        <taxonomy-option value="Action Learning"/>
+                        <taxonomy-option value="Adult Learning Theory">
+                           <synonym>Using Adult Learning Theories</synonym>
+                        </taxonomy-option>
+                        <taxonomy-option value="Informal Learning"/>
+                        <taxonomy-option value="Whole Brain Learning"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Line Supervisors as Trainers"/>
+                  <taxonomy-option value="Packaged Programs"/>
+                  <taxonomy-option value="Self-Directed Learning"/>
+                  <taxonomy-option value="Seminars &amp; Workshops"/>
+                  <taxonomy-option value="Subject Matter Experts as Trainers"/>
+                  <taxonomy-option value="University-Based Programs"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Instructional Media Selection">
+               <taxonomy-children>
+                  <taxonomy-option value="Instructional Media Development">
+                     <taxonomy-children>
+                        <taxonomy-option value="Authoring Systems"/>
+                        <taxonomy-option value="Computer-Based Training Design"/>
+                        <taxonomy-option value="Job Aids"/>
+                        <taxonomy-option value="Print-Based Materials"/>
+                        <taxonomy-option value="Training Manuals"/>
+                        <taxonomy-option value="Transparencies &amp; Slides"/>
+                        <taxonomy-option value="Web-based Training Design"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="E-learning">
+                     <synonym>ELearning</synonym>
+                     <synonym>eLearning</synonym>
+                     <synonym>elearning</synonym>
+                     <taxonomy-children>
+                        <taxonomy-option value="Audio-Based Materials"/>
+                        <taxonomy-option value="Blended Learning"/>
+                        <taxonomy-option value="Computer-Based Training"/>
+                        <taxonomy-option value="Distance Learning">
+                           <taxonomy-children>
+                              <taxonomy-option value="Interactive TV"/>
+                              <taxonomy-option value="Satellite Training"/>
+                              <taxonomy-option value="Teleconferencing"/>
+                              <taxonomy-option value="Videoconferencing"/>
+                              <taxonomy-option value="Videoteleconferencing"/>
+                           </taxonomy-children>
+                        </taxonomy-option>
+                        <taxonomy-option value="Interactive Video"/>
+                        <taxonomy-option value="Multimedia"/>
+                        <taxonomy-option value="Videos"/>
+                        <taxonomy-option value="Virtual Reality"/>
+                        <taxonomy-option value="Web-Based Training"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Instructional Implementation &amp; Delivery">
+                     <taxonomy-children>
+                        <taxonomy-option value="Classroom Training Techniques"/>
+                        <taxonomy-option value="Facilitation"/>
+                        <taxonomy-option value="Facilitator Training"/>
+                        <taxonomy-option value="Focus Groups"/>
+                        <taxonomy-option value="Learning Environment"/>
+                        <taxonomy-option value="Online Training Techniques"/>
+                        <taxonomy-option value="Presentation Skills"/>
+                        <taxonomy-option value="Presentation Technologies"/>
+                        <taxonomy-option value="Problem Trainees"/>
+                        <taxonomy-option value="Surveys"/>
+                        <taxonomy-option value="Team Training"/>
+                        <taxonomy-option value="Test Development"/>
+                        <taxonomy-option value="Tests"/>
+                        <taxonomy-option value="Tests (Psychological)"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Evaluation (Training Programs)">
+                     <taxonomy-children>
+                        <taxonomy-option value="Data Collection and Analysis"/>
+                        <taxonomy-option value="Evaluation Design"/>
+                        <taxonomy-option value="Evaluation Instruments"/>
+                        <taxonomy-option value="Evaluation Models">
+                           <taxonomy-children>
+                              <taxonomy-option value="Levels of Evaluation"/>
+                           </taxonomy-children>
+                        </taxonomy-option>
+                        <taxonomy-option value="Learning Retention"/>
+                        <taxonomy-option value="Measuring and Evaluating Training"/>
+                        <taxonomy-option value="Cost/Benefit Analysis">
+                           <taxonomy-children>
+                              <taxonomy-option value="Statistics"/>
+                              <taxonomy-option value="Scorecards"/>
+                           </taxonomy-children>
+                        </taxonomy-option>
+                        <taxonomy-option value="Return on Investment (ROI)">
+                           <taxonomy-children>
+                              <taxonomy-option value="Value of Training"/>
+                           </taxonomy-children>
+                        </taxonomy-option>
+                        <taxonomy-option value="Transfer of Training"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Managing the Training Function">
+               <synonym>Managing the Learning Function</synonym>
+               <taxonomy-children>
+                  <taxonomy-option value="Budgeting"/>
+                  <taxonomy-option value="Cost of Training"/>
+                  <taxonomy-option value="Economic Impact on Training"/>
+                  <taxonomy-option value="Labor Relations"/>
+                  <taxonomy-option value="Learning Management Systems"/>
+                  <taxonomy-option value="Legislative Issues"/>
+                  <taxonomy-option value="Linking Training to the Business"/>
+                  <taxonomy-option value="Marketing Training"/>
+                  <taxonomy-option value="Marketplace Resources"/>
+                  <taxonomy-option value="Outsourcing Training"/>
+                  <taxonomy-option value="Policy Development"/>
+                  <taxonomy-option value="Partnerships"/>
+                  <taxonomy-option value="Partnering with HR"/>
+                  <taxonomy-option value="Performance Management for Trainers"/>
+                  <taxonomy-option value="Starting a Training Function">
+                    <synonym>Starting a Learning Function</synonym>
+                  </taxonomy-option>
+                  <taxonomy-option value="Strategic Planning &amp; Staffing for Trainers"/>
+                  <taxonomy-option value="Support for Training"/>
+                  <taxonomy-option value="Basic Training for Trainers"/>
+                  <taxonomy-option value="Train-the-Trainer"/>
+                  <taxonomy-option value="Training Consortia"/>
+                  <taxonomy-option value="Training Expenditures"/>
+                  <taxonomy-option value="Training Department Structure"/>
+                  <taxonomy-option value="Vendors (Training)"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Training Program Administration">
+               <taxonomy-children>
+                  <taxonomy-option value="Training Centers"/>
+                  <taxonomy-option value="Design (Training Centers)"/>
+                  <taxonomy-option value="Training Center Selection &amp; Scheduling"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Consulting">
+               <taxonomy-children>
+                  <taxonomy-option value="Consulting (External)"/>
+                  <taxonomy-option value="Consulting (Internal)"/>
+                  <taxonomy-option value="Contracts (Consulting)"/>
+                  <taxonomy-option value="Consulting Fees"/>
+                  <taxonomy-option value="Proposal Development (Consulting)"/>
+                  <taxonomy-option value="Selecting Consultants/Vendors"/>
+                  <taxonomy-option value="Starting a Consulting Practice"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="International Training">
+               <taxonomy-children>
+                  <taxonomy-option value="Cross Cultural Training"/>
+                  <taxonomy-option value="Expatriate Training"/>
+                  <taxonomy-option value="Globalization"/>
+                  <taxonomy-option value="Management Development (International)"/>
+                  <taxonomy-option value="Language Training"/>
+                  <taxonomy-option value="Teams (Global)"/>
+                  <taxonomy-option value="Multinational Corporations"/>
+               </taxonomy-children>
+            </taxonomy-option>
+         </taxonomy-children>
+      </taxonomy-option>
+      <taxonomy-option value="Training Content Areas">
+         <taxonomy-children>
+            <taxonomy-option value="Business &amp; Management">
+               <taxonomy-children>
+                  <taxonomy-option value="Business Metrics (includes High Level Finance)"/>
+                  <taxonomy-option value="Strategic Thinking (this separates the Store Category (Strategic Thinking &amp; Planning)"/>
+                  <taxonomy-option value="Business Process Analysis"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Employee Development">
+               <taxonomy-children>
+                  <taxonomy-option value="Feedback"/>
+                  <taxonomy-option value="Decision Making"/>
+                  <taxonomy-option value="Goal Setting"/>
+                  <taxonomy-option value="High Potential Employees"/>
+                  <taxonomy-option value="Lifelong Learning"/>
+                  <taxonomy-option value="Problem Solving"/>
+                  <taxonomy-option value="Skills Gap"/>
+                  <taxonomy-option value="Stress Management"/>
+                  <taxonomy-option value="Time Management"/>
+                  <taxonomy-option value="Workplace Relationships"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Management Development">
+               <taxonomy-children>
+                  <taxonomy-option value="Competencies (Managers/Leaders)">
+                     <synonym>Competencies (Managerial)</synonym>
+                  </taxonomy-option>
+                  <taxonomy-option value="Delegation"/>
+                  <taxonomy-option value="Executive Development"/>
+                  <taxonomy-option value="Leadership Development"/>
+                  <taxonomy-option value="Management Styles"/>
+                  <taxonomy-option value="Middle Management Development"/>
+                  <taxonomy-option value="Motivation"/>
+                  <taxonomy-option value="Project Management"/>
+                  <taxonomy-option value="Risk Taking"/>
+                  <taxonomy-option value="Strategic Planning"/>
+                  <taxonomy-option value="Supervisory Development"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Technical Training">
+               <taxonomy-children>
+                  <taxonomy-option value="Compliance Training"/>
+                  <taxonomy-option value="Computer Skills"/>
+                  <taxonomy-option value="Software Applications"/>
+                  <taxonomy-option value="Equipment Operation"/>
+                  <taxonomy-option value="Ergonomics"/>
+                  <taxonomy-option value="Managing Technical Training"/>
+                  <taxonomy-option value="Manufacturing Processes"/>
+                  <taxonomy-option value="Safety Training"/>
+                  <taxonomy-option value="OSHA Requirements"/>
+                  <taxonomy-option value="Technical Writing &amp; Documentation"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Sales &amp; Marketing Training">
+               <taxonomy-children>
+                  <taxonomy-option value="Client Relationships"/>
+                  <taxonomy-option value="Sales Management"/>
+                  <taxonomy-option value="Sales Skills"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Other Training Content Topics">
+               <taxonomy-children>
+                  <taxonomy-option value="Administrative &amp; Clerical Skills"/>
+                  <taxonomy-option value="Basic &amp; Remedial Skills"/>
+                  <taxonomy-option value="Balancing Life &amp; Work">
+                    <synonym>Work-life Balance</synonym>
+                  </taxonomy-option>
+                  <taxonomy-option value="Business Acumen"/>
+                  <taxonomy-option value="Communication Skills">
+                     <taxonomy-children>
+                        <taxonomy-option value="Interpersonal Skills"/>
+                        <taxonomy-option value="Listening Skills"/>
+                        <taxonomy-option value="Nonverbal Communication"/>
+                        <taxonomy-option value="Telephone Skills"/>
+                        <taxonomy-option value="Writing Skills"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Creativity"/>
+                  <taxonomy-option value="Crisis &amp; Disaster Management"/>
+                  <taxonomy-option value="Customer Satisfaction"/>
+                  <taxonomy-option value="Customer Service"/>
+                  <taxonomy-option value="Diversity Training"/>
+                  <taxonomy-option value="Emotional Intelligence"/>
+                  <taxonomy-option value="English as a Second Language (ESL)"/>
+                  <taxonomy-option value="Entrepreneurship"/>
+                  <taxonomy-option value="Ethics">
+                     <synonym>Legal Ethics</synonym>
+                  </taxonomy-option>
+                  <taxonomy-option value="Influence">
+                     <synonym>Influencing</synonym>
+                  </taxonomy-option>
+                  <taxonomy-option value="Innovation"/>
+                  <taxonomy-option value="Interviewing Skills"/>
+                  <taxonomy-option value="Learning-to-Learn"/>
+                  <taxonomy-option value="Literacy"/>
+                  <taxonomy-option value="Loyalty"/>
+                  <taxonomy-option value="Meeting Management"/>
+                  <taxonomy-option value="Negotiation Skills"/>
+                  <taxonomy-option value="Neurolinguistic Programming"/>
+                  <taxonomy-option value="Personal Competencies"/>
+                  <taxonomy-option value="Service Management"/>
+                  <taxonomy-option value="Trust"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Career Development (General)">
+               <taxonomy-children>
+                  <taxonomy-option value="Alternative Career Ladders"/>
+                  <taxonomy-option value="Assessment Centers"/>
+                  <taxonomy-option value="Career Assessment Instruments"/>
+                  <taxonomy-option value="Career Counseling &amp; Guidance"/>
+                  <taxonomy-option value="Career Self-Assessment"/>
+                  <taxonomy-option value="Career Development (Individual)"/>
+                  <taxonomy-option value="Career Development (Organizational)"/>
+                  <taxonomy-option value="Interviewing (Applicants)"/>
+                  <taxonomy-option value="Job Descriptions"/>
+                  <taxonomy-option value="Mentoring"/>
+                  <taxonomy-option value="Networking"/>
+                  <taxonomy-option value="Skill Inventories"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Human Resource Management">
+               <taxonomy-children>
+                  <taxonomy-option value="Benefits"/>
+                  <taxonomy-option value="Employee Assistance Programs"/>
+                  <taxonomy-option value="Human Resource Planning/Staffing"/>
+                  <taxonomy-option value="International Employment Issues"/>
+                  <taxonomy-option value="Legal Issues">
+                     <taxonomy-children>
+                        <taxonomy-option value="Americans with Disabilities (ADA)"/>
+                        <taxonomy-option value="Copyright/Licensing"/>
+                        <taxonomy-option value="Discrimination"/>
+                        <taxonomy-option value="EEO &amp; Affirmative Action"/>
+                        <taxonomy-option value="Intellectual Property"/>
+                        <taxonomy-option value="Sexual Harassment"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Orientation (Employee)"/>
+                  <taxonomy-option value="Outplacement"/>
+                  <taxonomy-option value="Performance Management">
+                     <taxonomy-children>
+                        <taxonomy-option value="360 Degree Feedback"/>
+                        <taxonomy-option value="Compensation"/>
+                        <taxonomy-option value="Rewards/Recognition"/>
+                        <taxonomy-option value="Pay for Knowledge"/>
+                        <taxonomy-option value="Pay for Performance"/>
+                        <taxonomy-option value="Performance Appraisals"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Recruitment"/>
+                  <taxonomy-option value="Retention (Employee)"/>
+                  <taxonomy-option value="Substance Abuse"/>
+                  <taxonomy-option value="Tuition Assistance Programs"/>
+                  <taxonomy-option value="Turnover (Employee)"/>
+                  <taxonomy-option value="Wellness"/>
+                  <taxonomy-option value="Work Arrangements">
+                     <taxonomy-children>
+                        <taxonomy-option value="Telecommuting"/>
+                        <taxonomy-option value="Work Schedules"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Organization Development">
+               <taxonomy-children>
+                  <taxonomy-option value="Change Agent (Organizational)"/>
+                  <taxonomy-option value="Change Implementation (Organizational)"/>
+                  <taxonomy-option value="Change Planning (Organizational)"/>
+                  <taxonomy-option value="Change Management"/>
+                  <taxonomy-option value="Communication (Organizational)">
+                    <synonym>Communicating at an Organizational Level</synonym>
+                  </taxonomy-option>
+                  <taxonomy-option value="Conflict Management"/>
+                  <taxonomy-option value="Corporate Cultures">
+                    <synonym>Organizational Systems &amp; Culture</synonym>
+                  </taxonomy-option>
+                  <taxonomy-option value="Employee Attitudes"/>
+                  <taxonomy-option value="Employee Surveys"/>
+                  <taxonomy-option value="Employee Satisfaction"/>
+                  <taxonomy-option value="Feedback Instruments"/>
+                  <taxonomy-option value="Job Structuring"/>
+                  <taxonomy-option value="Learning Organizations"/>
+                  <taxonomy-option value="Organizational Development Theories"/>
+                  <taxonomy-option value="Organizational Knowledge">
+                     <taxonomy-children>
+                        <taxonomy-option value="Knowledge Management"/>
+                        <taxonomy-option value="Organizational Transformation"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Reengineering"/>
+                  <taxonomy-option value="Talent Management"/>
+                  <taxonomy-option value="Succession Planning"/>
+                  <taxonomy-option value="Team Building"/>
+                  <taxonomy-option value="Teams (Self Directed)"/>
+                  <taxonomy-option value="Teams (Virtual)"/>
+                  <taxonomy-option value="Teamwork"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Performance">
+               <taxonomy-children>
+                  <taxonomy-option value="Certification (General)"/>
+                  <taxonomy-option value="Certification (IT)"/>
+                  <taxonomy-option value="Competencies (General)"/>
+                  <taxonomy-option value="Competency Analysis/Models">
+                     <taxonomy-children>
+                        <taxonomy-option value="ASTD HPI Model"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="High Performance Teams/Systems">
+                     <taxonomy-children>
+                        <taxonomy-option value="Process Improvement"/>
+                        <taxonomy-option value="Process Redesign"/>
+                        <taxonomy-option value="Reorganization of Work"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Performance Consulting"/>
+                  <taxonomy-option value="Performance Improvement">
+                     <taxonomy-children>
+                        <taxonomy-option value="Human Performance Improvement (Individual)"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Performance Measurement/Standards">
+                     <synonym>Performance Metrics)</synonym>
+                  </taxonomy-option>
+                  <taxonomy-option value="Performance Support Systems">
+                     <taxonomy-children>
+                        <taxonomy-option value="Electronic Performance Support Systems"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Performance Technology">
+                     <taxonomy-children>
+                        <taxonomy-option value="Human Performance Technology"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="HRD-Related Organizational Issues">
+               <taxonomy-children>
+                  <taxonomy-option value="Competitiveness"/>
+                  <taxonomy-option value="Diversity in the Workplace">
+                     <taxonomy-children>
+                        <taxonomy-option value="Workplace Demographics"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Downsizing"/>
+                  <taxonomy-option value="Intellectual Capital"/>
+                  <taxonomy-option value="Mergers &amp; Acquisitions"/>
+                  <taxonomy-option value="Outsourcing"/>
+                  <taxonomy-option value="Productivity Improvement"/>
+                  <taxonomy-option value="Productivity Measurement"/>
+                  <taxonomy-option value="Quality Control">
+                     <taxonomy-children>
+                        <taxonomy-option value="Benchmarking"/>
+                        <taxonomy-option value="Best Practices (Training)"/>
+                        <taxonomy-option value="Best Practices (Business)"/>
+                        <taxonomy-option value="Continuous Improvement">
+                           <taxonomy-children>
+                              <taxonomy-option value="Systems Analysis &amp; Design"/>
+                              <taxonomy-option value="Information Architecture"/>
+                           </taxonomy-children>
+                        </taxonomy-option>
+                        <taxonomy-option value="Employee Involvement">
+                           <synonym>Engagement</synonym>
+                           <taxonomy-children>
+                              <taxonomy-option value="Empowerment"/>
+                              <taxonomy-option value="Suggestion Systems"/>
+                           </taxonomy-children>
+                        </taxonomy-option>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Total Quality Management"/>
+                  <taxonomy-option value="Quality of Worklife"/>
+                  <taxonomy-option value="Retraining"/>
+                  <taxonomy-option value="Small Businesses"/>
+                  <taxonomy-option value="Technology &amp; the Workplace">
+                     <taxonomy-children>
+                        <taxonomy-option value="Information Technology"/>
+                        <taxonomy-option value="Internet"/>
+                        <taxonomy-option value="Intranets"/>
+                        <taxonomy-option value="Office (Design)"/>
+                        <taxonomy-option value="Virtual Workplace"/>
+                        <taxonomy-option value="Virtual Offices"/>
+                        <taxonomy-option value="World Wide Web"/>
+                     </taxonomy-children>
+                  </taxonomy-option>
+                  <taxonomy-option value="Violence in the Workplace"/>
+               </taxonomy-children>
+            </taxonomy-option>
+            <taxonomy-option value="Special Workforce Populations">
+               <taxonomy-children>
+                  <taxonomy-option value="Employees with Disabilities"/>
+                  <taxonomy-option value="Gender Differences"/>
+                  <taxonomy-option value="IT Employees"/>
+                  <taxonomy-option value="Multicultural Employees"/>
+                  <taxonomy-option value="Older Employees"/>
+                  <taxonomy-option value="Professional Employees"/>
+                  <taxonomy-option value="Sexual Orientation Issues"/>
+                  <taxonomy-option value="Temporary/Part-time Employees"/>
+                  <taxonomy-option value="Technical Employees"/>
+                  <taxonomy-option value="Women Employees"/>
+                  <taxonomy-option value="Younger Employees"/>
+               </taxonomy-children>
+            </taxonomy-option>
+         </taxonomy-children>
+      </taxonomy-option>
+   </taxonomy-options>
+</taxonomy>

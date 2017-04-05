@@ -1,0 +1,101 @@
+<!-- CSS addons for custom enhancements -->
+<!-- You can reference additional/external stylesheets by adding link tags -->
+<!-- <link rel="stylesheet" type="text/css" ref="some/other/style.css"/> -->
+
+<style>
+.taxonomyForm {
+	position:relative;
+	overflow:hidden;
+}
+
+.taxonomyForm .field {
+  padding:2px 0px;
+  margin-bottom: 2px;
+}
+
+.taxonomyField label {
+	margin:2px 0px;
+}
+
+.taxonomyForm .col {
+  width:30%;
+}
+
+.taxonomyField .input {
+	padding:4px;
+	color:#7B7E80;
+}
+
+.taxonomyControl {
+	position:absolute;
+	height:10px;
+	width:50px;
+	background-color:#97B0C1;
+	border:solid 1px #48647B;
+	overflow:hidden;
+}
+
+.taxonomyControl .heading {
+	padding:0px;
+	font-size:1.05em;
+	color:#273B51;
+	overflow:hidden;
+}
+
+.taxonomyControl .heading .fieldName {
+	float:left;
+	width:49%;
+	padding:4px 8px;
+}
+
+.taxonomyControl .heading .actions {
+	float:right;
+	text-align:right;
+	width:40.5%;
+	padding:2px 5px;
+}
+
+.taxonomyControl .taxonomyLevels {
+	overflow:scroll;
+	width:100%;
+	height:auto;
+	clear:both;
+	padding-left:4px;
+}
+
+.taxonomyControl .taxonomyLevel {
+	width:auto;
+	padding:0px;
+	vertical-align:top;
+	white-space:nowrap;
+	margin:6px 0px;
+}
+
+.taxonomyControl .taxonomyLevel .item {
+	background-color:#DADEE1;
+	padding:2px 4px;
+	color:#23374D;
+	margin-bottom:1px;
+	cursor:pointer;
+	margin-right:15px;
+	white-space:nowrap;
+}
+
+.taxonomyControl .taxonomyLevel .active {
+	background-color:#E7ECEF;
+	margin-right:0px;
+}
+
+.taxonomyControl .taxonomyLevel .hasChildren {
+	padding-right:15px;
+	background-image:url('images/more_icon.gif');
+	background-repeat:no-repeat;
+	background-position:right;
+}
+
+.taxonomyControl .syn {
+	background:url('images/syn_icon.png') no-repeat 50% 0px;
+	padding:0px 10px;
+}
+
+</style>

@@ -184,7 +184,8 @@ Properties:
                  deploy-rsuite-plugins,
                  deploy-initial-content,
 				 deploy-hotfolders,
-		  		 build-project-package" 
+		  		 build-project-package,
+				 LoadDtds"
             />
 
 	<target name="deploy"
@@ -238,6 +239,11 @@ Properties:
 				</fileset>
 			</copy>
 		</target>
+
+	<target name="LoadDtds">
+		<run-groovy-script script="LoadDtds.groovy" />
+    </target>
+
 	
 	
 </project>

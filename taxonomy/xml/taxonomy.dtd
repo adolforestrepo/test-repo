@@ -1,0 +1,81 @@
+<!-- **** RSuite Elements **** -->
+
+<!ENTITY % rsuite-meta "(RSUITE:METADATA?)" >
+
+<!ENTITY % rsuite-namespace-attr "xmlns:RSUITE CDATA 'http://www.reallysi.com'" >
+
+<!ENTITY % rsuite-metadata-elements "(RSUITE:ELEMENTNAME | RSUITE:SOURCEID | 
+RSUITE:CREATEDATE | RSUITE:LASTMODIFIED | RSUITE:CHECKOUT | RSUITE:ID | 
+RSUITE:USER | RSUITE:FOLDER | RSUITE:DISPLAYNAME | RSUITE:SOURCE-ELEMENT | 
+RSUITE:CHECKOUTDATETIME )*" >
+
+<!ELEMENT RSUITE:CROSSREF (RSUITE:METADATA) >
+<!ATTLIST RSUITE:CROSSREF %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:INCLUDE (RSUITE:METADATA) >
+<!ATTLIST RSUITE:INCLUDE %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:METADATA (RSUITE:SYSTEM|RSUITE:SOURCE|RSUITE:LAYERED)* >
+<!ATTLIST RSUITE:METADATA %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:SYSTEM (%rsuite-metadata-elements;) >
+<!ATTLIST RSUITE:SYSTEM %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:SOURCE (%rsuite-metadata-elements;) >
+<!ATTLIST RSUITE:SOURCE %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:LAYERED (RSUITE:DATA)* >
+<!ATTLIST RSUITE:LAYERED %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:ID (#PCDATA) >
+<!ATTLIST RSUITE:ID %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:SOURCEID (#PCDATA) >
+<!ATTLIST RSUITE:SOURCEID %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:SOURCE-ELEMENT (#PCDATA) >
+<!ATTLIST RSUITE:SOURCE-ELEMENT %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:CREATEDATE (#PCDATA) >
+<!ATTLIST RSUITE:CREATEDATE %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:ELEMENTNAME (#PCDATA) >
+<!ATTLIST RSUITE:ELEMENTNAME %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:LASTMODIFIED (#PCDATA) >
+<!ATTLIST RSUITE:LASTMODIFIED %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:FOLDER (#PCDATA) >
+<!ATTLIST RSUITE:FOLDER %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:USER (#PCDATA) >
+<!ATTLIST RSUITE:USER %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:CHECKOUT (#PCDATA) >
+<!ATTLIST RSUITE:CHECKOUT %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:CHECKOUTDATETIME (#PCDATA) >
+<!ATTLIST RSUITE:CHECKOUTDATETIME %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:DISPLAYNAME (#PCDATA) >
+<!ATTLIST RSUITE:DISPLAYNAME RSUITE:AUTOGENERATE CDATA #IMPLIED
+  %rsuite-namespace-attr; >
+
+<!ELEMENT RSUITE:DATA (#PCDATA) >
+<!ATTLIST RSUITE:DATA %rsuite-namespace-attr;
+  RSUITE:NAME CDATA #IMPLIED >
+ 
+ <!-- Taxonomy elements --> 
+<!ELEMENT taxonomy (%rsuite-meta;,taxonomy-options+)>
+
+<!ELEMENT taxonomy-options (%rsuite-meta;,taxonomy-option+)>
+<!ATTLIST taxonomy-options name CDATA #REQUIRED>
+
+<!ELEMENT taxonomy-option (synonym*,taxonomy-children?)>
+<!ATTLIST taxonomy-option name CDATA #IMPLIED>
+<!ATTLIST taxonomy-option value CDATA #REQUIRED>
+<!ATTLIST taxonomy-option selectable CDATA #IMPLIED>
+
+<!ELEMENT taxonomy-children (taxonomy-option+)>
+
+<!ELEMENT synonym (#PCDATA)>
