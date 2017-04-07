@@ -3,7 +3,7 @@
 
   <dependencies>
 
-    <dependency org="rsi" name="rsuite-api" rev="5.1.3"/>
+    <dependency org="rsi" name="rsuite-api" rev="5.2.0"/>
 <!--    <dependency org="rsi" name="rsuite-workflow-visualizer-plugin" rev="4.0.0"/>--> <!-- no v5 version exists yet (as of 20161013) -->
     <dependency org="rsi" name="rsuite-tools-zip" rev="20090327"/>
     <dependency org="rsi" name="rsuite-lmd-editor-plugin" rev="1.2"/>
@@ -20,6 +20,7 @@
 	<dependency org="rsi" name="rsuite-dita-ot-plugin" rev="1.4" />
 	<dependency org="rsi" name="rsuite-dita-support-workflows-plugin" rev="2.0"/>
 	 <dependency org="rsi" name="rsuite-dita-support-actions-plugin" rev="2.0"/>  
+	 <dependency org="dita2indesign" name="dita2indesign-inx-util" rev="0.9.18RC18"/>  
     
     <!-- RSuite-related libs -->
     <dependency org="rsuite-community" name="rsuite-conf-utils-lib" rev="0.0.1" transitive="true" conf="default"/>
