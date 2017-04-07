@@ -22,6 +22,7 @@
 	<classpathentry kind="lib" path="java/lib/org.json.jar"/>
 	<classpathentry kind="lib" path="java/lib/reportng.jar"/>
 	<classpathentry kind="lib" path="java/lib/rsuite-api.jar"/>
+	<classpathentry kind="lib" path="java/lib/rsuite-core.jar"/>
 	<classpathentry kind="lib" path="java/lib/rsuite-conf-utils-lib.jar"/>
 	<classpathentry kind="lib" path="java/lib/rsuite-dita-ot-plugin.jar"/>
 	<classpathentry kind="lib" path="java/lib/rsuite-dita-support-plugin.jar"/>
@@ -53,5 +54,6 @@
 	<classpathentry kind="lib" path="java/lib/mockito-core.jar"/>
 	<classpathentry kind="lib" path="java/lib/powermock-mockito.jar"/>
 	<classpathentry kind="lib" path="java/lib/astd-plugin.jar"/>
+	<classpathentry kind="lib" path="java/lib/rsuite-core-5.2.0.jar"/>
 	<classpathentry kind="output" path="target"/>
 </classpath>

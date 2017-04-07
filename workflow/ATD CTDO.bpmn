@@ -22,6 +22,14 @@
       <activiti:field name="variableNames" stringValue="exportDir;sharedExportDir"/>
       <activiti:field name="values" stringValue="${astd.base.export.dir}${astd.xml.export.dir}/${pId};${astd.export.share}${astd.xml.export.dir}/${pId}"/>
     </serviceTask>
+    
+    
+    <sequenceFlow id="LoadINX" sourceRef="Have No Exec Summary?" targetRef="Have No Exec Summary?"></sequenceFlow>
+    <serviceTask id="Load INX" name="Load INX" activiti:class="com.reallysi.rsuite.system.workflow.actions.LoadNonXmlByAliasActionHandler">
+      <activiti:field name="alias" stringValue="${sourceFileName}.incx"/>
+      <activiti:field name="commitMessage" stringValue="Loaded by workflow"/>
+      <activiti:field name="parentMoId" stringValue="${articleCaId}"/>
+    </serviceTask>
         
   
     <sequenceFlow id="fromServiceTaskToEndWorkflow" sourceRef="Set Variables From Properties" targetRef="endWorkflow"></sequenceFlow>
