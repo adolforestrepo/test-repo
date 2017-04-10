@@ -1,15 +1,15 @@
 <rsuite-plugin
-        id="atd-main-toolkit-plugins"
+        id="astd-main-toolkit-plugins"
         dependsOn="rsuite-dita-ot-plugin,rsuite-dita-support-plugin,atd-main-plugin">
         
     <extensionProvider id="rsuite.WebService">
-        <staticWebService root="/atd-main-toolkit-plugins" path="/WebContent" />
+        <staticWebService root="/astd-toolkit-plugins-plugin" path="/WebContent" />
     </extensionProvider>
     
     <extensionProvider id="rsuite.ditaOpenToolkit">
         <ditaOpenToolkit toolkitName="rsuite:all">
             <toolkitPlugin>
-                <zipfile>atd-main-toolkit-plugins-plugin.zip</zipfile>
+                <zipfile>astd-main-toolkit-plugins-plugin.zip</zipfile>
             </toolkitPlugin>
         </ditaOpenToolkit>
     </extensionProvider>
