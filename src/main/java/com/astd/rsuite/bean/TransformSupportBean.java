@@ -31,7 +31,7 @@ import org.xml.sax.XMLReader;
 import com.reallysi.rsuite.api.ManagedObject;
 import com.reallysi.rsuite.api.RSuiteException;
 import com.reallysi.rsuite.api.workflow.WorkflowExecutionContext;
-import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
+import com.astd.rsuite.actions.workfkow.WorkflowJobContext;
 import com.reallysi.rsuite.api.xml.LoggingSaxonMessageListener;
 
 /**
@@ -196,7 +196,7 @@ public class TransformSupportBean {
 	 */
 	public File getWorkingDir(boolean deleteOnExit)
 	throws Exception {
-		WorkflowContext wjc = context.getWorkflowJobContext();
+		WorkflowJobContext wjc = context.getWorkflowJobContext();
 		
 		File workDir = null;
 		if (wjc == null) {

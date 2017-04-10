@@ -7,8 +7,8 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 
-import com.astd.indesign.builders.InDesignFromDitaMapBuilder;
-import com.astd.indesign.builders.Map2InDesignOptions;
+import org.dita2indesign.indesign.builders.InDesignFromDitaMapBuilder;
+import org.dita2indesign.indesign.builders.Map2InDesignOptions;
 import org.dita2indesign.indesign.inx.model.InDesignDocument;
 import org.dita2indesign.indesign.inx.writers.InxWriter;
 import com.reallysi.rsuite.api.ManagedObject;
