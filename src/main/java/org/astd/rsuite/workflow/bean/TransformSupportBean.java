@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2009 Really Strategies, Inc.
  */
-package com.astd.rsuite.bean;
+package org.astd.rsuite.workflow.bean;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,7 +31,7 @@ import org.xml.sax.XMLReader;
 import com.reallysi.rsuite.api.ManagedObject;
 import com.reallysi.rsuite.api.RSuiteException;
 import com.reallysi.rsuite.api.workflow.WorkflowExecutionContext;
-import com.astd.rsuite.actions.workfkow.WorkflowJobContext;
+import org.astd.rsuite.workflow.actions.WorkflowJobContext;
 import com.reallysi.rsuite.api.xml.LoggingSaxonMessageListener;
 
 /**

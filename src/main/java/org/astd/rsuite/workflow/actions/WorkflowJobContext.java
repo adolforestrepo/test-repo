@@ -1,4 +1,4 @@
-package com.astd.rsuite.actions.workflow;
+package org.astd.rsuite.workflow.actions;
 
 import com.reallysi.tools.StringUtil;
 import java.io.File;

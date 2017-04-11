@@ -1,4 +1,4 @@
-package com.astd.rsuite.actions;
+package org.astd.rsuite.workflow.actions;
 
 import java.io.File;
 
@@ -6,7 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.logging.Log;
 
-import com.astd.rsuite.bean.XML2InDesignBean;
+import org.astd.rsuite.workflow.bean.XML2InDesignBean;
 import com.reallysi.rsuite.api.Alias;
 import com.reallysi.rsuite.api.ManagedObject;
 import com.reallysi.rsuite.api.RSuiteException;

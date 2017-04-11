@@ -1,4 +1,4 @@
-package com.astd.rsuite.bean;
+package org.astd.rsuite.workflow.bean;
 
 import java.io.File;
 import java.net.URL;
