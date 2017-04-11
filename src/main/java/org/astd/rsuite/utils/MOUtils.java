@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import com.reallysi.rsuite.api.ObjectType;
+import com.reallysi.rsuite.api.ManagedObject;
 
 import javax.xml.namespace.QName;
 import javax.xml.transform.TransformerException;
@@ -27,6 +29,8 @@ import org.apache.commons.logging.LogFactory;
 import org.astd.rsuite.ProjectMessageResource;
 import org.astd.rsuite.constants.ProjectConstants;
 import org.astd.rsuite.operation.result.OperationResult;
+import org.astd.rsuite.utils.browse.BrowseUtils;
+import org.astd.rsuite.utils.browse.filters.ChildMoFilter;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
@@ -979,4 +983,56 @@ public class MOUtils
         pair, 
         0).size() > 0;
   }
+  
+  public static List<ManagedObject> getChildrenByObjectType(ExecutionContext context,
+			String moId, final ObjectType objectType) throws RSuiteException {
+		
+		ChildMoFilter filter = new ChildMoFilter() {
+			
+			public boolean accept(ManagedObject mo) {
+				if (mo.getObjectType() == objectType) {
+					return true;
+				}
+				return false;
+			}
+		};
+
+		return getChildrenByFilter(context, moId, filter,false);
+	}
+  
+  private static List<ManagedObject> getChildrenByFilter(
+			ExecutionContext context, String moId, ChildMoFilter filter,
+			boolean firstOnly) throws RSuiteException {
+		User user = context.getAuthorizationService().getSystemUser();
+
+		ManagedObjectService moSrv = context.getManagedObjectService();
+
+		List<ManagedObject> resultList = new ArrayList<ManagedObject>();
+		
+		String browseUri = BrowseUtils.getBrowserUri(context, moId);
+
+		List<ManagedObject> nodes = moSrv.getChildrenDisplayObjects(user, moId, browseUri, 0, 2000).getManagedObjects();
+
+		for (ManagedObject mo : nodes) {
+
+			if (mo != null && filter.accept(mo)) {
+				resultList.add(mo);
+				
+				if (firstOnly){
+					break;
+				}
+			}
+
+		}
+
+		return resultList;
+	}
+  
+	public static List<ManagedObject> getChildrenRef(ExecutionContext context, String moId) throws RSuiteException {
+		List<ManagedObject> moRef = getChildrenByObjectType(context, moId, ObjectType.MANAGED_OBJECT_REF);
+		List<ManagedObject> caRef = getChildrenByObjectType(context, moId, ObjectType.CONTENT_ASSEMBLY_REF);
+		caRef.addAll(moRef);
+		
+		return caRef;
+	}
 }
