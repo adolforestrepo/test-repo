@@ -1,7 +1,8 @@
-package org.astd.rsuite.workflow.actions;
+package org.astd.reallysi.rsuite.api.workflow;
 
 import com.reallysi.rsuite.api.RSuiteException;
 import com.reallysi.rsuite.api.extensions.ExecutionContextWrapper;
+import com.reallysi.rsuite.api.workflow.WorkflowExecutionContext;
 import com.reallysi.rsuite.system.workflow.ProcessInstanceSummaryInfoImpl;
 import com.reallysi.rsuite.api.expressions.ParameterReplacer;
 import com.reallysi.service.workflow.action.ContextInstanceParameterResolver;
@@ -15,6 +16,7 @@ import org.jbpm.graph.def.ProcessDefinition;
 import org.jbpm.graph.exe.ProcessInstance;
 import org.jbpm.graph.exe.Token;
 import org.jbpm.taskmgmt.exe.TaskInstance;
+import org.astd.rsuite.workflow.actions.WorkflowJobContext;
 import org.astd.rsuite.workflow.actions.nonleaving.BaseNonLeavingActionHandler;
 
 
@@ -24,7 +26,7 @@ import org.astd.rsuite.workflow.actions.nonleaving.BaseNonLeavingActionHandler;
 
 
 public abstract class AbstractBaseActionHandler
-  extends BaseNonLeavingActionHandler
+  extends AbstractBaseNonLeavingActionHandler
 {
    static Log log = LogFactory.getLog(AbstractBaseActionHandler.class);
   

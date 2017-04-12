@@ -56,5 +56,6 @@
 	<classpathentry kind="lib" path="java/lib/astd-plugin.jar"/>
 	<classpathentry kind="lib" path="java/lib/dita2indesign-inx-util.jar"/>
 	<classpathentry kind="lib" path="java/lib/rsuite-core-5.2.0.jar"/>
+	<classpathentry kind="lib" path="java/lib/jbpm.jar"/>
 	<classpathentry kind="output" path="target"/>
 </classpath>

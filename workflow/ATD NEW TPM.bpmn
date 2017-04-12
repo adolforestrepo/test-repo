@@ -57,7 +57,7 @@
     </sequenceFlow>
 
 
-    <serviceTask id="Load DOCX" name="Load DOCX" activiti:class=".LoadActionHandler">
+    <serviceTask id="Load DOCX" name="Load DOCX" activiti:class="org.astd.rsuite.workflow.actions.LoadActionHandler">
       <activiti:field name="regexFromWorkflow stringValue=""/>
       <activiti:field name="xmlMoMatchExpressionsFromWorkflow stringValue=""/>
       <activiti:field name="layeredMetadataMatchExpressionsFromWorkflow stringValue=""/>

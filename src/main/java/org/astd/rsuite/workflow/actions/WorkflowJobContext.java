@@ -1,22 +1,9 @@
 package org.astd.rsuite.workflow.actions;
 
-import com.reallysi.tools.StringUtil;
+import org.astd.reallysi.rsuite.api.workflow.StringUtil;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 public class WorkflowJobContext
   extends BaseWorkflowObject
