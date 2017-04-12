@@ -54,6 +54,7 @@
 	<classpathentry kind="lib" path="java/lib/mockito-core.jar"/>
 	<classpathentry kind="lib" path="java/lib/powermock-mockito.jar"/>
 	<classpathentry kind="lib" path="java/lib/astd-plugin.jar"/>
+	<classpathentry kind="lib" path="java/lib/dita2indesign-inx-util.jar"/>
 	<classpathentry kind="lib" path="java/lib/rsuite-core-5.2.0.jar"/>
 	<classpathentry kind="output" path="target"/>
 </classpath>
