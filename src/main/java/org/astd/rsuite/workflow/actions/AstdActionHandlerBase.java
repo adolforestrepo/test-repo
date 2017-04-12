@@ -11,13 +11,13 @@ import org.astd.rsuite.workflow.actions.leaving.BaseLeavingActionHandler;;
  * Base class for ASTD action handlers. 
  */
 @SuppressWarnings("serial")
-public abstract class AtdActionHandlerBase extends
+public abstract class AstdActionHandlerBase extends
 BaseLeavingActionHandler {
 
 	/**
 	 * 
 	 */
-	public AtdActionHandlerBase() {
+	public AstdActionHandlerBase() {
 		super();
 	}
 
