@@ -3,8 +3,7 @@
  */
 package org.astd.rsuite.workflow.actions;
 
-//import com.reallysi.rsuite.api.workflow.AbstractBaseActionHandler;
-import org.astd.rsuite.workflow.actions.leaving.BaseLeavingActionHandler;;
+import org.astd.reallysi.rsuite.api.workflow.AbstractBaseActionHandler;
 
 
 /**
@@ -12,7 +11,7 @@ import org.astd.rsuite.workflow.actions.leaving.BaseLeavingActionHandler;;
  */
 @SuppressWarnings("serial")
 public abstract class AstdActionHandlerBase extends
-BaseLeavingActionHandler {
+AbstractBaseActionHandler {
 
 	/**
 	 * 
