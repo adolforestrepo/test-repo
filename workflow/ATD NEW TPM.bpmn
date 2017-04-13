@@ -101,13 +101,9 @@
       <activiti:field name="variableNames" stringValue="detail"/>
       <activiti:field name="values" stringValue="no text changes"/>
     </serviceTask>
-
-
   
     <sequenceFlow id="fromToLoadExecSummary" sourceRef="" targetRef="Load Exec Summary"></sequenceFlow>
     
-    
-
     <serviceTask id="Load Exec Summary" name="Load Exec Summary" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
       <activiti:field name="alias" stringValue="${incxExecSummaryFile}"/>
       <activiti:field name="fileToLoadFromWorkflow" stringValue="${incxExecSummaryPath}"/>
@@ -115,12 +111,16 @@
       <activiti:field name="parentMoIdFromWorkflow" stringValue="${articleCaMoId}"/>
     </serviceTask>
   
-  
+    <sequenceFlow id="fromToSetArticleLM" sourceRef="" targetRef="Set Article LM"></sequenceFlow>
+
+    <serviceTask id="Set Article LM" name="Set Article LM" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAddLayeredMetadataActionHandler">
+      <activiti:field name="metadataName" stringValue="ca-type;article-process-id"/>
+      <activiti:field name="metadataValue" stringValue="article;${pId}"/>
+      <activiti:field name="moList" stringValue="${articleCaMoId}"/>
+    </serviceTask>
+
     <sequenceFlow id="fromServiceTaskToEndWorkflow" sourceRef="Set Variables From Properties" targetRef="endWorkflow"></sequenceFlow>
 
-    
-    
-    
     <endEvent id="endWorkflow" name="End Workflow"></endEvent>
     <dataObject id="EXCEPTION_OCCUR" name="EXCEPTION_OCCUR" itemSubjectRef="xsd:string">
       <extensionElements>

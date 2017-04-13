@@ -15,8 +15,6 @@
     </dependency>-->
     <dependency org="rsi" name="team-edition-dashboard-plugin" rev="2.1-qa002"/>
     
-    <dependency org="jboss" name="jbpm" rev="rsuite-20090317"/>   
-    
 
     <!-- DITA-related zip and jar files. -->
     <dependency org="rsi" name="rsuite-dita-support-plugin" rev="2.1-qa002" />
