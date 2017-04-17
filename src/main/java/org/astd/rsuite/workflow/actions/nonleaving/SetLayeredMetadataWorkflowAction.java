@@ -61,8 +61,8 @@ public class SetLayeredMetadataWorkflowAction
   /**
    * Retain the metadata name to apply. Providing the workflow definition specifies the
    * {@value #WF_PARAM_NAME_METADATA_NAME} parameter into this class, this method will be called
-   * automatically, before {@link #execute(WorkflowExecutionContext)}.
    * 
+   * automatically, before {@link #execute(WorkflowExecutionContext)}.
    * @param val
    */
   public void setMetadataName(String val) {

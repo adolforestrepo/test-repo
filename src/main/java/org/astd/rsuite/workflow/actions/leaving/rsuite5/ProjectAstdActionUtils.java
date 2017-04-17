@@ -1,4 +1,4 @@
-package org.astd.rsuite.workflow.actions;
+package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
 import org.apache.commons.logging.Log;
 import org.astd.reallysi.rsuite.service.FolderService;
@@ -27,12 +27,12 @@ import com.reallysi.rsuite.api.workflow.WorkflowExecutionContext;
 import com.reallysi.rsuite.service.ContentAssemblyService;
 import com.reallysi.rsuite.service.ManagedObjectService;
 import com.reallysi.rsuite.service.RepositoryService;
-
+import org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdWorkflowConstants;
 /**
  * Utilities for creating folders and content assemblies in the repository
  * within the context of a workflow.
  */
-public class AstdActionUtils
+public class ProjectAstdActionUtils
 {
 	/**
 	 * Create a new CA.
@@ -112,7 +112,7 @@ public class AstdActionUtils
 				"AstdActionUtils: In createFolder(), effective folder string is \""
 				+ folder + "\"");
 
-		FolderService service = executionContext.getFolderService();
+		FolderService service = executionContext.getFolder();
 
 		String folderpath = null;
 		String p = "/";
@@ -190,7 +190,7 @@ public class AstdActionUtils
 		}
 		*/
 		String lname = mor.getLocalName();
-		if (lname != null && lname.equals(AstdWorkflowConstants.RSUITE_NON_XML_LOCAL_NAME)) {
+		if (lname != null && lname.equals(ProjectAstdWorkflowConstants.RSUITE_NON_XML_LOCAL_NAME)) {
 			return true;
 		}
 		return false;
@@ -216,9 +216,9 @@ public class AstdActionUtils
 		ManagedObject mo = mosvc.getManagedObject(user, moid);
 		String curName = mo.getDisplayName();
 		log.info("Attempting to rename non-XML object: "+curName);
-		AstdArticleFilename aname = null;;
+		ProjectAstdArticleFilename aname = null;;
 		try {
-			aname = new AstdArticleFilename(curName);
+			aname = new ProjectAstdArticleFilename(curName);
 		} catch (Exception e) {
 			log.info("MO \""+curName+"\" is not article naming type:"+
 					e.getLocalizedMessage());
@@ -341,7 +341,7 @@ public class AstdActionUtils
 		for (MetaDataItem candItem : items) {
 			// There should only be one instance of this LMD field:
 			if (candItem.getName().equals(
-					AstdWorkflowConstants.ASTD_ARTICLE_PID_LMD_FIELD)) {
+					ProjectAstdWorkflowConstants.ASTD_ARTICLE_PID_LMD_FIELD)) {
 				pIdItem = candItem;
 				break;
 			}

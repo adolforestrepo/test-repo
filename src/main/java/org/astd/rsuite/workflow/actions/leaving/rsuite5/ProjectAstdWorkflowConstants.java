@@ -1,4 +1,4 @@
-package org.astd.rsuite.workflow.actions;
+package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -8,7 +8,7 @@ import org.astd.rsuite.domain.ArticlePubCode;
 /**
  * Constant definitions for ASTD workflow variable names.
  */
-public interface AstdWorkflowConstants {
+public interface ProjectAstdWorkflowConstants {
 	public static final String ASTD_VAR_PUB_CODE = "pubCode";
 	public static final String ASTD_VAR_FULL_FILENAME = "fullFileName";
 	public static final String ASTD_VAR_SOURCE_FILENAME = "sourceFileName";
