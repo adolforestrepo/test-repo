@@ -237,7 +237,22 @@
 	    <actionHandler label="Action handler to validate the file name and set parameter in the workflow. "
 	        description="Validate File Name Structure"
 	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AtdValidateFileNameActionHandler" /> 
-	    
+	    <actionHandler label="Action handler to set a list of MO IDs as current in the workflow. "
+	        description="Set a list of MO IDs as current in the workflow."
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler" /> 
+	    <actionHandler label="Action handler to set the classfication on a MO. "
+	        description="Set the classfication on a MO."
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAtdSetClassificationVarActionHandler" /> 
+	    <actionHandler label="Action handler to set the browse uri as workflow variable. "
+	        description="Set the browse uri as workflow variable."
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetParentBrowseTreeNodeToVariableHandler" /> 
+	    <actionHandler label="Action handler to set a target variable with a given mo id. "
+	        description="Set a target variable in the workflow with a given mo id."
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetVariableFromMoWorkflowListHandler" />    
+	        
+	        
+	            
+ 
 	    <!-- Load workflow definitions   -->
 	    <workflowDefinitions>
 	   

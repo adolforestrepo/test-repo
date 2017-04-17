@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+  xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+  xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+  typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
+  targetNamespace="http://www.activiti.org/test">
+  <process id="ATD Export Article HTML" name="ATD Export Article HTML" isExecutable="true">
+    <startEvent id="startWorkflow" name="Start"/>
+    
+    <sequenceFlow id="flowToCheckForNoParentMOID" sourceRef="startWorkflow" targetRef="checkforNoParentMOID"/>
+    
+    <exclusiveGateway id="checkforNoParentMOID" name="Check for No Parent MO ID"></exclusiveGateway>
+    
+    <sequenceFlow id="flowToCaptureMODetails" sourceRef="checkforNoParentMOID" targetRef="captureMODetails">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$!{empty parentMoId}]]></conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow id="flowToCaptureParentMOID" sourceRef="checkforNoParentMOID" targetRef="captureParentMOID">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${empty parentMoId}]]></conditionExpression>
+    </sequenceFlow>
+    
+    <serviceTask id="captureParentMOID" name="Capture Parent MO ID" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetParentBrowseTreeNodeToVariableHandler">
+      <activiti:field name="variableName" stringValue="parentMoId"/>
+    </serviceTask>
+    
+    <sequenceFlow id="flowFromCaptureMoIDToCaptureMoDetails" sourceRef="captureParentMOID" targetRef="captureMODetails"/>
+    
+    <serviceTask id="captureMODetails" name="Capture MO Details" activiti:class="com.reallysi.rsuite.system.workflow.actions.SetVariablesFromMoDetails">
+    </serviceTask>
+    
+    <sequenceFlow id="flowFromCaptureMoDetailsToDitaToXhtml" sourceRef="captureMODetails" targetRef="ditaToXhtml"/>
+    
+    <serviceTask id="ditaToXhtml" name="DITA to XHTML" activiti:class="com.reallysi.rsuite.workflow.actions.DitaOtXhtmlTaskRunningActionHandler">
+      <activiti:field name="outputPath" stringValue="${astd.html.export.share}/${moBaseName}"/>
+    </serviceTask>
+    
+    <sequenceFlow id="flowToCheckForException" sourceRef="ditaToXhtml" targetRef="checkForException"/>
+       
+    <exclusiveGateway id="checkForException" name="Check for Exception"></exclusiveGateway>
+    
+    <sequenceFlow id="checkForException" sourceRef="checkForException" targetRef="reviewException">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true}]]></conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow id="flowToCaptureParentMOID" sourceRef="checkForException" targetRef="loadHTML">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
+    </sequenceFlow>
+    
+    <serviceTask id="loadHTML" name="Load HTML" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
+      <activiti:field name="alias" stringValue="${moBaseName}.html"/>
+      <activiti:field name="fileToLoadFromWorkflow" stringValue="${astd.html.export.share}/${moBaseName}/${moBaseName}.html"/>
+      <activiti:field name="commitMessageFromWorkflow" expression="Autoload from HTML export"/>
+      <activiti:field name="parentMoIdFromWorkflow" stringValue="${parentMoId}"/>
+    </serviceTask>
+    
+     <userTask id="reviewException" name="Export to HTML Error" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing Editor">
+      <documentation>Export to HTML Error: #{exceptionMessage}</documentation>
+    </userTask>
+    
+    <sequenceFlow id="flowToCheckForHtmlLoadError" sourceRef="loadHTML" targetRef="CheckForHTMLLoadError"/>
+    
+    <exclusiveGateway id="CheckForHTMLLoadError" name="Check for HTML Load Error"></exclusiveGateway>
+    
+    <sequenceFlow id="flowToEndWorkflowFromNonException" sourceRef="CheckForHTMLLoadError" targetRef="endWorkflow">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow id="flowToReviewExceptionFromCheckForHtmlLoadError" sourceRef="CheckForHTMLLoadError" targetRef="reviewException">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true}]]></conditionExpression>
+    </sequenceFlow>
+    
+    <sequenceFlow id="fromReviewExceptionToEndWorkflow" sourceRef="reviewException" targetRef="endWorkflow"></sequenceFlow>
+    <endEvent id="endWorkflow" name="End Workflow"></endEvent>
+    <dataObject id="EXCEPTION_OCCUR" name="EXCEPTION_OCCUR" itemSubjectRef="xsd:string">
+      <extensionElements>
+        <activiti:value>""</activiti:value>
+      </extensionElements>
+    </dataObject>
+    <dataObject id="rsuiteUserId" name="rsuiteUserId" itemSubjectRef="xsd:string"></dataObject>
+  </process>
+  
+</definitions>

@@ -17,14 +17,28 @@
       <activiti:field name="pId;nowString" stringValue="pId;nowString"/>
     </serviceTask>
   
-        <sequenceFlow id="LoadINX" sourceRef="Get PID and Now String" targetRef="Have No Exec Summary?"></sequenceFlow>
-    <serviceTask id="Have No Exec Summary?" name="Have No Exec Summary?" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
+    <sequenceFlow id="LoadINX" sourceRef="Get PID and Now String" targetRef="determineExecSummary"></sequenceFlow>
+    
+  	<sequenceFlow id="flowToLoadErrorDecision" sourceRef="generateReport" targetRef="loadErrorGateway"></sequenceFlow>
+    
+    <exclusiveGateway id="determineExecSummary" name="Have No Exec Summary?"></exclusiveGateway>
+    
+    <sequenceFlow id="flowToLoadExecSummary" sourceRef="determineExecSummary" targetRef="loadExecSummary">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$!{empty incxExecSummaryFile}]]></conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow id="flowToMakeArticleCACurrent" sourceRef="determineExecSummary" targetRef="makeArticleCACurrent">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${empty incxExecSummaryFile}]]></conditionExpression>
+    </sequenceFlow>
+    
+   
+    <serviceTask id="loadInx" name="Load INX" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
       <activiti:field name="alias" stringValue="${sourceFileName}.incx"/>
       <activiti:field name="commitMessage" stringValue="Loaded by workflow"/>
       <activiti:field name="parentMoId" stringValue="${articleCaId}"/>
     </serviceTask>
     
-     <sequenceFlow id="fromGetPIDToSetVariablesFromProperties" sourceRef="Have No Exec Summary?" targetRef="Set Variables From Properties"></sequenceFlow>
+   <sequenceFlow id="fromGetPIDToSetVariablesFromProperties" sourceRef="Have No Exec Summary?" targetRef="Set Variables From Properties"></sequenceFlow>
       
     <serviceTask id="Set Variables From Properties" name="Ensure Map" activiti:class="com.reallysi.rsuite.system.workflow.actions.SetGlobalVariablesActionHandler">
       <activiti:field name="variableNames" stringValue="exportDir;sharedExportDir"/>
@@ -52,12 +66,12 @@
     </userTask>
     
     <!-- This should transition to Load DOCX. See old workflow definition. -->
-    <sequenceFlow id="flowToLoadDocx" sourceRef="loadErrorGateway" targetRef="Load DOCX">
+    <sequenceFlow id="flowToLoadDocx" sourceRef="loadErrorGateway" targetRef="loadDOCX">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR != null}]]></conditionExpression>
     </sequenceFlow>
 
 
-    <serviceTask id="Load DOCX" name="Load DOCX" activiti:class="org.astd.rsuite.workflow.actions.LoadActionHandler">
+    <serviceTask id="loadDOCX" name="Load DOCX" activiti:class="org.astd.rsuite.workflow.actions.LoadActionHandler">
       <activiti:field name="regexFromWorkflow stringValue=""/>
       <activiti:field name="xmlMoMatchExpressionsFromWorkflow stringValue=""/>
       <activiti:field name="layeredMetadataMatchExpressionsFromWorkflow stringValue=""/>
@@ -71,11 +85,12 @@
       <activiti:field name="neverTreatAsXmlFromWorkflow" stringValue="/>
     </serviceTask>
 
+	<sequenceFlow id="flowFromLoadDocxToValidationError" sourceRef="loadDOCX" targetRef="docxLoadFailed?"></sequenceFlow>  
     
     <sequenceFlow id="flowFromValidationErrorToEnd" sourceRef="Validation Error Alert" targetRef="endWorkflow"></sequenceFlow>  
      
 
-    <serviceTask id="XML to INCX" name="Ensure Map" activiti:class="org.astd.rsuite.workflow.actions.AstdXml2IncxActionHandler">
+    <serviceTask id="xMLToINCX" name="XML to INCX" activiti:class="org.astd.rsuite.workflow.actions.AstdXml2IncxActionHandler">
       <activiti:field name="styleCatalogUri" stringValue="rsuite:/res/plugin/astd/xslt/newtpm2indesign/tpm-dita-indesign-style-catalog.xml"/>
       <activiti:field name="xsltUriFromWorkflow" stringValue="${sourceFileName}"/>
       <activiti:field name="fileName" stringValue="rsuite:/res/plugin/astd/xslt/newtpm2indesign/tpmArticle2InDesign.xsl"/>
@@ -102,24 +117,172 @@
       <activiti:field name="values" stringValue="no text changes"/>
     </serviceTask>
   
-    <sequenceFlow id="fromToLoadExecSummary" sourceRef="" targetRef="Load Exec Summary"></sequenceFlow>
+    <sequenceFlow id="fromToLoadExecSummary" sourceRef="" targetRef="loadExecSummary"></sequenceFlow>
     
-    <serviceTask id="Load Exec Summary" name="Load Exec Summary" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
+    <serviceTask id="loadExecSummary" name="Load Exec Summary" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
       <activiti:field name="alias" stringValue="${incxExecSummaryFile}"/>
       <activiti:field name="fileToLoadFromWorkflow" stringValue="${incxExecSummaryPath}"/>
       <activiti:field name="commitMessageFromWorkflow" expression="Generated by ${rsuiteUserId} via workflow"/>
       <activiti:field name="parentMoIdFromWorkflow" stringValue="${articleCaMoId}"/>
     </serviceTask>
   
-    <sequenceFlow id="fromToSetArticleLM" sourceRef="" targetRef="Set Article LM"></sequenceFlow>
+    <sequenceFlow id="fromToSetArticleLM" sourceRef="" targetRef="setArticleLM"></sequenceFlow>
 
-    <serviceTask id="Set Article LM" name="Set Article LM" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAddLayeredMetadataActionHandler">
+    <serviceTask id="setArticleLM" name="Set Article LM" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAddLayeredMetadataActionHandler">
       <activiti:field name="metadataName" stringValue="ca-type;article-process-id"/>
       <activiti:field name="metadataValue" stringValue="article;${pId}"/>
       <activiti:field name="moList" stringValue="${articleCaMoId}"/>
     </serviceTask>
+    
+    <serviceTask id="makeArticleCACurrent" name="Make Article CA Current" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler">
+      <activiti:field name="moSpecifyingVariableName" stringValue="articleCaMoId"/>
+    </serviceTask>
+    
+    
+    <serviceTask id="makeXMLCurrent" name="Make XML Current" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler">
+      <activiti:field name="moSpecifyingVariableName" stringValue="xmlMoId"/>
+    </serviceTask>
+    
+    <serviceTask id="clearHTMLExportStatus" name="Clear HTML Export Status" activiti:class="com.reallysi.rsuite.system.workflow.actions.ClearExceptionStatus">
+    </serviceTask>
+    
+    <sequenceFlow id="fromToClearExceptionToRestoArticle" sourceRef="clearHTMLExportStatus" targetRef="restoreArticleCAAfterExports"></sequenceFlow>
+    
+    <serviceTask id="restoreArticleCAAfterExports" name="Restore Article CA After Exports" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler">
+      <activiti:field name="moSpecifyingVariableName" stringValue="articleCaMoId"/>
+    </serviceTask>
+    
+    
+    <callActivity id="ExportArticleHTML" calledElement="ATD Export Article HTML" >
+  		<extensionElements>
+	  		<activiti:in source="rsuite contents" target="rsuite contents" />
+	  		<activiti:in source="articleCaMoId" target="parentMoId" />
+  		</extensionElements>
+	</callActivity>
+	
+	<sequenceFlow id="flowToClearHtmlExportStatus" sourceRef="ExportArticleHTML" targetRef="clearHTMLExportStatus" />
+    
+    <serviceTask id="clearLoadDitaStatus" name="Clear Load Dita Status" activiti:class="com.reallysi.rsuite.system.workflow.actions.ClearExceptionStatus">
+    </serviceTask>
+    
+    
+    <serviceTask id="docX2XMLTransform" name="DocX2XML Transform" activiti:class="org.dita4publishers.rsuite.workflow.actions.Docx2XmlActionHandler">
+      <activiti:field name="styleMapUri" stringValue="rsuite:/res/plugin/astd/xslt/word2xml/article-style2tagmap.xml"/>
+      <activiti:field name="xsltUri" stringValue="rsuite:/res/plugin/astd/xslt/word2xml/docx2article.xsl"/>
+      <activiti:field name="outputPath" stringValue="${exportDir}"/>
+      <activiti:field name="resultFileName" stringValue="${sourceFileName}"/>
+      <activiti:field name="docxMoId" stringValue="${docxMoId}"/>
+    </serviceTask>
+    
+    <sequenceFlow id="fromdocX2XMLTransformToDecision" sourceRef="docX2XMLTransform" targetRef="determineDocx2XmlError"></sequenceFlow>
+     
+    <exclusiveGateway id="determineDocx2XmlError" name="DOCX2XML Error ?"></exclusiveGateway>
+    
+    <sequenceFlow id="flowToDOCX2XMLError" sourceRef="determineDocx2XmlError" targetRef="docx2XmlError">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$!{EXCEPTION_OCCUR==true}]]></conditionExpression>
+    </sequenceFlow>
 
+    <sequenceFlow id="flowToImportDITA" sourceRef="determineDocx2XmlError" targetRef="importDITA">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
+    </sequenceFlow>
+    
+    
+    <userTask id="loadDITAFailed" name="TPM Error Alert: Article Workflow: XML Load Failed" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing Editor">
+      <documentation>"Load of DITA XML from DOCX #{fullFileName} failed: #{exceptionMessage}
+						<br/>File also exported to # {sharedExportDir}
+						<br/>See validation report <a href='/rsuite/rest/v1/report/generated/#
+						{validationReportId}?skey=RSUITE-SESSION-KEY' target='_xformReport'>#{validationReportFileName}<a/>"></documentation>
+    </userTask>
+    
+    <userTask id="docx2XmlError" name="Error Alert: Article Workflow: Word to XML Failed" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing Editor">
+      <documentation>"# {moDisplayName} : Generation of XML from DOCX failed: #
+			{exceptionMessage} <br/>See conversion report <a href='/rsuite/rest/v1/report/generated/#{xformReportId}?skey=RSUITE-SESSION-KEY' 
+			target='_xformReport'>#{xformReportFileName}<a/>"></documentation>
+    </userTask>
+    
+    <sequenceFlow id="fromDocx2XmlErrorToClearDitaStatus" sourceRef="docx2XmlError" targetRef="clearLoadDitaStatus"></sequenceFlow>
+    
+    <sequenceFlow id="fromLoadDITAFailedToClearDitaStatus" sourceRef="loadDITAFailed" targetRef="clearLoadDitaStatus"></sequenceFlow>
+    
+    <serviceTask id="docX2XMLTransform" name="DocX2XML Transform" activiti:class="org.dita4publishers.rsuite.workflow.actions.Docx2XmlActionHandler">
+      <activiti:field name="styleMapUri" stringValue="rsuite:/res/plugin/astd/xslt/word2xml/article-style2tagmap.xml"/>
+      <activiti:field name="xsltUri" stringValue="rsuite:/res/plugin/astd/xslt/word2xml/docx2article.xsl"/>
+      <activiti:field name="outputPath" stringValue="${exportDir}"/>
+      <activiti:field name="resultFileName" stringValue="${sourceFileName}"/>
+      <activiti:field name="docxMoId" stringValue="${docxMoId}"/>
+    </serviceTask>
+    
+    <userTask id="finalEditTask" name="Final Edit Task" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate Editor">
+      <documentation>"Document: # {fullFileName}"</documentation>
+    </userTask>
+    
+    <sequenceFlow id="fromFinalEditTaskToGetTax" sourceRef="finalEditTask" targetRef="getTax"></sequenceFlow>
+    
+    <serviceTask id="getTax" name="Get Tax" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAtdSetClassificationVarActionHandler">
+      <activiti:field name="moAlias" stringValue="${sourceFileName}.xml"/>
+      <activiti:field name="targetVariableName" stringValue="articleClassification"/>
+    </serviceTask>         
+    
     <sequenceFlow id="fromServiceTaskToEndWorkflow" sourceRef="Set Variables From Properties" targetRef="endWorkflow"></sequenceFlow>
+    
+    <serviceTask id="importDITA" name="Import DITA" activiti:class="com.reallysi.rsuite.workflow.actions.TopicImporterActionHandler">
+      <activiti:field name="topicPath" stringValue="${articleCaMoId}"/>
+      <activiti:field name="parentCaId" stringValue="rsuite:/res/plugin/astd/xslt/word2xml/docx2article.xsl"/>
+      <activiti:field name="commitMessage" stringValue="Loaded via workflow from hotfolder"/>
+      <activiti:field name="importedMoListVarname" stringValue="xmlMoId"/>
+      <activiti:field name="topicContainerName" stringValue="media"/>
+    </serviceTask>
+    
+    <exclusiveGateway id="setTaxFailed?" name="Set Tax Failed?"></exclusiveGateway>
+    
+    <sequenceFlow id="flowToLoadDITAFailed" sourceRef="setTaxFailed?" targetRef="loadDITAFailed">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$!{EXCEPTION_OCCUR==true}]]></conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow id="flowToXMLToINCX" sourceRef="setTaxFailed?" targetRef="xMLToINCX">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
+    </sequenceFlow>
+    
+    
+    <serviceTask id="captureDOCXMOID" name="Capture DOCX MO ID" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetVariableFromMoWorkflowListHandler">
+      <activiti:field name="targetVariableName" stringValue="docxMoId"/>
+    </serviceTask>
+    
+     <serviceTask id="captureArticleCAMOID" name="Capture Article CA MO ID" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetVariableFromMoWorkflowListHandler">
+      <activiti:field name="targetVariableName" stringValue="articleCaMoId"/>
+    </serviceTask>
+    
+    <sequenceFlow id="flowToSetArticleLM" sourceRef="captureArticleCAMOID" targetRef="setArticleLM"></sequenceFlow>
+    
+    <sequenceFlow id="fromCaptureDOCXMOIDToDecisionNode" sourceRef="captureDOCXMOID" targetRef="isUnknownDOCX?"></sequenceFlow>
+    
+    <exclusiveGateway id="isUnknownDOCX?" name="Is Unknown DOCX?"></exclusiveGateway>
+    
+    <!-- TODO: Link these two transitions to the handlers being implemented by Sudheer -->
+    
+    <sequenceFlow id="flowToCreateCAsForUnknownDOCX" sourceRef="isUnknownDOCX?" targetRef="loadDITAFailed">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$!{volumeNumber=='99'}]]></conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow id="flowToCreateCAsForDOCX" sourceRef="isUnknownDOCX?" targetRef="xMLToINCX">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${volumeNumber!='99'}]]></conditionExpression>
+    </sequenceFlow>
+
+    <exclusiveGateway id="docxLoadFailed?" name="DOCX Load Failed?"></exclusiveGateway>
+        
+    <sequenceFlow id="flowToCreateCAsForUnknownDOCX" sourceRef="docxLoadFailed?" targetRef="docxLoadError">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR=='true'}]]></conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow id="flowFromDocxFailedToCaptureDocxMOID" sourceRef="docxLoadFailed?" targetRef="captureDOCXMOID">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR=='false'}]]></conditionExpression>
+    </sequenceFlow>
+    
+    <userTask id="docxLoadError" name="TPM Error Alert: Article Workflow: Docx Load Failed" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing Editor">
+      <documentation>"Load of file #{fullFileName} failed: #{exceptionMessage}"</documentation>
+    </userTask>
+    
+    <sequenceFlow id="fromDocxLoadErrorToEndWorkflow" sourceRef="docxLoadError" targetRef="endWorkflow"></sequenceFlow>      
 
     <endEvent id="endWorkflow" name="End Workflow"></endEvent>
     <dataObject id="EXCEPTION_OCCUR" name="EXCEPTION_OCCUR" itemSubjectRef="xsd:string">
@@ -129,9 +292,5 @@
     </dataObject>
     <dataObject id="rsuiteUserId" name="rsuiteUserId" itemSubjectRef="xsd:string"></dataObject>
   </process>
-  
-  
-  
-  
-  
+   
 </definitions>

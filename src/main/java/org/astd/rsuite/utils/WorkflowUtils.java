@@ -7,13 +7,20 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.reallysi.rsuite.api.RSuiteException;
+import com.reallysi.rsuite.api.extensions.ExecutionContext;
 import com.reallysi.rsuite.api.workflow.activiti.WorkflowInstance;
+import com.reallysi.rsuite.service.RepositoryService;
 
 /**
  * A collection of static workflow utility methods. Any business logic should be controlled by
  * method parameters.
  */
 public class WorkflowUtils {
+	
+	static final String CLASSIFICATION_GI = "classification";
+	static final String CLASSIFICATION_OTAG = "<"+CLASSIFICATION_GI+">";
+	static final String CLASSIFICATION_ETAG = "</"+CLASSIFICATION_GI+">";
 
   /**
    * Class log
@@ -62,5 +69,43 @@ public class WorkflowUtils {
   public static boolean hasVariable(Map<String, Object> vars, String varName) {
     return StringUtils.isNotBlank(varName) && vars != null && vars.containsKey(varName);
   }
+  
+  /**
+	 * Retrieve the taxonomy classification content for a given MO.
+	 * <p>At this time, this function assumes the classifications is
+	 * stored in the &lt;classification&gt; child element of
+	 * the &lt;prolog&gt; descendent of the root element of the MO.
+	 * </p>
+	 * <p>TODO: Modify code to key off of DITA type values instead
+	 * of element names.
+	 * </p>
+	 * <p>The classification XML content will be wrapped in a
+	 * &lt;RESULT&gt; element.
+	 * </p>
+	 * @param context  Execution context.
+	 * @param log  Log to use to print any log messages.
+	 * @param moid  ID of MO to get classification data of.
+	 * @return  XML string containing classification data.
+	 * @throws RSuiteException  If an error occurs retrieving data.
+	 */
+	public static String getClassificationXmlOfMo(
+			ExecutionContext context,
+			Log log,
+			String moid
+	) throws RSuiteException
+	{
+		RepositoryService rs = context.getRepositoryService();
+		String moPath = rs.getXPathToObject(moid);
+		StringBuilder buf = new StringBuilder(256);
+		buf.append("<RESULT>")
+		   .append("{").append(moPath).append("/prolog/")
+		   .append(CLASSIFICATION_GI)
+		   .append("}")
+		   .append("</RESULT>");
+		log.info("Executing query: "+buf);
+		String results = context.getRepositoryService().queryAsString(buf.toString());
+		log.info("Query results: "+results);
+		return results;
+	}
 
 }
