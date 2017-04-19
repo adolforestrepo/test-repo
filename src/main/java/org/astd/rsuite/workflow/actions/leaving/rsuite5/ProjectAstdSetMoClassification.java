@@ -3,7 +3,6 @@ package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 //import java.util.List;
 
 import org.apache.commons.logging.Log;
-import org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdActionUtils;
 
 //import com.reallysi.rsuite.api.ContentAssembly;
 //import com.reallysi.rsuite.api.ContentAssemblyItem;
@@ -14,6 +13,7 @@ import com.reallysi.rsuite.api.User;
 import com.reallysi.rsuite.api.workflow.activiti.MoListWorkflowObject;
 import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
 import org.apache.commons.lang3.StringUtils;
+import org.astd.rsuite.utils.ProjectAstdActionUtils;
 
 import com.reallysi.rsuite.api.workflow.activiti.BaseWorkflowAction;
 //import com.reallysi.rsuite.api.workflow.activiti.MoWorkflowObject;

@@ -54,10 +54,10 @@ public class ProjectAstdArticleFilename {
 			author = matcher.group(7);
 			extension = matcher.group(8);
 
-			if (!checkpubtype(pubCode, type)) {
+		/*	if (!checkpubtype(pubCode, type)) {
 				throw new IllegalArgumentException("Invalid article type \""
 						+ type + "\" for \"" + name + "\"");
-			}
+			}*/
 		}
 	}
 
@@ -67,7 +67,7 @@ public class ProjectAstdArticleFilename {
 	 * @param context
 	 *            Execution context to set variable for.
 	 */
-	public void setWorkflowVariables(WorkflowExecutionContext context)
+/*	public void setWorkflowVariables(WorkflowExecutionContext context)
 			throws RSuiteException {
 		context.setVariable(AstdWorkflowConstants.ASTD_VAR_PUB_CODE, pubCode);
 		context.setVariable(AstdWorkflowConstants.ASTD_VAR_FULL_FILENAME,
@@ -82,7 +82,7 @@ public class ProjectAstdArticleFilename {
 		context.setVariable(AstdWorkflowConstants.ASTD_VAR_SEQUENCE, sequence);
 		context.setVariable(AstdWorkflowConstants.ASTD_VAR_FILENAME_AUTHOR,
 				author);
-	}
+	}*/
 
 	/**
 	 * Get basename.
@@ -102,7 +102,7 @@ public class ProjectAstdArticleFilename {
 
 	/* Check TD or TPM pubcode */
 
-	private boolean checkpubtype(String pubtype, String type) {
+/*	private boolean checkpubtype(String pubtype, String type) {
 
 		boolean result = false;
 		switch (ArticlePubCode.valueOf(pubtype)) {
@@ -124,7 +124,7 @@ public class ProjectAstdArticleFilename {
 
 		return result;
 
-	}
+	} */
 
 	// ///////////////////////////////////////////////////////////////////////
 
