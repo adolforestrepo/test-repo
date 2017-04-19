@@ -232,7 +232,7 @@ Properties:
     </target>
 	
 	
-        <target name="build-project-package" description="Pack project into folder">
+   <target name="build-project-package" description="Pack project into folder">
 			<copy todir="${target.home}/WebContent/workflow">
 				<fileset dir="${basedir}/workflow">
 					<include name="**/**.*" />

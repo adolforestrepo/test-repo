@@ -248,11 +248,15 @@
 	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetParentBrowseTreeNodeToVariableHandler" /> 
 	    <actionHandler label="Action handler to set a target variable with a given mo id. "
 	        description="Set a target variable in the workflow with a given mo id."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetVariableFromMoWorkflowListHandler" />    
-	        
-	        
-	            
- 
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetVariableFromMoWorkflowListHandler" />   
+	    <actionHandler label="Action handler to set some dynamic variables in the workflow. "
+	        description="set some dynamic variables in the workflow."
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetDynamicValuesToVariablesActionHandler" />  
+	     <actionHandler label="Action handler to set global variables in the workflow. "
+	        description="set global variables in the workflow."
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetGlobalVariablesActionHandler" />     
+	          
+
 	    <!-- Load workflow definitions   -->
 	    <workflowDefinitions>
 	   

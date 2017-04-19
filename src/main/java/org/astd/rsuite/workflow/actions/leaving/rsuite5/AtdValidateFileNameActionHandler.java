@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.activiti.engine.delegate.Expression;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.astd.rsuite.domain.ArticleFileName;
@@ -22,6 +23,11 @@ public class AtdValidateFileNameActionHandler
   public static final String EXT_ERROR_TXT_PARAM = "extensionErrorMessage";
   public static final String ERROR_IF_LOCKED_PARAM = "errorIfLocked";
   public static final String ERROR_IF_EXISTS_PARAM = "errorIfExits";
+  
+  protected Expression allowedExtension;
+  protected Expression extensionErrorMessage;
+  protected Expression errorIfLocked;
+  protected Expression errorIfExits;
 
   @Override
   public void execute(WorkflowContext context) throws Exception {
@@ -29,10 +35,10 @@ public class AtdValidateFileNameActionHandler
     logActionHandlerParameters(wfLog);
 
     File workingDir = new File(context.getWorkFolderPath());
-
-
-
-    String allowedExt = resolveVariables(getParameter(ALLOWED_EXT_PARAM));
+    
+    wfLog.info("WorkingDir >> "+workingDir);
+    
+    String allowedExt = resolveExpression(allowedExtension);
     if (StringUtils.isBlank(allowedExt)) {
       allowedExt = null;
     } else {
@@ -40,14 +46,17 @@ public class AtdValidateFileNameActionHandler
     }
     wfLog.info("Allowed extension: " + allowedExt);
 
-    String s = resolveVariables(getParameter(ERROR_IF_EXISTS_PARAM));
+    String s = resolveExpression(errorIfExits);
     boolean errorIfExists = (s != null && s.equals("true"));
-    s = resolveVariables(getParameter(ERROR_IF_LOCKED_PARAM));
+    s = resolveExpression(errorIfLocked);
     boolean errorIfLocked = (s != null && s.equals("true"));
 
-    String errTxt = resolveVariables(getParameter(EXT_ERROR_TXT_PARAM));
+    String errTxt = resolveExpression(extensionErrorMessage);
 
     File[] files = workingDir.listFiles();
+    
+    wfLog.info("Files >> "+files.toString());
+    
     List<String> errorMsgs = new ArrayList<String>();
 
     ArticleFileName astdName = null;

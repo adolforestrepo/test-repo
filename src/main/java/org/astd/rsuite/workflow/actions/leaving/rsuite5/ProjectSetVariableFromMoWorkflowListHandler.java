@@ -26,7 +26,7 @@ implements TempWorkflowConstants {
 		wfLog = context.getWorkflowLog();
 	    logActionHandlerParameters(wfLog);
 	    
-	    String targetVariableName = getParameter("targetVariableName");
+	    String targetVariableName = getParameter("targetVariableName"); 
 	    
 	    if (StringUtils.isBlank(targetVariableName)) {
 	      throw new RuntimeException("No value for required parameter 'targetVariableName'");
