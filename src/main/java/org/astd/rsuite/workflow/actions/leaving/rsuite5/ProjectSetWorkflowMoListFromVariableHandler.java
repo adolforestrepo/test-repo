@@ -15,6 +15,7 @@ implements TempWorkflowConstants {
 	public static final String MO_SPECIFYING_VARIABLE_NAME_PARAMETER = "moSpecifyingVariableName";
 	
 	protected Log wfLog;
+	
 	@Override
 	public void execute(WorkflowContext context) throws Exception {
 		wfLog = context.getWorkflowLog();
