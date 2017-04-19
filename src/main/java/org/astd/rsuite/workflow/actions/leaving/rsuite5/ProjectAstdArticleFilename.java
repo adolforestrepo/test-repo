@@ -1,4 +1,4 @@
-package org.astd.rsuite.workflow.actions.leaving.rsuite5;
+/*package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -145,3 +145,4 @@ public class ProjectAstdArticleFilename {
 			Pattern.CASE_INSENSITIVE);
 
 }
+

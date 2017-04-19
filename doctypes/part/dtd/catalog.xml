@@ -2,10 +2,10 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"          
   prefer="public">  
 
-  <public publicId="urn:pubid:com.staywell.doctypes:doctypes:dita:part"
+  <public publicId="urn:pubid:com.astd.doctypes:doctypes:dita:part"
     uri="part.dtd"
   />
-  <system systemId="urn:pubid:com.staywell.doctypes:doctypes:dita:part.dtd"
+  <system systemId="urn:pubid:com.astd.doctypes:doctypes:dita:part.dtd"
     uri="part.dtd"
   />
   

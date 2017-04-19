@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"          
   prefer="public">  
-  <public publicId="urn:pubid:com.staywell.doctypes:doctypes:dita:topic"
+  <public publicId="urn:pubid:com.astd.doctypes:doctypes:dita:topic"
     uri="topic.dtd"
   />
-  <system systemId="urn:pubid:com.staywell.doctypes:doctypes:dita:topic.dtd"
+  <system systemId="urn:pubid:com.astd.doctypes:doctypes:dita:topic.dtd"
           uri="topic.dtd"
   />
 </catalog>  

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"          
   prefer="public">
-  <public publicId="urn:pubid:com.staywell.doctypes:doctypes:dita:dtd:pubmap"
+  <public publicId="urn:pubid:com.astd.doctypes:doctypes:dita:dtd:pubmap"
     uri="pubmap.dtd"
   />
-  <system systemId="urn:pubid:com.staywell.doctypes:doctypes:dita:dtd:pubmap:pubmap.dtd"
+  <system systemId="urn:pubid:com.astd.doctypes:doctypes:dita:dtd:pubmap:pubmap.dtd"
     uri="pubmap.dtd"
   />
   
   <!--  Versions without :dtd for consistency with topic public IDs.Doh! -->
-  <public publicId="urn:pubid:com.staywell.doctypes:doctypes:dita:pubmap"
+  <public publicId="urn:pubid:com.astd.doctypes:doctypes:dita:pubmap"
     uri="pubmap.dtd"
   />
-  <system systemId="urn:pubid:com.staywell.doctypes:doctypes:dita:pubmap:pubmap.dtd"
+  <system systemId="urn:pubid:com.astd.doctypes:doctypes:dita:pubmap:pubmap.dtd"
     uri="pubmap.dtd"
   />  
   
