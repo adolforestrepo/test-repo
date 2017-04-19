@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE bookpub PUBLIC "urn:pubid:astd.com/doctypes/dita/bookpub" "bookpub.dtd">
+<bookpub>
+  <pubtitle>
+    <mainpubtitle/>
+  </pubtitle>
+  <keydefs>
+    <keydef-group navtitle="Keydef Group"/>
+  </keydefs>  
+  <astd-book>
+    <pubbody>
+      
+    </pubbody>
+  </astd-book>
+</bookpub>

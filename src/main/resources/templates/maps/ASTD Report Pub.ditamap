@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reportpub PUBLIC "urn:pubid:astd.com/doctypes/dita/reportpub" "reportpub.dtd">
+<reportpub>
+  <pubtitle>
+    <mainpubtitle/>
+  </pubtitle>
+  <keydefs>
+    <keydef-group navtitle="Keydef Group"/>
+  </keydefs>  
+  <astd-report>
+    <reportbody>
+     
+    </reportbody>
+  </astd-report>
+</reportpub>
