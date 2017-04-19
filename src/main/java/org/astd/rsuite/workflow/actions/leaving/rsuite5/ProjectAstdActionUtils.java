@@ -25,9 +25,11 @@ import com.reallysi.rsuite.api.control.XmlObjectSource;
 import com.reallysi.rsuite.api.extensions.ExecutionContext;
 import com.reallysi.rsuite.api.workflow.WorkflowExecutionContext;
 import com.reallysi.rsuite.service.ContentAssemblyService;
+import com.reallysi.rsuite.service.HotFolderManager;
 import com.reallysi.rsuite.service.ManagedObjectService;
 import com.reallysi.rsuite.service.RepositoryService;
 import org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdWorkflowConstants;
+import org.astd.rsuite.workflow.actions.leaving.rsuite5.WorkflowExecutionContextNew;
 /**
  * Utilities for creating folders and content assemblies in the repository
  * within the context of a workflow.
@@ -112,7 +114,7 @@ public class ProjectAstdActionUtils
 				"AstdActionUtils: In createFolder(), effective folder string is \""
 				+ folder + "\"");
 
-		FolderService service = executionContext.getFolder();
+		FolderService service = executionContext.getFolderService();
 
 		String folderpath = null;
 		String p = "/";

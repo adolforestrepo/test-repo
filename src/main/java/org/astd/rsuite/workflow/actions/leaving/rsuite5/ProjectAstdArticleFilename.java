@@ -3,6 +3,11 @@ package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.astd.rsuite.domain.ArticlePubCode;
+import org.astd.rsuite.domain.CTDOArticleType;
+import org.astd.rsuite.domain.TPMArticleType;
+import org.astd.rsuite.domain.TandDArticleType;
+
 import com.reallysi.rsuite.api.workflow.WorkflowExecutionContext;
 import com.reallysi.rsuite.api.RSuiteException;
 
@@ -69,18 +74,18 @@ public class ProjectAstdArticleFilename {
 	 */
 	public void setWorkflowVariables(WorkflowExecutionContext context)
 			throws RSuiteException {
-		context.setVariable(AstdWorkflowConstants.ASTD_VAR_PUB_CODE, pubCode);
-		context.setVariable(AstdWorkflowConstants.ASTD_VAR_FULL_FILENAME,
+		context.setVariable(ProjectAstdWorkflowConstants.ASTD_VAR_PUB_CODE, pubCode);
+		context.setVariable(ProjectAstdWorkflowConstants.ASTD_VAR_FULL_FILENAME,
 				fullFileName);
-		context.setVariable(AstdWorkflowConstants.ASTD_VAR_SOURCE_FILENAME,
+		context.setVariable(ProjectAstdWorkflowConstants.ASTD_VAR_SOURCE_FILENAME,
 				sourceFileName);
-		context.setVariable(AstdWorkflowConstants.ASTD_VAR_ARTICLE_TYPE, type);
-		context.setVariable(AstdWorkflowConstants.ASTD_VAR_VOLUME_NUMBER,
+		context.setVariable(ProjectAstdWorkflowConstants.ASTD_VAR_ARTICLE_TYPE, type);
+		context.setVariable(ProjectAstdWorkflowConstants.ASTD_VAR_VOLUME_NUMBER,
 				volume);
-		context.setVariable(AstdWorkflowConstants.ASTD_VAR_ISSUE, issue);
-		context.setVariable(AstdWorkflowConstants.ASTD_VAR_MONTH, issue);
-		context.setVariable(AstdWorkflowConstants.ASTD_VAR_SEQUENCE, sequence);
-		context.setVariable(AstdWorkflowConstants.ASTD_VAR_FILENAME_AUTHOR,
+		context.setVariable(ProjectAstdWorkflowConstants.ASTD_VAR_ISSUE, issue);
+		context.setVariable(ProjectAstdWorkflowConstants.ASTD_VAR_MONTH, issue);
+		context.setVariable(ProjectAstdWorkflowConstants.ASTD_VAR_SEQUENCE, sequence);
+		context.setVariable(ProjectAstdWorkflowConstants.ASTD_VAR_FILENAME_AUTHOR,
 				author);
 	}
 
