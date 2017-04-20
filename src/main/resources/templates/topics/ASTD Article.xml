@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "urn:pubid:astd.com/doctypes/dita/article" "article.dtd">
+<article
+  id="topicid">
+  <title/>
+  <prolog><astd-author><author-name/><author-title/><author-affiliation/><author-email/></astd-author><classification><data
+        name="department"
+        value="department_name"/></classification></prolog>
+  <body>
+    <p/>
+  </body>
+</article>

@@ -71,7 +71,7 @@ PUBLIC "urn:pubid:dita4publishers.org/doctypes/dita/dtd/map"
 %d4p_variables-d-dec;
 
 <!ENTITY % sdClassification-d-dec     
-  PUBLIC "urn:pubid:com.staywell.doctypes:doctypes:dita::modules:sdClassificationDomain:entities" 
+  PUBLIC "urn:pubid:com.astd.doctypes:doctypes:dita::modules:sdClassificationDomain:entities" 
          "sdClassificationDomain.ent"                                                
 >
 %sdClassification-d-dec;
@@ -208,7 +208,7 @@ PUBLIC "urn:pubid:dita4publishers.org/doctypes/dita/dtd/map"
 %d4p_variables-d-def;
 
 <!ENTITY % sdClassification-d-def     
-  PUBLIC "urn:pubid:com.staywell.doctypes:doctypes:dita::modules:sdClassificationDomain" 
+  PUBLIC "urn:pubid:com.astd.doctypes:doctypes:dita::modules:sdClassificationDomain" 
          "sdClassificationDomain.mod"                                                
 >
 %sdClassification-d-def;

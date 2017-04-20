@@ -185,7 +185,8 @@ Properties:
                  deploy-initial-content,
 				 deploy-hotfolders,
 		  		 build-project-package,
-				 LoadDtds"
+				 LoadDtds,
+		ConfigureLayeredMetadata"
             />
 
 	<target name="deploy"
@@ -244,6 +245,12 @@ Properties:
 		<run-groovy-script script="LoadDtds.groovy" />
     </target>
 
+
+	<target name="ConfigureLayeredMetadata">
+		<run-groovy-script script="ConfigureLayeredMetadata.groovy" />
+    </target>
+
+	
 	
 	
 </project>

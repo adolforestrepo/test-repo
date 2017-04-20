@@ -2,10 +2,10 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"          
   prefer="public">  
 
-  <public publicId="urn:pubid:com.staywell.doctypes:doctypes:dita:learningAssessment"
+  <public publicId="urn:pubid:com.astd.doctypes:doctypes:dita:learningAssessment"
     uri="learningAssessment.dtd"
   />
-  <system systemId="urn:pubid:com.staywell.doctypes:doctypes:dita:learningAssessment.dtd"
+  <system systemId="urn:pubid:com.astd.doctypes:doctypes:dita:learningAssessment.dtd"
     uri="learningAssessment.dtd"
   />
 
