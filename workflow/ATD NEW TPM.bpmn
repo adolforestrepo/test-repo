@@ -131,9 +131,7 @@
       <documentation>"Document: #{fullFileName}"</documentation>
     </userTask>
     
-    <userTask id="editorEditMSWord" name="TPM Edit MS Word" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Editor">
-      <documentation>"Document: #{fullFileName}"</documentation>
-    </userTask>
+   
     
     <sequenceFlow id="flowToFinalEditTask" sourceRef="editorEditMSWord" targetRef="finalEditTask"></sequenceFlow>
     
