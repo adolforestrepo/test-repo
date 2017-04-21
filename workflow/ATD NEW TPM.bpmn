@@ -226,6 +226,14 @@
       <activiti:field name="topicContainerName" stringValue="media"/>
     </serviceTask>
     
+    
+    <serviceTask id="setTax" name="Set Tax" activiti:org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdSetMoClassification">
+      <activiti:field name="moAlias" stringValue="${sourceFileName}.xml"/>
+      <activiti:field name="data" stringValue="${articleClassification}"/>
+    </serviceTask>
+
+	<sequenceFlow id="fromsetTaxToDecision" sourceRef="setTax" targetRef="setTaxFailed?"></sequenceFlow>
+    
     <exclusiveGateway id="setTaxFailed?" name="Set Tax Failed?"></exclusiveGateway>
     
     <sequenceFlow id="flowToLoadDITAFailed" sourceRef="setTaxFailed?" targetRef="loadDITAFailed">
@@ -235,7 +243,6 @@
     <sequenceFlow id="flowToXMLToINCX" sourceRef="setTaxFailed?" targetRef="xMLToINCX">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
     </sequenceFlow>
-    
     
     <serviceTask id="captureDOCXMOID" name="Capture DOCX MO ID" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetVariableFromMoWorkflowListHandler">
       <activiti:field name="targetVariableName" stringValue="docxMoId"/>

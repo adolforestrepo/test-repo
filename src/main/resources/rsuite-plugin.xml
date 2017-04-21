@@ -260,6 +260,9 @@
 	    <actionHandler label="Action handler to create the CAs structure. "
 	        description="Create the CAs structure in the repository."
 	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsActionHandler" />     
+	    <actionHandler label="Action handler to set the MO classfication."
+	        description="Set the MO classfication."
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdSetMoClassification" />     
  
 
 	    <!-- Load workflow definitions   -->

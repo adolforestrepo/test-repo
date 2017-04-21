@@ -49,7 +49,7 @@ public class ProjectAstdXml2IncxActionHandler
   /**
    * URL of the XSLT that does the transforming from XML to INCX
    */
-  public static final String XSLT_URI_PARAM = "xsltUri";
+  public static final String XSLT_URI_PARAM = "xsltUriFromWorkflow";
   /**
    * URL of the style catalog to use for the result INCX file.
    */
@@ -110,15 +110,12 @@ public class ProjectAstdXml2IncxActionHandler
 
   public static final String DEFAULT_EXEC_SUMMARY_FILE_VAR_NAME = "incxExecSummaryFile";
 
-  private static final long serialVersionUID = 1L;
   private XML2InDesignBean bean;
 
   protected Expression xmlMoId;
   protected Expression styleCatalogUri;
   protected Expression xsltUriFromWorkflow;
   protected Expression fileName;
-
-
 
   public void setFileName(String fileName) {
     setParameter(FILE_NAME_PARAM, fileName);
@@ -131,23 +128,19 @@ public class ProjectAstdXml2IncxActionHandler
 
     checkParamsNotEmptyOrNull(STYLE_CATALOG_URI_PARAM, XSLT_URI_PARAM);
 
-    String styleCatalogUri = getParameter(STYLE_CATALOG_URI_PARAM);
-    String xsltUri = getParameter(XSLT_URI_PARAM);
-    String fileName = getParameter(FILE_NAME_PARAM);
+    String styleCatalogUriExp = resolveExpression(styleCatalogUri);
+    String xsltUriExp = resolveExpression(styleCatalogUri);
+    String fileNameExp = resolveExpression(fileName);
 
-    String xmlMoId = resolveVariables(getParameter(XML_MO_ID_PARAM));
-    styleCatalogUri = resolveVariables(styleCatalogUri);
-    xsltUri = resolveVariables(xsltUri);
-
-    fileName = resolveVariables(fileName);
+    String xmlMoIdExp = resolveExpression(xmlMoId);
 
     // bean = new XML2InDesignBean(xsltUri, styleCatalogUri);
-    bean = new XML2InDesignBean(context, xsltUri, styleCatalogUri, xmlMoId);
+    bean = new XML2InDesignBean(context, xsltUriExp, styleCatalogUriExp, xmlMoIdExp);
 
     File workFolder = getOutputDir(context);
 
     ManagedObject mo = null;
-    if (xmlMoId == null || "".equals(xmlMoId)) {
+    if (xmlMoIdExp == null || "".equals(xmlMoIdExp)) {
       MoListWorkflowObject moList = context.getMoListWorkflowObject();
       if (moList == null || moList.isEmpty()) {
         mo = context.getManagedObjectService().getObjectByAlias(context.getAuthorizationService()
@@ -170,17 +163,17 @@ public class ProjectAstdXml2IncxActionHandler
           Alias[] aliases = mo.getAliases();
           if (aliases.length > 0) {
             // fileName = FilenameUtils.getBaseName(aliases[0].toString());
-            fileName = FilenameUtils.getBaseName(aliases[0].getText());
+            String fileName = FilenameUtils.getBaseName(aliases[0].getText());
           } else {
-            fileName = "article_" + mo.getId();
+            String fileName = "article_" + mo.getId();
           }
         }
       }
     } else {
       mo = context.getManagedObjectService().getManagedObject(context.getAuthorizationService()
-          .getSystemUser(), xmlMoId);
+          .getSystemUser(), xmlMoIdExp);
       if (mo == null) {
-        reportAndThrowRSuiteException("Failed to find MO with ID [" + xmlMoId + "]");
+        reportAndThrowRSuiteException("Failed to find MO with ID [" + xmlMoIdExp + "]");
       }
     }
 
@@ -207,7 +200,7 @@ public class ProjectAstdXml2IncxActionHandler
       // bean.generateInDesignFromTopic(mo, resultInxFile, logger);
 
 
-      bean.generateInDesignFromTopic(mo, resultInxFile, logger);
+      // bean.generateInDesignFromTopic(mo, resultInxFile, logger);
 
       // If executive summary file created, set workflow variables.
       File resultInxExecSummaryFile = new File(workFolder, fileName + "-execsum.incx");
