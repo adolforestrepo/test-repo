@@ -51,3 +51,7 @@ println"Updating definitions"
 def assemblyTypes = ['rs_ca', 'rs_canode']
 def nonXmlMoTypes = ['nonxml']
 
+addOrReplaceLMDDefinition("ca-type", assemblyTypes, null, true, false, false);
+addOrReplaceLMDDefinition("article-process-id", assemblyTypes, null, true, false, false);
+
+

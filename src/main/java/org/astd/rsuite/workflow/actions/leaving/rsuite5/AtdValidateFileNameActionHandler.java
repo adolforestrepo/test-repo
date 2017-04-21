@@ -23,7 +23,7 @@ public class AtdValidateFileNameActionHandler
   public static final String EXT_ERROR_TXT_PARAM = "extensionErrorMessage";
   public static final String ERROR_IF_LOCKED_PARAM = "errorIfLocked";
   public static final String ERROR_IF_EXISTS_PARAM = "errorIfExits";
-  
+
   protected Expression allowedExtension;
   protected Expression extensionErrorMessage;
   protected Expression errorIfLocked;
@@ -34,10 +34,12 @@ public class AtdValidateFileNameActionHandler
     wfLog = context.getWorkflowLog();
     logActionHandlerParameters(wfLog);
 
-    File workingDir = new File(context.getWorkFolderPath());
-    
-    wfLog.info("WorkingDir >> "+workingDir);
-    
+    String workingFolder = context.getVariableAsString(com.reallysi.rsuite.api.workflow.WorkflowConstants.VAR_WORKINGFOLDER_PATH);
+
+    File workingDir = new File(workingFolder);
+
+    wfLog.info("WorkingDir >> " + workingDir);
+
     String allowedExt = resolveExpression(allowedExtension);
     if (StringUtils.isBlank(allowedExt)) {
       allowedExt = null;
@@ -54,9 +56,7 @@ public class AtdValidateFileNameActionHandler
     String errTxt = resolveExpression(extensionErrorMessage);
 
     File[] files = workingDir.listFiles();
-    
-    wfLog.info("Files >> "+files.toString());
-    
+
     List<String> errorMsgs = new ArrayList<String>();
 
     ArticleFileName astdName = null;
@@ -102,6 +102,7 @@ public class AtdValidateFileNameActionHandler
       }
       context.setVariable("VALIDATION_MSGS", errorMsgBuf.toString());
     } else {
+      context.setVariable("VALIDATION_MSGS", null);
       setWorkflowVariables(context, astdName);
     }
 
