@@ -28,6 +28,10 @@ public interface TempWorkflowConstants {
   public static final String ATD_VAR_SEQUENCE = "sequence";
   public static final String ATD_VAR_FILENAME_AUTHOR = "fileNameAuthor";
 
+  public static final String ATD_VAR_DOCX_ID = "docxMoId";
+
+  public static final String ATD_VAR_CA_ID = "articleCaMoId";
+
   /**
    * MO ID of PDF version of article.
    */

@@ -7,8 +7,7 @@
 	
 	
     <extensionProvider id="rsuite.ManagedObjectAdvisor">
-        <managedObjectAdvisor type="org.ama_assn.rsuite.advisors.mo.AliasSettingGlobalManagedObjectAdvisor" />
-        <managedObjectAdvisor type="org.ama_assn.rsuite.advisors.mo.ChecksumGlobalManagedObjectAdvisor" />
+        
     </extensionProvider>
 
     <extensionProvider id="rsuite.EventBus">
@@ -255,7 +254,13 @@
 	     <actionHandler label="Action handler to set global variables in the workflow. "
 	        description="set global variables in the workflow."
 	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetGlobalVariablesActionHandler" />     
-	          
+	    <actionHandler label="Action handler to load the source file in the repository. "
+	        description="Load the docx in the repository."
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadDocxActionHandler" />       
+	    <actionHandler label="Action handler to create the CAs structure. "
+	        description="Create the CAs structure in the repository."
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsActionHandler" />     
+ 
 
 	    <!-- Load workflow definitions   -->
 	    <workflowDefinitions>

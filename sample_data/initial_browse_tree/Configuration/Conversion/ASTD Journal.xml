@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE conversion_configuration
+  PUBLIC "urn:pubid:com.rsicms.rsuitebuiltin:doctypes:dita:conversion_configuration" "conversion_configuration.dtd">
+<conversion_configuration xmlns:r="http://www.rsuitecms.com/rsuite/ns/metadata" xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/"
+  class="- topic/topic conversion_configuration/conversion_configuration " ditaarch:DITAArchVersion="1.2" domains="a(base rsuiteIdAtt)     "
+  id="conversion-config">
+  <title class="- topic/title ">ASTD Conversion Configuration</title>
+  <conversion_configuration_body class="- topic/body  conversion_configuration/conversion_configuration_body ">
+    <section class="- topic/section ">
+      <title class="- topic/title ">Instructions and Notes</title>
+      <p class="- topic/p ">XSLT and style-to-tag map values are paths relative to root of the dita demo RSuite plugin Web service. InDesign template
+        values are RSuite aliases and so are just the filename.</p>
+    </section>
+    <word2xmlOptions class="- topic/section conversion_configuration/word2xmlOptions " spectitle="Word to XML Options">
+      <optionSet class="- topic/dl conversion_configuration/optionSet ">
+        <option class="- topic/dlentry conversion_configuration/option ">
+          <optionName class="- topic/dt conversion_configuration/optionName ">style2tagmap</optionName>
+          <optionValue class="- topic/dd conversion_configuration/optionValue "
+            >rsuite-te-dita-ot-plugin/xslt/word2dita/rsuiteSimpleBookSingleFile-style2tagmap.xml</optionValue>
+        </option>
+        <option class="- topic/dlentry conversion_configuration/option ">
+          <optionName class="- topic/dt conversion_configuration/optionName ">docx2ditaXslt</optionName>
+          <optionValue class="- topic/dd conversion_configuration/optionValue "
+            >rsuite-te-dita-ot-plugin/xslt/word2dita/rsuiteSimpleBook-docx2dita.xsl</optionValue>
+        </option>
+        <option class="- topic/dlentry conversion_configuration/option ">
+          <optionName class="- topic/dt conversion_configuration/optionName ">loadXmlToRSuite</optionName>
+          <optionValue class="- topic/dd conversion_configuration/optionValue ">true</optionValue>
+        </option>
+      </optionSet>
+    </word2xmlOptions>
+    <xml2InDesignOptions class="- topic/section conversion_configuration/xml2InDesignOptions " spectitle="XML to InDesign Options">
+      <optionSet class="- topic/dl conversion_configuration/optionSet ">
+      </optionSet>
+    </xml2InDesignOptions>
+  </conversion_configuration_body>
+</conversion_configuration>

@@ -41,8 +41,9 @@ public class ProjectAddLayeredMetadataActionHandler
 
   protected Log wfLog;
 
-  protected Expression metadataNameFromWorkflow;
-  protected Expression metadataValueFromWorkflow;
+  protected Expression metadataName;
+  protected Expression metadataValue;
+  protected Expression moList;
 
   @Override
   public void execute(WorkflowContext context) throws Exception {
@@ -50,21 +51,22 @@ public class ProjectAddLayeredMetadataActionHandler
     logActionHandlerParameters(wfLog);
 
     MoListWorkflowObject moWfList = null;
-    List<MoWorkflowObject> moList = null;
+    List<MoWorkflowObject> moListVar = null;
 
     // RCS-67: Catch all exceptions so this action handler never throws
     // an exception to the underlying base implementation. This is a workaround
     // for a bug in the abstract base action handler where a caught exception
     // bypasses the "leave node on exit" check.
     try {
-      String moListParam = resolveVariablesAndExpressions(getParameter(MO_LIST_PARAM));
+      String moListParam = resolveExpression(moList);
       if (moListParam == null) {
         moWfList = context.getMoListWorkflowObject();
         if (moWfList == null) {
           throw new RSuiteException("MoListWorkflowObject cannot be null.");
         }
       } else {
-        String[] moIds = moListParam.split(",");
+
+        String[] moIds = resolveVariables(moListParam).split(",");
         moWfList = new MoListWorkflowObject();
         for (String moId : moIds) {
           moWfList.addMoIfNotPresent(moId);
@@ -73,29 +75,25 @@ public class ProjectAddLayeredMetadataActionHandler
       if (moWfList.isEmpty())
         throw new RSuiteException("Effective list of MOs is empty.");
 
-      moList = moWfList.getMoList();
+      moListVar = moWfList.getMoList();
 
-      String metadataName = getWorkflowVariableOrParameter(context, METADATA_NAME_PARAM,
-          metadataNameFromWorkflow);
-      String metadataValue = getWorkflowVariableOrParameter(context, METADATA_VALUE_PARAM,
-          metadataValueFromWorkflow);
+      String metadataNameVar = getWorkflowVariableOrParameter(context, METADATA_NAME_PARAM, metadataName);
+      String metadataValueVar = getWorkflowVariableOrParameter(context, METADATA_VALUE_PARAM, metadataValue);
 
-      wfLog.info("To resolve: metadataName [" + metadataName + "] [" + metadataValue + "]");
+      wfLog.info("To resolve: metadataName [" + metadataNameVar + "] [" + metadataValueVar + "]");
 
       // checkParamsNotEmptyOrNull(METADATA_NAME_PARAM, METADATA_VALUE_PARAM);
 
-      String[] metaNameArray = metadataName == null ? null : metadataName.split(";");
+      String[] metaNameArray = metadataNameVar == null ? null : resolveVariables(metadataNameVar).split(";");
 
-      String[] metaValueArray = metadataValue == null ? null : metadataValue.split(";");
+      String[] metaValueArray = metadataValueVar == null ? null : resolveVariables(metadataValueVar).split(";");
 
-      if (metaNameArray != null && metaValueArray != null
-          && metaNameArray.length != metaValueArray.length) {
+      if (metaNameArray != null && metaValueArray != null && metaNameArray.length != metaValueArray.length) {
 
-        throw new RSuiteException(
-            "Number of metadata names does not match number of metadata values.");
+        throw new RSuiteException("Number of metadata names does not match number of metadata values.");
       }
 
-      doLayeredMetadataSetting(context, moList, metaNameArray, metaValueArray);
+      doLayeredMetadataSetting(context, moListVar, metaNameArray, metaValueArray);
     } catch (Exception e) {
       wfLog.error(e.getClass().getSimpleName() + " setting layered metadata: " + e.getMessage(), e);
       context.setVariable(EXCEPTION_OCCUR, true);
@@ -112,16 +110,13 @@ public class ProjectAddLayeredMetadataActionHandler
    * @param context
    * @return the value.
    */
-  protected String getWorkflowVariableOrParameter(WorkflowContext context,
-      String workflowVariableOrParameterName, Expression workflowExpression) {
+  protected String getWorkflowVariableOrParameter(WorkflowContext context, String workflowVariableOrParameterName, Expression workflowExpression) {
     String workflowVarOrParam = context.getVariableAsString(workflowVariableOrParameterName);
     if (StringUtils.isNotEmpty(workflowVarOrParam)) {
       return workflowVarOrParam;
     }
-    workflowVarOrParam = resolveVariablesAndExpressions(getParameter(
-        workflowVariableOrParameterName));
-    context.getWorkflowLog().info("Resolved expression [" + resolveExpression(workflowExpression)
-        + "]");
+    workflowVarOrParam = resolveVariablesAndExpressions(getParameter(workflowVariableOrParameterName));
+    context.getWorkflowLog().info("Resolved expression [" + resolveExpression(workflowExpression) + "]");
     if (StringUtils.isNotEmpty(workflowVarOrParam)) {
       return workflowVarOrParam;
     }
@@ -129,8 +124,8 @@ public class ProjectAddLayeredMetadataActionHandler
     return workflowVarOrParam;
   }
 
-  public void doLayeredMetadataSetting(WorkflowContext context, List<MoWorkflowObject> moList,
-      String[] metaNameArray, String[] metaValueArray) throws RSuiteException {
+  public void doLayeredMetadataSetting(WorkflowContext context, List<MoWorkflowObject> moList, String[] metaNameArray, String[] metaValueArray)
+      throws RSuiteException {
     User sys = context.getAuthorizationService().getSystemUser();
     for (int i = 0; i < moList.size(); i++) {
       MoWorkflowObject obj = moList.get(i);
@@ -155,9 +150,8 @@ public class ProjectAddLayeredMetadataActionHandler
             MetaDataItem item = new MetaDataItem(names[index], values[index]);
             context.getManagedObjectService().setMetaDataEntry(sys, obj.getMoid(), item);
           } catch (Exception e) {
-            wfLog.error("Can't add the LayeredMetadata {metadataName: " + names[index]
-                + ", metadataValue: \"" + metaValueArray[index] + "\", MOID: " + obj.getMoid()
-                + "} Reason: " + e);
+            wfLog.error("Can't add the LayeredMetadata {metadataName: " + names[index] + ", metadataValue: \"" + metaValueArray[index] + "\", MOID: "
+                + obj.getMoid() + "} Reason: " + e);
             context.setVariable(EXCEPTION_OCCUR, true);
             context.setVariable(EXCEPTION_TYPE, EXCEPTION_TYPE_SYSTEM);
           }
@@ -166,13 +160,11 @@ public class ProjectAddLayeredMetadataActionHandler
     }
   }
 
-  private String build(WorkflowContext context, String expression, String variableContext,
-      String filename) throws RSuiteException {
+  private String build(WorkflowContext context, String expression, String variableContext, String filename) throws RSuiteException {
 
     // New expression syntax:
     if (expression.startsWith("${DATABASE(")) {
-      variableContext = variableContext == null
-          ? "^(\\${DATABASE\\(\\s*['|\"]{1})|(['|\"]{1}\\s*\\))}$" : variableContext;
+      variableContext = variableContext == null ? "^(\\${DATABASE\\(\\s*['|\"]{1})|(['|\"]{1}\\s*\\))}$" : variableContext;
       String newExp = expression.trim().replaceAll(variableContext, "");
       newExp = resolveVariables(filename, newExp);
 
@@ -184,8 +176,7 @@ public class ProjectAddLayeredMetadataActionHandler
     }
     // Old (2.x) expression syntax:
     if (expression.startsWith("$DATABASE(")) {
-      variableContext = variableContext == null
-          ? "^(\\${DATABASE\\(\\s*['|\"]{1})|(['|\"]{1}\\s*\\))$" : variableContext;
+      variableContext = variableContext == null ? "^(\\${DATABASE\\(\\s*['|\"]{1})|(['|\"]{1}\\s*\\))$" : variableContext;
       String newExp = expression.trim().replaceAll(variableContext, "");
       newExp = resolveVariables(filename, newExp);
 
@@ -202,4 +193,3 @@ public class ProjectAddLayeredMetadataActionHandler
     setParameter(MO_LIST_PARAM, moList);
   }
 }
-

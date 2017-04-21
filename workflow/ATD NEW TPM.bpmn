@@ -17,7 +17,7 @@
       <activiti:field name="items" stringValue="pId;nowString"/>
     </serviceTask>
       
-    <sequenceFlow id="LoadINX" sourceRef="Get PID and Now String" targetRef="SetVariablesFromProperties"></sequenceFlow>
+    <sequenceFlow id="flowToSetVariablesFromProps" sourceRef="Get PID and Now String" targetRef="SetVariablesFromProperties"></sequenceFlow>
     
   <!--	<sequenceFlow id="flowToLoadErrorDecision" sourceRef="generateReport" targetRef="loadErrorGateway"></sequenceFlow> -->
     
@@ -71,18 +71,7 @@
     </userTask>
     
 
-    <serviceTask id="loadDOCX" name="Load DOCX" activiti:class="org.astd.rsuite.workflow.actions.LoadActionHandler">
-      <activiti:field name="regex" stringValue=""/>
-      <activiti:field name="xmlMoMatchExpressions" stringValue=""/>
-      <activiti:field name="layeredMetadataMatchExpressions" stringValue=""/>
-      <activiti:field name="moChunkMatchExpressions" stringValue=""/>
-      <activiti:field name="collection" stringValue=""/>
-      <activiti:field name="inputFolder" stringValue=""/>
-      <activiti:field name="notDelete" stringValue=""/>
-      <activiti:field name="creationPolicy" stringValue="UpdateRepository"/>
-      <activiti:field name="commitMessage" stringValue="Loaded via workflow"/>
-      <activiti:field name="alwaysTreatAsXml" stringValue=""/>
-      <activiti:field name="neverTreatAsXml" stringValue=""/>
+    <serviceTask id="loadDOCX" name="Load DOCX" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadDocxActionHandler">
     </serviceTask>
 
 	<sequenceFlow id="flowFromLoadDocxToValidationError" sourceRef="loadDOCX" targetRef="docxLoadFailed?"></sequenceFlow>  
@@ -129,6 +118,24 @@
       <activiti:field name="metadataValue" stringValue="article;${pId}"/>
       <activiti:field name="moList" stringValue="${articleCaMoId}"/>
     </serviceTask>
+    
+    <sequenceFlow id="flowToTPMEditMSWord" sourceRef="setArticleLM" targetRef="associateEditMSWord"></sequenceFlow>
+    
+    <userTask id="associateEditMSWord" name="TPM Edit MS Word" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate Editor">
+      <documentation>"Document: #{fullFileName}"</documentation>
+    </userTask>
+    
+    <sequenceFlow id="flowToEditorEditMSWord" sourceRef="associateEditMSWord" targetRef="editorEditMSWord"></sequenceFlow>
+    
+    <userTask id="editorEditMSWord" name="TPM Edit MS Word" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Editor">
+      <documentation>"Document: #{fullFileName}"</documentation>
+    </userTask>
+    
+    <userTask id="editorEditMSWord" name="TPM Edit MS Word" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Editor">
+      <documentation>"Document: #{fullFileName}"</documentation>
+    </userTask>
+    
+    <sequenceFlow id="flowToFinalEditTask" sourceRef="editorEditMSWord" targetRef="finalEditTask"></sequenceFlow>
     
     <serviceTask id="makeArticleCACurrent" name="Make Article CA Current" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler">
       <activiti:field name="moSpecifyingVariableName" stringValue="articleCaMoId"/>
@@ -210,7 +217,6 @@
       <activiti:field name="targetVariableName" stringValue="articleClassification"/>
     </serviceTask>         
     
-    <sequenceFlow id="fromServiceTaskToEndWorkflow" sourceRef="SetVariablesFromProperties" targetRef="endWorkflow"></sequenceFlow>
     
     <serviceTask id="importDITA" name="Import DITA" activiti:class="com.reallysi.rsuite.workflow.actions.TopicImporterActionHandler">
       <activiti:field name="topicPath" stringValue="${articleCaMoId}"/>
@@ -238,30 +244,20 @@
      <serviceTask id="captureArticleCAMOID" name="Capture Article CA MO ID" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetVariableFromMoWorkflowListHandler">
       <activiti:field name="targetVariableName" stringValue="articleCaMoId"/>
     </serviceTask>
+            
     
-    <sequenceFlow id="flowToSetArticleLM" sourceRef="captureArticleCAMOID" targetRef="setArticleLM"></sequenceFlow>
+    <serviceTask id="createCAs" name="Create CAs for DOCX" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsActionHandler">
+    </serviceTask>
     
-    <sequenceFlow id="fromCaptureDOCXMOIDToDecisionNode" sourceRef="captureDOCXMOID" targetRef="isUnknownDOCX?"></sequenceFlow>
+    <sequenceFlow id="flowToSetLM" sourceRef="createCAs" targetRef="setArticleLM"></sequenceFlow>
     
-    <exclusiveGateway id="isUnknownDOCX?" name="Is Unknown DOCX?"></exclusiveGateway>
-    
-    <!-- TODO: Link these two transitions to the handlers being implemented by Sudheer -->
-    
-    <sequenceFlow id="flowFromUnknownDOCXToLoadDitaFailed" sourceRef="isUnknownDOCX?" targetRef="loadDITAFailed">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$!{volumeNumber=='99'}]]></conditionExpression>
-    </sequenceFlow>
-
-    <sequenceFlow id="flowFromUnknownDOCXToXmlToIncx" sourceRef="isUnknownDOCX?" targetRef="xMLToINCX">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${volumeNumber!='99'}]]></conditionExpression>
-    </sequenceFlow>
-
     <exclusiveGateway id="docxLoadFailed?" name="DOCX Load Failed?"></exclusiveGateway>
         
     <sequenceFlow id="flowToCreateCAsForUnknownDOCX" sourceRef="docxLoadFailed?" targetRef="docxLoadError">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR=='true'}]]></conditionExpression>
     </sequenceFlow>
 
-    <sequenceFlow id="flowFromDocxFailedToCaptureDocxMOID" sourceRef="docxLoadFailed?" targetRef="captureDOCXMOID">
+    <sequenceFlow id="flowFromDocxFailedToIsUnknownDocx" sourceRef="docxLoadFailed?" targetRef="createCAs">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR=='false'}]]></conditionExpression>
     </sequenceFlow>
     
@@ -279,5 +275,5 @@
     </dataObject>
     <dataObject id="rsuiteUserId" name="rsuiteUserId" itemSubjectRef="xsd:string"></dataObject>
   </process>
-   
+
 </definitions>
