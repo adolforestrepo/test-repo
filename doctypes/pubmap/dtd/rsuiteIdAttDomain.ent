@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================
+     RSuite r:rsuiteId  attribute domain
+     
+     This attribute is required by RSuite in order to set RSuite-defined
+     object IDs on elements that are RSuite managed objects. It is not
+     valid DITA vocabulary but is defined as though it was.
+     
+     Note that the DITA @resourceid attribute is the semantic equivalent
+     of the RSuite @r:rsuiteid attribute. 
+          
+     ===========================================================-->
+<!ENTITY % rsuiteIdAtt-d-attribute "
+xmlns:r CDATA #FIXED 'http://www.rsuitecms.com/rsuite/ns/metadata'
+r:rsuiteId CDATA #IMPLIED">
+
+<!ENTITY rsuiteIdAtt-d-att "a(base rsuiteIdAtt)" >
+
+<!-- ===== End of RSuite ID Attribute Module ==== -->

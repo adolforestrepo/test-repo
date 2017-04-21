@@ -2,9 +2,9 @@
 <!-- ============================================================= -->
 <!--                    HEADER                                     -->
 <!-- ============================================================= -->
-<!--  MODULE:    DITA Pubmap DTD                                   -->
+<!--  MODULE:    DITA For Publishers Generic Map DTD               -->
 <!--  VERSION:   1.2                                               -->
-<!--  DATE:      May 2009                                          -->
+<!--  DATE:      August 2010                                       -->
 <!--                                                               -->
 <!-- ============================================================= -->
 
@@ -14,24 +14,19 @@
 <!--                                                               -->
 <!--  Refer to this file by the following public identifier or an 
       appropriate system identifier 
-PUBLIC "urn:pubid:dita4publishers.org:doctypes:dita:dtd:pubmap"
-      Delivered as file "pubmap.dtd"                               -->
+PUBLIC "urn:pubid:dita4publishers.org/doctypes/dita/dtd/map"
+      Delivered as file "map.dtd"                               -->
  
 <!-- ============================================================= -->
 <!-- SYSTEM:     Darwin Information Typing Architecture (DITA)     -->
 <!--                                                               -->
-<!-- PURPOSE:    DTD to describe DITA Publication Maps             -->
+<!-- PURPOSE:    DTD to describe DITA  Maps                        -->
 <!--                                                               -->
 <!-- ============================================================= -->
 
 <!-- ============================================================= -->
 <!--                    MAP ENTITY DECLARATIONS                    -->
 <!-- ============================================================= -->
-
-<!ENTITY % pubmap-dec     
-  PUBLIC "urn:pubid:dita4publishers.org:entities:dtd:pubmap" 
-         "pubmap.ent"
->%pubmap-dec;
 
 <!-- ============================================================= -->
 <!--                    DOMAIN ENTITY DECLARATIONS                 -->
@@ -49,13 +44,6 @@ PUBLIC "urn:pubid:dita4publishers.org:doctypes:dita:dtd:pubmap"
 "pubmapDomain.ent"                                                 
 >
 %pubmap-d-dec;
-
-<!ENTITY % pubmapMapref-d-dec 
-                        PUBLIC 
-"urn:pubid:dita4publishers.org:entities:dtd:pubmapMaprefDomain" 
-"pubmapMaprefDomain.ent"                                                 
->
-%pubmapMapref-d-dec;
 
 <!ENTITY % pubmeta-d-dec 
                         PUBLIC 
@@ -82,23 +70,26 @@ PUBLIC "urn:pubid:dita4publishers.org:doctypes:dita:dtd:pubmap"
 >
 %d4p_variables-d-dec;
 
-<!ENTITY % indexing-d-dec     PUBLIC 
-"-//OASIS//ENTITIES DITA Indexing Domain//EN" 
-"indexingDomain.ent"                                                 >
-%indexing-d-dec;
-
-
+<!ENTITY % sdClassification-d-dec     
+  PUBLIC "urn:pubid:com.staywell.doctypes:doctypes:dita::modules:sdClassificationDomain:entities" 
+         "sdClassificationDomain.ent"                                                
+>
+%sdClassification-d-dec;
 
 <!-- ============================================================= -->
 <!--                    DOMAIN ATTRIBUTE DECLARATIONS              -->
 <!-- ============================================================= -->
+
+<!ENTITY % rsuiteIdAttDomain
+  PUBLIC "urn:www.rsuite.com:domains:rsuite_id_att:entities" 
+         "rsuiteIdAttDomain.ent"
+>%rsuiteIdAttDomain;
 
 <!ENTITY % d4p_renditionTargetAtt-d-dec     
   PUBLIC "urn:pubid:dita4publishers.org:doctypes:dita:modules:d4p_renditionTargetAttDomain:entities" 
          "d4p_renditionTargetAttDomain.ent"                                                
 >
 %d4p_renditionTargetAtt-d-dec;
-
 
 <!-- ============================================================= -->
 <!--                    DOMAIN EXTENSIONS                          -->
@@ -109,7 +100,6 @@ PUBLIC "urn:pubid:dita4publishers.org:doctypes:dita:dtd:pubmap"
 <!ENTITY % topicref     "topicref |
                          %mapgroup-d-topicref; |
                          %pubmap-d-topicref; |
-                         %pubmapMapref-d-topicref; |
                          %d4p_enumerationMap-d-topicref;
                         ">
 
@@ -122,14 +112,11 @@ PUBLIC "urn:pubid:dita4publishers.org:doctypes:dita:dtd:pubmap"
                   %pubmap-d-title;
                   ">
 
-<!ENTITY % index-base   "index-base | 
-                         %indexing-d-index-base;
-                        ">
-
 <!ENTITY % data
-  "data | 
+  "data |   
    %d4p_simpleEnumeration-d-data; |
-   %d4p_variables-d-data;
+   %d4p_variables-d-data; |
+   %sdClassification-d-data;
   "
 >
 
@@ -144,12 +131,14 @@ PUBLIC "urn:pubid:dita4publishers.org:doctypes:dita:dtd:pubmap"
    %d4p_variables-d-text;
   "
 >
-                      
 
 <!-- ============================================================= -->
 <!--                    DOMAIN ATTRIBUTE EXTENSIONS                -->
 <!-- ============================================================= -->
-<!ENTITY % props-attribute-extensions "%d4p_renditionTargetAtt-d-attribute;" >
+<!ENTITY % props-attribute-extensions "
+  %d4p_renditionTargetAtt-d-attribute; 
+  %rsuiteIdAtt-d-attribute;
+  " >
 <!ENTITY % base-attribute-extensions   ""                            >
 
 <!-- ============================================================= -->
@@ -159,12 +148,15 @@ PUBLIC "urn:pubid:dita4publishers.org:doctypes:dita:dtd:pubmap"
                         puts @domains first in order               -->
 <!ENTITY included-domains 
                         "
-                         &pubmap-d-att;
-                         &pubmapMapref-d-att;
-                         &pubmeta-d-att;
-                         &d4p_renditionTargetAtt-d-att;
-                         &d4p_variables-d-att;
-                         &d4p_simpleEnumerationMap-d-att;
+  &pubmap-d-att;
+  &mapgroup-d-att;
+  &pubmeta-d-att;
+  &d4p_enumerationMap-d-att;
+  &d4p_simpleEnumerationMap-d-att;
+  &d4p_variables-d-att;
+  &rsuiteIdAtt-d-att;
+  &sdClassification-d-att;
+
                         ">
 
 <!-- ============================================================= -->
@@ -182,15 +174,15 @@ PUBLIC "urn:pubid:dita4publishers.org:doctypes:dita:dtd:pubmap"
 "mapGroup.mod"                                                 >
 %mapgroup-d-def;
 
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ELEMENT INTEGRATION                 -->
+<!-- ============================================================= -->
+
 <!ENTITY % pubmap-d-def PUBLIC 
 "urn:pubid:dita4publishers.org:modules:dtd:pubmapDomain" 
 "pubmapDomain.mod"                                                        >
 %pubmap-d-def;
-
-<!ENTITY % pubmapMapref-d-def PUBLIC 
-"urn:pubid:dita4publishers.org:modules:dtd:pubmapMaprefDomain" 
-"pubmapMaprefDomain.mod"                                                        >
-%pubmapMapref-d-def;
 
 <!ENTITY % pubmeta-d-def PUBLIC 
 "urn:pubid:dita4publishers.org:modules:dtd:pubmetadataDomain" 
@@ -205,7 +197,7 @@ PUBLIC "urn:pubid:dita4publishers.org:doctypes:dita:dtd:pubmap"
 
 <!ENTITY % d4p_simpleEnumeration-d-def     PUBLIC 
 "urn:pubid:dita4publishers.org:modules:dita:modules:d4p_simpleEnumerationDomain" 
-"d4p_simpleEnumerationDomain.mod"
+"d4p_simpleEnumeration.mod"
 >
 %d4p_simpleEnumeration-d-def;
 
@@ -215,21 +207,11 @@ PUBLIC "urn:pubid:dita4publishers.org:doctypes:dita:dtd:pubmap"
 >
 %d4p_variables-d-def;
 
-<!ENTITY % pubmap-type PUBLIC 
-"urn:pubid:dita4publishers.org:modules:dtd:pubmap" 
-"pubmap.mod"                                                      >
-%pubmap-type;
+<!ENTITY % sdClassification-d-def     
+  PUBLIC "urn:pubid:com.staywell.doctypes:doctypes:dita::modules:sdClassificationDomain" 
+         "sdClassificationDomain.mod"                                                
+>
+%sdClassification-d-def;
 
 
-
-<!-- ============================================================= -->
-<!--                    DOMAIN ELEMENT INTEGRATION                 -->
-<!-- ============================================================= -->
-
-<!ENTITY % indexing-d-def     
-  PUBLIC "-//OASIS//ELEMENTS DITA 1.2 Indexing Domain//EN" 
-         "indexingDomain.mod"
->%indexing-d-def;
-
-
-<!-- ================== End DITA pubmap DTD  ==================== -->
+<!-- ================== End RSuite map DTD  ==================== -->
