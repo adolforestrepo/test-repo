@@ -72,17 +72,17 @@
     
 
     <serviceTask id="loadDOCX" name="Load DOCX" activiti:class="org.astd.rsuite.workflow.actions.LoadActionHandler">
-      <activiti:field name="regexFromWorkflow" stringValue=""/>
-      <activiti:field name="xmlMoMatchExpressionsFromWorkflow" stringValue=""/>
-      <activiti:field name="layeredMetadataMatchExpressionsFromWorkflow" stringValue=""/>
-      <activiti:field name="moChunkMatchExpressionsFromWorkflow" stringValue=""/>
-      <activiti:field name="collectionFromWorkflow" stringValue=""/>
-      <activiti:field name="inputFolderFromWorkflow" stringValue=""/>
-      <activiti:field name="notDeleteFromWorkflow" stringValue=""/>
-      <activiti:field name="creationPolicyFromWorkflow" stringValue="UpdateRepository"/>
-      <activiti:field name="commitMessageFromWorkflow" stringValue="Loaded via workflow"/>
-      <activiti:field name="alwaysTreatAsXmlFromWorkflow" stringValue=""/>
-      <activiti:field name="neverTreatAsXmlFromWorkflow" stringValue=""/>
+      <activiti:field name="regex" stringValue=""/>
+      <activiti:field name="xmlMoMatchExpressions" stringValue=""/>
+      <activiti:field name="layeredMetadataMatchExpressions" stringValue=""/>
+      <activiti:field name="moChunkMatchExpressions" stringValue=""/>
+      <activiti:field name="collection" stringValue=""/>
+      <activiti:field name="inputFolder" stringValue=""/>
+      <activiti:field name="notDelete" stringValue=""/>
+      <activiti:field name="creationPolicy" stringValue="UpdateRepository"/>
+      <activiti:field name="commitMessage" stringValue="Loaded via workflow"/>
+      <activiti:field name="alwaysTreatAsXml" stringValue=""/>
+      <activiti:field name="neverTreatAsXml" stringValue=""/>
     </serviceTask>
 
 	<sequenceFlow id="flowFromLoadDocxToValidationError" sourceRef="loadDOCX" targetRef="docxLoadFailed?"></sequenceFlow>  
