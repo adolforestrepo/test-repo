@@ -47,9 +47,9 @@ public class ProjectAtdSetClassificationVarActionHandler
 
     String moIdExp = resolveExpression(moId);
     if (StringUtils.isBlank(moIdExp)) {
-      String moAlias = resolveVariables(getParameter(MO_ALIAS_PARAM));
-      if (!StringUtils.isBlank(moAlias)) {
-        ManagedObject mo = context.getManagedObjectService().getObjectByAlias(user, moAlias);
+      String moAliasExp = resolveExpression(moAlias);
+      if (!StringUtils.isBlank(moAliasExp)) {
+        ManagedObject mo = context.getManagedObjectService().getObjectByAlias(user, moAliasExp);
         if (mo != null) {
           String moId = mo.getId();
         }
