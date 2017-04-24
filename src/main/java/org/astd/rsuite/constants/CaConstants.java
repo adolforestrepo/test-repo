@@ -6,10 +6,12 @@ public enum CaConstants implements ProjectConstant {
 	CA_TYPE_PRODUCT("product"),
 	CA_TYPE_VOLUME("volume"),
 	CA_TYPE_ISSUE("issue"),
+	CA_TYPE_NONE("none"),
+	CA_TYPE_OTHER("other"),
 	
 	CA_NAME_IN_PROGERSS ("Books"),
 	CA_NAME_PUBLISHED ("Magazines"),
-	CA_NAME_MISCELLANEOUS ("Miscellaneous"),
+	CA_NAME_MISCELLANEOUS ("System Configuration"),
 	LMD_NAME_PRODUCT_CODE ("product_code"),
 	CA_NAME_SUPPORT ("Support");
 	

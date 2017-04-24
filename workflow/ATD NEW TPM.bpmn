@@ -224,7 +224,7 @@
     </serviceTask>
     
     
-    <serviceTask id="setTax" name="Set Tax" activiti:org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdSetMoClassification">
+    <serviceTask id="setTax" name="Set Tax" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdSetMoClassification">
       <activiti:field name="moAlias" stringValue="${sourceFileName}.xml"/>
       <activiti:field name="data" stringValue="${articleClassification}"/>
     </serviceTask>
