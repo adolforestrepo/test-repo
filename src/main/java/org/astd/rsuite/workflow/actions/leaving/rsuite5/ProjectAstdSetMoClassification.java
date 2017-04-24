@@ -69,23 +69,23 @@ public class ProjectAstdSetMoClassification
       if (!StringUtils.isBlank(moAliasExp)) {
         ManagedObject mo = context.getManagedObjectService().getObjectByAlias(user, moAliasExp);
         if (mo != null) {
-          String moId = mo.getId();
+          moIdExp = mo.getId();
         } else {
           MoListWorkflowObject moList = context.getMoListWorkflowObject();
           if (moList == null || moList.isEmpty()) {
             reportAndThrowRSuiteException("MO ID not specified to set classification");
           }
-          String moId = moList.getMoList().get(0).getMoid();
+          moIdExp = moList.getMoList().get(0).getMoid();
         }
       }
     }
 
 
-    wfLog.info("Classification data to set for " + moId + ": " + dataExp);
+    wfLog.info("Classification data to set for " + moIdExp + ": " + dataExp);
     try {
       ProjectAstdActionUtils.setClassificationXmlForMo(context, user, wfLog, moIdExp, dataExp);
     } catch (RSuiteException rse) {
-      String msg = "Error setting classification for mo [" + moId + "]: " + rse
+      String msg = "Error setting classification for mo [" + moIdExp + "]: " + rse
           .getLocalizedMessage() + rse;
       reportAndThrowRSuiteException(msg);
     }

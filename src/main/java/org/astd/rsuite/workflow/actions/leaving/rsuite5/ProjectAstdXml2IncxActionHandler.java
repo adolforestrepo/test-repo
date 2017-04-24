@@ -21,6 +21,7 @@ import com.reallysi.rsuite.api.workflow.activiti.MoWorkflowObject;
 import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
 // import com.reallysi.rsuite.api.workflow.WorkflowExecutionContext;
 import com.reallysi.rsuite.api.xml.LoggingSaxonMessageListener;
+import com.reallysi.tools.dita.conversion.InxGenerationOptions;
 import com.reallysi.tools.dita.conversion.beans.XML2InDesignBean;
 // import com.reallysi.rsuite.api.workflow.activiti.BaseNonLeavingWorkflowAction;
 
@@ -129,13 +130,12 @@ public class ProjectAstdXml2IncxActionHandler
     checkParamsNotEmptyOrNull(STYLE_CATALOG_URI_PARAM, XSLT_URI_PARAM);
 
     String styleCatalogUriExp = resolveExpression(styleCatalogUri);
-    String xsltUriExp = resolveExpression(styleCatalogUri);
+    String xsltUriExp = resolveExpression(xsltUriFromWorkflow);
     String fileNameExp = resolveExpression(fileName);
-
     String xmlMoIdExp = resolveExpression(xmlMoId);
 
     // bean = new XML2InDesignBean(xsltUri, styleCatalogUri);
-    bean = new XML2InDesignBean(context, xsltUriExp, styleCatalogUriExp, xmlMoIdExp);
+    bean = new XML2InDesignBean(context, xsltUriExp, styleCatalogUriExp, fileNameExp);
 
     File workFolder = getOutputDir(context);
 
@@ -144,10 +144,10 @@ public class ProjectAstdXml2IncxActionHandler
       MoListWorkflowObject moList = context.getMoListWorkflowObject();
       if (moList == null || moList.isEmpty()) {
         mo = context.getManagedObjectService().getObjectByAlias(context.getAuthorizationService()
-            .getSystemUser(), fileName + ".xml");
+            .getSystemUser(), fileNameExp + ".xml");
         if (mo == null) {
           reportAndThrowRSuiteException(
-              "Failed to get an MO using the fileName parameter with the value \"" + fileName
+              "Failed to get an MO using the fileName parameter with the value \"" + fileNameExp
                   + "\"");
         }
       } else {
@@ -159,13 +159,13 @@ public class ProjectAstdXml2IncxActionHandler
           reportAndThrowRSuiteException("Failed to get an MO from the workflow context");
         }
         // Assume first alias is a filename:
-        if (fileName == null || "".equals(fileName)) {
+        if (fileNameExp == null || "".equals(fileNameExp)) {
           Alias[] aliases = mo.getAliases();
           if (aliases.length > 0) {
             // fileName = FilenameUtils.getBaseName(aliases[0].toString());
-            String fileName = FilenameUtils.getBaseName(aliases[0].getText());
+            fileNameExp = FilenameUtils.getBaseName(aliases[0].getText());
           } else {
-            String fileName = "article_" + mo.getId();
+            fileNameExp = "article_" + mo.getId();
           }
         }
       }
@@ -177,9 +177,9 @@ public class ProjectAstdXml2IncxActionHandler
       }
     }
 
-    File resultInxFile = new File(workFolder, fileName + ".incx");
+    File resultInxFile = new File(workFolder, fileNameExp + ".incx");
 
-    String reportFileName = fileName + "_docx2dita_at_" + getNowString() + ".txt";
+    String reportFileName = fileNameExp + "_docx2dita_at_" + getNowString() + ".txt";
     String xformReportIdVarName = getParameterWithDefault(XFORM_REPORT_ID_VAR_NAME_PARAM,
         XFORM_REPORT_ID_VARNAME);
     xformReportIdVarName = resolveVariablesAndExpressions(xformReportIdVarName);
@@ -197,13 +197,15 @@ public class ProjectAstdXml2IncxActionHandler
 
     boolean exceptionOccured = false;
     try {
+
       // bean.generateInDesignFromTopic(mo, resultInxFile, logger);
 
 
-      // bean.generateInDesignFromTopic(mo, resultInxFile, logger);
+      InxGenerationOptions options = new InxGenerationOptions();
+      bean.generateInDesignFromTopic(mo.getElement().getOwnerDocument(), resultInxFile, options);
 
       // If executive summary file created, set workflow variables.
-      File resultInxExecSummaryFile = new File(workFolder, fileName + "-execsum.incx");
+      File resultInxExecSummaryFile = new File(workFolder, fileNameExp + "-execsum.incx");
       if (resultInxExecSummaryFile.exists()) {
         wfLog.info("Executive summary exists: " + resultInxExecSummaryFile);
         String pathVarName = getParameterWithDefault(EXEC_SUMMARY_PATH_VAR_NAME_PARAM,

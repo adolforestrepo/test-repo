@@ -263,6 +263,9 @@
 	    <actionHandler label="Action handler to set the MO classfication."
 	        description="Set the MO classfication."
 	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdSetMoClassification" />     
+	    <actionHandler label="Action handler to convert xml to Incx."
+	        description="Convert the MO to Incx."
+	        type="org.astd.rsuite.workflow.actions.ProjectAstdXml2IncxActionHandler" />     
  
 
 	    <!-- Load workflow definitions   -->
