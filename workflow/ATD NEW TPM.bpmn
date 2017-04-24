@@ -131,10 +131,6 @@
       <documentation>"Document: #{fullFileName}"</documentation>
     </userTask>
     
-    <userTask id="editorEditMSWord" name="TPM Edit MS Word" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Editor">
-      <documentation>"Document: #{fullFileName}"</documentation>
-    </userTask>
-    
     <sequenceFlow id="flowToFinalEditTask" sourceRef="editorEditMSWord" targetRef="finalEditTask"></sequenceFlow>
     
     <serviceTask id="makeArticleCACurrent" name="Make Article CA Current" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler">
@@ -207,16 +203,17 @@
     
     
     <userTask id="finalEditTask" name="Final Edit Task" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate Editor">
-      <documentation>"Document: # {fullFileName}"</documentation>
+      <documentation>"Document: #{fullFileName}"</documentation>
     </userTask>
     
     <sequenceFlow id="fromFinalEditTaskToGetTax" sourceRef="finalEditTask" targetRef="getTax"></sequenceFlow>
     
     <serviceTask id="getTax" name="Get Tax" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAtdSetClassificationVarActionHandler">
-      <activiti:field name="moAlias" stringValue="${sourceFileName}.xml"/>
+      <activiti:field name="moAlias" expression="${sourceFileName}.xml"/>
       <activiti:field name="targetVariableName" stringValue="articleClassification"/>
     </serviceTask>         
     
+    <sequenceFlow id="fromGetTaxToDocx2XmlTransform" sourceRef="getTax" targetRef="docX2XMLTransform"></sequenceFlow>
     
     <serviceTask id="importDITA" name="Import DITA" activiti:class="com.reallysi.rsuite.workflow.actions.TopicImporterActionHandler">
       <activiti:field name="topicPath" stringValue="${articleCaMoId}"/>

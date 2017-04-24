@@ -15,6 +15,7 @@ public class ProjectAtdSetClassificationVarActionHandler
     extends BaseWorkflowAction
     implements TempWorkflowConstants {
 
+
   /**
    * (Optional) Alias to MO.
    */
@@ -31,8 +32,8 @@ public class ProjectAtdSetClassificationVarActionHandler
   public static final String TARGET_VAR_PARAM = "targetVariableName";
 
   protected Expression moAlias;
-  protected Expression moId;
   protected Expression targetVariableName;
+  protected Expression moId;
 
   @Override
   public void execute(WorkflowContext context) throws Exception {
@@ -45,18 +46,17 @@ public class ProjectAtdSetClassificationVarActionHandler
 
     }
 
-    String moIdExp = resolveExpression(moId);
-    if (StringUtils.isBlank(moIdExp)) {
-      String moAliasExp = resolveExpression(moAlias);
-      if (!StringUtils.isBlank(moAliasExp)) {
-        ManagedObject mo = context.getManagedObjectService().getObjectByAlias(user, moAliasExp);
-        if (mo != null) {
-          String moId = mo.getId();
-        }
+    String moid = null;
+    String moalias = resolveExpression(moAlias);
+    wfLog.info("Object Alias " + moalias);
+    if (!StringUtils.isBlank(moalias)) {
+      ManagedObject mo = context.getManagedObjectService().getObjectByAlias(user, moalias);
+      if (mo != null) {
+        moid = mo.getId();
       }
     }
 
-    if (StringUtils.isBlank(moIdExp)) {
+    if (StringUtils.isBlank(moid)) {
       MoListWorkflowObject moList = context.getMoListWorkflowObject();
       if (moList == null || moList.isEmpty()) {
         // There are cases where MO cannot be resolved
@@ -66,11 +66,11 @@ public class ProjectAtdSetClassificationVarActionHandler
         context.setVariable(varName, "");
         return;
       }
-      String moId = moList.getMoList().get(0).getMoid();
+      moid = moList.getMoList().get(0).getMoid();
     }
 
     String taxData = null;
-    taxData = WorkflowUtils.getClassificationXmlOfMo(context, wfLog, moIdExp);
+    taxData = WorkflowUtils.getClassificationXmlOfMo(context, wfLog, moid);
 
     // Strip out containing <RESULT> tags
     if (taxData.startsWith("<RESULT/>")) {
