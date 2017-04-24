@@ -106,9 +106,10 @@ def topicTypes = [
                   'subsection', 
                   'task', 
                   'topic', 
+                  'pubmap', 
                   ]
 	
-def mapTypes = ['map',]	
+def mapTypes = ['map', 'pubmap']	
 	
 def otherMoTypes = 	[ 
                    	  ['art',"'Art '"],
