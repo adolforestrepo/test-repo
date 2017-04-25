@@ -2,6 +2,8 @@ package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
 import java.io.File;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.logging.Log;
 
 import com.reallysi.rsuite.api.ManagedObject;
@@ -26,8 +28,9 @@ public class ProjectLoadDocxActionHandler
       File workingDir = new File(workingFolder);
       File[] files = workingDir.listFiles();
       File file = files[0];
-
+      
       String name = file.getName();
+      
       String[] aliases = new String[] {name};
       ObjectInsertOptions options = new ObjectInsertOptions(name, aliases, null, false);
       ManagedObject sourceMO = context.getManagedObjectService().load(context.getAuthorizationService().getSystemUser(), new NonXmlObjectSource(file), options);

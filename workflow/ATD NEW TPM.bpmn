@@ -165,12 +165,14 @@
     </serviceTask>
     
     
-    <serviceTask id="docX2XMLTransform" name="DocX2XML Transform" activiti:class="org.dita4publishers.rsuite.workflow.actions.Docx2XmlActionHandler">
+    <serviceTask id="docX2XMLTransform" name="DocX2XML Transform" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdDocxToXmlActionHandler">
       <activiti:field name="styleMapUri" stringValue="rsuite:/res/plugin/astd/xslt/word2xml/article-style2tagmap.xml"/>
       <activiti:field name="xsltUri" stringValue="rsuite:/res/plugin/astd/xslt/word2xml/docx2article.xsl"/>
       <activiti:field name="outputPath" stringValue="${exportDir}"/>
       <activiti:field name="resultFileName" stringValue="${sourceFileName}"/>
-      <activiti:field name="docxMoId" stringValue="${docxMoId}"/>
+      <activiti:field name="docxMoId" expression="${docxMoId}"/>
+      <activiti:field name="xsltGraphicRenameUri" stringValue=""/>
+      <activiti:field name="graphicsPrefix" stringValue=""/>
     </serviceTask>
     
     
@@ -179,7 +181,7 @@
     <exclusiveGateway id="determineDocx2XmlError" name="DOCX2XML Error ?"></exclusiveGateway>
     
     <sequenceFlow id="flowToDOCX2XMLError" sourceRef="determineDocx2XmlError" targetRef="docx2XmlError">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$!{EXCEPTION_OCCUR==true}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true}]]></conditionExpression>
     </sequenceFlow>
 
     <sequenceFlow id="flowToImportDITA" sourceRef="determineDocx2XmlError" targetRef="importDITA">

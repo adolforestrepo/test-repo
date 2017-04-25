@@ -1,5 +1,5 @@
 <rsuite-plugin
-        id="atd-main"
+        id="astd"
         dependsOn="atd-main-doctypes, rsuite-container-wizard-plugin">
     
     <lifecycleListener
@@ -16,7 +16,7 @@
 
 	<extensionProvider id="rsuite.WebService">
 
-		<staticWebService root="/astd-main" path="/WebContent" />
+		<staticWebService root="/astd" path="/WebContent" />
 
 		<!-- Web services implemented for AMA, alphabetized. -->
         <remoteApiDefinition id="astd.main.webservice.rsuite5.AddRoleToUser"
@@ -265,8 +265,11 @@
 	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdSetMoClassification" />     
 	    <actionHandler label="Action handler to convert xml to Incx."
 	        description="Convert the MO to Incx."
-	        type="org.astd.rsuite.workflow.actions.ProjectAstdXml2IncxActionHandler" />     
- 
+	        type="org.astd.rsuite.workflow.actions.ProjectAstdXml2IncxActionHandler" />    
+	    <actionHandler label="Action handler to convert docx to xml."
+	        description="Convert a docx to xml."
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdDocxToXmlActionHandler" />    
+	        
 
 	    <!-- Load workflow definitions   -->
 	    <workflowDefinitions>
