@@ -15,13 +15,13 @@
       <optionSet class="- topic/dl conversion_configuration/optionSet ">
         <option class="- topic/dlentry conversion_configuration/option ">
           <optionName class="- topic/dt conversion_configuration/optionName ">style2tagmap</optionName>
-          <optionValue class="- topic/dd conversion_configuration/optionValue "
-            >rsuite-te-dita-ot-plugin/xslt/word2dita/rsuiteSimpleBookSingleFile-style2tagmap.xml</optionValue>
+          <optionValue class="- topic/dd conversion_configuration/optionValue"
+            >astd-plugin/xslt/word2xml/article-style2tagmap.xml</optionValue>
         </option>
         <option class="- topic/dlentry conversion_configuration/option ">
           <optionName class="- topic/dt conversion_configuration/optionName ">docx2ditaXslt</optionName>
-          <optionValue class="- topic/dd conversion_configuration/optionValue "
-            >rsuite-te-dita-ot-plugin/xslt/word2dita/rsuiteSimpleBook-docx2dita.xsl</optionValue>
+          <optionValue class="- topic/dd conversion_configuration/optionValue"
+            >astd-plugin/xslt/word2xml/docx2article.xsl</optionValue>
         </option>
         <option class="- topic/dlentry conversion_configuration/option ">
           <optionName class="- topic/dt conversion_configuration/optionName ">loadXmlToRSuite</optionName>
