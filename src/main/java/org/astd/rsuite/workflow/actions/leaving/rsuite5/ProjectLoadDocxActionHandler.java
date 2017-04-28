@@ -1,15 +1,16 @@
 package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 import org.apache.commons.logging.Log;
+import org.astd.rsuite.utils.MOUtils;
 
 import com.reallysi.rsuite.api.ManagedObject;
-import com.reallysi.rsuite.api.control.NonXmlObjectSource;
-import com.reallysi.rsuite.api.control.ObjectInsertOptions;
+import com.reallysi.rsuite.api.control.ManagedObjectAdvisor;
 import com.reallysi.rsuite.api.workflow.activiti.BaseWorkflowAction;
 import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
-import org.astd.rsuite.utils.*;
 
 public class ProjectLoadDocxActionHandler
     extends BaseWorkflowAction
@@ -31,17 +32,11 @@ public class ProjectLoadDocxActionHandler
 
       String name = file.getName();
 
-      String[] aliases = new String[] {name};
-      //ObjectInsertOptions options = new ObjectInsertOptions(name, aliases, null, false);
+      ManagedObjectAdvisor moAdvisor = null;
+      InputStream is = new FileInputStream(file);
+      ManagedObject sourceMO = MOUtils.load(context, context.getAuthorizationService()
+          .getSystemUser(), name, is, moAdvisor);
 
-      MOUtils.getObjectInsertOptions(context, new NonXmlObjectSource(file), name, advisor)
-      
- 
-      
-      ManagedObject sourceMO = context.getManagedObjectService().load(context
-          .getAuthorizationService().getSystemUser(), new NonXmlObjectSource(file), options);
-//      context.getManagedObjectService().setDisplayName(context.getAuthorizationService()
-//          .getSystemUser(), sourceMO.getId(), name);
       wfLog.info("Loaded source mo " + name + " with id " + sourceMO.getId());
 
       context.setVariable(ATD_VAR_DOCX_ID, sourceMO.getId());
