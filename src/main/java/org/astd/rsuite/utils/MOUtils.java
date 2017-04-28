@@ -15,8 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import com.reallysi.rsuite.api.ObjectType;
-import com.reallysi.rsuite.api.ManagedObject;
 
 import javax.xml.namespace.QName;
 import javax.xml.transform.TransformerException;
@@ -39,6 +37,7 @@ import com.reallysi.rsuite.api.ContentAssemblyItem;
 import com.reallysi.rsuite.api.ManagedObject;
 import com.reallysi.rsuite.api.ManagedObjectReference;
 import com.reallysi.rsuite.api.MetaDataItem;
+import com.reallysi.rsuite.api.ObjectType;
 import com.reallysi.rsuite.api.RSuiteException;
 import com.reallysi.rsuite.api.Session;
 import com.reallysi.rsuite.api.User;
@@ -888,10 +887,10 @@ public class MOUtils
       }
     }
   }
-  
+
   /**
-   * Update an MO with new content provided by the user.
-   * The content is updated as a draft version, not checked-in.
+   * Update an MO with new content provided by the user. The content is updated as a draft version,
+   * not checked-in.
    * 
    * @param user
    * @param moService
@@ -899,52 +898,41 @@ public class MOUtils
    * @param objectSource
    * @throws RSuiteException
    */
-  public static void updateMOWithoutCheckin(
-          User user,
-          ManagedObjectService moService,
-          String moId,
-          ObjectSource objectSource)
-  throws RSuiteException { 
-      
-      if (!moService.isCheckedOutAuthor(user, moId))
-          moService.checkOut(user, moId);
-      moService.update(
-              user, 
-              moId, 
-              objectSource, 
-              new ObjectUpdateOptions());
+  public static void updateMOWithoutCheckin(User user, ManagedObjectService moService, String moId,
+      ObjectSource objectSource) throws RSuiteException {
+
+    if (!moService.isCheckedOutAuthor(user, moId))
+      moService.checkOut(user, moId);
+    moService.update(user, moId, objectSource, new ObjectUpdateOptions());
   }
-  
+
   /**
-   * Locate and read a resource in a given folder within the main plugin, and returns the inputstream.
-   * The caller is required to specify from which folder it wants to read the resource.
+   * Locate and read a resource in a given folder within the main plugin, and returns the
+   * inputstream. The caller is required to specify from which folder it wants to read the resource.
    * 
    * @param context
    * @param folderName Plugin's folder name.
    * @param resourceName Plugin's resource name.
    * @return InputStream Inputstream of the object read from the plugin.
    */
-  public static InputStream loadMoFromInternalResource(
-      ExecutionContext context,
-      String folderName,
+  public static InputStream loadMoFromInternalResource(ExecutionContext context, String folderName,
       String resourceName) {
-    
-    Plugin plugin = context.getPluginManager().get(PLUGIN_ID_HOST);    
+
+    Plugin plugin = context.getPluginManager().get(PLUGIN_ID_HOST);
     File pluginPath = plugin.getLocation();
     ZipFile zipFile = null;
     try {
       zipFile = new ZipFile(pluginPath.getAbsolutePath());
       final Enumeration<? extends ZipEntry> entries = zipFile.entries();
       while (entries.hasMoreElements()) {
-          final ZipEntry entry = entries.nextElement();
-          if (entry.getName().contains(folderName) && 
-                  entry.getName().contains(resourceName)) {
-              
-            return plugin.getResourceAsStream(entry.getName());            
-          }
+        final ZipEntry entry = entries.nextElement();
+        if (entry.getName().contains(folderName) && entry.getName().contains(resourceName)) {
+
+          return plugin.getResourceAsStream(entry.getName());
+        }
       }
-    } catch(IOException ioEx) {
-      log.error("Unable to read the requested resource in the plugin.",ioEx);
+    } catch (IOException ioEx) {
+      log.error("Unable to read the requested resource in the plugin.", ioEx);
     } finally {
       try {
         zipFile.close();
@@ -952,12 +940,13 @@ public class MOUtils
         log.error("Failed to read zip file: " + e);
       }
     }
-    
+
     return null;
   }
-  
+
   /**
-   * Check if exists a ManagedObject in the repository with the same metadata name and value assigned.
+   * Check if exists a ManagedObject in the repository with the same metadata name and value
+   * assigned.
    * 
    * @param context
    * @param metadataName
@@ -966,73 +955,68 @@ public class MOUtils
    * @return boolean
    * @throws RSuiteException
    */
-  public static boolean existsManagedObjectWithMetadata(
-      ExecutionContext context,
-      String metadataName,
-      String metadataValue,
-      String localName) throws RSuiteException {
-    
+  public static boolean existsManagedObjectWithMetadata(ExecutionContext context,
+      String metadataName, String metadataValue, String localName) throws RSuiteException {
+
     NameValuesPair pair = new NameValuesPair(metadataName, metadataValue);
     QName qname = new QName(localName);
 
-    return SearchUtils.searchForManagedObjects(
-        context.getAuthorizationService().getSystemUser(), 
-        context.getSearchService(), 
-        qname, 
-        false, 
-        pair, 
-        0).size() > 0;
+    return SearchUtils.searchForManagedObjects(context.getAuthorizationService().getSystemUser(),
+        context.getSearchService(), qname, false, pair, 0).size() > 0;
   }
-  
-  public static List<ManagedObject> getChildrenByObjectType(ExecutionContext context,
-			String moId, final ObjectType objectType) throws RSuiteException {
-		
-		ChildMoFilter filter = new ChildMoFilter() {
-			
-			public boolean accept(ManagedObject mo) {
-				if (mo.getObjectType() == objectType) {
-					return true;
-				}
-				return false;
-			}
-		};
 
-		return getChildrenByFilter(context, moId, filter,false);
-	}
-  
-  private static List<ManagedObject> getChildrenByFilter(
-			ExecutionContext context, String moId, ChildMoFilter filter,
-			boolean firstOnly) throws RSuiteException {
-		User user = context.getAuthorizationService().getSystemUser();
+  public static List<ManagedObject> getChildrenByObjectType(ExecutionContext context, String moId,
+      final ObjectType objectType) throws RSuiteException {
 
-		ManagedObjectService moSrv = context.getManagedObjectService();
+    ChildMoFilter filter = new ChildMoFilter() {
 
-		List<ManagedObject> resultList = new ArrayList<ManagedObject>();
-		
-		String browseUri = BrowseUtils.getBrowserUri(context, moId);
+      public boolean accept(ManagedObject mo) {
+        if (mo.getObjectType() == objectType) {
+          return true;
+        }
+        return false;
+      }
+    };
 
-		List<ManagedObject> nodes = moSrv.getChildrenDisplayObjects(user, moId, browseUri, 0, 2000).getManagedObjects();
+    return getChildrenByFilter(context, moId, filter, false);
+  }
 
-		for (ManagedObject mo : nodes) {
+  private static List<ManagedObject> getChildrenByFilter(ExecutionContext context, String moId,
+      ChildMoFilter filter, boolean firstOnly) throws RSuiteException {
+    User user = context.getAuthorizationService().getSystemUser();
 
-			if (mo != null && filter.accept(mo)) {
-				resultList.add(mo);
-				
-				if (firstOnly){
-					break;
-				}
-			}
+    ManagedObjectService moSrv = context.getManagedObjectService();
 
-		}
+    List<ManagedObject> resultList = new ArrayList<ManagedObject>();
 
-		return resultList;
-	}
-  
-	public static List<ManagedObject> getChildrenRef(ExecutionContext context, String moId) throws RSuiteException {
-		List<ManagedObject> moRef = getChildrenByObjectType(context, moId, ObjectType.MANAGED_OBJECT_REF);
-		List<ManagedObject> caRef = getChildrenByObjectType(context, moId, ObjectType.CONTENT_ASSEMBLY_REF);
-		caRef.addAll(moRef);
-		
-		return caRef;
-	}
+    String browseUri = BrowseUtils.getBrowserUri(context, moId);
+
+    List<ManagedObject> nodes = moSrv.getChildrenDisplayObjects(user, moId, browseUri, 0, 2000)
+        .getManagedObjects();
+
+    for (ManagedObject mo : nodes) {
+
+      if (mo != null && filter.accept(mo)) {
+        resultList.add(mo);
+
+        if (firstOnly) {
+          break;
+        }
+      }
+
+    }
+
+    return resultList;
+  }
+
+  public static List<ManagedObject> getChildrenRef(ExecutionContext context, String moId)
+      throws RSuiteException {
+    List<ManagedObject> moRef = getChildrenByObjectType(context, moId,
+        ObjectType.MANAGED_OBJECT_REF);
+    List<ManagedObject> caRef = getChildrenByObjectType(context, moId,
+        ObjectType.CONTENT_ASSEMBLY_REF);
+    caRef.addAll(moRef);
+
+    return caRef;
+  }
 }

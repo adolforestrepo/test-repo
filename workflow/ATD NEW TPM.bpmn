@@ -166,8 +166,8 @@
     
     
     <serviceTask id="docX2XMLTransform" name="DocX2XML Transform" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdDocxToXmlActionHandler">
-      <activiti:field name="styleMapUri" stringValue="rsuite:/res/plugin/astd/xslt/word2xml/article-style2tagmap.xml"/>
-      <activiti:field name="xsltUri" stringValue="rsuite:/res/plugin/astd/xslt/word2xml/docx2article.xsl"/>
+      <activiti:field name="styleMapUri" stringValue="rsuite:/res/plugin/astd-plugin/xslt/word2xml/article-style2tagmap.xml"/>
+      <activiti:field name="xsltUri" stringValue="rsuite:/res/plugin/astd-plugin/xslt/word2xml/docx2article.xsl"/>
       <activiti:field name="outputPath" stringValue="${exportDir}"/>
       <activiti:field name="resultFileName" stringValue="${sourceFileName}"/>
       <activiti:field name="docxMoId" expression="${docxMoId}"/>

@@ -16,12 +16,12 @@
         <option class="- topic/dlentry conversion_configuration/option ">
           <optionName class="- topic/dt conversion_configuration/optionName ">style2tagmap</optionName>
           <optionValue class="- topic/dd conversion_configuration/optionValue "
-            >astd/xslt/word2xml/article-style2tagmap.xml</optionValue>
+            >astd-plugin/xslt/word2xml/article-style2tagmap.xml</optionValue>
         </option>
         <option class="- topic/dlentry conversion_configuration/option ">
           <optionName class="- topic/dt conversion_configuration/optionName ">docx2ditaXslt</optionName>
           <optionValue class="- topic/dd conversion_configuration/optionValue "
-            >astd/xslt/word2xml/docx2article.xsl</optionValue>
+            >astd-plugin/xslt/word2xml/docx2article.xsl</optionValue>
         </option>
         <option class="- topic/dlentry conversion_configuration/option ">
           <optionName class="- topic/dt conversion_configuration/optionName ">loadXmlToRSuite</optionName>

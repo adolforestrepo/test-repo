@@ -16,8 +16,8 @@
 	<!-- NOTE: This is a reference to the transform as provided by the DITA4Publishers 
 		RSuite plugin. Within OxygenXML, you can use an XML entity catalog to remap 
 		this URI to the location in your local dev environment. -->
-	<xsl:import
-		href="rsuite:/res/plugin/dita4publishers/xslt/word2dita/docx2dita.xsl" />
+	
+	<xsl:import href="rsuite:/res/plugin/dita4publishers/toolkit_plugins/org.dita4publishers.word2dita/xsl/docx2dita.xsl"/>
 
 
 	<xsl:output doctype-public="urn:pubid:astd.com/doctypes/dita/article"

@@ -1,5 +1,5 @@
 <rsuite-plugin
-        id="astd"
+        id="astd-plugin"
         dependsOn="atd-main-doctypes, rsuite-container-wizard-plugin">
     
     <lifecycleListener
@@ -16,7 +16,7 @@
 
 	<extensionProvider id="rsuite.WebService">
 
-		<staticWebService root="/astd" path="/WebContent" />
+		<staticWebService root="/astd-plugin" path="/WebContent" />
 
 		<!-- Web services implemented for AMA, alphabetized. -->
         <remoteApiDefinition id="astd.main.webservice.rsuite5.AddRoleToUser"
