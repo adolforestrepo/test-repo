@@ -4,12 +4,19 @@ import org.apache.commons.logging.Log;
 import org.astd.rsuite.domain.ContainerType;
 
 import com.reallysi.rsuite.api.ContentAssembly;
+import com.reallysi.rsuite.api.RSuiteException;
 import com.reallysi.rsuite.api.User;
 import com.reallysi.rsuite.api.control.ContentAssemblyCreateOptions;
 import com.reallysi.rsuite.api.control.ObjectAttachOptions;
+import com.reallysi.rsuite.api.extensions.ExecutionContext;
+import com.reallysi.rsuite.api.security.ACE;
+import com.reallysi.rsuite.api.security.ACL;
+import com.reallysi.rsuite.api.security.ContentPermission;
+import com.reallysi.rsuite.api.security.Role;
 import com.reallysi.rsuite.api.workflow.activiti.BaseWorkflowAction;
 import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
 import com.reallysi.rsuite.service.ContentAssemblyService;
+import com.reallysi.rsuite.service.SecurityService;
 
 public class ProjectCreateCAsActionHandler
     extends BaseWorkflowAction
@@ -68,29 +75,15 @@ public class ProjectCreateCAsActionHandler
       context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
 
     }
-
-
-
   }
 
-  /*
-   * public final static ACL getAclForResubmittedApplicationMo(ExecutionContext context) throws
-   * RSuiteException {
-   * 
-   * SecurityService securityService = context.getSecurityService();
-   * 
-   * ACE cptAdminAce = securityService.constructACE(UniversalRoles.CPT_ADMIN.getRoleName(),
-   * ContentPermission.values());
-   * 
-   * ACE cptStaffAce = securityService.constructACE(UniversalRoles.CPT_STAFF.getRoleName(),
-   * editOnlyPermissions);
-   * 
-   * return securityService.constructACL(new ACE[]
-   * 
-   * {cptAdminAce, cptStaffAce}
-   * 
-   * );
-   * 
-   * }
-   */
+  public final static ACL getAclForResubmittedApplicationMo(ExecutionContext context)
+      throws RSuiteException {
+    SecurityService securityService = context.getSecurityService();
+    ACE cptAdminAce = securityService.constructACE(Role.ROLE_NAME_RSUITE_USER_ADMIN,
+        ContentPermission.values());
+    ACE cptStaffAce = securityService.constructACE(Role.ROLE_NAME_ANY, ContentPermission.EDIT);
+
+    return securityService.constructACL(new ACE[] {cptAdminAce, cptStaffAce});
+  }
 }
