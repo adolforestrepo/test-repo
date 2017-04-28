@@ -191,12 +191,12 @@ Properties:
                  deploy-custom-runtime-xquery-files,
                  deploy-deltaxml-merge-libraries,
                  deploy-rsuite-plugins,
-                 deploy-initial-content,
 				 deploy-hotfolders,
 		  		 build-project-package,
 		         deploy-Astd-Conversion-Configuration,
 				 LoadDtds,
-		ConfigureLayeredMetadata"
+		ConfigureLayeredMetadata,
+		deploy-initial-content"
             />
 
 	<target name="deploy"

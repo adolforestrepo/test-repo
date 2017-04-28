@@ -1,5 +1,6 @@
 package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
+import org.activiti.engine.delegate.Expression;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 
@@ -15,18 +16,19 @@ implements TempWorkflowConstants {
 	public static final String MO_SPECIFYING_VARIABLE_NAME_PARAMETER = "moSpecifyingVariableName";
 	
 	protected Log wfLog;
-	
+    protected Expression moSpecifyingVariableName;
+
 	@Override
 	public void execute(WorkflowContext context) throws Exception {
 		wfLog = context.getWorkflowLog();
-		String moSpecifyingVariableName = getParameter(MO_SPECIFYING_VARIABLE_NAME_PARAMETER);
+		String VariableName = resolveExpression(moSpecifyingVariableName);
 		
-		if (StringUtils.isBlank(moSpecifyingVariableName)) {
+		if (StringUtils.isBlank(VariableName)) {
 			throw new RuntimeException("No value for required parameter 'moSpecifyingVariableName'");
 		}
 		
 		MoListWorkflowObject newMoList = new MoListWorkflowObject();
-		Object moSpecifier = context.getVariable(moSpecifyingVariableName);
+		Object moSpecifier = context.getVariable(VariableName);
 		if (moSpecifier == null) {
 		      throw new RSuiteException("No value in workflow context for variable named \"" + moSpecifyingVariableName + "\". This reflects an error in the workflow process definition.");
 		}

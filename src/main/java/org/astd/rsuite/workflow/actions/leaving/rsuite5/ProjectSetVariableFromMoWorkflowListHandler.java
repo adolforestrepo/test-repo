@@ -1,5 +1,6 @@
 package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
+import org.activiti.engine.delegate.Expression;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -19,6 +20,7 @@ implements TempWorkflowConstants {
 	 * Workflow log
 	 */
 	protected Log wfLog;
+	 protected Expression targetVariableName;
 
 	@Override
 	public void execute(WorkflowContext context) throws Exception {
@@ -26,9 +28,10 @@ implements TempWorkflowConstants {
 		wfLog = context.getWorkflowLog();
 	    logActionHandlerParameters(wfLog);
 	    
-	    String targetVariableName = getParameter("targetVariableName"); 
+	    String varNamee = resolveExpression(targetVariableName);
+	 
 	    
-	    if (StringUtils.isBlank(targetVariableName)) {
+	    if (StringUtils.isBlank(varNamee)) {
 	      throw new RuntimeException("No value for required parameter 'targetVariableName'");
 	    }
 	    MoListWorkflowObject moList = context.getMoListWorkflowObject();
@@ -38,7 +41,7 @@ implements TempWorkflowConstants {
 	      if (i++ > 0) buf.append(",");
 	      buf.append(mo.getMoid());
 	    }
-	    context.setVariable(targetVariableName, buf.toString());
+	    context.setVariable(varNamee, buf.toString());
 		
 	}
 	
