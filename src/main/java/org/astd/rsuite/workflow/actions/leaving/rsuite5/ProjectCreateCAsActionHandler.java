@@ -34,10 +34,13 @@ public class ProjectCreateCAsActionHandler
       caCreateOp.setSilentIfExists(true);
 
       caCreateOp.setType(ContainerType.FOLDER.getSystemName());
-      ContentAssembly magazinesCa = caSrv.createContentAssembly(user, "4", MAGAZINES_NAME, caCreateOp);
-      ContentAssembly tpmCa = caSrv.createContentAssembly(user, magazinesCa.getId(), TPM_NAME, caCreateOp);
+      ContentAssembly magazinesCa = caSrv.createContentAssembly(user, "4", MAGAZINES_NAME,
+          caCreateOp);
+      ContentAssembly tpmCa = caSrv.createContentAssembly(user, magazinesCa.getId(), TPM_NAME,
+          caCreateOp);
       caCreateOp.setType(ContainerType.CA.getSystemName());
-      ContentAssembly articleCA = caSrv.createContentAssembly(user, tpmCa.getId(), context.getVariableAsString(ATD_VAR_SOURCE_FILENAME), caCreateOp);
+      ContentAssembly articleCA = caSrv.createContentAssembly(user, tpmCa.getId(), context
+          .getVariableAsString(ATD_VAR_SOURCE_FILENAME), caCreateOp);
 
       caSrv.attach(user, articleCA.getId(), docxId, new ObjectAttachOptions());
       context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
@@ -48,18 +51,46 @@ public class ProjectCreateCAsActionHandler
       caCreateOp.setSilentIfExists(true);
 
       caCreateOp.setType(ContainerType.FOLDER.getSystemName());
-      ContentAssembly magazinesCa = caSrv.createContentAssembly(user, "4", MAGAZINES_NAME, caCreateOp);
-      ContentAssembly tpmCa = caSrv.createContentAssembly(user, magazinesCa.getId(), TPM_NAME, caCreateOp);
-      ContentAssembly volumeCa = caSrv.createContentAssembly(user, tpmCa.getId(), volume, caCreateOp);
+      ContentAssembly magazinesCa = caSrv.createContentAssembly(user, "4", MAGAZINES_NAME,
+          caCreateOp);
+      ContentAssembly tpmCa = caSrv.createContentAssembly(user, magazinesCa.getId(), TPM_NAME,
+          caCreateOp);
+      ContentAssembly volumeCa = caSrv.createContentAssembly(user, tpmCa.getId(), volume,
+          caCreateOp);
 
       caCreateOp.setType(ContainerType.CA.getSystemName());
-      ContentAssembly monthCa = caSrv.createContentAssembly(user, volumeCa.getId(), "Issue " + context.getVariableAsString(ATD_VAR_MONTH), caCreateOp);
-      ContentAssembly articleCA = caSrv.createContentAssembly(user, monthCa.getId(), context.getVariableAsString(ATD_VAR_SOURCE_FILENAME), caCreateOp);
+      ContentAssembly monthCa = caSrv.createContentAssembly(user, volumeCa.getId(), "Issue "
+          + context.getVariableAsString(ATD_VAR_MONTH), caCreateOp);
+      ContentAssembly articleCA = caSrv.createContentAssembly(user, monthCa.getId(), context
+          .getVariableAsString(ATD_VAR_SOURCE_FILENAME), caCreateOp);
 
       caSrv.attach(user, articleCA.getId(), docxId, new ObjectAttachOptions());
       context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
 
     }
 
+
+
   }
+
+  /*
+   * public final static ACL getAclForResubmittedApplicationMo(ExecutionContext context) throws
+   * RSuiteException {
+   * 
+   * SecurityService securityService = context.getSecurityService();
+   * 
+   * ACE cptAdminAce = securityService.constructACE(UniversalRoles.CPT_ADMIN.getRoleName(),
+   * ContentPermission.values());
+   * 
+   * ACE cptStaffAce = securityService.constructACE(UniversalRoles.CPT_STAFF.getRoleName(),
+   * editOnlyPermissions);
+   * 
+   * return securityService.constructACL(new ACE[]
+   * 
+   * {cptAdminAce, cptStaffAce}
+   * 
+   * );
+   * 
+   * }
+   */
 }
