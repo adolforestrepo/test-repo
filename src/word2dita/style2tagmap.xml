@@ -1,0 +1,2922 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<style2tagmap
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:public:dita4publishers.org:namespaces:word2dita:style2tagmap ../../doctypes/style2tagmap/xsd/style2tagmap.xsd"
+  xmlns="urn:public:dita4publishers.org:namespaces:word2dita:style2tagmap">
+   <title>RSuite Simple Book Style-to-Tag Map</title>
+   <documentation
+      xmlns:html="http://www.w3.org/1999/xhtml">
+      <html:div
+         xmlns="http://www.w3.org/1999/xhtml">
+         <p>Defines the RSuite TE mapping from MS Word styles to DITA markup.</p>
+         <p>NOTE: The first non-skipped paragraph in the document should styled as "Title", which is mapped to &lt;title&gt;
+            within &lt;pubmap&gt; and triggers the generation of the root output map.</p>
+      </html:div>
+   </documentation>
+   <styles>
+
+      <!-- define outputs first -->
+      <output
+         doctype-public="urn:pubid:eleducation.org:doctypes:dita:pubmap"
+         doctype-system="pubmap.dtd"
+         mapType="pubmap"
+         name="pubmap"
+         prologType="topicmeta"/>
+
+      <output
+         doctype-public="urn:pubid:eleducation.org:doctypes:dita:topic"
+         doctype-system="topic.dtd"
+         name="topic"/>
+      
+      <output
+         doctype-public="urn:pubid:eleducation.org:doctypes:dita:part"
+         doctype-system="part.dtd"
+         name="part"/>      
+
+      <output
+         doctype-public="urn:pubid:eleducation.org:doctypes:dita:chapter"
+         doctype-system="chapter.dtd"
+         name="chapter"/>
+     
+      <output
+         doctype-public="urn:pubid:eleducation.org:doctypes:dita:subsection"
+         doctype-system="subsection.dtd"
+         name="subsection"/>
+
+      <output
+         doctype-public="urn:pubid:eleducation.org:doctypes:dita:core_practice"
+         doctype-system="core_practice.dtd"
+         name="core_practice"/> 
+
+      <output
+         doctype-public="urn:pubid:eleducation.org:doctypes:dita:protocol"
+         doctype-system="protocol.dtd"
+         name="protocol"/>      
+      
+      <!-- start paragraph styles that map to topic type output -->  
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL BM Part"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="BM_Part"/>
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="2"
+         structureType="topic"
+         styleName="EL BM Section"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="BM_Section"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE ACTIVITY BANK"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Activty_Bank"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE ALL BLOCK"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="ALL_Block"/>
+      </paragraphStyle>       
+      
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE APPENDIX"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Appendix"/>
+      </paragraphStyle>       
+      
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE ASSESSMENT OVERVIEW"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Assessment_Overview"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE BACK MATTER"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Back_Matter"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE CONTENT OVERVIEW"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Content_Overview"/>
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE FRONT MATTER"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Front_Matter"/>
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE HOMEWORK"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Homework"/>
+      </paragraphStyle> 
+      
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE IMPLEMENTATION GUIDE"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Implementation_Guide"/>
+      </paragraphStyle>       
+      
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE LESSON"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Lesson"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE LITERACY LAB"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Literacy_Lab"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE MINIBOOK"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Minibook"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="0"
+         structureType="mapTitle"
+         containerType="pubtitle"
+         styleName="EL DOCTYPE PROFESSIONAL BOOK"
+         tagName="mainpubtitle">
+         <mapProperties format="pubmap" prologType="topicmeta" tagName="title"/>
+<!--         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Professional_Book"/>
+-->      </paragraphStyle>      
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE RECOMMENDED TEXTS"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Recommended_Texts"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE TASK"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Task"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE RECOMMENDED TEXTS"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Recommended_Texts"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE SKILLS ASSESSMENT"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Skills_Assessment"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE SKILLS RESOURCE"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Skills_Resource"/>
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE SUPPORTING MATERIALS"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Supporting_Materials"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE STUDENT NOTEBOOK"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Student_Notebook"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE TEACHER NOTE"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Teacher_Note"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="0"
+         structureType="topic"
+         styleName="EL DOCTYPE TASK"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Task"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL FM Section 1"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="FM_Section_1"/>
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="2"
+         structureType="topic"
+         styleName="EL FM Section 2"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="FM_Section_2"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="3"
+         structureType="topic"
+         styleName="EL FM Section 3"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="FM_Section_3"/>
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="4"
+         structureType="topic"
+         styleName="EL FM Section 4"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="FM_Section_4"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Additional Support"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Additional_Support"/>
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Accountable Independent Reading"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Accountable_Independent_Reading"/>
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Agenda"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Agenda"/>
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Assessment"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Assessment"/>
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Assessment - Student"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Assessment-Student"/>
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Assessment - Teacher"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Assessment-Teacher"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="topic"
+         styleName="EL T CCSS"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="CCSS"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="topic"
+         styleName="EL T Checklist"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Checklist"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Daily Learning Targets"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Daily_Learning_Targets"/>
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Generic"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Generic"/>
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Glossary"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Glossary"/>
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Homework"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Homework"/>
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Glossary"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Glossary"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Lesson"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Lesson"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Materials"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Materials"/>
+      </paragraphStyle>      
+      
+      
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Meeting Student's Needs"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Meeting_Students_Needs"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Ongoing Assessment"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Ongoing_Assessment"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Opening"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Opening"/>
+      </paragraphStyle> 
+      
+      <paragraphStyle
+         level="1"
+         structureType="topicTitle"
+         styleName="EL PB Part L1"
+         tagName="title"
+         outputclass="Title">
+        <topicrefProperties topicrefType="topicref"/>
+        <topicProperties
+            bodyType="body"
+            format="part"
+            topicDoc="yes"
+            topicType="part"/>
+      </paragraphStyle>       
+
+      <paragraphStyle
+         level="1"
+         structureType="topicTitle"
+         styleName="EL PB Chapter L1"
+         tagName="title"
+         outputclass="Title">
+         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="chapter"
+            topicDoc="yes"
+            topicType="chapter"/>
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="2"
+         structureType="topicTitle"
+         styleName="EL PB Chapter L2"
+         tagName="title"
+         outputclass="Title">
+         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="chapter"
+            topicDoc="yes"
+            topicType="chapter"/>
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="2"
+         structureType="topicTitle"
+         styleName="EL PB Core Practice L2"
+         tagName="title">
+         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="core_practice"
+            topicDoc="yes"
+            topicType="core_practice"/>
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="3"
+         structureType="topicTitle"
+         styleName="EL PB Core Practice L3"
+         tagName="title">
+         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="core_practice"
+            topicDoc="yes"
+            topicType="core_practice"/>
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="4"
+         structureType="topicTitle"
+         styleName="EL PB Protocol L4"
+         tagName="title">
+         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="protocol"
+            topicDoc="yes"
+            topicType="protocol"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="2"
+         structureType="topicTitle"
+         styleName="EL PB Section L2"
+         tagName="title">
+         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="subsection"
+            topicDoc="yes"
+            topicType="subsection"
+            outputclass="Section"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="3"
+         structureType="topicTitle"
+         styleName="EL PB Section L3"
+         tagName="title">
+         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="subsection"
+            topicDoc="yes"
+            topicType="subsection"
+            outputclass="Section"/>
+      </paragraphStyle>    
+
+      <paragraphStyle
+         level="3"
+         structureType="topicTitle"
+         styleName="EL PB Subsection L3"
+         tagName="title">
+         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="subsection"
+            topicDoc="yes"
+            topicType="subsection"
+            outputclass="Subsection"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="4"
+         structureType="topicTitle"
+         styleName="EL PB Subsection L4"
+         tagName="title">
+         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="subsection"
+            topicDoc="yes"
+            topicType="subsection"
+            outputclass="Subsection"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="4"
+         structureType="topicTitle"
+         styleName="EL PB Sub-Subsection L4"
+         tagName="title">
+         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="subsection"
+            topicDoc="yes"
+            topicType="subsection"
+            outputclass="Sub-Subsection"/>
+      </paragraphStyle> 
+
+      <paragraphStyle
+         level="5"
+         structureType="topicTitle"
+         styleName="EL PB Sub-Subsection L5"
+         tagName="title">
+         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="subsection"
+            topicDoc="yes"
+            topicType="subsection"
+            outputclass="Sub-Subsection"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="3"
+         structureType="topicTitle"
+         styleName="EL T Section"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="section"
+            topicDoc="no"
+            topicType="section"
+            outputclass="Section"/>
+      </paragraphStyle>   
+      
+      <paragraphStyle
+         level="4"
+         structureType="topicTitle"
+         styleName="EL T Subsection"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="subsection"
+            topicDoc="no"
+            topicType="subsection"
+            outputclass="Subsection"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Sidebar"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Sidebar"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Student Checklist"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Student Checklist"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Student Handout"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Student Handout"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Supporting ELLs"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Supporting_ELLs"/>
+      </paragraphStyle> 
+      
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Teaching Notes"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Teaching_Notes"/>
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Tech and Multimedia"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Tech_and_Multimedia"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="1"
+         structureType="topic"
+         styleName="EL T Vocabulary"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="no"
+            topicType="topic"
+            outputclass="Vocabulary"/>
+      </paragraphStyle>      
+      <!-- end paragraph styles that map to topic type output -->      
+      <!-- start paragraph styles that map to sections -->   
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Accountable Independent Reading"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Accountable_Independent_Reading^Title"
+         containerOutputclass="Accountable_Independent_Reading">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Additional Resources"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Additional_Resources^Title"
+         containerOutputclass="Additional_Resources">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Advance"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Advance^Title"
+         containerOutputclass="Advance">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Agenda"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Agenda^Title"
+         containerOutputclass="Agenda">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Assessment"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Assessment^Title"
+         containerOutputclass="Assessment">         
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Assessment Checklist"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Assessment_Checklist^Title"
+         containerOutputclass="Assessment_Checklist">         
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Assessment Directions"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Assessment_Directions^Title"
+         containerOutputclass="Assessment_Directions">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Assessment Part"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Assessment_Part^Title"
+         containerOutputclass="Assessment_Part">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S CCSS"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="CCSS^Title"
+         containerOutputclass="CCSS">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Character Habits"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Character_Habits^Title"
+         containerOutputclass="Character_Habits">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Checklist"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Checklist^Title"
+         containerOutputclass="Checklist">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Closing and Assessment"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Closing_Assessment^Title"
+         containerOutputclass="Closing_Assessment">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Criteria for Success"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Criteria_Success^Title"
+         containerOutputclass="Criteria_Success">         
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Content Connections"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Content_Connections^Title"
+         containerOutputclass="Content_Connections">         
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Cycle Details"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Cycle_Details^Title"
+         containerOutputclass="Cycle_Details"/>
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Cycle Glance"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Cycle_Glance^Title"
+         containerOutputclass="Cycle_Glance">         
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Cycle High-Frequency Word"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Cycle_High-Frequency_Word^Title"
+         containerOutputclass="Cycle_High-Frequency_Word">         
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Cycle Phonemes"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Cycle_Phonemes^Title"
+         containerOutputclass="Cycle_Phonemes">         
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Cycle Word List"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Cycle_Word_List^Title"
+         containerOutputclass="Cycle_Word_List">         
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Daily Learning Targets"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Daily_Learning_Targets^Title"
+         containerOutputclass="Daily_Learning_Targets">         
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Four T's"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Four_Ts^Title"
+         containerOutputclass="Four_Ts">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Family Letter"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Family_Letter^Title"
+         containerOutputclass="Family_Letter">         
+      </paragraphStyle>
+
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Focus Question"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Focus_Question^Title"
+         containerOutputclass="Focus_Question">         
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Generic"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Generic^Title"
+         containerOutputclass="Generic">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Guiding Questions"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Guiding_Questions^Title"
+         containerOutputclass="Guiding_Questions">         
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Handout"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Handout^Title"
+         containerOutputclass="Handout">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Homework"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Homework^Title"
+         containerOutputclass="Homework">         
+      </paragraphStyle>    
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Labs Connections"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Labs_Connections^Title"
+         containerOutputclass="Labs_Connections">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Lesson Content"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Lesson_Content^Title"
+         containerOutputclass="Lesson_Content">         
+      </paragraphStyle>  
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Lesson - Entry"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Lesson_Entry^Title"
+         containerOutputclass="Lesson_Entry">         
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Lesson - Entry Directions"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Lesson_Entry_Directions^Title"
+         containerOutputclass="Lesson_Entry_Directions">         
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Lesson Directions"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Lesson_Directions^Title"
+         containerOutputclass="Lesson_Directions">         
+      </paragraphStyle>  
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Lesson Sequence"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Lesson_Sequence^Title"
+         containerOutputclass="Lesson_Sequence">         
+      </paragraphStyle>  
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Letter Home"
+         topicZone="body"
+         sectionType="section"
+         useAsTitle="yes"
+         outputclass="Letter_Home^Title"
+         containerOutputclass="Letter_Home">         
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Learning Target"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Learning_Target^Title"
+         containerOutputclass="Learning_Target">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Lit Lab - Checklist"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Literacy_Lab_Checklist^Title"
+         containerOutputclass="Literacy_Lab_Checklist">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Lit Lab - Daily Schedule"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Literacy_Lab_Daily_Schedule^Title"
+         containerOutputclass="Literacy_Lab_Daily_Schedule">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Lit Lab - Day by Day Schedule"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Literacy_Lab_Day_by_Day_Schedule^Title"
+         containerOutputclass="Literacy_Lab_Day_by_Day_Schedule">
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Lit Lab - Lab"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Literacy_Lab^Title"
+         containerOutputclass="Literacy_Lab">
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Lit Lab - Stage"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Literacy_Lab_Stage^Title"
+         containerOutputclass="Literacy_Lab_Stage">
+      </paragraphStyle>
+
+         <paragraphStyle
+            level="plusOne"
+            structureType="section"
+            styleName="EL S Lit Lab - Stage Glance"
+            sectionType="section"
+            topicZone="body"
+            useAsTitle="yes"
+            outputclass="Literacy_Lab_Stage_Glance^Title"
+            containerOutputclass="Literacy_Lab_Stage_Glance">
+         </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Long-Term Learning"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Long_Term_Learning^Title"
+         containerOutputclass="Long_Term_Learning">         
+      </paragraphStyle>
+
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Materials"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Materials^Title"
+         containerOutputclass="Materials">         
+      </paragraphStyle>
+      
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Meeting Student's Needs"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Meeting_Students_Needs^Title"
+         containerOutputclass="Meeting_Students_Needs">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Module Week Glance"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Module_Week_Glance^Title"
+         containerOutputclass="Module_Week_Glance">         
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Module Glance"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Module_Glance^Title"
+         containerOutputclass="Module_Glance">         
+      </paragraphStyle> 
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S NGSS Standard"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="NGSS_Standard^Title"
+         containerOutputclass="NGSS_Standard">         
+      </paragraphStyle> 
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Ongoing Assessment"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Ongoing_Assessment^Title"
+         containerOutputclass="Ongoing_Assessment">         
+      </paragraphStyle>        
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Opening"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Opening^Title"
+         containerOutputclass="Opening">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Optional - Student"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Optional-Student^Title"
+         containerOutputclass="Optional-Student">         
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Optional - Teacher"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Optional-Teacher^Title"
+         containerOutputclass="Optional-Teacher">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Overview"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Overview^Title"
+         containerOutputclass="Overview">         
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Performance Task"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Performance_Task^Title"
+         containerOutputclass="Performance_Task">         
+      </paragraphStyle>            
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Preparing to Teach"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Preparing_to_Teach^Title"
+         containerOutputclass="Preparing_to_Teach">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Preparation and Materials"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Preparation_Materials^Title"
+         containerOutputclass="Preparation_Materials">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Standard - Language"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Standard-Language^Title"
+         containerOutputclass="Standard-Language">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Standard - Reading"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Standard-Reading^Title"
+         containerOutputclass="Standard-Reading">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Section"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Section^Title"
+         containerOutputclass="Section">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Section - Break"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Section_Break^Title"
+         containerOutputclass="Section_Break">         
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Skills Connections"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Skills_Connections^Title"
+         containerOutputclass="Skills_Connections">         
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Small Group"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Small_Group^Title"
+         containerOutputclass="Small_Group">         
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Standards Assessed"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Standards_Assessed^Title"
+         containerOutputclass="Standards_Assessed">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Student Investigation"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Student_Investigation^Title"
+         containerOutputclass="Student_Investigation">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Student Notebooks"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Student_Notebooks^Title"
+         containerOutputclass="Student_Notebooks">         
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Student Options"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Student_Options^Title"
+         containerOutputclass="Student_Options">         
+      </paragraphStyle> 
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Supporting ELLs"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Supporting_ELLs^Title"
+         containerOutputclass="Supporting_ELLs">         
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Summative Assessment"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Summative_Assessment^Title"
+         containerOutputclass="Summative_Assessment">         
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task^Title"
+         containerOutputclass="Task">         
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task - Student Version"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Student_Version^Title"
+         containerOutputclass="Task_Student_Version">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task - Teacher Model"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Teacher_Model^Title"
+         containerOutputclass="Task_Teacher_Model">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Anchor Chart"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Anchor_Chart^Title"
+         containerOutputclass="Task_Anchor_Chart">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Description - Student"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Description_Student^Title"
+         containerOutputclass="Task_Description_Student">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Description - Teacher"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Description_Teacher^Title"
+         containerOutputclass="Task_Description_Teacher">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Format"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Format^Title"
+         containerOutputclass="Task_Format">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Standards"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Standards^Title"
+         containerOutputclass="Task_Standards">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Student Description"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Student_Description^Title"
+         containerOutputclass="Task_Student_Description">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Success"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Success^Title"
+         containerOutputclass="Task_Success">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Summary"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Summary^Title"
+         containerOutputclass="Task_Summary">         
+      </paragraphStyle>  
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Description - Student"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Description-Student^Title"
+         containerOutputclass="Task_Description-Student">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Description - Teacher"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Description-Teacher^Title"
+         containerOutputclass="Task_Description-Teacher">         
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Format"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Format^Title"
+         containerOutputclass="Task_Format">         
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Standards"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Standards^Title"
+         containerOutputclass="Task_Standards">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Success"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Success^Title"
+         containerOutputclass="Task_Success">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Student Description"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Student_Description^Title"
+         containerOutputclass="Task_Student_Description">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task - Student Version"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task-Student_Version^Title"
+         containerOutputclass="Task-Student_Version">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Summary"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Summary^Title"
+         containerOutputclass="Task_Summary">         
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task - Teacher Model"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Teacher_Model^Title"
+         containerOutputclass="Task_Teacher_Model">         
+      </paragraphStyle> 
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Task Teacher Options"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Task_Teacher_Options^Title"
+         containerOutputclass="Task_Teacher_Options">         
+      </paragraphStyle>       
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Teacher Background Info"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Teacher_Background_Info^Title"
+         containerOutputclass="Teacher_Background_Info">         
+      </paragraphStyle> 
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Teacher Guide"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Teacher_Guide^Title"
+         containerOutputclass="Teacher_Guide">         
+      </paragraphStyle>       
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Tech and Multimedia"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Tech_Multimedia^Title"
+         containerOutputclass="Tech_Multimedia">         
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Teacher Options"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Teacher_Options^Title"
+         containerOutputclass="Teacher_Options">         
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Teaching Notes"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Teaching_Notes^Title"
+         containerOutputclass="Teaching_Notes">         
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Texts"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Texts^Title"
+         containerOutputclass="Texts">         
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S UDL"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="UDL^Title"
+         containerOutputclass="UDL">         
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Unit Glance"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Unit_Glance^Title"
+         containerOutputclass="Unit_Glance">         
+      </paragraphStyle> 
+      
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Vocabulary"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Vocabulary^Title"
+         containerOutputclass="Vocabulary">         
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="plusOne"
+         structureType="section"
+         styleName="EL S Work Time"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Work_Time^Title"
+         containerOutputclass="Work_Time">         
+      </paragraphStyle>
+      <!-- end paragraph styles that map to sections -->
+      <!-- start paragraph styles -->
+<!--      <paragraphStyle 
+         styleName="EL DEF" 
+         tagName="dlentry"
+         containerType="dl"
+         outputclass="Definition_List_Item"
+         topicZone="body" 
+         level="1"/>      
+
+      <paragraphStyle 
+         styleName="EL DEF Heading" 
+         tagName="dthd" 
+         containerType="dl"
+         outputclass="Definition_List_Heading"
+         topicZone="body" 
+         level="1"/>-->
+
+      <paragraphStyle 
+         styleName="EL DEF" 
+         tagName="p"
+         outputclass="Definition_List_Item"
+         topicZone="body" 
+         level="1"/>      
+      
+      <paragraphStyle 
+         styleName="EL DEF Heading" 
+         tagName="p" 
+         outputclass="Definition_List_Heading"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL Fig Caption" 
+         tagName="p" 
+         outputclass="Fig_Caption"
+         topicZone="body" 
+         level="plusOne"/>      
+
+      <paragraphStyle 
+         styleName="EL Fig Image Ref" 
+         tagName="image" 
+         outputclass="Fig_Image_Ref"
+         topicZone="body" 
+         level="plusOne"/>
+
+      <paragraphStyle styleName="Endnote Text"
+         tagName="p"
+         topicZone="body"
+         outputclass="Endnote"/>
+
+      <paragraphStyle styleName="Footnote Text"
+         tagName="p"
+         topicZone="body"
+         outputclass="Footnote"/> 
+      
+      <paragraphStyle styleName="footnote text"
+         tagName="p"
+         topicZone="body"
+         outputclass="Footnote"/>       
+
+      <paragraphStyle 
+         styleName="EL P Activity Title" 
+         tagName="p" 
+         outputclass="Activity_Title"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL P Answer" 
+         tagName="p" 
+         outputclass="Answer"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="EL P Answer Correct" 
+         tagName="p" 
+         outputclass="Answer_Correct"
+         topicZone="body" 
+         level="1"/>      
+
+      <paragraphStyle 
+         styleName="EL P Assessment Heading" 
+         tagName="p" 
+         outputclass="Assessment_Heading"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL P Attribution" 
+         tagName="p" 
+         outputclass="Attribution"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="EL P Body Conclusion" 
+         tagName="p"
+         outputclass="Body_Conclusion"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL P Body Text" 
+         tagName="p" 
+         outputclass="Body_Text"
+         topicZone="body" 
+         level="1"/> 
+      
+      <paragraphStyle 
+         styleName="EL P Body Text Center" 
+         tagName="p" 
+         outputclass="Body_Text_Center"
+         topicZone="body" 
+         level="1"/>       
+      
+      <paragraphStyle 
+         styleName="EL P Body Text - Note" 
+         tagName="p" 
+         outputclass="Body_Text_Note"
+         topicZone="body" 
+         level="1"/>       
+
+      <paragraphStyle 
+         styleName="EL P Book Title" 
+         tagName="p" 
+         outputclass="Boook_Title"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL P Grade" 
+         tagName="li"
+         containerType="ol"
+         containerOutputclass="Grade"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL P Heading" 
+         tagName="p" 
+         outputclass="Heading"
+         topicZone="body" 
+         level="plusOne"/>  
+
+      <paragraphStyle 
+         styleName="EL P ISBN" 
+         tagName="p" 
+         outputclass="ISBN"
+         topicZone="body" 
+         level="1"/> 
+      
+      <paragraphStyle 
+         styleName="EL P Image Credit" 
+         tagName="p" 
+         outputclass="Image_Credit"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL P Image Ref" 
+         tagName="image" 
+         outputclass="Image_Ref"
+         topicZone="body" 
+         level="1"/> 
+      
+      <paragraphStyle 
+         styleName="EL P Image Title" 
+         tagName="p" 
+         outputclass="Image_Title"
+         topicZone="body" 
+         level="1"/>       
+      
+      <paragraphStyle 
+         styleName="EL P Introduction" 
+         tagName="p" 
+         outputclass="Introduction"
+         topicZone="body" 
+         level="1"/>        
+      
+      <paragraphStyle 
+         styleName="EL P Lesson Title" 
+         tagName="p" 
+         outputclass="Lesson_Title"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL P Learning Target" 
+         tagName="li" 
+         containerType="ul" 
+         outputclass="Learning_Target"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL P Learning Target 2" 
+         tagName="li" 
+         containerType="ul" 
+         outputclass="Learning_Target_2"
+         topicZone="body" 
+         level="2"/>
+      
+      <paragraphStyle 
+         styleName="EL P Learning Target 3" 
+         tagName="li" 
+         containerType="ul" 
+         outputclass="Learning_Target_3"
+         topicZone="body" 
+         level="3"/>      
+
+      <paragraphStyle 
+         styleName="EL P Lesson Title" 
+         tagName="p" 
+         outputclass="Lesson_Title"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="EL P Line Break" 
+         tagName="p" 
+         outputclass="Line_Break"
+         topicZone="body" 
+         level="1"/>      
+
+      <paragraphStyle 
+         styleName="EL P List Bullet" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="List_Bullet"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="EL P List Bullet 2" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="List_Bullet_2"
+         topicZone="body" 
+         level="2"/>
+      
+      <paragraphStyle 
+         styleName="EL P List Bullet 3" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="List_Bullet_3"
+         topicZone="body" 
+         level="3"/>      
+
+      <paragraphStyle 
+         styleName="EL P List Heading" 
+         tagName="p" 
+         outputclass="List_Heading"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL P List Lettered" 
+         tagName="li" 
+         containerType="ol"
+         containerOutputclass="List_Lettered"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="EL P List Lettered 2" 
+         tagName="li" 
+         containerType="ol"
+         containerOutputclass="List_Lettered_2"
+         topicZone="body" 
+         level="2"/>
+      
+      <paragraphStyle 
+         styleName="EL P List Lettered 3" 
+         tagName="li" 
+         containerType="ol"
+         containerOutputclass="List_Lettered_3"
+         topicZone="body" 
+         level="3"/>
+
+      <paragraphStyle 
+         styleName="EL P List Numbered" 
+         tagName="li" 
+         containerType="ol"
+         containerOutputclass="List_Numbered"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="EL P List Numbered 2" 
+         tagName="li" 
+         containerType="ol"
+         containerOutputclass="List_Numbered_2"
+         topicZone="body" 
+         level="2"/>
+      
+      <paragraphStyle 
+         styleName="EL P List Numbered 3" 
+         tagName="li" 
+         containerType="ol"
+         containerOutputclass="List_Numbered_3"
+         topicZone="body" 
+         level="3"/>      
+
+      <paragraphStyle 
+         styleName="EL P List Paragraph" 
+         tagName="p" 
+         containerType="li"
+         outputclass="List_Paragraph"
+         topicZone="body" 
+         level="2"/>
+      
+      <paragraphStyle 
+         styleName="EL P List Paragraph 2" 
+         tagName="p" 
+         containerType="li"
+         outputclass="List_Paragraph_2"
+         topicZone="body" 
+         level="3"/>
+      
+      <paragraphStyle 
+         styleName="EL P List Paragraph 3" 
+         tagName="p" 
+         containerType="li"
+         outputclass="List_Paragraph_3"
+         topicZone="body" 
+         level="4"/>      
+
+      <paragraphStyle 
+         styleName="EL P Long-term Learning Target" 
+         tagName="li"
+         containerType="ol"
+         outputclass="Long-term_Learning_Target"
+         containerOutputclass="Targets"
+         topicZone="body" 
+         level="3"/>
+
+      <paragraphStyle 
+         styleName="EL P Module Title" 
+         tagName="p" 
+         outputclass="Module_Title"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="EL P Question" 
+         tagName="p" 
+         outputclass="Question"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL P Quote" 
+         tagName="p" 
+         outputclass="Quote"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL P Question Text" 
+         tagName="p" 
+         outputclass="Question_Text"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL P Standard" 
+         tagName="li"
+         containerType="ol"
+         containerOutputclass="Standard"
+         topicZone="body" 
+         level="2"/>      
+
+            <paragraphStyle 
+               styleName="EL P Student Speak" 
+               tagName="p" 
+               containerType="li"
+               outputclass="Student_Speak"
+               topicZone="body" 
+               level="1"/>
+            
+            <paragraphStyle 
+               styleName="EL P Student Speak 2" 
+               tagName="p" 
+               containerType="li"
+               outputclass="Student_Speak_2"
+               topicZone="body" 
+               level="2"/>
+            
+            <paragraphStyle 
+               styleName="EL P Student Speak 3" 
+               tagName="p" 
+               containerType="li"
+               outputclass="Student_Speak_3"
+               topicZone="body" 
+               level="3"/>
+
+      <paragraphStyle 
+         styleName="EL P Supporting Targets" 
+         tagName="li"
+         containerType="ol"
+         outputclass="Supporting_Targets"
+         containerOutputclass="Targets"
+         topicZone="body" 
+         level="3"/>
+      
+      <paragraphStyle 
+         styleName="EL P Target Note" 
+         tagName="li"          
+         containerType="ol"
+         outputclass="Target_Note"
+         topicZone="body" 
+         level="3"/>      
+
+      <paragraphStyle 
+         styleName="EL P Table Title" 
+         tagName="p" 
+         outputclass="Table Title"
+         topicZone="body" 
+         level="1"/>      
+
+      <paragraphStyle 
+         styleName="EL P Teacher Speak" 
+         tagName="p" 
+         containerType="li"
+         outputclass="Teacher_Speak"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL P Teacher Speak 2" 
+         tagName="p" 
+         containerType="li"
+         outputclass="Teacher_Speak_2"
+         topicZone="body" 
+         level="2"/>
+
+      <paragraphStyle 
+         styleName="EL P Teacher Speak 3" 
+         tagName="p" 
+         containerType="li"
+         outputclass="Teacher_Speak_3"
+         topicZone="body" 
+         level="3"/>
+
+      <paragraphStyle 
+         styleName="EL P Teacher Note" 
+         tagName="p" 
+         outputclass="Teacher Note"
+         topicZone="body" 
+         level="1"/> 
+
+      <paragraphStyle 
+         styleName="EL P Teaching Note" 
+         tagName="li"
+         containerType="ol"
+         outputclass="Teaching_Note"
+         containerOutputclass="Teaching_Note"
+         topicZone="body" 
+         level="3"/>
+
+      <paragraphStyle 
+         styleName="EL P Unit Title" 
+         tagName="p" 
+         outputclass="Unit_Title"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL SC Blank Line" 
+         tagName="p" 
+         outputclass="SC_Blank_Line"
+         topicZone="body" 
+         level="1"/>       
+      
+      <paragraphStyle 
+         styleName="EL SC Box P" 
+         tagName="p" 
+         outputclass="SC_Box_P"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="EL SC Box P - Center" 
+         tagName="p" 
+         outputclass="SC_Box_P_Center"
+         topicZone="body" 
+         level="1"/>      
+
+      <paragraphStyle 
+         styleName="EL SC Box Size" 
+         tagName="p" 
+         outputclass="SC_Box_Size"
+         topicZone="body" 
+         level="1"/> 
+
+      <paragraphStyle 
+         styleName="EL SC P" 
+         tagName="p" 
+         outputclass="SC_P"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL SC P Large" 
+         tagName="p" 
+         outputclass="SC_P_Large"
+         topicZone="body" 
+         level="1"/>
+            
+      <paragraphStyle 
+         styleName="EL SC P Large - Center" 
+         tagName="p" 
+         outputclass="SC_P_Large_Center"
+         topicZone="body" 
+         level="1"/>                        
+
+      <paragraphStyle 
+         styleName="EL SC P Large - List Bullet" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Large_List_Bullet"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL SC P Large - List Number" 
+         tagName="li" 
+         containerType="ol"
+         containerOutputclass="Large_List_Numbered"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL SC P Medium" 
+         tagName="p" 
+         outputclass="SC_P_Medium"
+         topicZone="body" 
+         level="1"/>
+
+            <paragraphStyle 
+               styleName="EL SC P Medium - Center" 
+               tagName="p" 
+               outputclass="SC_P_Medium_Center"
+               topicZone="body" 
+               level="1"/>
+
+            <paragraphStyle 
+               styleName="EL SC P Medium - List Bullet" 
+               tagName="li" 
+               containerType="ul"
+               containerOutputclass="Medium_List_Bullet"
+               topicZone="body" 
+               level="1"/>
+            
+            <paragraphStyle 
+               styleName="EL SC P Medium - List Number" 
+               tagName="li" 
+               containerType="ol"
+               containerOutputclass="Medium_List_Numbered"
+               topicZone="body" 
+               level="1"/>
+
+      <paragraphStyle 
+         styleName="EL SIDE Body Text" 
+         tagName="p" 
+         outputclass="SIDE_Body_Text"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL TBL Body Text" 
+         tagName="p" 
+         outputclass="TBL_Body_Text"
+         topicZone="body" 
+         level="1"/><!-- plusOne -->      
+
+      <paragraphStyle 
+         styleName="EL TBL Body Text - Center" 
+         tagName="p" 
+         outputclass="TBL_Body_Text_Center"
+         topicZone="body" 
+         level="1"/><!-- plusOne -->
+
+      <paragraphStyle 
+         styleName="EL TBL Body Text - Large" 
+         tagName="p" 
+         outputclass="TBL_Body_Text-Large"
+         topicZone="body" 
+         level="1"/><!-- plusOne -->
+
+      <paragraphStyle 
+         styleName="EL TBL Body Text - Large - Center" 
+         tagName="p" 
+         outputclass="TBL_Body_Text-Large-Center"
+         topicZone="body" 
+         level="1"/><!-- plusOne -->
+
+      <paragraphStyle 
+         styleName="EL TBL Heading" 
+         tagName="p" 
+         outputclass="TBL_Heading"
+         topicZone="body" 
+         level="1"/><!-- plusOne -->
+      
+      <paragraphStyle 
+         styleName="EL TBL Heading - Center" 
+         tagName="p" 
+         outputclass="TBL_Heading_Center"
+         topicZone="body" 
+         level="1"/><!-- plusOne -->      
+
+      <paragraphStyle 
+         styleName="EL TBL Learning Target" 
+         tagName="p" 
+         outputclass="TBL_Learning_Target"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL TBL List Bullet" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="TBL_List_Bullet"
+         topicZone="body" 
+         level="1"/><!-- plusOne -->
+
+      <paragraphStyle 
+         styleName="EL TBL List Bullet 2" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="TBL_List_Bullet_2"
+         topicZone="body" 
+         level="2"/><!-- plusOne -->
+
+      <paragraphStyle 
+         styleName="EL TBL List Manual" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="TBL_List_Manual"
+         topicZone="body" 
+         level="1"/><!-- plusOne -->
+      
+      <paragraphStyle 
+         styleName="EL TBL List Manual 2" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="TBL_List_Manual_2"
+         topicZone="body" 
+         level="2"/><!-- plusOne -->      
+
+      <paragraphStyle 
+         styleName="EL TBL List Number" 
+         tagName="li" 
+         containerType="ol"
+         containerOutputclass="TBL_List_Number"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="EL TBL List Number 2" 
+         tagName="li" 
+         containerType="ol"
+         containerOutputclass="TBL_List_Number_2"
+         topicZone="body" 
+         level="2"/>
+
+      <paragraphStyle 
+         styleName="EL TBL Teacher Speak" 
+         tagName="p" 
+         containerType="li"         
+         outputclass="Teacher_Speak"
+         topicZone="body" 
+         level="2"/>
+      
+      <paragraphStyle 
+         styleName="EL TBL Teacher Speak 2" 
+         tagName="p" 
+         containerType="li"
+         outputclass="Teacher_Speak_2"
+         topicZone="body" 
+         level="3"/>
+
+
+	   <!-- end paragraph styles -->      
+      <!-- start character styles -->  
+      <characterStyle
+         styleName="EL Bold"
+         tagName="b"
+         topicZone="body" />
+      
+      <characterStyle
+         styleName="EL Bold Italic"
+         tagName="ph"
+         outputclass="bold_italic"
+         topicZone="body" /> 
+      
+      <characterStyle
+         styleName="EL Bold Italic Underline"
+         tagName="ph"
+         outputclass="bold_italic_underline"
+         topicZone="body" />       
+
+      <characterStyle
+         styleName="EL Book Title"
+         tagName="ph"
+         outputclass="Book_Title"
+         topicZone="body" />
+
+      <characterStyle
+         styleName="EL CCSS ELA"
+         tagName="ph"
+         outputclass="CCSS_ELA"
+         topicZone="body" />      
+
+      <characterStyle
+         styleName="EL CONTENT REFERENCE"
+         tagName="ph"
+         outputclass="CONTENT_REFERENCE"
+         topicZone="body" />
+
+<!--      <characterStyle
+         styleName="EL DEF DEFINITION"
+         tagName="dd"
+         outputclass="Definition"
+         topicZone="body" />
+
+      <characterStyle
+         styleName="EL DEF Term"
+         tagName="dt"
+         outputclass="Term"
+         topicZone="body" />-->
+      
+      <characterStyle
+         styleName="EL DEF Definition"
+         tagName="ph"
+         outputclass="Definition"
+         topicZone="body" />
+      
+      <characterStyle
+         styleName="EL DEF Term"
+         tagName="ph"
+         outputclass="Term"
+         topicZone="body" />      
+
+      <characterStyle
+         styleName="EL Gloss Term"
+         tagName="ph"
+         outputclass="Term"
+         topicZone="body" />
+
+      <characterStyle
+         styleName="EL ELL CONTENT"
+         tagName="ph"
+         outputclass="ELL_Content"
+         topicZone="body" />
+
+       <characterStyle
+         styleName="EL Image Inline Ref"
+         tagName="ph"
+         outputclass="Image_Inline"
+         topicZone="body" />
+
+      <characterStyle
+         styleName="EL Italic"
+         tagName="i"
+         topicZone="body" />
+
+      <characterStyle
+         styleName="EL LAYOUT"
+         tagName="ph"
+         outputclass="LAYOUT"
+         topicZone="body" />
+      
+      <characterStyle
+         styleName="EL NGSS"
+         tagName="ph"
+         outputclass="NGSS"
+         topicZone="body" />
+
+      <characterStyle
+         styleName="EL NGSS Standard"
+         tagName="ph"
+         outputclass="NGSS_Standard"
+         topicZone="body" />
+
+      <characterStyle
+         styleName="EL PAGE BREAK"
+         tagName="ph"
+         outputclass="PAGE_BREAK"
+         topicZone="body" />
+      
+      <characterStyle
+         styleName="EL Red"
+         tagName="ph"
+         outputclass="Red"
+         topicZone="body" />      
+
+      <characterStyle
+         styleName="EL SIDEBAR"
+         tagName="ph"
+         outputclass="SIDEBAR"
+         topicZone="body" />
+
+      <characterStyle
+         styleName="EL STUDENT"
+         tagName="ph"
+         outputclass="STUDENT"
+         topicZone="body" />
+
+      <characterStyle
+         styleName="EL TEACHER"
+         tagName="ph"
+         outputclass="TEACHER"
+         topicZone="body" />
+      
+      <characterStyle
+         styleName="EL TEACHER CONTENT"
+         tagName="ph"
+         outputclass="TEACHER_CONTENT"
+         topicZone="body" />
+      
+      <characterStyle
+         styleName="footnote reference"
+         tagName="ph"
+         outputclass="Footnote_Ref"
+         topicZone="body" />      
+
+       <characterStyle
+         styleName="EL Underline"
+         tagName="u"
+         topicZone="body" />      
+         
+      <characterStyle
+         styleName="BleedBar"
+         tagName="ph"
+         outputclass="BleedBar"
+         topicZone="body" />      
+
+
+         
+
+   </styles>
+</style2tagmap>
+
+
+

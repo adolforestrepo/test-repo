@@ -264,5 +264,9 @@
     description="Runs tests. Deploys tests results and docs.">
   </target>
   
+	<target name="deploy-Astd-Conversion-Configuration" description="Deploy Astd Conversion Configuration">
+	       <run-groovy-script script="ImportAndConversionConfigureDTD.groovy"/>
+	   </target>
+  
 	    
 </project>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE conversion_configuration
-  PUBLIC "urn:pubid:com.rsicms.rsuitebuiltin:doctypes:dita:conversion_configuration" "conversion_configuration.dtd">
-<conversion_configuration xmlns:r="http://www.rsuitecms.com/rsuite/ns/metadata" xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/"
+  PUBLIC "urn:pubid:org.dita4publishers:doctypes:dita:conversion_configuration" "conversion_configuration.dtd">
+<conversion_configuration xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/"
   class="- topic/topic conversion_configuration/conversion_configuration " ditaarch:DITAArchVersion="1.2" domains="a(base rsuiteIdAtt)     "
   id="conversion-config">
   <title class="- topic/title ">ASTD Conversion Configuration</title>
@@ -15,12 +15,12 @@
       <optionSet class="- topic/dl conversion_configuration/optionSet ">
         <option class="- topic/dlentry conversion_configuration/option ">
           <optionName class="- topic/dt conversion_configuration/optionName ">style2tagmap</optionName>
-          <optionValue class="- topic/dd conversion_configuration/optionValue"
+          <optionValue class="- topic/dd conversion_configuration/optionValue "
             >astd-plugin/xslt/word2xml/article-style2tagmap.xml</optionValue>
         </option>
         <option class="- topic/dlentry conversion_configuration/option ">
           <optionName class="- topic/dt conversion_configuration/optionName ">docx2ditaXslt</optionName>
-          <optionValue class="- topic/dd conversion_configuration/optionValue"
+          <optionValue class="- topic/dd conversion_configuration/optionValue "
             >astd-plugin/xslt/word2xml/docx2article.xsl</optionValue>
         </option>
         <option class="- topic/dlentry conversion_configuration/option ">
