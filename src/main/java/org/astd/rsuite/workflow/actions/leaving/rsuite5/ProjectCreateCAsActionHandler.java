@@ -1,20 +1,26 @@
 package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
 import org.apache.commons.logging.Log;
-import org.astd.rsuite.constants.WorkflowConstants;
 import org.astd.rsuite.domain.ContainerType;
 
 import com.reallysi.rsuite.api.ContentAssembly;
+import com.reallysi.rsuite.api.RSuiteException;
 import com.reallysi.rsuite.api.User;
 import com.reallysi.rsuite.api.control.ContentAssemblyCreateOptions;
 import com.reallysi.rsuite.api.control.ObjectAttachOptions;
+import com.reallysi.rsuite.api.extensions.ExecutionContext;
+import com.reallysi.rsuite.api.security.ACE;
+import com.reallysi.rsuite.api.security.ACL;
+import com.reallysi.rsuite.api.security.ContentPermission;
+import com.reallysi.rsuite.api.security.Role;
 import com.reallysi.rsuite.api.workflow.activiti.BaseWorkflowAction;
 import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
 import com.reallysi.rsuite.service.ContentAssemblyService;
+import com.reallysi.rsuite.service.SecurityService;
 
 public class ProjectCreateCAsActionHandler
     extends BaseWorkflowAction
-    implements TempWorkflowConstants, WorkflowConstants {
+    implements TempWorkflowConstants {
 
   private static String MAGAZINES_NAME = "Magazines";
   private static String TPM_NAME = "TPM";
@@ -42,7 +48,6 @@ public class ProjectCreateCAsActionHandler
 
       caSrv.attach(user, articleCA.getId(), docxId, new ObjectAttachOptions());
       context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
-      context.setVariable(WF_VAR_NAME_RSUITE_CONTENTS, articleCA.getId());
 
     } else {
 
@@ -60,9 +65,15 @@ public class ProjectCreateCAsActionHandler
 
       caSrv.attach(user, articleCA.getId(), docxId, new ObjectAttachOptions());
       context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
-      context.setVariable(WF_VAR_NAME_RSUITE_CONTENTS, articleCA.getId());
 
     }
+  }
 
+  public final static ACL getAclForResubmittedApplicationMo(ExecutionContext context) throws RSuiteException {
+    SecurityService securityService = context.getSecurityService();
+    ACE cptAdminAce = securityService.constructACE(Role.ROLE_NAME_RSUITE_USER_ADMIN, ContentPermission.values());
+    ACE cptStaffAce = securityService.constructACE(Role.ROLE_NAME_ANY, ContentPermission.EDIT);
+
+    return securityService.constructACL(new ACE[] {cptAdminAce, cptStaffAce});
   }
 }

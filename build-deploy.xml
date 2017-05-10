@@ -140,6 +140,15 @@ Properties:
     </target>
 	
 	
+<!--	<target name="mportAstdConcept">
+	      <run-groovy-script script="ImportAstdConcept.groovy" />
+	    </target>-->
+	
+	<target name="deploy-Astd-Conversion-Configuration" description="Deploy Astd Conversion Configuration">
+	       <run-groovy-script script="ImportAndConversionConfigureDTD.groovy"/>
+	   </target>
+		
+	
 
 	      	
 	 	      	
@@ -182,11 +191,12 @@ Properties:
                  deploy-custom-runtime-xquery-files,
                  deploy-deltaxml-merge-libraries,
                  deploy-rsuite-plugins,
-                 deploy-initial-content,
 				 deploy-hotfolders,
 		  		 build-project-package,
+		         deploy-Astd-Conversion-Configuration,
 				 LoadDtds,
-		ConfigureLayeredMetadata"
+		ConfigureLayeredMetadata,
+		deploy-initial-content"
             />
 
 	<target name="deploy"
