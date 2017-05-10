@@ -1,6 +1,7 @@
 package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
 import org.apache.commons.logging.Log;
+import org.astd.rsuite.constants.WorkflowConstants;
 import org.astd.rsuite.domain.ContainerType;
 
 import com.reallysi.rsuite.api.ContentAssembly;
@@ -13,7 +14,7 @@ import com.reallysi.rsuite.service.ContentAssemblyService;
 
 public class ProjectCreateCAsActionHandler
     extends BaseWorkflowAction
-    implements TempWorkflowConstants {
+    implements TempWorkflowConstants, WorkflowConstants {
 
   private static String MAGAZINES_NAME = "Magazines";
   private static String TPM_NAME = "TPM";
@@ -41,6 +42,7 @@ public class ProjectCreateCAsActionHandler
 
       caSrv.attach(user, articleCA.getId(), docxId, new ObjectAttachOptions());
       context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
+      context.setVariable(WF_VAR_NAME_RSUITE_CONTENTS, articleCA.getId());
 
     } else {
 
@@ -58,6 +60,7 @@ public class ProjectCreateCAsActionHandler
 
       caSrv.attach(user, articleCA.getId(), docxId, new ObjectAttachOptions());
       context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
+      context.setVariable(WF_VAR_NAME_RSUITE_CONTENTS, articleCA.getId());
 
     }
 

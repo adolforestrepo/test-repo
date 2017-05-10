@@ -1,5 +1,5 @@
 <rsuite-plugin
-        id="astd"
+        id="astd-plugin"
         dependsOn="atd-main-doctypes, rsuite-container-wizard-plugin">
     
     <lifecycleListener
@@ -16,7 +16,7 @@
 
 	<extensionProvider id="rsuite.WebService">
 
-		<staticWebService root="/astd" path="/WebContent" />
+		<staticWebService root="/astd-plugin" path="/WebContent" />
 
 		<!-- Web services implemented for AMA, alphabetized. -->
         <remoteApiDefinition id="astd.main.webservice.rsuite5.AddRoleToUser"
@@ -283,12 +283,12 @@
 	</extensionProvider>
 
     <extensionProvider id="rsuite.UI">
-        <scriptInclude src="/astd-main/js/jquery.initialize.js" /> <!-- From: https://github.com/timpler/jquery.initialize -->
-	    <scriptInclude src="/astd-main/js/cms-ui-actions.js" />
-	    <scriptInclude src="/astd-main/js/cms-ui-overrides.js" />
-        <scriptInclude src="/astd-main/js/rsuite-openWindow-action.js" />
-        <scriptInclude src="/astd-main/js/cms-ui-rules.js" />
-        <styleInclude src="/astd-main/css/config/icons.less" /> 
+        <scriptInclude src="/astd-plugin/js/jquery.initialize.js" /> <!-- From: https://github.com/timpler/jquery.initialize -->
+	    <scriptInclude src="/astd-plugin/js/cms-ui-actions.js" />
+	    <scriptInclude src="/astd-plugin/js/cms-ui-overrides.js" />
+        <scriptInclude src="/astd-plugin/js/rsuite-openWindow-action.js" />
+        <scriptInclude src="/astd-plugin/js/cms-ui-rules.js" />
+        <styleInclude src="/astd-plugin/css/config/icons.less" /> 
 	    
 		<contentDisplayAdvisor id="astd.main.contentDisplayAdvisor"
 			type="org.astd.rsuite.advisors.content.ProjectContentDisplayAdvisor" />
