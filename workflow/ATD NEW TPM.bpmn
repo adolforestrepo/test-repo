@@ -169,7 +169,7 @@
       <activiti:field name="styleMapUri" stringValue="rsuite:/res/plugin/astd-plugin/xslt/word2xml/article-style2tagmap.xml"/>
       <activiti:field name="xsltUri" stringValue="rsuite:/res/plugin/astd-plugin/xslt/word2xml/docx2article.xsl"/>
       <activiti:field name="outputPath" stringValue="${exportDir}"/>
-      <activiti:field name="resultFileName" stringValue="${sourceFileName}"/>
+      <activiti:field name="resultFileName" stringValue="${sourceFileName}.xml"/>
       <activiti:field name="docxMoId" expression="${docxMoId}"/>
       <activiti:field name="xsltGraphicRenameUri" stringValue=""/>
       <activiti:field name="graphicsPrefix" stringValue=""/>
@@ -218,7 +218,7 @@
     <sequenceFlow id="fromGetTaxToDocx2XmlTransform" sourceRef="getTax" targetRef="docX2XMLTransform"></sequenceFlow>
     
     <serviceTask id="importDITA" name="Import DITA" activiti:class="com.reallysi.rsuite.workflow.actions.TopicImporterActionHandler">
-      <activiti:field name="topicPath" stringValue="${exportDir}/${sourceFileName}/${sourceFileName}.ditamap"/>
+      <activiti:field name="topicPath" stringValue="${exportDir}/${sourceFileName}/${sourceFileName}.xml"/>
       <activiti:field name="parentCaId" stringValue="${articleCaMoId}"/>
       <activiti:field name="commitMessage" stringValue="Loaded via workflow from hotfolder"/>
       <activiti:field name="importedMoListVarname" stringValue="xmlMoId"/>

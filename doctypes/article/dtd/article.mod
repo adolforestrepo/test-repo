@@ -72,7 +72,7 @@
 <!-- ============================================================= -->
 
 <!ELEMENT article       
-  (%RSuiteMetadata;,
+  (
    (%title;), 
    (%titlealts;)?,
    (%abstract; | 

@@ -107,7 +107,7 @@ def topicTypes = [
                   'task', 
                   'topic', 
                   'pubmap', 
-                  ]
+				   ]
 	
 def mapTypes = ['map', 'pubmap']	
 	

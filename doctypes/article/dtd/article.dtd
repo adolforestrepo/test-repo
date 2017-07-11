@@ -44,7 +44,7 @@
 <!--                    DOMAIN ATTRIBUTE EXTENSIONS                -->
 <!-- ============================================================= -->
 <!ENTITY % props-attribute-extensions  ""                            >
-<!ENTITY % base-attribute-extensions   ""                            >
+<!ENTITY % base-attribute-extensions   ""                             >
 
 
 <!-- ============================================================= -->
