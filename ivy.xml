@@ -17,11 +17,12 @@
     
 
     <!-- DITA-related zip and jar files. -->
-    <dependency org="rsi" name="rsuite-dita-support-plugin" rev="2.1-qa002" />
+    <dependency org="rsi" name="rsuite-dita-support-plugin" rev="3.5.0a" />
 	<dependency org="rsi" name="rsuite-dita-ot-plugin" rev="1.4" />
 	<dependency org="rsi" name="rsuite-dita-support-workflows-plugin" rev="2.0"/>
 	<dependency org="rsi" name="rsuite-dita-support-actions-plugin" rev="2.0"/>  
 	<dependency org="dita2indesign" name="dita2indesign-inx-util" rev="0.9.18RC18"/>  
+    <dependency org="dita4publishers" name="dita4publishers-rsuite-plugin" rev="20100119"/>
     
      <!-- RSuite-related libs -->
     <dependency org="rsuite-community" name="rsuite-conf-utils-lib" rev="0.0.1" transitive="true" conf="default"/>

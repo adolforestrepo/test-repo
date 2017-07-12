@@ -120,12 +120,6 @@ public class TopicImporterActionHandler extends RSuiteDitaSupportActionHandlerBa
 	public void execute(WorkflowContext context) throws Exception {
 		Log wfLog = context.getWorkflowLog();
 		
-		wfLog.info("[INFOX] parebtCaID: "+resolveVariablesAndExpressions(parentCaId.getExpressionText()));
-		wfLog.info("[INFOZ] topicPath: "+resolveVariablesAndExpressions(topicPath.getExpressionText()));
-		
-		
-		
-		
 		DitaMapImportOptions importOptions = setImportOptions(context);
 		
 		importOptions.setMissingGraphicUri( 
@@ -135,7 +129,11 @@ public class TopicImporterActionHandler extends RSuiteDitaSupportActionHandlerBa
 								"content")));
 		importOptions.setNonXmlContainerName(resolveVariablesAndExpressions(getParameterWithDefault(NONXML_CONTAINER_NAME_PARAM,
 								"media")));
+		importOptions.setUser(context.getAuthorizationService().getSystemUser());
 
+		/** set system user ATD-53 **/
+		wfLog.info("[INFOX] Import option user: "+importOptions.getUser().getUserId());
+				
 		String[] catalogs = getCatalogs(context, wfLog);
 		
 		File topicFile = null;
@@ -167,6 +165,7 @@ public class TopicImporterActionHandler extends RSuiteDitaSupportActionHandlerBa
 			wfLog.info("Parsing topic file \"" + topicFile.getAbsolutePath() + "\"...");
 			doc = DomUtil.getDomForDocument(topicFile, bosConstructionOptions, true);
 		} catch (Exception e) {
+			wfLog.error("ERROR Parsing topic file \"" + topicFile.getAbsolutePath() + "\"...");
 			String msg = "Exception parsing file \"" + topicFile.getAbsolutePath() + "\": " + e.getMessage();
 			captureValidationReport(context, topicFile, validationReport);
 			reportAndThrowRSuiteException(msg);			
@@ -174,9 +173,11 @@ public class TopicImporterActionHandler extends RSuiteDitaSupportActionHandlerBa
 		
 		if (DitaUtil.isDitaTopic(doc.getDocumentElement())) {
 			try {
+				wfLog.info("Importing topic file \"" + topicFile.getAbsolutePath() + "\"...");
 				MoWorkflowObject importedTopicMo = importTopic(context, doc, bosConstructionOptions, importOptions, importedTopics);
-				importedTopicCaNodes.add(importedTopicMo);
+				importedTopicCaNodes.add(importedTopicMo);				
 			} catch (Exception e) {
+				wfLog.error("Error importing topic file \"" + topicFile.getAbsolutePath() + "\"...");
 				errorOccured = true;
 				errorMessage = errorMessage + "Failed File: [" + topicFile.getName() + "]\r\n" + e + "\r\n\r\n";
 				
@@ -259,6 +260,8 @@ public class TopicImporterActionHandler extends RSuiteDitaSupportActionHandlerBa
 				throw new RSuiteException(0, "Failed to find content assembly with ID [" + parentCaId + "] specified as " + PARENT_CA_ID_PARAM +" action handler parameter.");
 			importOptions.setRootCa(ca);
 		}
+	
+		
 		return importOptions;
 	}
 

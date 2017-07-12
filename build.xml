@@ -115,7 +115,25 @@
     to respond to new content. (This comment came from the project we seeded this project from. Not sure if it applies to us.) -->
   <target name="package-rsuite-plugins" 
   	 description="Package all RSuite plugins owned by this project." 
-  	 depends="package-doctypes-plugin, package-rsuite-main-project-plugin, package-toolkit-plugins-plugin"/>
+  	 depends="package-doctypes-plugin, package-rsuite-main-project-plugin, package-toolkit-plugins-plugin">
+  	 
+  	   <!-- TODO: temporal fix copy the topic importer action handler fomr the main pluing to this dita support plugin ATD-53 -->
+ 
+ <unzip src="${lib.home}/rsuite-dita-support-plugin.jar" dest="/dsp-classes/" />
+     <copy todir="/dsp-classes/com/reallysi/rsuite/">
+      <fileset dir="${classes.home}/com/reallysi/rsuite/">
+        <include name="**/**.*" />
+      </fileset>
+    </copy>
+ 
+    <jar update="true" destfile="${lib.home}/rsuite-dita-support-plugin.jar"
+        basedir="/dsp-classes/"
+        includes="**/*"
+
+     />    
+ 
+  	 
+  	 </target>
 
   <target name="package-rsuite-main-project-plugin" depends="compile">
     
