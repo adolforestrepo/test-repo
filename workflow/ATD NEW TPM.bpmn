@@ -273,7 +273,13 @@
     
     <sequenceFlow id="fromDocxLoadErrorToEndWorkflow" sourceRef="docxLoadError" targetRef="endWorkflow"></sequenceFlow>      
 
+    <sequenceFlow id="fromImportDitaToSetTax" sourceRef="importDITA" targetRef="setTax"></sequenceFlow>      
+
+	<sequenceFlow id="fromxMLToINCXToloadInx" sourceRef="xMLToINCX" targetRef="loadInx"></sequenceFlow>      
+	
+
     <endEvent id="endWorkflow" name="End Workflow"></endEvent>
+    
     <dataObject id="EXCEPTION_OCCUR" name="EXCEPTION_OCCUR" itemSubjectRef="xsd:string">
       <extensionElements>
         <activiti:value>""</activiti:value>
