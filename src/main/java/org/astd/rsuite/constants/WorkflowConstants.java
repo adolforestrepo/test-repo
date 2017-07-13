@@ -66,6 +66,4 @@ public interface WorkflowConstants {
    */
   String WF_VAR_NAME_USER_ID = "UserId";
 
-
-
 }

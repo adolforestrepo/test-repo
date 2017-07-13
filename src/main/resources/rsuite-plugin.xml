@@ -283,12 +283,12 @@
 	</extensionProvider>
 
     <extensionProvider id="rsuite.UI">
-        <scriptInclude src="/astd-main/js/jquery.initialize.js" /> <!-- From: https://github.com/timpler/jquery.initialize -->
-	    <scriptInclude src="/astd-main/js/cms-ui-actions.js" />
-	    <scriptInclude src="/astd-main/js/cms-ui-overrides.js" />
-        <scriptInclude src="/astd-main/js/rsuite-openWindow-action.js" />
-        <scriptInclude src="/astd-main/js/cms-ui-rules.js" />
-        <styleInclude src="/astd-main/css/config/icons.less" /> 
+        <scriptInclude src="/astd-plugin/js/jquery.initialize.js" /> <!-- From: https://github.com/timpler/jquery.initialize -->
+	    <scriptInclude src="/astd-plugin/js/cms-ui-actions.js" />
+	    <scriptInclude src="/astd-plugin/js/cms-ui-overrides.js" />
+        <scriptInclude src="/astd-plugin/js/rsuite-openWindow-action.js" />
+        <scriptInclude src="/astd-plugin/js/cms-ui-rules.js" />
+        <styleInclude src="/astd-plugin/css/config/icons.less" /> 
 	    
 		<contentDisplayAdvisor id="astd.main.contentDisplayAdvisor"
 			type="org.astd.rsuite.advisors.content.ProjectContentDisplayAdvisor" />
