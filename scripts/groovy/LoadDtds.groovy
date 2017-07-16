@@ -11,6 +11,9 @@ def loadStyle2TagMapDtds = true;
 def loadTaxDtds          = true;
 
 def otHome = System.getenv("DITA_OT_HOME");
+if (otHome == null) 
+{otHome = dita-ot-dir}
+
 if (otHome == null) {
 	println "Environment variable DITA_OT_HOME not set. Set to the directory";
 	println "that contains your DITA Open Toolkit, e.g., the 'dita/DITA-OT' directory"
