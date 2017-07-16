@@ -115,7 +115,7 @@
 			</fileset>
 		</copy>
 
-		<jar update="true" destfile="${lib.home}/rsuite-dita-support-plugin.jar" basedir="/dsp-classes/" includes="**/*" />
+		<jar update="true" destfile="${lib.home}/rsuite-dita-support-plugin.jar" basedir="${target.home}/dsp-classes/" includes="**/*" />
 	</target>
 			
 	<target name="deploy-old-atd-dita-ot" description="Deploy DITA version used on RSuite 3.6 for compatibility reasons">
