@@ -254,7 +254,7 @@ Properties:
 		</target>
 
 	<target name="LoadDtds">
-		<run-groovy-script script="LoadDtds.groovy" />
+		<run-groovy-script script="LoadDtds.groovy -Dditaotdir=${rsuite.home}/integration/rsuiteditaot" />
     </target>
 
 

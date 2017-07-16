@@ -11,15 +11,20 @@ def loadStyle2TagMapDtds = true;
 def loadTaxDtds          = true;
 
 def otHome = System.getenv("DITA_OT_HOME");
-if (otHome == null) 
-{otHome = dita-ot-dir}
-
-if (otHome == null) {
-	println "Environment variable DITA_OT_HOME not set. Set to the directory";
+if (otHome == null){
+    println "Environment variable DITA_OT_HOME not set. Set to the directory";
 	println "that contains your DITA Open Toolkit, e.g., the 'dita/DITA-OT' directory"
 	println "under the OxygenXML frameworks/ directory."
+	
+	println "Trying to use ditaotdir param from the LoadDTDs ant taget"
+    otHome = ditaotdir
+}
+
+if (otHome == null) {
+	println "ERROR: Failed to set property: otHome"
 	return;
 }
+println "Dita OT Home Set to: "+otHome
 def File otDir = new File(otHome);
 def File catalogFile = new File(otDir, "catalog-dita.xml");
 def catalog = catalogFile.getAbsolutePath();

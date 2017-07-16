@@ -8,7 +8,7 @@ import com.reallysi.rsuite.client.api.*
 
 def projectDir = new File(scriptFile.absolutePath).parentFile.parentFile.parentFile
 def doctypesDir = new File(projectDir, "doctypes");
-def doctypesWithIdDeclarationDir = new File(doctypesDir, "mathml2/dtd");
+def doctypesWithIdDeclarationDir = new File(doctypesDir, "mathml2");
 def srcDir = new File(projectDir, "src");
 
 println " + [INFO] Logging into RSuite...1";
