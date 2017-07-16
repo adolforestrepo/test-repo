@@ -17,7 +17,8 @@ if (otHome == null){
 	println "under the OxygenXML frameworks/ directory."
 	
 	println "Trying to use ditaotdir param from the LoadDTDs ant taget"
-    otHome = ditaotdir
+  //  otHome = ditaotdir
+  return
 }
 
 if (otHome == null) {

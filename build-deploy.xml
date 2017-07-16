@@ -253,8 +253,8 @@ Properties:
 			</copy>
 		</target>
 
-	<target name="LoadDtds">
-		<run-groovy-script script="LoadDtds.groovy -Dditaotdir=${rsuite.home}/integration/rsuiteditaot" />
+	<target name="LoadDtds"> <!-- -Dditaotdir=${rsuite.home}/integration/rsuite-dita-ot" -->
+		<run-groovy-script script="LoadDtds.groovy" />
     </target>
 
 
