@@ -1,2 +1,3 @@
-recreate-ditaot
+#recreate-ditaot
 deploy-full
+deploy-old-atd-dita-ot
