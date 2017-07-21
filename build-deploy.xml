@@ -257,6 +257,10 @@ Properties:
 	<target name="LoadDtds">
 		<run-groovy-script script="LoadDtds.groovy" />
     </target>
+	
+	<target name="LoadDtdsUS5">
+		<run-groovy-script script="LoadDtds.groovy -Dditaotdir=${rsuite.home}/integration/rsuite-dita-ot" />
+    </target>
 			
 	 <target name="ImportAndMathML2">
 				<run-groovy-script script="ImportAndMathML2.groovy" />
