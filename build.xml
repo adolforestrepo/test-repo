@@ -104,7 +104,7 @@
 	<!-- TODO: There's a dependency between these two that will occassionally bite: the configuration
     plugin enables the main plugin to load the sample data; yet, the main plugin contains an event(s)
     to respond to new content. (This comment came from the project we seeded this project from. Not sure if it applies to us.) -->
-	<target name="package-rsuite-plugins" description="Package all RSuite plugins owned by this project." depends="package-doctypes-plugin, package-rsuite-main-project-plugin, package-toolkit-plugins-plugin">
+	<target name="package-rsuite-plugins" description="Package all RSuite plugins owned by this project." depends="package-doctypes-plugin, package-rsuite-main-project-plugin, package-toolkit-plugins-plugin, deploy-old-atd-dita-ot">
 
 		<!-- TODO: temporal fix copy the topic importer action handler fomr the main pluing to this dita support plugin ATD-53 -->
 

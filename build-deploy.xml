@@ -197,6 +197,7 @@ Properties:
 		  		 build-project-package,
 		         deploy-Astd-Conversion-Configuration,
 				 LoadDtds,
+				 ImportAndMathML2,				
 		ConfigureLayeredMetadata,
 		deploy-initial-content"
             />
@@ -253,9 +254,14 @@ Properties:
 			</copy>
 		</target>
 
-	<target name="LoadDtds"> <!-- -Dditaotdir=${rsuite.home}/integration/rsuite-dita-ot" -->
+	<target name="LoadDtds">
 		<run-groovy-script script="LoadDtds.groovy" />
     </target>
+			
+	 <target name="ImportAndMathML2">
+				<run-groovy-script script="ImportAndMathML2.groovy" />
+	   </target>
+
 
 
 	<target name="ConfigureLayeredMetadata">

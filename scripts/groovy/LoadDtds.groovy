@@ -13,12 +13,20 @@ def loadTaxDtds          = true;
 def otHome = System.getenv("DITA_OT_HOME");
 if (otHome == null){
     println "Environment variable DITA_OT_HOME not set. Set to the directory";
-	println "that contains your DITA Open Toolkit, e.g., the 'dita/DITA-OT' directory"
-	println "under the OxygenXML frameworks/ directory."
+	println "that contains your DITA Open Toolkit, e.g., the 'dita/DITA-OT' directory";
+	println "under the OxygenXML frameworks/ directory.";
 	
-	println "Trying to use ditaotdir param from the LoadDTDs ant taget"
-  //  otHome = ditaotdir
-  return
+	println "Trying to use ditaotdir param from the LoadDTDs ant taget";
+	try
+	{
+        otHome = ditaotdir;
+    }
+	catch (Exception ex) {
+	    println "ditaotdir was not set. YOu can pass it a parameter -Dditaotdir=/path/to/dita/ot";
+		return;
+	}
+  
+  
 }
 
 if (otHome == null) {

@@ -1,0 +1,28 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:https://tenable.hatsize.com
+X-PUBLISHED-TTL:P1W
+BEGIN:VEVENT
+UID:596c23e3d5a5e
+DTSTART:20170716T130000Z
+SEQUENCE:0
+TRANSP:OPAQUE
+DTEND:20170721T033000Z
+URL:https://tenable.hatsize.com/training/schedule
+SUMMARY:Tenable BootCamp Training 5.3+ - 20170717-Bootcamp-Bogota
+CLASS:PUBLIC
+DESCRIPTION:About the Virtual Environment\n=============================\n\
+ nYouTube demo:\nhttps://www.youtube.com/watch?v=HPawKNg2bZQ\n\nOnline Help
+ :\nhttps://support.hatsize.com/display/HH/Welcome+to+the+Hatsize+Online+He
+ lp+System \n\nTechnical Support:\nClick on the Regional or Technical Suppo
+ rt button displayed on your training page if you require assistance with t
+ he lab environment.\n\n\nBefore You Access the Lab\n======================
+ ===\n\nSystem Requirements:\nIn order to ensure your lab experience is of 
+ the highest quality\, it is very important that you run the following syst
+ em check prior to your lab time. Please run the check using the same machi
+ ne from the same location from which you plan to launch your lab.\n\nCheck
+  My Computer:\nhttps://tenable.hatsize.com/training/syscheck/?eventId=3327
+ \n\n\nSite URL: https://tenable.hatsize.com
+DTSTAMP:20170716T204139Z
+END:VEVENT
+END:VCALENDAR
