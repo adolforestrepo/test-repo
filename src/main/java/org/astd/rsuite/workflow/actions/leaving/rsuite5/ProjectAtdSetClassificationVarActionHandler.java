@@ -1,5 +1,7 @@
 package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
+import java.util.List;
+
 import org.activiti.engine.delegate.Expression;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -31,6 +33,8 @@ public class ProjectAtdSetClassificationVarActionHandler
    */
   public static final String TARGET_VAR_PARAM = "targetVariableName";
 
+  private static final String ALIAS_TYPE = "filename";
+
   protected Expression moAlias;
   protected Expression targetVariableName;
   protected Expression moId;
@@ -43,16 +47,25 @@ public class ProjectAtdSetClassificationVarActionHandler
     String varName = resolveExpression(targetVariableName);
     if (StringUtils.isBlank(varName)) {
       reportAndThrowRSuiteException("Target variable name not specified");
-
     }
 
     String moid = null;
     String moalias = resolveExpression(moAlias);
-    wfLog.info("Object Alias " + moalias);
+    wfLog.info("Object Alias: " + moalias);
     if (!StringUtils.isBlank(moalias)) {
+    
       ManagedObject mo = context.getManagedObjectService().getObjectByAlias(user, moalias);
-      if (mo != null) {
-        moid = mo.getId();
+      if (mo == null) {
+    	/* We tried to get the first item wit the alias */  
+    	wfLog.info("Trying to get MO list from Alias: " + moalias);
+    	List<ManagedObject> molist = context.getManagedObjectService().getObjectsByAliasAndType(user, moalias, ALIAS_TYPE);  
+    	if(molist.size() > 0 ){
+    		mo = molist.get(0);
+    	}    	    
+      }
+      if (mo != null){
+      moid = mo.getId();
+      wfLog.info("Moid by alias: " + moalias);
       }
     }
 
@@ -63,6 +76,7 @@ public class ProjectAtdSetClassificationVarActionHandler
         // at this time, so we just log message and
         // quietly return
         wfLog.info("Unable to determine MO ID to get classification from");
+        wfLog.info("Workflow Variable "+varName+" set to blank.");
         context.setVariable(varName, "");
         return;
       }

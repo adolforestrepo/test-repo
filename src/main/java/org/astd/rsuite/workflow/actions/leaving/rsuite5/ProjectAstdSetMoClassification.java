@@ -57,15 +57,23 @@ public class ProjectAstdSetMoClassification
     wfLog = context.getWorkflowLog();
     User user = context.getAuthorizationService().getSystemUser();
 
-    String dataExp = resolveExpression(data);
+    String dataExp = resolveVariablesAndExpressions(data.getExpressionText());
     if (StringUtils.isBlank(dataExp)) {
       wfLog.info("No classification data provided, nothing to do");
       return;
     }
 
-    String moIdExp = resolveExpression(moId);
+    String moIdExp = "";
+    try{
+    	moIdExp = resolveVariablesAndExpressions(moId.getExpressionText());
+    }
+    catch(Exception ex){
+    	wfLog.error("Failed to resolve expresion moId "+ ex.getMessage());
+    }
+    
+    
     if (StringUtils.isBlank(moIdExp)) {
-      String moAliasExp = resolveExpression(moAlias);
+      String moAliasExp = resolveVariablesAndExpressions(moAlias.getExpressionText());
       if (!StringUtils.isBlank(moAliasExp)) {
         ManagedObject mo = context.getManagedObjectService().getObjectByAlias(user, moAliasExp);
         if (mo != null) {
