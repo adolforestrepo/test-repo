@@ -24,7 +24,7 @@
     <exclusiveGateway id="determineExecSummary" name="Have No Exec Summary?"></exclusiveGateway>
     
     <sequenceFlow id="flowToLoadExecSummary" sourceRef="determineExecSummary" targetRef="loadExecSummary">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$!{empty incxExecSummaryFile}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${empty incxExecSummaryFile}]]></conditionExpression>
     </sequenceFlow>
 
     <sequenceFlow id="flowToMakeArticleCACurrent" sourceRef="determineExecSummary" targetRef="makeArticleCACurrent">
@@ -79,10 +79,10 @@
     <sequenceFlow id="flowFromValidationErrorToEnd" sourceRef="Validation Error Alert" targetRef="endWorkflow"></sequenceFlow>  
      
 
-    <serviceTask id="xMLToINCX" name="XML to INCX" activiti:class="org.astd.rsuite.workflow.actions.ProjectAstdXml2IncxActionHandler">
+    <serviceTask id="xMLToINCX" name="XML to INCX" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IncxActionHandler">
       <activiti:field name="styleCatalogUri" stringValue="rsuite:/res/plugin/astd/xslt/newtpm2indesign/tpm-dita-indesign-style-catalog.xml"/>
-      <activiti:field name="xsltUriFromWorkflow" stringValue="${sourceFileName}"/>
-      <activiti:field name="fileName" stringValue="rsuite:/res/plugin/astd/xslt/newtpm2indesign/tpmArticle2InDesign.xsl"/>
+      <activiti:field name="xsltUriFromWorkflow" stringValue="rsuite:/res/plugin/astd/xslt/newtpm2indesign/tpmArticle2InDesign.xsl" />
+      <activiti:field name="fileName" stringValue="${sourceFileName}"/>
       <activiti:field name="xmlMoId" stringValue="${xmlMoId}"/>
     </serviceTask>
 
@@ -236,7 +236,7 @@
     <exclusiveGateway id="setTaxFailed?" name="Set Tax Failed?"></exclusiveGateway>
     
     <sequenceFlow id="flowToLoadDITAFailed" sourceRef="setTaxFailed?" targetRef="loadDITAFailed">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$!{EXCEPTION_OCCUR==true}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true}]]></conditionExpression>
     </sequenceFlow>
 
     <sequenceFlow id="flowToXMLToINCX" sourceRef="setTaxFailed?" targetRef="xMLToINCX">

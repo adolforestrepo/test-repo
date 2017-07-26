@@ -111,6 +111,7 @@ public class TopicImporterActionHandler extends RSuiteDitaSupportActionHandlerBa
 	protected Expression nonXmlContainerName;
 
 	private static final long serialVersionUID = 1L;
+	private static final String XML_MOID = "xmlMoId";
 
 	
 	/* (non-Javadoc)
@@ -198,7 +199,14 @@ public class TopicImporterActionHandler extends RSuiteDitaSupportActionHandlerBa
 		
 		wfLog.info("Setting variable " + importedMoListVarname + " to list of imported topics.");
 		context.setVariable(importedMoListVarname, (new MoListWorkflowObject(importedTopics)).toString());
-
+		
+		/* Added for compatibility with XMLtoincx handler */
+		String xmlMOid = importedTopics.get(0).getMoid();
+		context.setVariable(XML_MOID, importedTopics.get(0).getMoid());
+		wfLog.info("Setting variable " + XML_MOID + " to: "+xmlMOid);
+		
+		/* -------------------- */
+		
 		if (!isPreserveWorkflowContext(context)) {
 			wfLog.info("Updating workflow context");
 			context.setMoListWorkflowObject(new MoListWorkflowObject(importedTopicCaNodes));

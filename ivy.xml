@@ -3,7 +3,7 @@
 
   <dependencies>
 
-    <dependency org="rsi" name="rsuite-api" rev="5.2.0"/>
+    <dependency org="rsi" name="rsuite-api" rev="5.2.1"/>
 <!--    <dependency org="rsi" name="rsuite-workflow-visualizer-plugin" rev="4.0.0"/>--> <!-- no v5 version exists yet (as of 20161013) -->
     <dependency org="rsi" name="rsuite-tools-zip" rev="20090327"/>
     <dependency org="rsi" name="rsuite-lmd-editor-plugin" rev="1.2"/>
