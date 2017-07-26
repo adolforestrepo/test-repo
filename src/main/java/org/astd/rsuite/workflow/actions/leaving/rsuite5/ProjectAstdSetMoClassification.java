@@ -64,14 +64,13 @@ public class ProjectAstdSetMoClassification
     }
 
     String moIdExp = "";
-    try{
-    	moIdExp = resolveVariablesAndExpressions(moId.getExpressionText());
+    try {
+      moIdExp = resolveVariablesAndExpressions(moId.getExpressionText());
+    } catch (Exception ex) {
+      wfLog.error("Failed to resolve expresion moId " + ex.getMessage());
     }
-    catch(Exception ex){
-    	wfLog.error("Failed to resolve expresion moId "+ ex.getMessage());
-    }
-    
-    
+
+
     if (StringUtils.isBlank(moIdExp)) {
       String moAliasExp = resolveVariablesAndExpressions(moAlias.getExpressionText());
       if (!StringUtils.isBlank(moAliasExp)) {
