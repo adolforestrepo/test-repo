@@ -64,6 +64,9 @@ public abstract class ProjectLoadByAliasBaseActionHandler
   protected Expression parentMoIdFromWorkflow;
   protected Expression commitMessageFromWorkflow;
   protected Expression fileToLoadFromWorkflow;
+  protected Expression alias;
+  protected Expression parentMoId;
+  protected Expression commitMessage;
 
 
   protected void doLoadOrUpdate(WorkflowContext context, Log wfLog, File inFile, ObjectSource src,
