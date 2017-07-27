@@ -180,7 +180,7 @@
     />
     
     <style styleId="bio"
-      tagName="astd-author"
+      tagName="author"
       baseClass=" topic/author "
       containingTopic="root"
       topicZone="prolog"
@@ -272,7 +272,7 @@
     <style styleId="bioAuthorName"
       containingTopic="root"
       containerType="astd-author"
-      tagName="author-name"
+      tagName="data"
       topicZone="prolog"
     />
     
@@ -285,7 +285,7 @@
     <style styleId="bioAuthorTitle"
       containingTopic="root"
       containerType="astd-author"
-      tagName="author-title"
+      tagName="data"
       topicZone="prolog"
     />
     
@@ -302,7 +302,7 @@
     <style styleId="bioAuthorDesc"
       containingTopic="root"
       containerType="astd-author"
-      tagName="author-desc"
+      tagName="data"
       topicZone="prolog"
     />
     
@@ -322,7 +322,7 @@
     <style styleId="bioAuthorAffiliation"
       containingTopic="root"
       containerType="astd-author"
-      tagName="author-affiliation"
+      tagName="data"
       topicZone="prolog"
     />
     
@@ -336,7 +336,7 @@
     
     <style styleId="bioAuthorEmail"
       containerType="astd-author"
-      tagName="author-email"
+      tagName="data"
       topicZone="prolog"
     />
     

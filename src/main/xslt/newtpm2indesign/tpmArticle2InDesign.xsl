@@ -8,15 +8,15 @@
       exclude-result-prefixes="xs e2s df relpath local"
       version="2.0">
 
-  <xsl:import href="rsuite:/res/plugin/dita2indesign/xslt/dita2indesign/lib/incx_generation_util.xsl"/>
-  <xsl:import href="rsuite:/res/plugin/dita2indesign/xslt/dita2indesign/elem2styleMapper.xsl"/>
+  <xsl:import href="rsuite:/res/plugin/dita2indesign-rsuite-plugin/xslt/dita2indesign/lib/incx_generation_util.xsl"/>
+  <xsl:import href="rsuite:/res/plugin/dita2indesign-rsuite-plugin/xslt/dita2indesign/elem2styleMapper.xsl"/>
  <xsl:import href="rsuite:/res/plugin/dita4publishers/xslt/lib/relpath_util.xsl"/> 
 <!--    <xsl:import href="../org.dita-community.common.xslt/xsl/relpath_util.xsl"/> -->
   <xsl:import href="rsuite:/res/plugin/dita4publishers/xslt/lib/dita-support-lib.xsl"/>
   
   <xsl:include href="tpmElem2styleMapper.xsl"/>
   
-  <xsl:include href="rsuite:/res/plugin/dita2indesign/xslt/dita2indesign/topic2article.xsl"/>
+  <xsl:include href="rsuite:/res/plugin/dita2indesign-rsuite-plugin/xslt/dita2indesign/topic2article.xsl"/>
   
   <xsl:template match="/*[df:class(., 'article/article')]" priority="15">
     <!-- The topicref that points to this topic -->

@@ -160,6 +160,7 @@
 				<include name="commons-lang.jar" />
 				<include name="streamflyer-core.jar" />
 				<include name="streamflyer-regex-fast.jar" />
+				<include name="dita2indesign-rsuite-plugin.jar" />
 			</fileset>
 		</copy>
 
@@ -198,6 +199,8 @@
 		</jar>
 	</target>
 
+
+	
 	<target name="package-toolkit-plugins-plugin" depends="package-project-dita-toolkit-plugins-no-doctypes">
 		<copy file="${src.main.resources.home}/rsuite-toolkit-plugins-plugin.xml" tofile="${toolkit.plugins.plugin.target.home}/rsuite-plugin.xml" />
 
