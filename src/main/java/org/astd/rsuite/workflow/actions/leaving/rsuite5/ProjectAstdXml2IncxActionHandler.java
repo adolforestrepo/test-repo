@@ -273,7 +273,7 @@ public class ProjectAstdXml2IncxActionHandler extends BaseWorkflowAction
 		File outputDir = null;
 		if (outputPath == null || "".equals(outputPath.trim())) {
 			/* FIXME: abetter way to set temp folder. maybe set it as a global varible */
-			outputDir = new File(context.getVariableAsString("exportDir"));
+			outputDir = new File(context.getVariableAsString("rsuiteWorkingFolderPath"));
 		} else {
 			outputDir = new File(outputPath);
 			if (!outputDir.exists()) {

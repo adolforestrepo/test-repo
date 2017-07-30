@@ -109,8 +109,8 @@
 		<!-- TODO: temporal fix copy the topic importer action handler fomr the main pluing to this dita support plugin ATD-53 -->
 
 		<unzip src="${lib.home}/rsuite-dita-support-plugin.jar" dest="${target.home}/dsp-classes/" />
-		<copy todir="${target.home}/dsp-classes/com/reallysi/rsuite/">
-			<fileset dir="${classes.home}/com/reallysi/rsuite/">
+		<copy todir="${target.home}/dsp-classes/com/reallysi/rsuite/workflow/actions/">
+			<fileset dir="${classes.home}/com/reallysi/rsuite/workflow/actions/">
 				<include name="**/**.*" />
 			</fileset>
 		</copy>
@@ -148,7 +148,7 @@
 			</fileset>
 		</copy>
 		<copy todir="${classes.home}/WebContent/xslt">
-			<fileset dir="${src.main.home}/xslt">
+			<fileset dir="${src.home}/xslt">
 				<include name="**/**.*" />
 				<exclude name="preview/*.*" />
 			</fileset>
@@ -159,8 +159,7 @@
 				<include name="rsuite-xml-utils-lib.jar" />
 				<include name="commons-lang.jar" />
 				<include name="streamflyer-core.jar" />
-				<include name="streamflyer-regex-fast.jar" />
-				<include name="dita2indesign-rsuite-plugin.jar" />
+				<include name="streamflyer-regex-fast.jar" />				
 			</fileset>
 		</copy>
 
@@ -178,7 +177,7 @@
 			<fileset dir="${basedir}/doctypes" />
 		</copy>
 		<copy todir="${doctypes.plugin.target.home}/WebContent/xslt">
-			<fileset dir="${src.main.home}/xslt">
+			<fileset dir="${src.home}/xslt">
 				<include name="preview/*.*" />
 			</fileset>
 		</copy>
@@ -186,7 +185,7 @@
 		<copy file="${lib.home}/deltaxml-merge-dita-toolkit.zip" tofile="${doctypes.plugin.target.home}/com.deltaxml.doctypes.zip" />
 
 		<copy todir="${doctypes.plugin.target.home}/WebContent/xslt">
-			<fileset dir="${src.main.home}/xslt">
+			<fileset dir="${src.home}/xslt">
 				<include name="preview/*.*" />
 			</fileset>
 		</copy>

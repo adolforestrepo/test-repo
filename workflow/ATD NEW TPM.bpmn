@@ -24,7 +24,7 @@
     <serviceTask id="loadInx" name="Load INX" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
       <activiti:field name="alias" expression="${sourceFileName}.incx"/>
       <activiti:field name="commitMessage" stringValue="Loaded by workflow"/>
-      <activiti:field name="parentMoId" expression="${articleCaId}"/>
+      <activiti:field name="parentMoId" expression="${articleCaMoId}"/>
     </serviceTask>
     
     <sequenceFlow id="fromloadInxToDecision" sourceRef="loadInx" targetRef="determineExecSummary"></sequenceFlow>
