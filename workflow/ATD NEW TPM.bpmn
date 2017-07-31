@@ -32,7 +32,7 @@
     <exclusiveGateway id="determineExecSummary" name="Have No Exec Summary?"></exclusiveGateway>
     
     <sequenceFlow id="flowToLoadExecSummary" sourceRef="determineExecSummary" targetRef="loadExecSummary">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!(empty incxExecSummaryFile)}]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$!{empty incxExecSummaryFile}]]></conditionExpression>
     </sequenceFlow>
 
     <sequenceFlow id="flowToMakeArticleCACurrent" sourceRef="determineExecSummary" targetRef="makeArticleCACurrent">

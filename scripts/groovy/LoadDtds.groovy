@@ -40,7 +40,7 @@ def catalog = catalogFile.getAbsolutePath();
 println "catalog=\"" + catalog + "\"";
 def projectDir = new File(scriptFile.absolutePath).parentFile.parentFile.parentFile;
 def doctypesDir = new File(projectDir, "doctypes");
-def File xsltDir = new File(projectDir, "src/main/xslt");
+def File xsltDir = new File(projectDir, "src/xslt");
 def File previewXslFile = new File(xsltDir, "preview/dita-preview-shell.xsl");
 
 def baseTopicTypeURI = "urn:pubid:astd.com/doctypes/dita/";

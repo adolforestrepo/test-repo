@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="src" path="src/main/xslt"/>
+	<classpathentry kind="src" path="src/xslt"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="src" path="webapps/sso/src/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>

@@ -13,7 +13,7 @@
 				<zipfile>astd-toolkit-plugins.zip</zipfile>
 <!--				<doctype type="DTD" publicId="urn:pubid:com.astd.doctypes:doctypes:dita:article">
 					<file>doctypes/article/dtd/article.dtd</file>
-					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl
+					<previewXsl>src/xslt/preview/dita-preview-shell.xsl
 					</previewXsl>
 					<managedObjectDefinitions>
 						<moDef name="article" displayNameXPath="*[contains(@class, ' topic/title ')]" />
@@ -21,7 +21,7 @@
 				</doctype>-->
 				<doctype type="DTD" publicId="urn:pubid:com.astd.doctypes:doctypes:dita:article">
 					<file>doctypes/article/dtd/article.dtd</file>
-					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl</previewXsl>
+					<previewXsl>src/xslt/preview/dita-preview-shell.xsl</previewXsl>
 					<managedObjectDefinitions>
 						<moDef name="chapter" displayNameXPath="*[contains(@class, ' topic/title ')]" />
 						<moDef name="article" displayNameXPath="*[contains(@class, ' topic/title ')]" />

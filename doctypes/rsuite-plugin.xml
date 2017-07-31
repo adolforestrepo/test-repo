@@ -47,7 +47,7 @@
                 
                 <doctype type="DTD" publicId="urn:pubid:org.ama_assn:doctypes:dita:subsection">
                     <file>doctypes/subsection/dtd/subsection.dtd</file>
-                    <previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl</previewXsl>
+                    <previewXsl>src/xslt/preview/dita-preview-shell.xsl</previewXsl>
                     <managedObjectDefinitions>
                         <moDef name="subsection" displayNameXPath="*[contains(@class, ' topic/title')]" />
                     </managedObjectDefinitions>
@@ -55,7 +55,7 @@
                 
                 <doctype type="DTD" publicId="urn:pubid:org.ama_assn:doctypes:dita:topic">
                     <file>doctypes/topic/dtd/topic.dtd</file>
-                    <previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl</previewXsl>
+                    <previewXsl>src/xslt/preview/dita-preview-shell.xsl</previewXsl>
                     <managedObjectDefinitions>
                         <moDef name="topic" displayNameXPath="*[contains(@class, ' topic/title')]" />
                     </managedObjectDefinitions>
@@ -63,7 +63,7 @@
 
                 <doctype type="DTD" publicId="urn:pubid:org.ama_assn:doctypes:dita:article">
                     <file>doctypes/article/dtd/article.dtd</file>
-                    <previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl</previewXsl>
+                    <previewXsl>src/xslt/preview/dita-preview-shell.xsl</previewXsl>
                     <managedObjectDefinitions>
                         <moDef name="article" displayNameXPath="if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else if (@title) then string(@title) else '{No title found}'" />
                     </managedObjectDefinitions>
