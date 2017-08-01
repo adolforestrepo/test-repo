@@ -31,10 +31,10 @@
 		<sequenceFlow sourceRef="DITA_to_XHTML" targetRef="Check_for_Exception" />
 		<exclusiveGateway id="Check_for_Exception" />
 		<sequenceFlow sourceRef="Check_for_Exception" targetRef="Export_to_HTML_Error">
-			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == true]]></conditionExpression>
+			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true}]]></conditionExpression>
 		</sequenceFlow>
 		<sequenceFlow sourceRef="Check_for_Exception" targetRef="Load_HTML">
-			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == false]]></conditionExpression>
+			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
 		</sequenceFlow>
 		<userTask id="Export_to_HTML_Error" name="Export to HTML Error"
 			activiti:candidateGroups="Managing Editor">
@@ -56,11 +56,11 @@
 		<exclusiveGateway id="Check_for_HTML_Load_Error" />
 		<sequenceFlow sourceRef="Check_for_HTML_Load_Error"
 			targetRef="Export_to_HTML_Error">
-			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == true]]></conditionExpression>
+			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true}]]></conditionExpression>
 		</sequenceFlow>
 		<sequenceFlow sourceRef="Check_for_HTML_Load_Error"
 			targetRef="EndNode">
-			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == false]]></conditionExpression>
+			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
 		</sequenceFlow>
 		<serviceTask id="Capture_Parent_MO_ID" name="Capture Parent MO ID"
 			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetParentBrowseTreeNodeToVariableHandler">

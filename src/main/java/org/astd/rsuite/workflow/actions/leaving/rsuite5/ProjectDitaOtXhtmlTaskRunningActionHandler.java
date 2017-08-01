@@ -21,7 +21,7 @@ public class ProjectDitaOtXhtmlTaskRunningActionHandler
 
   protected Expression buildPropertiesFromWorkflow;
   protected Expression transtypeFromWorkflow;
-  protected Expression outputPathFromWorkflow;
+  protected Expression outputPath;
 
   /*
    * (non-Javadoc)
@@ -45,8 +45,7 @@ public class ProjectDitaOtXhtmlTaskRunningActionHandler
 
     setBuildProperties(getWorkflowVariableOrParameter(context, "buildPropertiesFromWorkflow",
         buildPropertiesFromWorkflow));
-    setOutputPath(getWorkflowVariableOrParameter(context, "outputPathFromWorkflow",
-        outputPathFromWorkflow));
+    setOutputPath(getWorkflowVariableOrParameter(context, "outputPathFromWorkflow", outputPath));
 
     DitaOpenToolkit toolkit = getToolkit(context, wfLog);
 
