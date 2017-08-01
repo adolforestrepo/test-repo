@@ -277,6 +277,7 @@
 	     <file key="ATD Article Word to XML to InDesign" filename="WebContent/workflow/ATD Article Word to XML to InDesign.bpmn"/>
 	     <file key="ATD CTDO" filename="WebContent/workflow/ATD CTDO.bpmn"/>
 	     <file key="ATD NEW TPM" filename="WebContent/workflow/ATD NEW TPM.bpmn"/>
+	     <file key="ATD Export Article HTML" filename="WebContent/workflow/ATD_Export_Article_HTML.bpmn"/>
 	     
 	   </workflowDefinitions>
 	    

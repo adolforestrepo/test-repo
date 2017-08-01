@@ -3,7 +3,7 @@
         dependsOn="rsuite-dita-ot-plugin,rsuite-dita-support-plugin,atd-main-plugin">
         
     <extensionProvider id="rsuite.WebService">
-        <staticWebService root="/astd-toolkit-plugins-plugin" path="/WebContent" />
+        <staticWebService root="/astd-toolkit-plugins" path="/WebContent" />
     </extensionProvider>
     
     <extensionProvider id="rsuite.ditaOpenToolkit">

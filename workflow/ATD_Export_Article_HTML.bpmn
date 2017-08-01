@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+	xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+	typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
+	targetNamespace="http://www.activiti.org/test">
+	<process id="ATD Export Article HTML" name="ATD Export Article HTML"
+		isExecutable="true">
+
+		<startEvent id="StartNode" name="Start" />
+
+		<sequenceFlow sourceRef="StartNode" targetRef="Check_for_No_Parent_MO_ID" />
+		<exclusiveGateway id="Check_for_No_Parent_MO_ID" />
+		<sequenceFlow sourceRef="Check_for_No_Parent_MO_ID"
+			targetRef="Capture_MO_Details">
+			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${empty parentMoId == false}]]></conditionExpression>
+		</sequenceFlow>
+		<sequenceFlow sourceRef="Check_for_No_Parent_MO_ID"
+			targetRef="Capture_Parent_MO_ID">
+			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${empty parentMoId == true}]]></conditionExpression>
+		</sequenceFlow>
+		<serviceTask id="Capture_MO_Details" name="Capture MO Details"
+			activiti:class="com.reallysi.rsuite.system.workflow.actions.SetVariablesFromMoDetails" />
+		<sequenceFlow sourceRef="Capture_MO_Details" targetRef="DITA_to_XHTML" />
+		<serviceTask id="DITA_to_XHTML" name="DITA to XHTML"
+			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectDitaOtXhtmlTaskRunningActionHandler">
+			<activiti:field name="outputPath"
+				stringValue="${astd.html.export.share}/${moBaseName}" />
+		</serviceTask>
+		<sequenceFlow sourceRef="DITA_to_XHTML" targetRef="Check_for_Exception" />
+		<exclusiveGateway id="Check_for_Exception" />
+		<sequenceFlow sourceRef="Check_for_Exception" targetRef="Export_to_HTML_Error">
+			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == true]]></conditionExpression>
+		</sequenceFlow>
+		<sequenceFlow sourceRef="Check_for_Exception" targetRef="Load_HTML">
+			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == false]]></conditionExpression>
+		</sequenceFlow>
+		<userTask id="Export_to_HTML_Error" name="Export to HTML Error"
+			activiti:candidateGroups="Managing Editor">
+			<documentation>Export to HTML Error: ${exceptionMessage}
+			</documentation>
+		</userTask>
+		<sequenceFlow sourceRef="Export_to_HTML_Error" targetRef="EndNode" />
+		<serviceTask id="Load_HTML" name="Load HTML"
+			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
+			<activiti:field name="alias" stringValue="${moBaseName}.html" />
+			<activiti:field name="fileToLoadFromWorkflow"
+				stringValue="${astd.html.export.share}/${moBaseName}/${moBaseName}.html" />
+			<activiti:field name="commitMessageFromWorkflow"
+				expression="Autoload from HTML export" />
+			<activiti:field name="parentMoIdFromWorkflow"
+				stringValue="${parentMoId}" />
+		</serviceTask>
+		<sequenceFlow sourceRef="Load_HTML" targetRef="Check_for_HTML_Load_Error" />
+		<exclusiveGateway id="Check_for_HTML_Load_Error" />
+		<sequenceFlow sourceRef="Check_for_HTML_Load_Error"
+			targetRef="Export_to_HTML_Error">
+			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == true]]></conditionExpression>
+		</sequenceFlow>
+		<sequenceFlow sourceRef="Check_for_HTML_Load_Error"
+			targetRef="EndNode">
+			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == false]]></conditionExpression>
+		</sequenceFlow>
+		<serviceTask id="Capture_Parent_MO_ID" name="Capture Parent MO ID"
+			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetParentBrowseTreeNodeToVariableHandler">
+			<activiti:field name="variableName" stringValue="parentMoId" />
+		</serviceTask>
+		<sequenceFlow sourceRef="Capture_Parent_MO_ID" targetRef="Capture_MO_Details" />
+
+
+		<!-- -->
+		<endEvent id="EndNode" name="End Workflow"></endEvent>
+	</process>
+</definitions>
