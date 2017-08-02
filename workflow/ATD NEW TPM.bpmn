@@ -166,7 +166,7 @@
 		<serviceTask id="makeArticleCACurrent" name="Make Article CA Current"
 			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler">
 			<activiti:field name="moSpecifyingVariableName"
-				stringValue="${articleCaMoId}" />
+				stringValue="articleCaMoId" />
 		</serviceTask>
 
 		<sequenceFlow id="flowToBeginDesignTask" sourceRef="makeArticleCACurrent"
@@ -209,7 +209,7 @@
 		<serviceTask id="makeXMLCurrent" name="Make XML Current"
 			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler">
 			<activiti:field name="moSpecifyingVariableName"
-				stringValue="${xmlMoId}" />
+				stringValue="xmlMoId" />
 		</serviceTask>
 
 		<sequenceFlow id="flowToExportArticleHTML" sourceRef="makeXMLCurrent"
@@ -236,7 +236,7 @@
 		<serviceTask id="restoreArticleCAAfterExports" name="Restore Article CA After Exports"
 			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler">
 			<activiti:field name="moSpecifyingVariableName"
-				stringValue="${articleCaMoId}" />
+				stringValue="articleCaMoId" />
 		</serviceTask>
 
 		<sequenceFlow id="fromRestoreArticleToTPMFinalizeIssue"

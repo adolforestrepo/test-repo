@@ -53,6 +53,21 @@
 	</extensionProvider>
 
 	<extensionProvider id="rsuite.ContextMenu">
+	
+			<contextMenuRuleSet name="astd.contextmenu.exportArticleHTML">
+			<menuItemList>
+				<menuItem>
+					<type>action</type>
+					<actionName>rsuite:startWorkflow</actionName>
+					<label>ASTD: Export Article HTML</label>
+					<property name="processDefinitionName" value="ASTD Export Article HTML" />
+				</menuItem>
+			</menuItemList>
+			<ruleList>
+				<rule>exclude nodeType ca,canode,folder</rule>
+				<rule>include elementType article</rule>
+			</ruleList>
+		</contextMenuRuleSet>
 
         <contextMenuRuleSet name="astd.main.contextmenuitem.all.users.system.scope" scope="system">
             <menuItemList>

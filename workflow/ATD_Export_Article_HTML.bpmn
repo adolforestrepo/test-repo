@@ -20,14 +20,18 @@
 			targetRef="Capture_Parent_MO_ID">
 			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${empty parentMoId == true}]]></conditionExpression>
 		</sequenceFlow>
+		
 		<serviceTask id="Capture_MO_Details" name="Capture MO Details"
 			activiti:class="com.reallysi.rsuite.system.workflow.actions.SetVariablesFromMoDetails" />
+			
 		<sequenceFlow sourceRef="Capture_MO_Details" targetRef="DITA_to_XHTML" />
+		
 		<serviceTask id="DITA_to_XHTML" name="DITA to XHTML"
 			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectDitaOtXhtmlTaskRunningActionHandler">
 			<activiti:field name="outputPath"
 				stringValue="${astd.html.export.share}/${moBaseName}" />
 		</serviceTask>
+		
 		<sequenceFlow sourceRef="DITA_to_XHTML" targetRef="Check_for_Exception" />
 		<exclusiveGateway id="Check_for_Exception" />
 		<sequenceFlow sourceRef="Check_for_Exception" targetRef="Export_to_HTML_Error">

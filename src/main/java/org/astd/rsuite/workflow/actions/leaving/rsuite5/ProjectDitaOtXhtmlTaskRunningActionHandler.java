@@ -35,8 +35,8 @@ public class ProjectDitaOtXhtmlTaskRunningActionHandler
 
     context.setVariable(EXCEPTION_OCCUR, false);
     String transtype = resolveVariables(getParameterWithDefault("transtype", DEFAULT_TRANSTYPE));
-    transtype = getWorkflowVariableOrParameter(context, "transtypeFromWorkflow",
-        transtypeFromWorkflow);
+  //  transtype = getWorkflowVariableOrParameter(context, "transtypeFromWorkflow",
+   //     transtypeFromWorkflow);
     // Handle case where workflow process has <transtype>${transtype}</transtype>
     // but ${transtype} isn't set.
     if (transtype == null || transtype.startsWith("${")) {
@@ -45,13 +45,13 @@ public class ProjectDitaOtXhtmlTaskRunningActionHandler
 
     setBuildProperties(getWorkflowVariableOrParameter(context, "buildPropertiesFromWorkflow",
         buildPropertiesFromWorkflow));
-    setOutputPath(getWorkflowVariableOrParameter(context, "outputPathFromWorkflow", outputPath));
+    setOutputPath(getWorkflowVariableOrParameter(context, "outputPath", outputPath));
 
     DitaOpenToolkit toolkit = getToolkit(context, wfLog);
 
     Properties props = setBaseTaskProperties(context, transtype, toolkit);
 
-    cleanOutputDir(context, getOutputDir(context));
+  //  cleanOutputDir(context, getOutputDir(context));
 
     // The applyToolkitProcessToMos() method manages the export of the
     // MOs to the file system, so at this point we don't know what the
@@ -77,8 +77,12 @@ public class ProjectDitaOtXhtmlTaskRunningActionHandler
     if (StringUtils.isNotEmpty(workflowVarOrParam)) {
       return workflowVarOrParam;
     }
-    workflowVarOrParam = resolveExpression(workflowExpression);
+    if(buildPropertiesFromWorkflow != null){
+    workflowVarOrParam = resolveExpression(buildPropertiesFromWorkflow);
     context.getWorkflowLog().info("Resolved expression [" + workflowVarOrParam + "]");
+    }else{
+    	workflowVarOrParam = "";
+    }
     return workflowVarOrParam;
   }
 
