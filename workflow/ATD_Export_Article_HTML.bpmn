@@ -40,6 +40,7 @@
 		<sequenceFlow sourceRef="Check_for_Exception" targetRef="Load_HTML">
 			<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
 		</sequenceFlow>
+		
 		<userTask id="Export_to_HTML_Error" name="Export to HTML Error"
 			activiti:candidateGroups="Managing Editor">
 			<documentation>Export to HTML Error: ${exceptionMessage}

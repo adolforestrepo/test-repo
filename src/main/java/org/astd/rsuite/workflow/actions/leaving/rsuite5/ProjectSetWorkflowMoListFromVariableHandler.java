@@ -48,6 +48,8 @@ implements TempWorkflowConstants {
 		}
 		
 		context.setMoListWorkflowObject(newMoList);
+		/* Sel also as rsuite contexts */
+		context.setRSuiteContents(newMoList);
 		
 	}
 	
