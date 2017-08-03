@@ -23,7 +23,6 @@
 	<classpathentry kind="lib" path="java/lib/reportng.jar"/>
 	<classpathentry kind="lib" path="java/lib/rsuite-api.jar"/>
 	<classpathentry kind="lib" path="java/lib/rsuite-conf-utils-lib.jar"/>
-	<classpathentry kind="lib" path="java/lib/rsuite-dita-ot-plugin.jar"/>
 	<classpathentry kind="lib" path="java/lib/rsuite-dita-support-plugin.jar"/>
 	<classpathentry kind="lib" path="java/lib/rsuite-dita-support-workflows-plugin.jar"/>
 	<classpathentry kind="lib" path="java/lib/rsuite-lmd-editor-plugin.jar"/>
@@ -54,7 +53,7 @@
 	<classpathentry kind="lib" path="java/lib/powermock-mockito.jar"/>
 	<classpathentry kind="lib" path="java/lib/astd-plugin.jar"/>
 	<classpathentry kind="lib" path="java/lib/dita2indesign-rsuite-plugin.jar"/>
-	<classpathentry kind="lib" path="java/lib/rsuite-core-5.2.0.jar"/>
-	<classpathentry kind="lib" path="java/lib/dita2indesign-inx-util.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adolfo/Documents/Cytex/Proyectos/ATD/RSI_bitbucket/rsuite_atd/java/lib/rsuite-dita-ot-plugin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adolfo/Documents/Cytex/RSuite521/tomcat/webapps/rsuite/WEB-INF/lib/rsuite-core-5.2.1.jar"/>
 	<classpathentry kind="output" path="target"/>
 </classpath>
