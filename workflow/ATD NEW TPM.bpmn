@@ -81,7 +81,7 @@
 
 		<userTask id="Validation Error Alert"
 			name="TPM Error Alert: Article Worfklow: Docx Load Failed"
-			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing Editor">
+			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
 			<documentation>${VALIDATION_MSGS}</documentation>
 		</userTask>
 
@@ -148,7 +148,8 @@
 			targetRef="associateEditMSWord"></sequenceFlow>
 
 		<userTask id="associateEditMSWord" name="TPM Edit MS Word"
-			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate Editor">
+			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
+												
 			<documentation>"Document: #{fullFileName}"</documentation>
 		</userTask>
 
@@ -173,7 +174,7 @@
 			targetRef="Begin Design Task"></sequenceFlow>
 
 		<userTask id="Begin Design Task" name="Begin Design Task"
-			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art Director">
+			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
 			<documentation>"Document: ${VALIDATION_MSGS}.incx"</documentation>
 		</userTask>
 
@@ -181,7 +182,7 @@
 			targetRef="Review Proofs"></sequenceFlow>
 
 		<userTask id="Review Proofs" name="Review Proofs"
-			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate Editor">
+			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
 			<documentation>"Document: ${VALIDATION_MSGS}.incx"</documentation>
 		</userTask>
 
@@ -199,7 +200,7 @@
 			targetRef="TPM Create HTMLs"></sequenceFlow>
 
 		<userTask id="TPM Create HTMLs" name="TPM Create HTMLs"
-			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art Director">
+			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
 			<documentation>"Document: #{sourceFileName}"</documentation>
 		</userTask>
 
@@ -243,7 +244,7 @@
 			sourceRef="clearHTMLExportStatus" targetRef="TPM Finalize Issue"></sequenceFlow>
 
 		<userTask id="TPM Finalize Issue" name="TPM Finalize Issue"
-			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate Editor">
+			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
 			<documentation>"Article #{sourceFileName}: Bluelines have been
 				approved. Workflow is complete."</documentation>
 		</userTask>
@@ -289,7 +290,7 @@
 
 		<userTask id="loadDITAFailed"
 			name="TPM Error Alert: Article Workflow: XML Load Failed"
-			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing Editor">
+			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
 			<documentation>"Load of DITA XML from DOCX #{fullFileName} failed:
 				#{exceptionMessage}&lt;br/&gt;File also exported to
 				#{sharedExportDir}
@@ -301,7 +302,7 @@
 
 		<userTask id="docx2XmlError"
 			name="Error Alert: Article Workflow: Word to XML Failed"
-			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing Editor">
+			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
 			<documentation>"#{moDisplayName}: Generation of XML from DOCX failed:
 				#{exceptionMessage}
 				&lt;br/&gt;See conversion report &lt;a
@@ -312,7 +313,7 @@
 
 		<userTask id="xml2INCXError"
 			name="TPM Error Alert: Article Workflow: InCopy Generation Failed"
-			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing Editor">
+			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
 			<documentation>"Failed to generate INX from article #{fullFileName}
 				&lt;br/&gt;See conversion report &lt;a
 				href='/rsuite/rest/v1/report/generated/#{xformReportId}?skey=RSUITE-SESSION-KEY'
@@ -332,7 +333,7 @@
 
 
 		<userTask id="finalEditTask" name="Final Edit Task"
-			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate Editor">
+			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
 			<documentation>"Document: #{fullFileName}"</documentation>
 		</userTask>
 
@@ -408,7 +409,7 @@
 
 		<userTask id="docxLoadError"
 			name="TPM Error Alert: Article Workflow: Docx Load Failed"
-			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing Editor">
+			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
 			<documentation>"Load of file #{fullFileName} failed:
 				#{exceptionMessage}"</documentation>
 		</userTask>

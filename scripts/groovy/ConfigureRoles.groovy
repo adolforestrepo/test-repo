@@ -14,12 +14,12 @@ rsuite.login();
 try {
     /* Basic role; RSuiteUser had unexpected results in 5.0.5
      */
-    createRoleIfnotExist("Art Director", "Art Director.");
-    createRoleIfnotExist("Managing Editor", "Managing Editor.");
-    createRoleIfnotExist("Associate Editor", "Associate Editor.");
+    createRoleIfnotExist("Art_Director", "Art Director.");
+    createRoleIfnotExist("Managing_Editor", "Managing Editor.");
+    createRoleIfnotExist("Associate_Editor", "Associate Editor.");
     createRoleIfnotExist("Editor", "Editor.");
 	createRoleIfnotExist("Reviewer", "Reviewer.");
-	createRoleIfnotExist("Production Specialist", "Production Specialist.");
+	createRoleIfnotExist("Production_Specialist", "Production Specialist.");
     
 }
  finally {
