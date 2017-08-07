@@ -1,5 +1,7 @@
 package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
+import java.util.ArrayList;
+
 import org.apache.commons.logging.Log;
 import org.astd.rsuite.domain.ContainerType;
 
@@ -14,6 +16,8 @@ import com.reallysi.rsuite.api.security.ACL;
 import com.reallysi.rsuite.api.security.ContentPermission;
 import com.reallysi.rsuite.api.security.Role;
 import com.reallysi.rsuite.api.workflow.activiti.BaseWorkflowAction;
+import com.reallysi.rsuite.api.workflow.activiti.MoListWorkflowObject;
+import com.reallysi.rsuite.api.workflow.activiti.MoWorkflowObject;
 import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
 import com.reallysi.rsuite.service.ContentAssemblyService;
 import com.reallysi.rsuite.service.SecurityService;
@@ -31,6 +35,7 @@ public class ProjectCreateCAsActionHandler
 
     wfLog = context.getWorkflowLog();
     User user = context.getAuthorizationService().getSystemUser();
+    ContentAssembly contentCA = null;
 
     String volume = context.getVariableAsString(ATD_VAR_VOLUME_NUMBER);
     String docxId = context.getVariableAsString(ATD_VAR_DOCX_ID);
@@ -48,6 +53,7 @@ public class ProjectCreateCAsActionHandler
 
       caSrv.attach(user, articleCA.getId(), docxId, new ObjectAttachOptions());
       context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
+      contentCA = articleCA;
 
     } else {
 
@@ -65,8 +71,17 @@ public class ProjectCreateCAsActionHandler
 
       caSrv.attach(user, articleCA.getId(), docxId, new ObjectAttachOptions());
       context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
+      
+      contentCA = articleCA;
 
     }
+    
+    MoListWorkflowObject newMoList = new MoListWorkflowObject();
+    MoWorkflowObject newWFO = new MoWorkflowObject(contentCA.getId());
+    newMoList.addMoObject(newWFO);
+    context.setRSuiteContents(newMoList);
+    
+    
   }
 
   public final static ACL getAclForResubmittedApplicationMo(ExecutionContext context) throws RSuiteException {
