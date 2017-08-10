@@ -26,7 +26,8 @@ public class ProjectCreateCAsActionHandler
     extends BaseWorkflowAction
     implements TempWorkflowConstants {
 
-  private static String MAGAZINES_NAME = "Magazines";
+  private static final String VOLUME_STRING = "Volume";
+private static String MAGAZINES_NAME = "Magazines";
   private static String TPM_NAME = "TPM";
   protected Log wfLog;
 
@@ -37,6 +38,7 @@ public class ProjectCreateCAsActionHandler
     User user = context.getAuthorizationService().getSystemUser();
     ContentAssembly contentCA = null;
 
+       
     String volume = context.getVariableAsString(ATD_VAR_VOLUME_NUMBER);
     String docxId = context.getVariableAsString(ATD_VAR_DOCX_ID);
     ContentAssemblyService caSrv = context.getContentAssemblyService();
@@ -63,7 +65,7 @@ public class ProjectCreateCAsActionHandler
       caCreateOp.setType(ContainerType.FOLDER.getSystemName());
       ContentAssembly magazinesCa = caSrv.createContentAssembly(user, "4", MAGAZINES_NAME, caCreateOp);
       ContentAssembly tpmCa = caSrv.createContentAssembly(user, magazinesCa.getId(), TPM_NAME, caCreateOp);
-      ContentAssembly volumeCa = caSrv.createContentAssembly(user, tpmCa.getId(), volume, caCreateOp);
+      ContentAssembly volumeCa = caSrv.createContentAssembly(user, tpmCa.getId(), VOLUME_STRING+" "+volume, caCreateOp);
 
       caCreateOp.setType(ContainerType.CA.getSystemName());
       ContentAssembly monthCa = caSrv.createContentAssembly(user, volumeCa.getId(), "Issue " + context.getVariableAsString(ATD_VAR_MONTH), caCreateOp);
