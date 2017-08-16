@@ -175,7 +175,7 @@
 
 		<userTask id="Begin Design Task" name="Begin Design Task"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
-			<documentation>"Document: ${VALIDATION_MSGS}.incx"</documentation>
+			<documentation>"Document: ${sourceFileName}.incx"</documentation>
 		</userTask>
 
 		<sequenceFlow id="flowReviewProofs" sourceRef="Begin Design Task"
@@ -183,7 +183,7 @@
 
 		<userTask id="Review Proofs" name="Review Proofs"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
-			<documentation>"Document: ${VALIDATION_MSGS}.incx"</documentation>
+			<documentation>"Document: ${sourceFileName}.incx"</documentation>
 		</userTask>
 
 		<!-- Link this task from the node Begin Design Task -->
