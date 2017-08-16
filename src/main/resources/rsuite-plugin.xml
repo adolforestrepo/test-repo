@@ -180,7 +180,7 @@
                 <column name="currentTask.description" label="Description" />
                 <column name="currentTask.startDate" label="Start Date" />                
                 <column name="currentTask.assigneeUserId" label="Assignee" />
-                <column name="currentTask.candidateRoles" label="Assigned Role" />
+                <!--<column name="currentTask.candidateRoles" label="Assigned Role" />-->
             </columnList>
         </workflowResultsConfiguration>
 
@@ -192,7 +192,7 @@
 				<column name="currentTask.description" label="Description" />
 				<column name="currentTask.startDate" label="Start Date" />
 				<column name="currentTask.assigneeUserId" label="Assignee" />
-				<column name="currentTask.candidateRoles" label="Assigned Role" />
+				<!--<column name="currentTask.candidateRoles" label="Assigned Role" />-->
 			</inboxColumnList>
 			<inboxFilterList>
 				<filter name="name" label="Task Type" />
@@ -208,7 +208,7 @@
 				<column name="currentTask.description" label="Description" />
 				<column name="currentTask.startDate" label="Created Date" />
 				<column name="currentTask.assigneeUserId" label="Assignee" />
-				<column name="currentTask.candidateRoles" label="Assigned Role" />
+				<!--<column name="currentTask.candidateRoles" label="Assigned Role" />-->
 			</inboxColumnList>
 			<inboxFilterList>
 				<filter name="currentTask.name" label="Task Type" />

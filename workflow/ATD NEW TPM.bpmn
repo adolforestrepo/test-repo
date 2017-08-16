@@ -80,7 +80,7 @@
 		</sequenceFlow>
 
 		<userTask id="Validation Error Alert"
-			name="TPM Error Alert: Article Worfklow: Docx Load Failed"
+			name="TPM Error Alert: Article Worfklow: Docx Load Failed (Managing Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
 			<documentation>${VALIDATION_MSGS}</documentation>
 		</userTask>
@@ -147,7 +147,7 @@
 		<sequenceFlow id="flowToTPMEditMSWord" sourceRef="setArticleLM"
 			targetRef="associateEditMSWord"></sequenceFlow>
 
-		<userTask id="associateEditMSWord" name="TPM Edit MS Word"
+		<userTask id="associateEditMSWord" name="TPM Edit MS Word (Associate Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
 												
 			<documentation>"Document: #{fullFileName}"</documentation>
@@ -156,7 +156,7 @@
 		<sequenceFlow id="flowToEditorEditMSWord" sourceRef="associateEditMSWord"
 			targetRef="editorEditMSWord"></sequenceFlow>
 
-		<userTask id="editorEditMSWord" name="TPM Edit MS Word"
+		<userTask id="editorEditMSWord" name="TPM Edit MS Word (Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Editor">
 			<documentation>"Document: #{fullFileName}"</documentation>
 		</userTask>
@@ -173,7 +173,7 @@
 		<sequenceFlow id="flowToBeginDesignTask" sourceRef="makeArticleCACurrent"
 			targetRef="Begin Design Task"></sequenceFlow>
 
-		<userTask id="Begin Design Task" name="Begin Design Task"
+		<userTask id="Begin Design Task" name="Begin Design Task (Art Director)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
 			<documentation>"Document: ${sourceFileName}.incx"</documentation>
 		</userTask>
@@ -181,7 +181,7 @@
 		<sequenceFlow id="flowReviewProofs" sourceRef="Begin Design Task"
 			targetRef="Review Proofs"></sequenceFlow>
 
-		<userTask id="Review Proofs" name="Review Proofs"
+		<userTask id="Review Proofs" name="Review Proofs (Associate Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
 			<documentation>"Document: ${sourceFileName}.incx"</documentation>
 		</userTask>
@@ -199,7 +199,7 @@
 		<sequenceFlow id="flowToTPMCreateHTMLs" sourceRef="Set No detail changes"
 			targetRef="TPM Create HTMLs"></sequenceFlow>
 
-		<userTask id="TPM Create HTMLs" name="TPM Create HTMLs"
+		<userTask id="TPM Create HTMLs" name="TPM Create HTMLs (Art Director)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
 			<documentation>"Document: #{sourceFileName}"</documentation>
 		</userTask>
@@ -243,7 +243,7 @@
 		<sequenceFlow id="fromRestoreArticleToTPMFinalizeIssue"
 			sourceRef="clearHTMLExportStatus" targetRef="TPM Finalize Issue"></sequenceFlow>
 
-		<userTask id="TPM Finalize Issue" name="TPM Finalize Issue"
+		<userTask id="TPM Finalize Issue" name="TPM Finalize Issue (Associate Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
 			<documentation>"Article #{sourceFileName}: Bluelines have been
 				approved. Workflow is complete."</documentation>
@@ -289,7 +289,7 @@
 		</sequenceFlow>
 
 		<userTask id="loadDITAFailed"
-			name="TPM Error Alert: Article Workflow: XML Load Failed"
+			name="TPM Error Alert: Article Workflow: XML Load Failed (Managing Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
 			<documentation>"Load of DITA XML from DOCX #{fullFileName} failed:
 				#{exceptionMessage}&lt;br/&gt;File also exported to
@@ -301,7 +301,7 @@
 		</userTask>
 
 		<userTask id="docx2XmlError"
-			name="Error Alert: Article Workflow: Word to XML Failed"
+			name="Error Alert: Article Workflow: Word to XML Failed (Managing Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
 			<documentation>"#{moDisplayName}: Generation of XML from DOCX failed:
 				#{exceptionMessage}
@@ -312,7 +312,7 @@
 		</userTask>
 
 		<userTask id="xml2INCXError"
-			name="TPM Error Alert: Article Workflow: InCopy Generation Failed"
+			name="TPM Error Alert: Article Workflow: InCopy Generation Failed (Managing Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
 			<documentation>"Failed to generate INX from article #{fullFileName}
 				&lt;br/&gt;See conversion report &lt;a
@@ -332,7 +332,7 @@
 
 
 
-		<userTask id="finalEditTask" name="Final Edit Task"
+		<userTask id="finalEditTask" name="Final Edit Task (Associate Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
 			<documentation>"Document: #{fullFileName}"</documentation>
 		</userTask>
@@ -408,7 +408,7 @@
 		</sequenceFlow>
 
 		<userTask id="docxLoadError"
-			name="TPM Error Alert: Article Workflow: Docx Load Failed"
+			name="TPM Error Alert: Article Workflow: Docx Load Failed (Managing Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
 			<documentation>"Load of file #{fullFileName} failed:
 				#{exceptionMessage}"</documentation>
