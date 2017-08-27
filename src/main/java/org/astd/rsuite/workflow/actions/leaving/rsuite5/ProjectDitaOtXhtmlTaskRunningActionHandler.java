@@ -49,8 +49,10 @@ public class ProjectDitaOtXhtmlTaskRunningActionHandler extends
 
 		setBuildProperties(getWorkflowVariableOrParameter(context,
 				"buildPropertiesFromWorkflow", buildPropertiesFromWorkflow));
-		setOutputPath(getWorkflowVariableOrParameter(context, "outputPath",
-				outputPath));
+		String strputputpath = getWorkflowVariableOrParameter(context,
+				"outputPath", outputPath);
+		setOutputPath(strputputpath);
+
 
 		DitaOpenToolkit toolkit = getToolkit(context, wfLog);
 
@@ -79,17 +81,18 @@ public class ProjectDitaOtXhtmlTaskRunningActionHandler extends
 		if (StringUtils.isNotEmpty(workflowVarOrParam)) {
 			return workflowVarOrParam;
 		}
-		workflowVarOrParam = resolveVariablesAndExpressions(getParameter(workflowVariableOrParameterName));
-		if (StringUtils.isNotEmpty(workflowVarOrParam)) {
-			return workflowVarOrParam;
-		}
+
 		if (workflowExpression != null) {
 			workflowVarOrParam = resolveVariablesAndExpressions(workflowExpression
 					.getExpressionText());
 			context.getWorkflowLog().info(
 					"Resolved expression [" + workflowVarOrParam + "]");
 		} else {
-			workflowVarOrParam = "";			
+			workflowVarOrParam = resolveVariablesAndExpressions(getParameter(workflowVariableOrParameterName));
+			if (StringUtils.isNotEmpty(workflowVarOrParam)) {
+				return workflowVarOrParam;
+			}
+			workflowVarOrParam = "";
 		}
 		return workflowVarOrParam;
 	}
