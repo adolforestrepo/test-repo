@@ -16,30 +16,67 @@
    <process isExecutable="true"
             id="T_D_Article_back-content_Process"
             name="T+D Article back-content">
+            
+            
+            
       <startEvent name="StartNode" id="StartNode"/>
+      
+      
       <sequenceFlow sourceRef="StartNode" targetRef="Get_PID_and_Now_String"/>
+      
       <endEvent name="EndNode" id="EndNode"/>
-      <serviceTask id="DocX2XML_Transform" name="Set PID and Date Now"
-                   activiti:class="org.dita4publishers.rsuite.workflow.actions.Docx2XmlActionHandler">
-<!--Custom variable; adjust action handlers as appropriate. styleMapUri={rsuite:/res/plugin/astd/xslt/word2xml/article-style2tagmap.xml}-->
-<!--Custom variable; adjust action handlers as appropriate. xsltUri={rsuite:/res/plugin/astd/xslt/word2xml/docx2article.xsl}-->
-<!--Custom variable; adjust action handlers as appropriate. outputPath={${exportDir}}-->
-<!--Custom variable; adjust action handlers as appropriate. resultFileName={${sourceFileName}.xml}-->
-<!--Custom variable; adjust action handlers as appropriate. docxMoId={${docxMoId}}--></serviceTask>
-      <sequenceFlow sourceRef="DocX2XML_Transform" targetRef="DOCX2XML_Error_"/>
-      <serviceTask id="XML_to_INCX"
-                   activiti:class="com.astd.rsuite.actions.AstdXml2IncxActionHandler">
-<!--Custom variable; adjust action handlers as appropriate. styleCatalogUri={rsuite:/res/plugin/astd/xslt/tandd2indesign/tandd-dita-indesign-style-catalog.xml}-->
-<!--Custom variable; adjust action handlers as appropriate. xsltUri={rsuite:/res/plugin/astd/xslt/tandd2indesign/tanddArticle2InDesign.xsl}-->
-<!--Custom variable; adjust action handlers as appropriate. fileName={${sourceFileName}}-->
-<!--Custom variable; adjust action handlers as appropriate. xmlMoId={${xmlMoId}}--></serviceTask>
-      <sequenceFlow sourceRef="XML_to_INCX" targetRef="INX_Generation_Failure_"/>
-      <serviceTask id="Load_INX"
-                   activiti:class="com.reallysi.rsuite.system.workflow.actions.LoadNonXmlByAliasActionHandler">
-<!--Custom variable; adjust action handlers as appropriate. alias={${sourceFileName}.incx}-->
-<!--Custom variable; adjust action handlers as appropriate. commitMessage={Loaded by workflow}-->
-<!--Custom variable; adjust action handlers as appropriate. parentMoId={${articleCaId}}--></serviceTask>
-      <sequenceFlow sourceRef="Load_INX" targetRef="Have_No_Exec_Summary_"/>
+      
+      
+      <serviceTask id="DocX2XML_Transform" name="DocX2XML Transform22222"
+ activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdDocxToXmlActionHandler">
+			<activiti:field name="styleMapUri"
+				stringValue="rsuite:/res/plugin/astd-plugin/xslt/word2xml/article-style2tagmap.xml" />
+			<activiti:field name="xsltUri"
+				stringValue="rsuite:/res/plugin/astd-plugin/xslt/word2xml/docx2article.xsl" />
+			<activiti:field name="outputPath" stringValue="${exportDir}" />
+			<activiti:field name="resultFileName" stringValue="${sourceFileName}.xml" />
+			<activiti:field name="docxMoId" expression="${docxMoId}" />
+			<activiti:field name="xsltGraphicRenameUri"
+				stringValue="" />
+			<activiti:field name="graphicsPrefix" stringValue="" />
+		</serviceTask>
+
+
+
+
+
+      <sequenceFlow id="fromdocX2XMLTransformToDecision" sourceRef="DocX2XML_Transform" targetRef="DOCX2XML_Error_"/>
+      
+      
+      
+      
+      <serviceTask id="XML_to_INCX" name="XML to INCX3333"
+           activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IncxActionHandler">
+			<activiti:field name="styleCatalogUri"
+				stringValue="rsuite:/res/plugin/astd-plugin/xslt/newtpm2indesign/tpm-dita-indesign-style-catalog.xml" />
+			<activiti:field name="xsltUriFromWorkflow"
+				stringValue="rsuite:/res/plugin/astd-plugin/xslt/newtpm2indesign/tpmArticle2InDesign.xsl" />
+			<activiti:field name="fileName" stringValue="${sourceFileName}" />
+			<activiti:field name="xmlMoId" stringValue="${xmlMoId}" />
+		</serviceTask>
+
+
+
+
+      <sequenceFlow id="fromxMLToINCXToDecision" sourceRef="XML_to_INCX" targetRef="INX_Generation_Failure_"/>
+      
+      
+      
+      
+      <serviceTask id="Load_INX" name="Load INX444"
+                   activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
+			<activiti:field name="alias" expression="${sourceFileName}.incx" />
+			<activiti:field name="commitMessage" stringValue="Loaded by workflow" />
+			<activiti:field name="parentMoId" expression="${articleCaMoId}" />
+		</serviceTask>
+
+
+      <sequenceFlow id="fromloadInxToDecision" sourceRef="Load_INX" targetRef="Have_No_Exec_Summary_"/>
       <exclusiveGateway id="Have_No_Exec_Summary_"/>
       <sequenceFlow sourceRef="Have_No_Exec_Summary_" targetRef="Load_Exec_Summary">
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${empty incxExecSummaryFile == false]]></conditionExpression>
@@ -47,12 +84,23 @@
       <sequenceFlow sourceRef="Have_No_Exec_Summary_" targetRef="Make_Article_CA_Current">
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${empty incxExecSummaryFile == true]]></conditionExpression>
       </sequenceFlow>
-      <serviceTask id="Load_Exec_Summary"
-                   activiti:class="com.reallysi.rsuite.system.workflow.actions.LoadNonXmlByAliasActionHandler">
-<!--Custom variable; adjust action handlers as appropriate. alias={${incxExecSummaryFile}}-->
-<!--Custom variable; adjust action handlers as appropriate. fileToLoad={${incxExecSummaryPath}}-->
-<!--Custom variable; adjust action handlers as appropriate. commitMessage={Generated by workflow}-->
-<!--Custom variable; adjust action handlers as appropriate. parentMoId={${articleCaMoId}}--></serviceTask>
+      
+      
+      
+      
+      
+      <serviceTask id="Load_Exec_Summary" name="Load Exec Summary5555"
+                 activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
+			<activiti:field name="alias" stringValue="${incxExecSummaryFile}" />
+			<activiti:field name="fileToLoadFromWorkflow"
+				stringValue="${incxExecSummaryPath}" />
+			<activiti:field name="commitMessage"
+				expression="Generated by ${rsuiteUserId} via workflow" />
+			<activiti:field name="parentMoId"
+				stringValue="${articleCaMoId}" />
+		</serviceTask>
+
+
       <sequenceFlow sourceRef="Load_Exec_Summary" targetRef="Make_Article_CA_Current"/>
       <userTask id="Final_Edit"
                 name="Final Edit"
@@ -60,35 +108,40 @@
          <documentation>Document: ${fullFileName}</documentation>
       </userTask>
       <sequenceFlow sourceRef="Final_Edit" targetRef="Get_Tax"/>
-      <serviceTask id="Load_DOCX"
-                   activiti:class="com.reallysi.service.workflow.ingestion.action.LoadActionHandler">
-<!--Custom variable; adjust action handlers as appropriate. regex={}-->
-<!--Custom variable; adjust action handlers as appropriate. xmlMoMatchExpressions={}-->
-<!--Custom variable; adjust action handlers as appropriate. layeredMetadataMatchExpressions={}-->
-<!--Custom variable; adjust action handlers as appropriate. moChunkMatchExpressions={}-->
-<!--Custom variable; adjust action handlers as appropriate. collection={}-->
-<!--Custom variable; adjust action handlers as appropriate. inputFolder={}-->
-<!--Custom variable; adjust action handlers as appropriate. notDelete={}-->
-<!--Custom variable; adjust action handlers as appropriate. creationPolicy={UpdateRepository}-->
-<!--Custom variable; adjust action handlers as appropriate. commitMessage={Loaded via workflow}-->
-<!--Custom variable; adjust action handlers as appropriate. alwaysTreatAsXml={}-->
-<!--Custom variable; adjust action handlers as appropriate. neverTreatAsXml={}--></serviceTask>
-      <sequenceFlow sourceRef="Load_DOCX" targetRef="DOCX_Load_Failed_"/>
-      <serviceTask id="Create_CAs_for_DOCX"
-                   activiti:class="com.reallysi.service.workflow.action.CreateFolderCaOrCaNodeActionHandler">
-<!--Custom variable; adjust action handlers as appropriate. canode={${sourceFileName}}-->
-<!--Custom variable; adjust action handlers as appropriate. ca={Issue ${month}}-->
-<!--Custom variable; adjust action handlers as appropriate. folder={/Magazines/T and D/Volume ${volumeNumber}}-->
-<!--Custom variable; adjust action handlers as appropriate. attachImmediately={true}-->
-<!--Custom variable; adjust action handlers as appropriate. caIdCreatedName={articleCaId}-->
-<!--Custom variable; adjust action handlers as appropriate. replaceMOWithCAinRSuiteContents={true}--></serviceTask>
-      <sequenceFlow sourceRef="Create_CAs_for_DOCX" targetRef="Capture_Article_CA_MO_ID"/>
-      <serviceTask id="Validate_File_Name"
-                   activiti:class="com.astd.rsuite.actions.AstdValidateFileNameActionHandler">
-<!--Custom variable; adjust action handlers as appropriate. allowedExtension={.docx}-->
-<!--Custom variable; adjust action handlers as appropriate. errorIfLocked={true}-->
-<!--Custom variable; adjust action handlers as appropriate. extensionErrorMessage={Only MS Word 2007 or later allowed. Please open in MS Word 2007 and save as a .docx file.}--></serviceTask>
-      <sequenceFlow sourceRef="Validate_File_Name" targetRef="Are_there_validation_errors_"/>
+      
+      
+      <serviceTask id="Load_DOCX" name="Load DOCX6666"
+                  activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadDocxActionHandler">
+</serviceTask>
+
+
+
+      <sequenceFlow id="flowFromLoadDocxToValidationError" sourceRef="Load_DOCX" targetRef="DOCX_Load_Failed_"/>
+      
+      
+      
+      
+      <serviceTask id="Create_CAs_for_DOCX" name="Create CAs for DOCX7777"
+                 activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsActionHandler">
+</serviceTask>
+
+
+
+      <sequenceFlow id="flowToSetLM" sourceRef="Create_CAs_for_DOCX" targetRef="Capture_Article_CA_MO_ID"/>
+      
+      
+      
+      
+      <serviceTask id="Validate_File_Name" name="Validate File Parameters8888"
+  activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.AtdValidateFileNameActionHandler">
+			<activiti:field name="allowedExtension" stringValue=".docx" />
+			<activiti:field name="errorIfLocked" stringValue="true" />
+			<activiti:field name="extensionErrorMessage"
+				stringValue="Only MS Word 2007 or later allowed. Please open in MS Word 2007 and save as a .docx file." />
+			<activiti:field name="errorIfExits" stringValue="true" />
+		</serviceTask>
+
+      <sequenceFlow id="flowToLoadErrorDecision" sourceRef="Validate_File_Name" targetRef="Are_there_validation_errors_"/>
       <exclusiveGateway id="Are_there_validation_errors_"/>
       <sequenceFlow sourceRef="Are_there_validation_errors_"
                     targetRef="Error_Alert_Article_Worfklow_Docx_Load_Failed">
@@ -111,14 +164,12 @@
       <sequenceFlow sourceRef="Is_Unknown_DOCX_" targetRef="Create_CAs_for_unknown_DOCX">
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${volumeNumber=='99' == true]]></conditionExpression>
       </sequenceFlow>
-      <serviceTask id="Create_CAs_for_unknown_DOCX"
-                   activiti:class="com.reallysi.service.workflow.action.CreateFolderCaOrCaNodeActionHandler">
-<!--Custom variable; adjust action handlers as appropriate. canode={${sourceFileName}}-->
-<!--Custom variable; adjust action handlers as appropriate. ca={Unassigned}-->
-<!--Custom variable; adjust action handlers as appropriate. folder={/Magazines/T and D}-->
-<!--Custom variable; adjust action handlers as appropriate. attachImmediately={true}-->
-<!--Custom variable; adjust action handlers as appropriate. caIdCreatedName={articleCaId}-->
-<!--Custom variable; adjust action handlers as appropriate. replaceMOWithCAinRSuiteContents={true}--></serviceTask>
+      
+      
+      
+      
+      <serviceTask id="Create_CAs_for_unknown_DOCX" name="Create_CAs_for_unknown_DOCX9999"
+                   activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsActionHandler"/>
       <sequenceFlow sourceRef="Create_CAs_for_unknown_DOCX"
                     targetRef="Capture_Article_CA_MO_ID"/>
       <exclusiveGateway id="DOCX2XML_Error_"/>
@@ -190,52 +241,98 @@
       </userTask>
       <sequenceFlow sourceRef="Error_Alert_Article_Workflow_XML_Load_Failed"
                     targetRef="Clear_Load_Dita_Status"/>
-      <serviceTask id="Set_Variables_From_Properties"
-                   activiti:class="com.reallysi.rsuite.system.workflow.actions.SetGlobalVariablesActionHandler">
-<!--Custom variable; adjust action handlers as appropriate. variableNames={exportDir;sharedExportDir}-->
-<!--Custom variable; adjust action handlers as appropriate. values={${astd.base.export.dir}${astd.xml.export.dir}/${pId};${astd.export.share}${astd.xml.export.dir}/${pId}}--></serviceTask>
-      <sequenceFlow sourceRef="Set_Variables_From_Properties"
+                    
+                    
+                    
+                    
+                    
+                    
+                  
+                    
+           <serviceTask id="Set_Variables_From_Properties" name="Ensure Map10000"
+                  activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetGlobalVariablesActionHandler">
+			<activiti:field name="variableNames" stringValue="exportDir;sharedExportDir" />
+			<activiti:field name="values"
+				stringValue="${astd.base.export.dir}${astd.xml.export.dir}/${pId};${astd.export.share}${astd.xml.export.dir}/${pId}" />
+		</serviceTask>
+		
+
+      <sequenceFlow id="fromSetVariablesToValidateFileName" sourceRef="Set_Variables_From_Properties"
                     targetRef="Validate_File_Name"/>
-      <serviceTask id="Get_PID_and_Now_String"
-                   activiti:class="com.reallysi.rsuite.system.workflow.actions.SetDynamicValuesToVariablesActionHandler">
-<!--Custom variable; adjust action handlers as appropriate. variableNames={pId;nowString}-->
-<!--Custom variable; adjust action handlers as appropriate. items={pId;nowString}--></serviceTask>
-      <sequenceFlow sourceRef="Get_PID_and_Now_String"
+                    
+                    
+      <serviceTask id="Get_PID_and_Now_String" name="Set PID and Date Now"
+                   activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetDynamicValuesToVariablesActionHandler">
+                  <activiti:field name="variableNames" stringValue="pId;nowString" />
+                 <activiti:field name="items" stringValue="pId;nowString" /></serviceTask>
+
+      <sequenceFlow id="flowToSetVariablesFromProps" sourceRef="Get_PID_and_Now_String"
                     targetRef="Set_Variables_From_Properties"/>
+                    
+                    
       <serviceTask id="Capture_DOCX_MO_ID"
                    activiti:class="com.reallysi.rsuite.system.workflow.actions.SetVariableFromMoWorkflowList">
+                   
 <!--Custom variable; adjust action handlers as appropriate. targetVariableName={docxMoId}--></serviceTask>
+
       <sequenceFlow sourceRef="Capture_DOCX_MO_ID" targetRef="Is_Unknown_DOCX_"/>
+      
+      
       <serviceTask id="Capture_Article_CA_MO_ID"
-                   activiti:class="com.reallysi.rsuite.system.workflow.actions.SetVariableFromMoWorkflowList">
-<!--Custom variable; adjust action handlers as appropriate. targetVariableName={articleCaMoId}--></serviceTask>
-      <sequenceFlow sourceRef="Capture_Article_CA_MO_ID" targetRef="Set_Article_LM"/>
-      <serviceTask id="Make_Article_CA_Current"
+             activiti:class="com.reallysi.rsuite.system.workflow.actions.SetVariableFromMoWorkflowList">
+             <!--Custom variable; adjust action handlers as appropriate. targetVariableName={articleCaMoId}--></serviceTask>
+             
+             <sequenceFlow sourceRef="Capture_Article_CA_MO_ID" targetRef="Set_Article_LM"/>
+             
+             
+      
+   <serviceTask id="Make_Article_CA_Current"
                    activiti:class="com.reallysi.rsuite.system.workflow.actions.SetWorkflowMoListFromVariable">
-<!--Custom variable; adjust action handlers as appropriate. moSpecifyingVariableName={articleCaMoId}--></serviceTask>
-      <sequenceFlow sourceRef="Make_Article_CA_Current" targetRef="EndNode"/>
-      <serviceTask id="Import_DITA"
-                   activiti:class="com.reallysi.rsuite.workflow.actions.TopicImporterActionHandler">
-<!--Custom variable; adjust action handlers as appropriate. topicPath={${exportDir}/${sourceFileName}/${sourceFileName}.xml}-->
-<!--Custom variable; adjust action handlers as appropriate. parentCaId={${articleCaMoId}}-->
-<!--Custom variable; adjust action handlers as appropriate. commitMessage={Loaded via workflow from hotfolder}-->
-<!--Custom variable; adjust action handlers as appropriate. importedMoListVarname={xmlMoId}-->
-<!--Custom variable; adjust action handlers as appropriate. topicContainerName={media}--></serviceTask>
+                   <!--Custom variable; adjust action handlers as appropriate. moSpecifyingVariableName={articleCaMoId}--></serviceTask>
+                   <sequenceFlow sourceRef="Make_Article_CA_Current" targetRef="EndNode"/>
+                   
+                   
+      <serviceTask id="Import_DITA" name="Import DITA10011"
+                  activiti:class="com.reallysi.rsuite.workflow.actions.TopicImporterActionHandler">
+			<activiti:field name="topicPath"
+				stringValue="${exportDir}/${sourceFileName}/${sourceFileName}.xml" />
+			<activiti:field name="parentCaId" stringValue="${articleCaMoId}" />
+			<activiti:field name="commitMessage"
+				stringValue="Loaded via workflow from hotfolder" />
+			<activiti:field name="importedMoListVarname"
+				stringValue="xmlMoId" />
+			<activiti:field name="topicContainerName" stringValue="media" />
+		</serviceTask>
       <sequenceFlow sourceRef="Import_DITA" targetRef="DITA_Load_Failed_"/>
-      <serviceTask id="Set_Article_LM"
-                   activiti:class="com.reallysi.service.workflow.ingestion.action.AddLayeredMetadataActionHandler">
-<!--Custom variable; adjust action handlers as appropriate. metadataName={ca-type;article-process-id}-->
-<!--Custom variable; adjust action handlers as appropriate. metadataValue={article;${pId}}-->
-<!--Custom variable; adjust action handlers as appropriate. moList={${articleCaMoId}}--></serviceTask>
+      
+      
+      
+      
+      <serviceTask id="Set_Article_LM" name="Set Article LM121221111111156"
+                 activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAddLayeredMetadataActionHandler">
+			<activiti:field name="metadataName" stringValue="ca-type;article-process-id" />
+			<activiti:field name="metadataValue" stringValue="article;${pId}" />
+			<activiti:field name="moList" stringValue="${articleCaMoId}" />
+		</serviceTask>
       <sequenceFlow sourceRef="Set_Article_LM" targetRef="Get_Tax"/>
+      
+      
+      
+      
       <serviceTask id="Clear_Load_Dita_Status"
                    activiti:class="com.reallysi.rsuite.system.workflow.actions.ClearExceptionStatus"/>
       <sequenceFlow sourceRef="Clear_Load_Dita_Status" targetRef="Final_Edit"/>
+      
+      
+      
       <serviceTask id="Get_Tax"
                    activiti:class="com.astd.rsuite.actions.AstdSetClassificationVar">
 <!--Custom variable; adjust action handlers as appropriate. moAlias={${sourceFileName}.xml}-->
 <!--Custom variable; adjust action handlers as appropriate. targetVariableName={articleClassification}--></serviceTask>
       <sequenceFlow sourceRef="Get_Tax" targetRef="DocX2XML_Transform"/>
+      
+      
+      
       <serviceTask id="Set_Tax"
                    activiti:class="com.astd.rsuite.actions.AstdSetMoClassification">
 <!--Custom variable; adjust action handlers as appropriate. moAlias={${sourceFileName}.xml}-->
