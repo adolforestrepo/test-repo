@@ -13,78 +13,88 @@ import com.reallysi.rsuite.workflow.actions.DitaOtXhtmlTaskRunningActionHandlerB
 /**
  * Runs the generic PDF transform type.
  */
-public class ProjectDitaOtXhtmlTaskRunningActionHandler
-    extends DitaOtXhtmlTaskRunningActionHandlerBase
-    implements TempWorkflowConstants {
+public class ProjectDitaOtXhtmlTaskRunningActionHandler extends
+		DitaOtXhtmlTaskRunningActionHandlerBase implements
+		TempWorkflowConstants {
 
-  public static final String DEFAULT_TRANSTYPE = "xhtml";
+	public static final String DEFAULT_TRANSTYPE = "xhtml";
 
-  protected Expression buildPropertiesFromWorkflow;
-  protected Expression transtypeFromWorkflow;
-  protected Expression outputPath;
+	protected Expression buildPropertiesFromWorkflow;
+	protected Expression transtypeFromWorkflow;
+	protected Expression outputPath;
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see com.reallysi.rsuite.api.workflow.AbstractBaseNonLeavingActionHandler#execute(com.reallysi.
-   * rsuite.api.workflow.WorkflowExecutionContext)
-   */
-  @Override
-  public void execute(WorkflowContext context) throws Exception {
-    Log wfLog = context.getWorkflowLog();
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.reallysi.rsuite.api.workflow.AbstractBaseNonLeavingActionHandler#
+	 * execute(com.reallysi. rsuite.api.workflow.WorkflowExecutionContext)
+	 */
+	@Override
+	public void execute(WorkflowContext context) throws Exception {
+		Log wfLog = context.getWorkflowLog();
 
-    context.setVariable(EXCEPTION_OCCUR, false);
-    String transtype = resolveVariables(getParameterWithDefault("transtype", DEFAULT_TRANSTYPE));
-  //  transtype = getWorkflowVariableOrParameter(context, "transtypeFromWorkflow",
-   //     transtypeFromWorkflow);
-    // Handle case where workflow process has <transtype>${transtype}</transtype>
-    // but ${transtype} isn't set.
-    if (transtype == null || transtype.startsWith("${")) {
-      transtype = DEFAULT_TRANSTYPE;
-    }
+		context.setVariable(EXCEPTION_OCCUR, false);
+		String transtype = resolveVariables(getParameterWithDefault(
+				"transtype", DEFAULT_TRANSTYPE));
+		// transtype = getWorkflowVariableOrParameter(context,
+		// "transtypeFromWorkflow",
+		// transtypeFromWorkflow);
+		// Handle case where workflow process has
+		// <transtype>${transtype}</transtype>
+		// but ${transtype} isn't set.
+		if (transtype == null || transtype.startsWith("${")) {
+			transtype = DEFAULT_TRANSTYPE;
+		}
 
-    setBuildProperties(getWorkflowVariableOrParameter(context, "buildPropertiesFromWorkflow",
-        buildPropertiesFromWorkflow));
-    setOutputPath(getWorkflowVariableOrParameter(context, "outputPath", outputPath));
+		setBuildProperties(getWorkflowVariableOrParameter(context,
+				"buildPropertiesFromWorkflow", buildPropertiesFromWorkflow));
+		String strputputpath = getWorkflowVariableOrParameter(context,
+				"outputPath", outputPath);
+		setOutputPath(strputputpath);
 
-    DitaOpenToolkit toolkit = getToolkit(context, wfLog);
 
-    Properties props = setBaseTaskProperties(context, transtype, toolkit);
+		DitaOpenToolkit toolkit = getToolkit(context, wfLog);
 
-  //  cleanOutputDir(context, getOutputDir(context));
+		Properties props = setBaseTaskProperties(context, transtype, toolkit);
 
-    // The applyToolkitProcessToMos() method manages the export of the
-    // MOs to the file system, so at this point we don't know what the
-    // filename of the exported map is.
-    applyToolkitProcessToMos(context, wfLog, toolkit, transtype, props);
+		// cleanOutputDir(context, getOutputDir(context));
 
-  }
+		// The applyToolkitProcessToMos() method manages the export of the
+		// MOs to the file system, so at this point we don't know what the
+		// filename of the exported map is.
+		applyToolkitProcessToMos(context, wfLog, toolkit, transtype, props);
 
-  /**
-   * Gets the value of a workflow variable / parameter.
-   * 
-   * @param context
-   * @return the value.
-   */
-  protected String getWorkflowVariableOrParameter(WorkflowContext context,
-      String workflowVariableOrParameterName, Expression workflowExpression) {
-    String workflowVarOrParam = context.getVariableAsString(workflowVariableOrParameterName);
-    if (StringUtils.isNotEmpty(workflowVarOrParam)) {
-      return workflowVarOrParam;
-    }
-    workflowVarOrParam = resolveVariablesAndExpressions(getParameter(
-        workflowVariableOrParameterName));
-    if (StringUtils.isNotEmpty(workflowVarOrParam)) {
-      return workflowVarOrParam;
-    }
-    if(buildPropertiesFromWorkflow != null){
-    workflowVarOrParam = resolveExpression(buildPropertiesFromWorkflow);
-    context.getWorkflowLog().info("Resolved expression [" + workflowVarOrParam + "]");
-    }else{
-    	workflowVarOrParam = "";
-    }
-    return workflowVarOrParam;
-  }
+	}
+
+	/**
+	 * Gets the value of a workflow variable / parameter.
+	 * 
+	 * @param context
+	 * @return the value.
+	 */
+	protected String getWorkflowVariableOrParameter(WorkflowContext context,
+			String workflowVariableOrParameterName,
+			Expression workflowExpression) {
+		String workflowVarOrParam = context
+				.getVariableAsString(workflowVariableOrParameterName);
+		if (StringUtils.isNotEmpty(workflowVarOrParam)) {
+			return workflowVarOrParam;
+		}
+
+		if (workflowExpression != null) {
+			workflowVarOrParam = resolveVariablesAndExpressions(workflowExpression
+					.getExpressionText());
+			context.getWorkflowLog().info(
+					"Resolved expression [" + workflowVarOrParam + "]");
+		} else {
+			workflowVarOrParam = resolveVariablesAndExpressions(getParameter(workflowVariableOrParameterName));
+			if (StringUtils.isNotEmpty(workflowVarOrParam)) {
+				return workflowVarOrParam;
+			}
+			workflowVarOrParam = "";
+		}
+		return workflowVarOrParam;
+	}
 
 }
-

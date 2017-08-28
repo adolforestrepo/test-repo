@@ -59,8 +59,10 @@
 				<menuItem>
 					<type>action</type>
 					<actionName>rsuite:startWorkflow</actionName>
-					<label>ASTD: Export Article HTML</label>
-					<property name="processDefinitionName" value="ASTD Export Article HTML" />
+					<label>ATD: Export Article HTML</label>
+					<property name="processDefinitionName" value="ATD Export Article HTML" />
+					<property name="parentMoId" value="" />
+					<property name="serviceParams.parentMoId" value=""/> 
 				</menuItem>
 			</menuItemList>
 			<ruleList>
