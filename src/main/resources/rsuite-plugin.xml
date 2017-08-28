@@ -68,6 +68,22 @@
 				<rule>include elementType article</rule>
 			</ruleList>
 		</contextMenuRuleSet>
+		
+		<contextMenuRuleSet name="astd.contextmenu.genXmlForArticle">
+			<menuItemList>
+				<menuItem>
+					<type>action</type>
+					<actionName>rsuite:startWorkflow</actionName>
+					<label>ASTD: Generate XML for Article</label>
+					<property name="processDefinitionName" value="ASTD Docx to XML" />
+				</menuItem>
+			</menuItemList>
+			<ruleList>
+				<rule>exclude nodeType ca,canode,folder</rule>
+				<rule>include nodeType mononxml</rule>
+				<rule>include fileExtension docx,DOCX</rule>
+			</ruleList>
+		</contextMenuRuleSet>
 
         <contextMenuRuleSet name="astd.main.contextmenuitem.all.users.system.scope" scope="system">
             <menuItemList>
