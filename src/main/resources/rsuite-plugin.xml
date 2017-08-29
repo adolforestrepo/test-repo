@@ -304,7 +304,7 @@
 	</extensionProvider>
 
     <extensionProvider id="rsuite.UI">
-        <scriptInclude src="/astd-plugin/js/jquery.initialize.js" /> <!-- From: https://github.com/timpler/jquery.initialize -->
+        <scriptInclude src="/astd-plugin/js/jquery.initialize.js" />  <!-- From: https://github.com/timpler/jquery.initialize -->
 	    <scriptInclude src="/astd-plugin/js/cms-ui-actions.js" />
 	    <scriptInclude src="/astd-plugin/js/cms-ui-overrides.js" />
         <scriptInclude src="/astd-plugin/js/rsuite-openWindow-action.js" />
