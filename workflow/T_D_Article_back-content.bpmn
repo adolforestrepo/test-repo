@@ -121,10 +121,10 @@
        <exclusiveGateway id="Are_there_validation_errors_"/>
        <sequenceFlow sourceRef="Are_there_validation_errors_"
                     targetRef="Error_Alert_Article_Worfklow_Docx_Load_Failed">
-          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${VALIDATION_MSGS!=null == true]]></conditionExpression>
+          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${VALIDATION_MSGS ==null}]]></conditionExpression>
        </sequenceFlow>
        <sequenceFlow sourceRef="Are_there_validation_errors_" targetRef="Load_DOCX">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${VALIDATION_MSGS!=null == false]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${VALIDATION_MSGS != null}]]></conditionExpression>
        </sequenceFlow>
        <userTask id="Error_Alert_Article_Worfklow_Docx_Load_Failed"
                 name="Error Alert: Article Worfklow: Docx Load Failed"
@@ -135,10 +135,10 @@
                      targetRef="EndNode"/>
        <exclusiveGateway id="Is_Unknown_DOCX_"/>
        <sequenceFlow sourceRef="Is_Unknown_DOCX_" targetRef="Create_CAs_for_DOCX">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${volumeNumber=='99' == false]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${volumeNumber !='99'}]]></conditionExpression>
        </sequenceFlow>
        <sequenceFlow sourceRef="Is_Unknown_DOCX_" targetRef="Create_CAs_for_unknown_DOCX">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${volumeNumber=='99' == true]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${volumeNumber == '99'}]]></conditionExpression>
        </sequenceFlow>
            
          
@@ -149,10 +149,10 @@
       <exclusiveGateway id="DOCX2XML_Error_"/>
       <sequenceFlow sourceRef="DOCX2XML_Error_"
                     targetRef="Error_Alert_Article_Workflow_Word_to_XML_Failed">
-        <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == true]]></conditionExpression>
+        <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true}]]></conditionExpression>
        </sequenceFlow>
        <sequenceFlow sourceRef="DOCX2XML_Error_" targetRef="Import_DITA">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == false]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false }]]></conditionExpression>
        </sequenceFlow>
        <userTask id="Error_Alert_Article_Workflow_Word_to_XML_Failed"
                  name="Error Alert: Article Workflow: Word to XML Failed"
@@ -163,11 +163,11 @@
                      targetRef="Clear_Load_Dita_Status"/>
        <exclusiveGateway id="INX_Generation_Failure_"/>
        <sequenceFlow sourceRef="INX_Generation_Failure_" targetRef="Load_INX">
-          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == false]]></conditionExpression>
+          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false}]]></conditionExpression>
        </sequenceFlow>
        <sequenceFlow sourceRef="INX_Generation_Failure_"
                      targetRef="Error_Alert_Article_Workflow_InCopy_Generation_Failed">
-          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == true]]></conditionExpression>
+          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true}]]></conditionExpression>
         </sequenceFlow>
       <userTask id="Error_Alert_Article_Workflow_InCopy_Generation_Failed"
                 name="Error Alert: Article Workflow: InCopy Generation Failed"
@@ -188,10 +188,10 @@
       <exclusiveGateway id="DOCX_Load_Failed_"/>
       <sequenceFlow sourceRef="DOCX_Load_Failed_"
                     targetRef="Error_Alert_Article_Workflow_Docx_Load_Failed">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPOTION_OCCUR=='true' == true]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true}]]></conditionExpression>
       </sequenceFlow>
       <sequenceFlow sourceRef="DOCX_Load_Failed_" targetRef="Capture_DOCX_MO_ID">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPOTION_OCCUR=='true' == false]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false}]]></conditionExpression>
       </sequenceFlow>
       <userTask id="Error_Alert_Article_Workflow_Docx_Load_Failed"
                 name="Error Alert: Article Workflow: Docx Load Failed"
@@ -203,10 +203,10 @@
       <exclusiveGateway id="DITA_Load_Failed_"/>
       <sequenceFlow sourceRef="DITA_Load_Failed_"
                     targetRef="Error_Alert_Article_Workflow_XML_Load_Failed">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR=='true' == true]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true}]]></conditionExpression>
       </sequenceFlow>
       <sequenceFlow sourceRef="DITA_Load_Failed_" targetRef="Set_Tax">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR=='true' == false]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false}]]></conditionExpression>
       </sequenceFlow>
         <userTask id="Error_Alert_Article_Workflow_XML_Load_Failed"
                  name="Error Alert: Article Workflow: XML Load Failed"
@@ -312,11 +312,11 @@
       <sequenceFlow id="fromsetTaxToDecision" sourceRef="Set_Tax" targetRef="Set_Tax_Failed_"/>
       <exclusiveGateway id="Set_Tax_Failed_"/>
       <sequenceFlow sourceRef="Set_Tax_Failed_" targetRef="XML_to_INCX">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == false]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false}]]></conditionExpression>
       </sequenceFlow>
       <sequenceFlow sourceRef="Set_Tax_Failed_"
                     targetRef="Error_Alert_Article_Workflow_XML_Load_Failed">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == true]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true}]]></conditionExpression>
       </sequenceFlow>
    </process>
 </definitions>
