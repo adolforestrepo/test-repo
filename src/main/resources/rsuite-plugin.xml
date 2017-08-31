@@ -87,6 +87,22 @@
 			</ruleList>
 		</contextMenuRuleSet>
 
+		<contextMenuRuleSet name="astd.contextmenu.genXmlForArticle">
+			<menuItemList>
+				<menuItem>
+					<type>action</type>
+					<actionName>rsuite:startWorkflow</actionName>
+					<label>ASTD: Generate XML for Article</label>
+					<property name="processDefinitionName" value="ATD Docx to XML" />
+				</menuItem>
+			</menuItemList>
+			<ruleList>
+				<rule>exclude nodeType ca,canode,folder</rule>
+				<rule>include nodeType mononxml</rule>
+				<rule>include fileExtension docx,DOCX</rule>
+			</ruleList>
+		</contextMenuRuleSet>
+		
         <contextMenuRuleSet name="astd.main.contextmenuitem.all.users.system.scope" scope="system">
             <menuItemList>
                 <menuItem id="ama:viewAutomatedTestResults">
@@ -310,17 +326,18 @@
 	    <!-- Load workflow definitions   -->
 	    <workflowDefinitions>
 	   
-	     <file key="ATD Article Word to XML to InDesign" filename="WebContent/workflow/ATD Article Word to XML to InDesign.bpmn"/>
+	     <file key="T+D Article back-content" filename="WebContent/workflow/T_D_Article_back-content.bpmn"/>
 	     <file key="ATD CTDO" filename="WebContent/workflow/ATD CTDO.bpmn"/>
 	     <file key="ATD NEW TPM" filename="WebContent/workflow/ATD NEW TPM.bpmn"/>
 	     <file key="ATD Export Article HTML" filename="WebContent/workflow/ATD_Export_Article_HTML.bpmn"/>
-	     
+	     <file key="ASTD_Article_Word_to_XML_to_InDesign" filename="WebContent/workflow/ASTD_Article_Word_to_XML_to_InDesign.bpmn"/>
+	     <file key="ATD Docx to XML" filename="WebContent/workflow/ATD Docx to XML.bpmn"/>
 	   </workflowDefinitions>
 	    
 	</extensionProvider>
 
     <extensionProvider id="rsuite.UI">
-        <scriptInclude src="/astd-plugin/js/jquery.initialize.js" /> <!-- From: https://github.com/timpler/jquery.initialize -->
+        <scriptInclude src="/astd-plugin/js/jquery.initialize.js" />  <!-- From: https://github.com/timpler/jquery.initialize -->
 	    <scriptInclude src="/astd-plugin/js/cms-ui-actions.js" />
 	    <scriptInclude src="/astd-plugin/js/cms-ui-overrides.js" />
         <scriptInclude src="/astd-plugin/js/rsuite-openWindow-action.js" />
