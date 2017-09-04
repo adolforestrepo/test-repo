@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:activiti="http://activiti.org/bpmn"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:jpdl2="urn:jbpm.org:jpdl-3.2"
+             xmlns:jpdl1="urn:jbpm.org:jpdl-3.1"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd"
+             targetNamespace="http://www.jbpm.org/"
+             id="ASTD_Reassign_Article_Definitions"
+             name="ASTD_Reassign_Article">
+   <process isExecutable="true"
+            id="ASTD_Reassign_Article_Process"
+            name="ASTD Reassign Article">
+      <startEvent name="StartNode" id="StartNode"/>
+      <sequenceFlow sourceRef="StartNode" targetRef="Reassign_Article"/>
+      <endEvent name="EndNode" id="EndNode"/>
+      <serviceTask id="Reassign_Article" name="Reassign_Article"
+                   activiti:class="com.astd.rsuite.actions.AstdReassignArticleActionHandler"/>
+      <sequenceFlow sourceRef="Reassign_Article" targetRef="Exception_occurred_"/>
+      <exclusiveGateway id="Exception_occurred_"/>
+      <sequenceFlow sourceRef="Exception_occurred_" targetRef="EndNode">
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false]]></conditionExpression>
+      </sequenceFlow>
+      <sequenceFlow sourceRef="Exception_occurred_" targetRef="Review_Exception">
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true]]></conditionExpression>
+      </sequenceFlow>
+      <userTask id="Review_Exception"
+                name="Review Exception"
+                activiti:candidateGroups="RSuiteAdministrator">
+         <documentation>Reassign error: ${REASSIGN_MSGS}</documentation>
+      </userTask>
+      <sequenceFlow sourceRef="Review_Exception" targetRef="EndNode"/>
+   </process>
+</definitions>

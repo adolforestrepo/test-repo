@@ -8,20 +8,10 @@
 	<process id="ATD Docx to XML" name="ATD Docx to XML" isExecutable="true">
 
 	<startEvent id="startWorkflow" name="Start" />
-<!--
-    <sequenceFlow id="flowToCheckForNoParentMOID" sourceRef="startWorkflow" targetRef="checkforNoParentMOID"/>
-    
-    <exclusiveGateway id="checkforNoParentMOID" name="Check for No Parent MO ID"></exclusiveGateway>
-    
-    <sequenceFlow id="flowToCaptureMODetails" sourceRef="checkforNoParentMOID" targetRef="captureMODetails">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[$!{empty parentMoId}]]></conditionExpression>
-    </sequenceFlow>
-
--->
 
     <sequenceFlow id="flowToSetParentCANodetoVariable" sourceRef="startWorkflow" targetRef="setParentCANodetoVariable"/>
 
-    <serviceTask id="setParentCANodetoVariable" name="Set Parent CA Node to Variable" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetParentBrowseTreeNodeToVariable">
+    <serviceTask id="setParentCANodetoVariable" name="Set Parent CA Node to Variable" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetParentBrowseTreeNodeToVariableHandler">
     </serviceTask>
 
     <sequenceFlow id="flowFromSetParentCAToSetVariables" sourceRef="setParentCANodetoVariable" targetRef="setVariablesfromProperties"/>
@@ -33,7 +23,7 @@
 
     <sequenceFlow id="flowFromSetVariablesToSetMODetails" sourceRef="setVariablesfromProperties" targetRef="setMODetailstoVariables"/>
     
-    <serviceTask id="setMODetailstoVariables" name="Set MO Details to Variables" activiti:class=""org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetGlobalVariablesActionHandler"">
+    <serviceTask id="setMODetailstoVariables" name="Set MO Details to Variables" activiti:class="com.reallysi.rsuite.system.workflow.actions.SetVariablesFromMoDetails">
     </serviceTask>
 
     <sequenceFlow id="flowFromSetMODetailsToDOCXtoDITA" sourceRef="setMODetailstoVariables" targetRef="dOCXtoDITAXML"/>
@@ -43,6 +33,9 @@
       <activiti:field name="xsltUri" stringValue="rsuite:/res/plugin/astd-plugin/xslt/word2xml/docx2article.xsl" />
       <activiti:field name="outputPath" stringValue="${exportDir}" />
       <activiti:field name="resultFileName" stringValue="${moBaseName}.xml" />
+      <activiti:field name="docxMoId" expression="${docxMoId}" />
+      <activiti:field name="xsltGraphicRenameUri" stringValue="" />
+      <activiti:field name="graphicsPrefix" stringValue="" />
     </serviceTask>
     <sequenceFlow id="fromDOCXtoDITAToDecision" sourceRef="dOCXtoDITAXML" targetRef="determineDocx2XmlExceptionOccur"/>
 
