@@ -170,8 +170,57 @@
             </ruleList>
         </contextMenuRuleSet>
         
+        
+        
+        
+        
+        <contextMenuRuleSet name="astd.contextmenu.reassignIssue" scope="allnodes,searchResults,browseTree,clipboard">
+			<menuItemList>
+				<menuItem>
+					<type>action</type>
+					<actionName>rsuite:startWorkflow</actionName>
+					<label>ASTD: Reassign Article</label>
+					<property name="formId" value="astdFormArticleRename" />
+					<property name="processDefinitionName" value="ASTD Reassign Article" />
+				</menuItem>
+			</menuItemList>
+			<ruleList>
+				<rule>include nodeType ca,canode</rule>
+				<rule>include lmdValue ca-type=article</rule>
+			</ruleList>
+		</contextMenuRuleSet>
+        
+        
+        
+        
+        
+        <contextMenuRuleSet name="astd.contextmenu.genIncxForArticle">
+			<menuItemList>
+				<menuItem>
+					<type>action</type>
+					<actionName>rsuite:startWorkflow</actionName>
+					<label>ASTD: Generate InCopy for Article</label>
+					<property name="processDefinitionName" value="ASTD Article to InDesign" />
+				</menuItem>
+			</menuItemList>
+			<ruleList>
+				<rule>exclude nodeType ca,canode,folder</rule>
+				<rule>include elementType article</rule>
+			</ruleList>
+		</contextMenuRuleSet>
+        
+        
+        
+        
+        
 	
 	</extensionProvider>
+	
+	
+	
+	
+	
+	
 	
 
 	<extensionProvider id="rsuite.Search">
@@ -316,6 +365,7 @@
 	     <file key="ATD Export Article HTML" filename="WebContent/workflow/ATD_Export_Article_HTML.bpmn"/>
 	     <file key="ASTD_Article_Word_to_XML_to_InDesign" filename="WebContent/workflow/ASTD_Article_Word_to_XML_to_InDesign.bpmn"/>
 	     <file key="ATD Docx to XML" filename="WebContent/workflow/ATD Docx to XML.bpmn"/>
+	     <file key="ASTD Reassign Article" filename="WebContent/workflow/ASTD_Reassign_Article.bpmn"/>
 	   </workflowDefinitions>
 	    
 	</extensionProvider>

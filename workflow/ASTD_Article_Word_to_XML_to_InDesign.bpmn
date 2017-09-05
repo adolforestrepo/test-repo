@@ -11,7 +11,9 @@
             
       <startEvent name="Start" id="StartNode"/>
       
+      
       <sequenceFlow id="getPIDAndNowString" sourceRef="StartNode" targetRef="Get_PID_and_Now_String"/>
+      
       
       <endEvent name="EndNode" id="EndNode"/>
       
@@ -520,27 +522,32 @@
       
       
       <serviceTask id="Make_Article_CA_Current_2"
-                   activiti:class="com.reallysi.rsuite.system.workflow.actions.SetWorkflowMoListFromVariable">
-<!--Custom variable; adjust action handlers as appropriate. moSpecifyingVariableName={articleCaMoId}--></serviceTask>
+                   activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler">
+                    <activiti:field name="moSpecifyingVariableName"
+				       stringValue="articleCaMoId" /></serviceTask>
       <sequenceFlow sourceRef="Make_Article_CA_Current_2"
                     targetRef="Make_First_Corrections"/>
                     
                     
       <serviceTask id="Make_Article_CA_Current_3"
-                   activiti:class="com.reallysi.rsuite.system.workflow.actions.SetWorkflowMoListFromVariable">
-<!--Custom variable; adjust action handlers as appropriate. moSpecifyingVariableName={articleCaMoId}--></serviceTask>
+                    activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler">
+              <activiti:field name="moSpecifyingVariableName"
+				       stringValue="articleCaMoId" /></serviceTask>
       <sequenceFlow sourceRef="Make_Article_CA_Current_3" targetRef="Create_Dummy"/>
       <sequenceFlow sourceRef="" targetRef="Clear_PDF_Exception_Status"/>
       
       
       
       <serviceTask id="Make_XML_Current"
-                   activiti:class="com.reallysi.rsuite.system.workflow.actions.SetWorkflowMoListFromVariable">
-<!--Custom variable; adjust action handlers as appropriate. moSpecifyingVariableName={xmlMoId}--></serviceTask>
+                    activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler">
+                    <activiti:field name="moSpecifyingVariableName"
+				       stringValue="xmlMoId" />
+                     </serviceTask>
       <sequenceFlow sourceRef="Make_XML_Current" targetRef="Export_Article_HTML"/>
       <serviceTask id="Restore_Article_CA_After_Exports"
-                   activiti:class="com.reallysi.rsuite.system.workflow.actions.SetWorkflowMoListFromVariable">
-<!--Custom variable; adjust action handlers as appropriate. moSpecifyingVariableName={articleCaMoId}--></serviceTask>
+                     activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler">
+              <activiti:field name="moSpecifyingVariableName"
+				       stringValue="articleCaMoId" /></serviceTask>
 
 
 
