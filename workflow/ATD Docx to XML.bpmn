@@ -12,6 +12,7 @@
     <sequenceFlow id="flowToSetParentCANodetoVariable" sourceRef="startWorkflow" targetRef="setParentCANodetoVariable"/>
 
     <serviceTask id="setParentCANodetoVariable" name="Set Parent CA Node to Variable" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetParentBrowseTreeNodeToVariableHandler">
+      <activiti:field name="variableName" stringValue="parentMoId"/>
     </serviceTask>
 
     <sequenceFlow id="flowFromSetParentCAToSetVariables" sourceRef="setParentCANodetoVariable" targetRef="setVariablesfromProperties"/>
@@ -33,7 +34,7 @@
       <activiti:field name="xsltUri" stringValue="rsuite:/res/plugin/astd-plugin/xslt/word2xml/docx2article.xsl" />
       <activiti:field name="outputPath" stringValue="${exportDir}" />
       <activiti:field name="resultFileName" stringValue="${moBaseName}.xml" />
-      <activiti:field name="docxMoId" expression="${docxMoId}" />
+      <activiti:field name="docxMoId" stringValue="${rsuite contents}" />
       <activiti:field name="xsltGraphicRenameUri" stringValue="" />
       <activiti:field name="graphicsPrefix" stringValue="" />
     </serviceTask>

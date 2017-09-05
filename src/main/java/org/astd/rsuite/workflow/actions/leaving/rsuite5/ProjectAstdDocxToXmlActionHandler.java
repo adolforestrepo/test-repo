@@ -67,7 +67,6 @@ implements TempWorkflowConstants {
     Log wfLog = context.getWorkflowLog();
     
     wfLog.info("Docx2XmlActionHandler: Starting...");
-    
     String xsltUriVar = resolveExpression(xsltUri);
     xsltUriVar = resolveVariables(xsltUriVar);
     
@@ -96,7 +95,9 @@ implements TempWorkflowConstants {
     File docxFile = null;
     
     ManagedObject mo = null;
-    String docxMoIdVar = resolveExpression(docxMoId);
+    
+    
+    String docxMoIdVar = resolveVariablesAndExpressions(docxMoId.getExpressionText());
     wfLog.info("Docx MO ID "+docxMoIdVar);
     
     if ((docxMoIdVar == null) || ("".equals(docxMoIdVar))) {
