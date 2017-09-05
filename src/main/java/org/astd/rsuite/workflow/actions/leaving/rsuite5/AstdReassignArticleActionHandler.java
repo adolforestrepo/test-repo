@@ -32,7 +32,7 @@
 ///**
 // * Reassign an article.
 // */
-//public class AstdReassignArticleActionHandler extends AstdActionHandlerBase  {
+// public class AstdReassignArticleActionHandler extends AstdActionHandlerBase  {
 //
 //    private static final long serialVersionUID = 1L;
 //
