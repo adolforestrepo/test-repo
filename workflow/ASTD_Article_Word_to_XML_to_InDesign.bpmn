@@ -54,7 +54,7 @@
 			<activiti:field name="fileName" stringValue="${sourceFileName}" />
 			<activiti:field name="xmlMoId" stringValue="${xmlMoId}" />
 		 </serviceTask>
-      <sequenceFlow sourceRef="XML_to_INCX" targetRef="INX_Generation_Failure_"/>
+      <sequenceFlow sourceRef="XML_to_INCX"  targetRef="INX_Generation_Failure_"/>
       
       
       

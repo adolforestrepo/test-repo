@@ -1,6 +1,6 @@
 package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
-//import com.reallysi.rsuite.api.workflow.activiti.BaseWorkflowAction;
+// import com.reallysi.rsuite.api.workflow.activiti.BaseWorkflowAction;
 import com.reallysi.rsuite.api.workflow.activiti.BaseNonLeavingWorkflowAction;
 
 
