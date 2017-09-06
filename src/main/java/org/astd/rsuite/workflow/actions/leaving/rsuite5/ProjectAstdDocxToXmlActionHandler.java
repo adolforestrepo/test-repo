@@ -7,6 +7,7 @@ import java.util.Map;
 import org.activiti.engine.delegate.Expression;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.dita4publishers.rsuite.workflow.actions.beans.Docx2XmlBean;
 
@@ -74,18 +75,19 @@ implements TempWorkflowConstants {
     String styleMapUriVar = resolveExpression(styleMapUri);
     styleMapUriVar = resolveVariables(styleMapUriVar);
     
-    String xsltGfxRenameUri = resolveExpression(xsltGraphicRenameUri);
-    if (xsltGfxRenameUri == null) {
+    String xsltGfxRenameUri = "";
+    if (xsltGraphicRenameUri == null || resolveExpression(xsltGraphicRenameUri) == null || resolveVariablesAndExpressions(xsltGraphicRenameUri.getExpressionText()) == null) {
       xsltGfxRenameUri = "rsuite:/res/plugin/dita4publishers/xslt/word2dita/rewriteDocxGraphics.xsl";
     } else {
-      xsltGfxRenameUri = resolveVariables(xsltGfxRenameUri);
+      xsltGfxRenameUri = resolveVariablesAndExpressions(xsltGraphicRenameUri.getExpressionText());
+    //  xsltGfxRenameUri = resolveVariablesAndExpressions(xsltGfxRenameUri);
     }
     
-    String gfxPrefix = resolveExpression(graphicsPrefix);
-    if (gfxPrefix == null) {
+    String gfxPrefix = "";
+    if (graphicsPrefix == null || resolveExpression(graphicsPrefix) == null || resolveVariablesAndExpressions(graphicsPrefix.getExpressionText()) == null) {
       gfxPrefix = "";
     } else {
-      gfxPrefix = resolveVariables(gfxPrefix);
+      gfxPrefix = resolveVariablesAndExpressions(graphicsPrefix.getExpressionText());
     }
     
     Docx2XmlBean bean = null;
@@ -96,10 +98,10 @@ implements TempWorkflowConstants {
     File docxFile = null;
     
     ManagedObject mo = null;
-    String docxMoIdVar = resolveExpression(docxMoId);
+    String docxMoIdVar = "";
     wfLog.info("Docx MO ID "+docxMoIdVar);
     
-    if ((docxMoIdVar == null) || ("".equals(docxMoIdVar))) {
+    if (docxMoId == null || resolveExpression(docxMoId)== null) {
       MoListWorkflowObject moList = context.getMoListWorkflowObject();
       if ((moList == null) || (moList.isEmpty()) || ((mo instanceof ContentAssembly))) {
         String msg = "No managed objects in the workflow context and docxMoId parameter not specified . Nothing to do";
@@ -114,6 +116,7 @@ implements TempWorkflowConstants {
       }
     }
     else {
+      docxMoIdVar = resolveExpression(docxMoId);
       mo = context.getManagedObjectService().getManagedObject(context.getAuthorizationService().getSystemUser(), docxMoIdVar);
             
       if (mo == null) {
@@ -134,6 +137,12 @@ implements TempWorkflowConstants {
     wfLog.info("DocxFileName "+docxFilename);
     
     String fileNameBase = context.getVariableAsString("sourceFileName");
+    
+    /** Added to fix a variable not set on ATD-60  */
+    if(StringUtils.isEmpty(fileNameBase)){
+    	fileNameBase = context.getVariableAsString("moBaseName");
+    	context.setVariable("sourceFileName", fileNameBase);
+    }
     
     String mapFileName = fileNameBase + ".ditamap";
     

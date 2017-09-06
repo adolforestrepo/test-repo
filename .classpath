@@ -52,6 +52,6 @@
 	<classpathentry kind="lib" path="java/lib/powermock-mockito.jar"/>
 	<classpathentry kind="lib" path="java/lib/dita2indesign-rsuite-plugin.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Adolfo/Documents/Cytex/Proyectos/ATD/RSI_bitbucket/rsuite_atd/java/lib/rsuite-dita-ot-plugin.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Adolfo/Documents/Cytex/RSuite530/developer/rsuite-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Adolfo/Documents/Cytex/RSuite530/developer/rsuite-api.jar" sourcepath="C:/Users/Adolfo/Documents/Cytex/Proyectos/RSuite/RSUite_5.2.1/rsuite-core/dev.zip"/>
 	<classpathentry kind="output" path="target"/>
 </classpath>

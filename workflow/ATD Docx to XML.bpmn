@@ -33,9 +33,6 @@
       <activiti:field name="xsltUri" stringValue="rsuite:/res/plugin/astd-plugin/xslt/word2xml/docx2article.xsl" />
       <activiti:field name="outputPath" stringValue="${exportDir}" />
       <activiti:field name="resultFileName" stringValue="${moBaseName}.xml" />
-      <activiti:field name="docxMoId" expression="${docxMoId}" />
-      <activiti:field name="xsltGraphicRenameUri" stringValue="" />
-      <activiti:field name="graphicsPrefix" stringValue="" />
     </serviceTask>
     <sequenceFlow id="fromDOCXtoDITAToDecision" sourceRef="dOCXtoDITAXML" targetRef="determineDocx2XmlExceptionOccur"/>
 

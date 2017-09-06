@@ -2,7 +2,9 @@ package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
+import org.astd.rsuite.domain.ArticlePubCode;
 
 import com.reallysi.rsuite.api.ContentAssembly;
 import com.reallysi.rsuite.api.ContentAssemblyItem;
@@ -11,15 +13,18 @@ import com.reallysi.rsuite.api.ManagedObjectReference;
 import com.reallysi.rsuite.api.User;
 import com.reallysi.rsuite.api.workflow.ProcessInstanceInfo;
 import com.reallysi.rsuite.api.workflow.WorkflowExecutionContext;
+import com.reallysi.rsuite.api.workflow.activiti.BaseWorkflowAction;
+import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
 import com.reallysi.rsuite.service.ManagedObjectService;
 import com.reallysi.rsuite.service.ProcessInstanceService;
-import com.reallysi.tools.StringUtil;
+import com.reallysi.rsuite.service.WorkflowInstanceService;
+
 
 /**
  * Reassign an article.
  */
 public class AstdReassignArticleActionHandler
-             extends AstdActionHandlerBase  {
+             extends BaseWorkflowAction implements TempWorkflowConstants {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,64 +36,58 @@ public class AstdReassignArticleActionHandler
     public static final String VAR_AUTHOR   = "form.author";
 
     @Override
-    public void execute(
-            WorkflowExecutionContext context
-    ) throws Exception {
+    public void execute(WorkflowContext context) throws Exception {
         Log wfLog = context.getWorkflowLog();
         wfLog.info("Attempting to reassign article...");
 
         try {
-            User user = getSystemUser();
-            String moid = context.getVariable("rsuite contents");
+            User user = context.getAuthorizationService().getSystemUser();
+            String moid = context.getVariableAsString("rsuite contents");
             wfLog.info("MOID (us): "+moid);
             ManagedObjectService mosvc = context.getManagedObjectService();
             ManagedObject mo = mosvc.getManagedObject(user, moid);
             if (!mo.isAssemblyNode()) {
-                reportAndThrowRSuiteException(context,
-                    "MO is not a content assembly");
+                reportAndThrowRSuiteException("MO is not a content assembly");
             }
 
             AstdArticleFilename curName = null;
             try {
                 curName = new AstdArticleFilename(mo.getDisplayName());
             } catch (Exception e) {
-                reportAndThrowRSuiteException(context,
-                    "MO does not have a valid article name: " +
+                reportAndThrowRSuiteException("MO does not have a valid article name: " +
                     e.getLocalizedMessage());
             }
 
             ContentAssembly us =
-                context.getContentAssemblyService().getContentAssemblyById(
-                                user, moid);
+                context.getContentAssemblyService().getContentAssembly(user, moid);
             if (AstdActionUtils.isArticleContentsLocked(us)) {
-            	reportAndThrowRSuiteException(context,
-                        "Article "+curName+" has locked content, cannot reassign");
+            	reportAndThrowRSuiteException("Article "+curName+" has locked content, cannot reassign");
             }
 
             // Get form values: If a form value not set, we default to
             // value from current name.
-            String pubCode = context.getVariable(VAR_PUB_CODE);
-            if (StringUtil.isNullOrEmptyOrSpace(pubCode)) {
+            String pubCode = context.getVariableAsString(VAR_PUB_CODE);
+            if (StringUtils.isEmpty(pubCode)) {
                 pubCode = curName.pubCode;
             }
-            String type = context.getVariable(VAR_TYPE);
-            if (StringUtil.isNullOrEmptyOrSpace(type)) {
+            String type = context.getVariableAsString(VAR_TYPE);
+            if (StringUtils.isEmpty(type)) {
                 type = curName.type;
             }
-            String volume = context.getVariable(VAR_VOLUME);
-            if (StringUtil.isNullOrEmptyOrSpace(volume)) {
+            String volume = context.getVariableAsString(VAR_VOLUME);
+            if (StringUtils.isEmpty(volume)) {
                 volume = curName.volume;
             }
-            String issue = context.getVariable(VAR_ISSUE);
-            if (StringUtil.isNullOrEmptyOrSpace(issue)) {
+            String issue = context.getVariableAsString(VAR_ISSUE);
+            if (StringUtils.isEmpty(issue)) {
                 issue = curName.issue;
             }
-            String sequence = context.getVariable(VAR_SEQUENCE);
-            if (StringUtil.isNullOrEmptyOrSpace(sequence)) {
+            String sequence = context.getVariableAsString(VAR_SEQUENCE);
+            if (StringUtils.isEmpty(sequence)) {
                 sequence = curName.sequence;
             }
-            String author = context.getVariable(VAR_AUTHOR);
-            if (StringUtil.isNullOrEmptyOrSpace(author)) {
+            String author = context.getVariableAsString(VAR_AUTHOR);
+            if (StringUtils.isEmpty(author)) {
                 author = curName.author;
             }
             
@@ -101,7 +100,7 @@ public class AstdReassignArticleActionHandler
 
             if (!sameIssue) {
             	boolean isUnassigned = "99".equals(volume);
-            	String folderRoot = "/" + AstdWorkflowConstants.FOLDER_MAGAZINE
+            	String folderRoot = "/" + FOLDER_MAGAZINE
             	+ "/" + ArticlePubCode.getPubDesc(pubCode);
             	String folder = null;
             	if (isUnassigned) {
@@ -114,8 +113,7 @@ public class AstdReassignArticleActionHandler
             		folder = AstdActionUtils.createFolder(
             				user, folder, context);
             	} catch (Exception e) {
-            		reportAndThrowRSuiteException(context,
-            				"Unable to create folder: " + e.getLocalizedMessage());
+            		reportAndThrowRSuiteException("Unable to create folder: " + e.getLocalizedMessage());
             	}
 
             	String caContainer = null;
@@ -128,24 +126,22 @@ public class AstdReassignArticleActionHandler
             	String caId = null;
             	try {
             		caId = AstdActionUtils.createCA(
-            				getRepositoryService(), user, caContainer, folder, context);
+            				context.getRepositoryService(), user, caContainer, folder, context);
             	} catch (Exception e) {
-            		reportAndThrowRSuiteException(context,
-            				"Unable to create CA: " + e.getLocalizedMessage());
+            		reportAndThrowRSuiteException("Unable to create CA: " + e.getLocalizedMessage());
             	}
             	wfLog.info("New container CA ID: "+caId);
 
             	// Attempt to move article CA to new location
             	ContentAssembly newParent =
-            		context.getContentAssemblyService().getContentAssemblyById(
+            		context.getContentAssemblyService().getContentAssembly(
             				user, caId);
             	try {
             		wfLog.info("Moving CA");
             		context.getContentAssemblyService().moveTo(
             				user, newParent.getId(), us.getId());
             	} catch (Exception e) {
-            		reportAndThrowRSuiteException(context,
-            				"Unable to move CA: " + e.getLocalizedMessage());
+            		reportAndThrowRSuiteException("Unable to move CA: " + e.getLocalizedMessage());
             	}
             }
 
@@ -153,10 +149,9 @@ public class AstdReassignArticleActionHandler
             try {
             	wfLog.info("Renaming CA "+moid+" to "+newName);
                 context.getContentAssemblyService().renameCANode(
-                                user, moid, newName, null);
+                                user, moid, newName);
             } catch (Exception e) {
-                reportAndThrowRSuiteException(context,
-                    "Unable to rename CA: " + e.getLocalizedMessage());
+                reportAndThrowRSuiteException("Unable to rename CA: " + e.getLocalizedMessage());
             }
 
             // Re-fetch CA instance since previous operations change CA and we
@@ -202,12 +197,11 @@ public class AstdReassignArticleActionHandler
             
     		// Update process variables
     		String pid = mo.getLayeredMetadataValue(
-    				AstdWorkflowConstants.ASTD_ARTICLE_PID_LMD_FIELD);
-    		if (!StringUtil.isNullOrEmptyOrSpace(pid)) {
+    				ASTD_ARTICLE_PID_LMD_FIELD);
+    		if (!StringUtils.isEmpty(pid)) {
     			wfLog.info("Attempting to update variables for process "+pid);
-    			ProcessInstanceService psvc =
-    				context.getProcessInstanceService(); 
-    			ProcessInstanceInfo pi = psvc.getProcessInstance(user,pid); 
+    			 WorkflowInstanceService psvc = context.getWorkflowInstanceService(); 
+    			 Object pi = psvc.getWorkflowInstance(pid); 
     			if (pi == null) {
     				wfLog.info("No process with id "+pid+" found, clearing LMD field");
     				AstdActionUtils.clearArticlePidLmdField(context, mo, user);
@@ -250,5 +244,7 @@ public class AstdReassignArticleActionHandler
           throw e;
         }
     }
+
+	
     
 }
