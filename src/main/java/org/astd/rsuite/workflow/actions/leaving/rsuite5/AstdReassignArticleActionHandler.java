@@ -20,10 +20,10 @@ import com.reallysi.rsuite.service.ManagedObjectService;
 import com.reallysi.rsuite.service.ProcessInstanceService;
 import com.reallysi.rsuite.service.WorkflowInstanceService;
 
-
 /**
  * Reassign an article.
  */
+
 public class AstdReassignArticleActionHandler
              extends BaseWorkflowAction implements TempWorkflowConstants {
 

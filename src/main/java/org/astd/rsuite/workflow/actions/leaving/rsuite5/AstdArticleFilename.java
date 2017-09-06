@@ -129,7 +129,6 @@ public class AstdArticleFilename implements TempWorkflowConstants {
 	}
 
 	// ///////////////////////////////////////////////////////////////////////
-
 	String pubCode = null;
 	String fullFileName = null;
 	String sourceFileName = null;
@@ -139,7 +138,6 @@ public class AstdArticleFilename implements TempWorkflowConstants {
 	String sequence = null;
 	String author = null;
 	String extension = null;
-
 	// ///////////////////////////////////////////////////////////////////////
 
 	private static final String regex = "^((TD|TPM|CT)(\\w{2})(\\d{2})(\\d{2})(\\d{2})([^.]*))(\\.[^\\s.]+)?$";

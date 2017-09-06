@@ -82,6 +82,7 @@ implements TempWorkflowConstants {
     //  xsltGfxRenameUri = resolveVariablesAndExpressions(xsltGfxRenameUri);
     }
     
+    
     String gfxPrefix = "";
     if (graphicsPrefix == null || resolveExpression(graphicsPrefix) == null || resolveVariablesAndExpressions(graphicsPrefix.getExpressionText()) == null) {
       gfxPrefix = "";
