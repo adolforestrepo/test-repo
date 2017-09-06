@@ -98,13 +98,8 @@ implements TempWorkflowConstants {
     File docxFile = null;
     
     ManagedObject mo = null;
-<<<<<<< HEAD
+
     String docxMoIdVar = "";
-=======
-    
-    
-    String docxMoIdVar = resolveVariablesAndExpressions(docxMoId.getExpressionText());
->>>>>>> 7085334cf63a56c9145c19a141272f39cf2d02b0
     wfLog.info("Docx MO ID "+docxMoIdVar);
     
     if (docxMoId == null || resolveExpression(docxMoId)== null) {
