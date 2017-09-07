@@ -424,6 +424,73 @@
             <paramList />
         </formDefinition>
     </extensionProvider>
+    
+    
+    
+    <extensionProvider id="rsuite.Forms">
+		<formDefinition id="astdFormArticleRename" label="Article Reassign"
+			description="Reassign article to different issue and/or volume.">
+			<instructions>To use the current value for a field, leave it blank.
+			</instructions>
+			<paramList>
+				<param>
+					<name>form.pubcode</name>
+					<label>Publication Code</label>
+					<datatype name="string" />
+					<formControlType>select</formControlType>
+					<optionList>
+						<option value="" label="[Use Current]"></option>
+						<option value="TD" label="T+D"></option>
+					</optionList>
+				</param>
+				<param>
+					<name>form.type</name>
+					<label>Article Type</label>
+					<datatype name="string" />
+					<formControlType>select</formControlType>
+					<optionList>
+						<option value="" label="[Use Current]"></option>
+						<option value="FE" label="Features"></option>
+						<option value="IN" label="Intelligence"></option>
+						<option value="RE" label="Re:Search"></option>
+						<option value="EW" label="Economy Watch"></option>
+						<option value="FM" label="Fundamentals"></option>
+						<option value="EN" label="Editor's Note"></option>
+						<option value="TR" label="Trends"></option>
+						<option value="TK" label="Technology"></option>
+						<option value="LV" label="Long View"></option>
+						<option value="DV" label="Development"></option>
+						<option value="BP" label="Learning Blueprint"></option>
+						<option value="SL" label="Solutions"></option>
+						<option value="RX" label="Workplace Rx"></option>
+						<option value="BK" label="Books"></option>
+						<option value="BX" label="Mini-book Review"></option>
+						<option value="CP" label="Career Path"></option>
+					</optionList>
+				</param>
+				<param>
+					<name>form.volume</name>
+					<label>Volume</label>
+				</param>
+				<param>
+					<name>form.issue</name>
+					<label>Issue</label>
+				</param>
+				<param>
+					<name>form.sequence</name>
+					<label>Sequence</label>
+				</param>
+				<param>
+					<name>form.author</name>
+					<label>Author</label>
+				</param>
+			</paramList>
+		</formDefinition>
+	</extensionProvider>
+    
+    
+    
+    
 
     <extensionProvider id="rsuite.Reporting">
 

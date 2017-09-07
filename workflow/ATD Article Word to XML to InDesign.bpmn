@@ -183,7 +183,7 @@
 <!--Custom variable; adjust action handlers as appropriate. replaceMOWithCAinRSuiteContents={true}--></serviceTask>
       <sequenceFlow sourceRef="Create_CAs_for_unknown_DOCX"
                     targetRef="Capture_Article_CA_MO_ID"/>
-      <userTask id="Edit_MS_Word" name="Edit MS Word"
+      <userTask id="Edit_MS_Word1" name="Edit MS Word"
                 activiti:candidateGroups="Managing Editor">
          <documentation>Document: ${fullFileName}</documentation>
       </userTask>
