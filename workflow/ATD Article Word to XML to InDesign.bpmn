@@ -11,11 +11,11 @@
              xmlns:xs="http://www.w3.org/2001/XMLSchema"
              xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd"
              targetNamespace="http://www.jbpm.org/"
-             id="ASTD_Article_Word_to_XML_to_InDesign_Definitions"
-             name="ASTD_Article_Word_to_XML_to_InDesign">
+             id="ATD_TandD_Article_Word_to_XML_to_InDesign_Definitions"
+             name="ATD_TandD_Article_Word_to_XML_to_InDesign">
    <process isExecutable="true"
-            id="ATD Article Word to XML to InDesign"
-            name="ASTD Article Word to XML to InDesign">
+            id="ATD T+D Article Word to XML to InDesign"
+            name="ATD T+D Article Word to XML to InDesign">
             
             
       <startEvent name="StartNode" id="StartNode"/>

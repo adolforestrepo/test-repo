@@ -359,13 +359,12 @@
 	    <!-- Load workflow definitions   -->
 	    <workflowDefinitions>
 	   
-	     <file key="T+D Article back-content" filename="WebContent/workflow/T_D_Article_back-content.bpmn"/>
+	
 	     <file key="ATD CTDO" filename="WebContent/workflow/ATD CTDO.bpmn"/>
 	     <file key="ATD NEW TPM" filename="WebContent/workflow/ATD NEW TPM.bpmn"/>
-	     <file key="ATD Export Article HTML" filename="WebContent/workflow/ATD_Export_Article_HTML.bpmn"/>
-	    <file key="ATD Docx to XML" filename="WebContent/workflow/ATD Docx to XML.bpmn"/>
-	    <file key="ASTD Reassign Article" filename="WebContent/workflow/ASTD_Reassign_Article.bpmn"/>
-	    <file key="ATD Article Word to XML to InDesign" filename="WebContent/workflow/ATD Article Word to XML to InDesign.bpmn"/>
+	     <file key="ATD Docx to XML" filename="WebContent/workflow/ATD Docx to XML.bpmn"/>
+	     <file key="ASTD Reassign Article" filename="WebContent/workflow/ASTD_Reassign_Article.bpmn"/>
+	     <file key="ATD T+D Article Word to XML to InDesign" filename="WebContent/workflow/ATD Article Word to XML to InDesign.bpmn"/>
 	   </workflowDefinitions>
 	    
 	</extensionProvider>
