@@ -11,16 +11,16 @@
              xmlns:xs="http://www.w3.org/2001/XMLSchema"
              xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd"
              targetNamespace="http://www.jbpm.org/"
-             id="ASTD_Reassign_Article_Definitions"
-             name="ASTD_Reassign_Article">
+             id="ASTD Reassign Article"
+             name="ASTD Reassign Article">
    <process isExecutable="true"
-            id="ASTD_Reassign_Article_Process"
+            id="ASTD Reassign Article"
             name="ASTD Reassign Article">
       <startEvent name="StartNode" id="StartNode"/>
       <sequenceFlow sourceRef="StartNode" targetRef="Reassign_Article"/>
       <endEvent name="EndNode" id="EndNode"/>
       <serviceTask id="Reassign_Article" name="Reassign_Article"
-                   activiti:class="com.astd.rsuite.actions.AstdReassignArticleActionHandler"/>
+                   activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdReassignArticleActionHandler"/>
       <sequenceFlow sourceRef="Reassign_Article" targetRef="Exception_occurred_"/>
       <exclusiveGateway id="Exception_occurred_"/>
       <sequenceFlow sourceRef="Exception_occurred_" targetRef="EndNode">

@@ -354,6 +354,9 @@
 	    <actionHandler label="Action handler to convert docx to xml."
 	        description="Convert a docx to xml."
 	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdDocxToXmlActionHandler" />    
+	    <actionHandler label="Action handler to Reassign an article."
+	        description="Reassign an article."
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdReassignArticleActionHandler" />    
 	        
 
 	    <!-- Load workflow definitions   -->
