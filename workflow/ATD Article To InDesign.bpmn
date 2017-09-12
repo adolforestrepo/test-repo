@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+  xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+  xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+  typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
+  targetNamespace="http://www.activiti.org/test">
+  <process id="ATD Article To InDesign" name="ATD Article To InDesign" isExecutable="true">
+    <startEvent id="startWorkflow" name="Start"/>
+
+    <sequenceFlow id="flowToSetParentCANodetoVariable" sourceRef="startWorkflow" targetRef="setParentCANodetoVariable"/>
+
+    <serviceTask id="setParentCANodetoVariable" name="Set Parent CA Node to Variable" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetParentBrowseTreeNodeToVariableHandler">
+      <activiti:field name="variableName" stringValue="parentMoId"/>
+    </serviceTask>
+
+    <sequenceFlow id="flowFromSetParentCAToSetVariables" sourceRef="setParentCANodetoVariable" targetRef="setVariablesfromProperties"/>
+    
+    <serviceTask id="setVariablesfromProperties" name="Set Variables from Properties" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetGlobalVariablesActionHandler">
+      <activiti:field name="variableNames" stringValue="exportDir;sharedExportDir" />
+      <activiti:field name="values" stringValue="${astd.base.export.dir}${astd.incx.export.dir}/${rsuiteUserId};${astd.export.share}${astd.incx.export.dir}/${rsuiteUserId}" />
+    </serviceTask>
+
+    <sequenceFlow id="flowFromSetVariablesToSetMODetails" sourceRef="setVariablesfromProperties" targetRef="setMODetailstoVariables"/>
+    
+    <serviceTask id="setMODetailstoVariables" name="Set MO Details to Variables" activiti:class="com.reallysi.rsuite.system.workflow.actions.SetVariablesFromMoDetails">
+    </serviceTask>
+
+
+    <sequenceFlow id="flowFromsetMODetailstoxMLToINCX" sourceRef="setMODetailstoVariables" targetRef="xMLToINCX"></sequenceFlow>
+
+
+
+    <serviceTask id="xMLToINCX" name="XML to INCX" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IncxActionHandler">
+            <activiti:field name="styleCatalogUri" stringValue="rsuite:/res/plugin/astd-plugin/xslt/tandd2indesign/tandd-dita-indesign-style-catalog.xml" />
+            <activiti:field name="xsltUriFromWorkflow" stringValue="rsuite:/res/plugin/astd-plugin/xslt/tandd2indesign/tanddArticle2InDesign.xsl" />
+            <activiti:field name="outputPath" stringValue="${exportDir}" />
+            <activiti:field name="resultFileName" stringValue="${moBaseName}.xml" />
+    </serviceTask>
+
+
+        <sequenceFlow id="fromxMLToINCXToDecision" sourceRef="xMLToINCX" targetRef="determineXml2INCXError"></sequenceFlow>
+
+        <exclusiveGateway id="determineXml2INCXError" name="INX Generation Failure?"></exclusiveGateway>
+
+        <sequenceFlow id="flowToXML2INXError" sourceRef="determineXml2INCXError" targetRef="xml2INCXError">
+                <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true}]]></conditionExpression>
+        </sequenceFlow>
+
+        <sequenceFlow id="flowToLoadINX" sourceRef="determineXml2INCXError" targetRef="loadInx">
+                <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
+        </sequenceFlow>
+
+        <userTask id="xml2INCXError"
+                name="InCopy Generation Failed" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="RSuiteAdministrator">
+                <documentation>"#{moDisplayName}: InCopy generation failed: #{exceptionMessage} &lt;br/&gt;See conversion report &lt;a href='/rsuite/rest/v1/report/generated/#{xformReportId}?skey=RSUITE-SESSION-KEY' target='_xformReport'&gt;#{xformReportFileName}&lt;a/&gt;"
+                </documentation>
+        </userTask>
+        
+        <sequenceFlow id="fromxml2INCXErrortoendWorkflow" sourceRef="xml2INCXError" targetRef="endWorkflow"/>
+        <sequenceFlow id="fromINCXGenerationFailedtoClearExceptionStatus" sourceRef="xml2INCXError" targetRef="ClearExceptionStatus"/>
+
+       <serviceTask id="ClearExceptionStatus" name="Clear Exception Status" activiti:class="com.reallysi.rsuite.system.workflow.actions.ClearExceptionStatus">
+       </serviceTask>
+
+      <sequenceFlow id="flowFromClearExceptionStatusToDOCXtoDITA" sourceRef="ClearExceptionStatus" targetRef="xMLToINCX"/>
+
+
+        <serviceTask id="loadInx" name="Load INX" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
+				<activiti:field name="alias" stringValue="${moBaseName}.html" />
+				<activiti:field name="fileToLoadFromWorkflow" stringValue="${astd.incx.export.dir}/${moBaseName}.html" />
+				<activiti:field name="commitMessage" stringValue="Generated by user ${rsuiteUserId}" />
+                <activiti:field name="parentMoId" expression="${articleCaMoId}" />
+        </serviceTask>
+
+        <sequenceFlow id="fromloadInxToDecision" sourceRef="loadInx" targetRef="determineExecSummary"></sequenceFlow>
+
+        <exclusiveGateway id="determineExecSummary" name="Have No Exec Summary?"></exclusiveGateway>
+
+        <sequenceFlow id="flowToMakeArticleCACurrent" sourceRef="determineExecSummary" targetRef="makeArticleCACurrent">
+                <conditionExpression xsi:type="tFormalExpression"><![CDATA[${empty incxExecSummaryFile}]]></conditionExpression>
+        </sequenceFlow>
+
+        <sequenceFlow id="flowToLoadExecSummary" sourceRef="determineExecSummary" targetRef="loadExecSummary">
+        </sequenceFlow>
+
+
+        <serviceTask id="loadExecSummary" name="Load Exec Summary" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
+                <activiti:field name="alias" stringValue="${incxExecSummaryFile}" />
+                <activiti:field name="fileToLoadFromWorkflow" stringValue="${incxExecSummaryPath}" />
+                <activiti:field name="commitMessageFromWorkflow" expression="Generated by ${rsuiteUserId} via workflow" />
+                <activiti:field name="parentMoIdFromWorkflow" stringValue="${articleCaMoId}" />
+        </serviceTask>
+
+        <sequenceFlow id="flowFromLoadExecSummaryToMakeArticleCACurrent" sourceRef="loadExecSummary" targetRef="makeArticleCACurrent"></sequenceFlow>
+
+        <serviceTask id="makeArticleCACurrent" name="Make Article CA Current" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler">
+                <activiti:field name="moSpecifyingVariableName" stringValue="articleCaMoId" />
+        </serviceTask>
+ 
+<!--
+
+
+        <sequenceFlow id="flowToBeginDesignTask" sourceRef="makeArticleCACurrent" targetRef="Begin Design Task"></sequenceFlow>
+
+
+
+
+
+
+
+
+
+
+
+
+        <sequenceFlow id="fromCTDOFinalizeIssueToEndNode" sourceRef="CTDO Finalize Issue" targetRef="endWorkflow"></sequenceFlow>
+
+-->
+    <endEvent id="endWorkflow" name="End Workflow"></endEvent>
+    <dataObject id="EXCEPTION_OCCUR" name="EXCEPTION_OCCUR" itemSubjectRef="xsd:string">
+      <extensionElements>
+        <activiti:value>""</activiti:value>
+      </extensionElements>
+    </dataObject>
+    <dataObject id="rsuiteUserId" name="rsuiteUserId" itemSubjectRef="xsd:string"></dataObject>
+  </process>
+</definitions>
