@@ -200,7 +200,7 @@
 					<type>action</type>
 					<actionName>rsuite:startWorkflow</actionName>
 					<label>ASTD: Generate InCopy for Article</label>
-					<property name="processDefinitionName" value="ATD Article Word to XML to InDesign" />
+					<property name="processDefinitionName" value="ATD Article To InDesign" />
 				</menuItem>
 			</menuItemList>
 			<ruleList>
@@ -368,6 +368,7 @@
 	     <file key="ATD Docx to XML" filename="WebContent/workflow/ATD Docx to XML.bpmn"/>
 	     <file key="ASTD Reassign Article" filename="WebContent/workflow/ASTD_Reassign_Article.bpmn"/>
 	     <file key="ATD T+D Article Word to XML to InDesign" filename="WebContent/workflow/ATD Article Word to XML to InDesign.bpmn"/>
+	     <file key="ATD Article To InDesign" filename="WebContent/workflow/ATD Article To InDesign.bpmn"/>
 	   </workflowDefinitions>
 	    
 	</extensionProvider>

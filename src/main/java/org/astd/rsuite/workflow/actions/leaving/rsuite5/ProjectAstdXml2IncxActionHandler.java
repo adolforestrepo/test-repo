@@ -126,6 +126,7 @@ public class ProjectAstdXml2IncxActionHandler extends BaseWorkflowAction
 	protected Expression styleCatalogUri;
 	protected Expression xsltUriFromWorkflow;
 	protected Expression fileName;
+	protected Expression outputPath;
 
 	public void setFileName(String fileName) {
 		setParameter(FILE_NAME_PARAM, fileName);
