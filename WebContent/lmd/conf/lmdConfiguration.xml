@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rsuite-lmd-configurations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:noNamespaceSchemaLocation="../../doctypes/lmd-definitions.xsd"
-           columns="3">
-           
-           
+<rsuite-lmd-configurations columns="3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../../../../workspace_40/rsuite-lmd-editor/doctypes/lmd-definitions.xsd">
+
+  <lmd-group name="subject">
+    <lmd-configuration mulitvalue="true" name="subject">
+      <displayName>Subject</displayName>
+      <data-type>subjectDt</data-type>
+      <input-type>taxonomy</input-type>
+      <mulitvalue>true</mulitvalue>
+    </lmd-configuration>
+  </lmd-group>
+
+  <lmd-group name="dita">
+    <lmd-configuration name="conversion_config_id">
+      <displayName>DITA Transformation Configuration</displayName>
+      <data-type>ditaTransformChoices</data-type>
+      <input-type>select</input-type>
+      <mulitvalue>false</mulitvalue>
+    </lmd-configuration>
+  </lmd-group>
+
+  <lmd-group name="project">
+    <lmd-configuration name="project">
+      <displayName>Project</displayName>
+      <input-type>select</input-type>
+      <data-type>projects-datatype</data-type>
+      <mulitvalue>false</mulitvalue>
+    </lmd-configuration>
+  </lmd-group>
+  
+    <lmd-group name="acsSubject">
+    <lmd-configuration mulitvalue="true" name="acsSubject">
+      <displayName>Subject</displayName>
+      <data-type>acsSubjectDt</data-type>
+      <input-type>taxonomy</input-type>
+      <mulitvalue>true</mulitvalue>
+    </lmd-configuration>
+  </lmd-group>
+  
+
 </rsuite-lmd-configurations>

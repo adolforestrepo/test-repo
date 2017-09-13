@@ -72,7 +72,22 @@
                 activiti:candidateGroups="Managing Editor">
          <documentation>Document: ${fullFileName}</documentation>
       </userTask>
-      <sequenceFlow sourceRef="Final_Edit" targetRef="DocX2XML_Transform"/>
+      <sequenceFlow sourceRef="Final_Edit" targetRef="getTax"/>
+      
+      
+      
+      
+      
+      
+      
+      <serviceTask id="getTax" name="Get Tax"
+			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAtdSetClassificationVarActionHandler">
+			<activiti:field name="moAlias" expression="${sourceFileName}.xml" />
+			<activiti:field name="targetVariableName" stringValue="articleClassification" />
+		</serviceTask>
+
+		<sequenceFlow id="fromGetTaxToDocx2XmlTransform"
+			sourceRef="getTax" targetRef="DocX2XML_Transform"></sequenceFlow>
       
       
       
@@ -81,9 +96,8 @@
       
       
       <serviceTask id="Load_DOCX" name="Load DOCX4444"
-      
-      
-      activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadDocxActionHandler">
+       activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadDocxActionHandler">
+       
      
       
       
@@ -111,7 +125,7 @@
       
       
       
-      <serviceTask id="Create_CAs_for_DOCX" name="Load DOCX4444"
+      <serviceTask id="Create_CAs_for_DOCX" name="Create CAs for DOCX"
                   activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadDocxActionHandler">
       
 <!--Custom variable; adjust action handlers as appropriate. canode={${sourceFileName}}-->
@@ -146,7 +160,7 @@
 		
 		
 		
-      <sequenceFlow sourceRef="Validate_File_Name" targetRef="Are_there_validation_errors"/>
+            <sequenceFlow sourceRef="Validate_File_Name" targetRef="Are_there_validation_errors"/>
 
       <exclusiveGateway id="Are_there_validation_errors" name="Load Error?" />
 
@@ -162,15 +176,16 @@
       </sequenceFlow>
 
 
+	  
+	  
+      <userTask id="Error_Alert" name="Error Alert" 
+        activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
+			<documentation>${VALIDATION_MSGS}</documentation>
 
-	  
-	  
-      <userTask id="Error_Alert" name="Error Alert" activiti:candidateGroups="Managing Editor">
-         <documentation>${VALIDATION_MSGS}</documentation>
       </userTask>
 	  
 	  
-      <sequenceFlow sourceRef="Error_Alert" targetRef="EndNode"/>
+      sequenceFlow sourceRef="Error_Alert" targetRef="EndNode"/>
       <exclusiveGateway id="Is_Unknown_DOCX_"  name="Unknown DOCX Error?" />
       <sequenceFlow sourceRef="Is_Unknown_DOCX_" targetRef="Create_CAs_for_DOCX">
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${volumeNumber=='99' == false}]]></conditionExpression>
@@ -178,7 +193,6 @@
       <sequenceFlow sourceRef="Is_Unknown_DOCX_" targetRef="Create_CAs_for_unknown_DOCX">
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${volumeNumber=='99' == true}]]></conditionExpression>
       </sequenceFlow>
-      
       
       
       
@@ -207,7 +221,7 @@
       
       
       <userTask id="editorEditMSWord"
-                name="TPM Edit MS Word (Editor)"
+                name="TD Edit MS Word (Editor)"
                 activiti:candidateGroups="Editor">
          <documentation>Document: ${fullFileName}</documentation>
       </userTask>
