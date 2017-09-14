@@ -154,7 +154,7 @@ public class ProjectAstdXml2IncxActionHandler extends BaseWorkflowAction
 		bean = new XML2InDesignBean(context, xsltUriExp, styleCatalogUriExp,
 				fileNameExp);
 
-		File workFolder = getOutputDir(context);
+		File outputDir = getOutputDir();
 
 		ManagedObject mo = null;
 		if (xmlMoIdExp == null || "".equals(xmlMoIdExp)) {
@@ -206,7 +206,7 @@ public class ProjectAstdXml2IncxActionHandler extends BaseWorkflowAction
 			}
 		}
 
-		File resultInxFile = new File(workFolder, fileNameExp + ".incx");
+		File resultInxFile = new File(outputDir, fileNameExp + ".incx");
 
 		String reportFileName = fileNameExp + "_docx2dita_at_" + getNowString()
 				+ ".txt";
@@ -235,7 +235,7 @@ public class ProjectAstdXml2IncxActionHandler extends BaseWorkflowAction
 					resultInxFile, options);
 
 			// If executive summary file created, set workflow variables.
-			File resultInxExecSummaryFile = new File(workFolder, fileNameExp
+			File resultInxExecSummaryFile = new File(outputDir, fileNameExp
 					+ "-execsum.incx");
 			if (resultInxExecSummaryFile.exists()) {
 				wfLog.info("Executive summary exists: "
@@ -297,35 +297,39 @@ public class ProjectAstdXml2IncxActionHandler extends BaseWorkflowAction
 
 	}
 
-	protected File getOutputDir(WorkflowContext context) throws Exception,
-			RSuiteException {
-		String outputPath = getParameter(OUTPUT_PATH_PARAM);
-		outputPath = resolveVariables(outputPath);
+	  protected File getOutputDir() throws Exception {
+	    
+	    String outputPathVar = "";
+	    
+           if (outputPath == null || resolveExpression(outputPath) == null || resolveVariablesAndExpressions(outputPath.getExpressionText()) == null) {
+             outputPathVar = getParameter(OUTPUT_PATH_PARAM);
+             System.out.println("OutputPathVar set as OUTPUT_PATH_PARAM");
+           }
+           else {
+             outputPathVar = resolveExpression(outputPath);
+             System.out.println("OutputPathVar set as outputPath");
+           }
+           
+	    outputPathVar = resolveVariables(outputPathVar);
+	    
+	    File outputDir = null;
+	    if ((outputPathVar == null) || ("".equals(outputPathVar.trim()))) {
+	      outputDir = getWorkingDir(false);
+	    } else {
+	      outputDir = new File(outputPathVar);
+	      if (!outputDir.exists()) {
+	        outputDir.mkdirs();
+	      }
+	      if (!outputDir.exists()) {
+	        reportAndThrowRSuiteException("Failed to find or create output directory \"" + outputPathVar + "\"");
+	      }
+	      if (!outputDir.canWrite()) {
+	        reportAndThrowRSuiteException("Cannot write to output directory \"" + outputPathVar + "\"");
+	      }
+	    }
+	    return outputDir;
+	  }
 
-		File outputDir = null;
-		if (outputPath == null || "".equals(outputPath.trim())) {
-			/*
-			 * FIXME: abetter way to set temp folder. maybe set it as a global
-			 * varible
-			 */
-			outputDir = new File(
-					context.getVariableAsString("rsuiteWorkingFolderPath"));
-		} else {
-			outputDir = new File(outputPath);
-			if (!outputDir.exists()) {
-				outputDir.mkdirs();
-			}
-			if (!outputDir.exists()) {
-				reportAndThrowRSuiteException("Failed to find or create output directory \""
-						+ outputPath + "\"");
-			}
-			if (!outputDir.canWrite()) {
-				reportAndThrowRSuiteException("Cannot write to output directory \""
-						+ outputPath + "\"");
-			}
-		}
-		return outputDir;
-	}
 
 	public void setStyleCatalogUri(String styleCatalogUri) {
 		setParameter(STYLE_CATALOG_URI_PARAM, styleCatalogUri);
