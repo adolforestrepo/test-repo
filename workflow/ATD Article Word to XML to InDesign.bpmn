@@ -10,9 +10,7 @@
              xmlns:jpdl1="urn:jbpm.org:jpdl-3.1"
              xmlns:xs="http://www.w3.org/2001/XMLSchema"
              xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd"
-             targetNamespace="http://www.jbpm.org/"
-             id="ATD_TandD_Article_Word_to_XML_to_InDesign_Definitions"
-             name="ATD_TandD_Article_Word_to_XML_to_InDesign">
+             targetNamespace="http://www.jbpm.org/">
    <process isExecutable="true"
             id="ATD T+D Article Word to XML to InDesign"
             name="ATD T+D Article Word to XML to InDesign">
@@ -74,7 +72,22 @@
                 activiti:candidateGroups="Managing Editor">
          <documentation>Document: ${fullFileName}</documentation>
       </userTask>
-      <sequenceFlow sourceRef="Final_Edit" targetRef="DocX2XML_Transform"/>
+      <sequenceFlow sourceRef="Final_Edit" targetRef="getTax"/>
+      
+      
+      
+      
+      
+      
+      
+      <serviceTask id="getTax" name="Get Tax"
+			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAtdSetClassificationVarActionHandler">
+			<activiti:field name="moAlias" expression="${sourceFileName}.xml" />
+			<activiti:field name="targetVariableName" stringValue="articleClassification" />
+		</serviceTask>
+
+		<sequenceFlow id="fromGetTaxToDocx2XmlTransform"
+			sourceRef="getTax" targetRef="DocX2XML_Transform"></sequenceFlow>
       
       
       
@@ -83,9 +96,8 @@
       
       
       <serviceTask id="Load_DOCX" name="Load DOCX4444"
-      
-      
-      activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadDocxActionHandler">
+       activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadDocxActionHandler">
+       
      
       
       
@@ -103,7 +115,7 @@
 <!--Custom variable; adjust action handlers as appropriate. neverTreatAsXml={}-->
 
 </serviceTask>
-      <sequenceFlow sourceRef="Load_DOCX" targetRef="DOCX_Load_Failed_"/>
+      <sequenceFlow sourceRef="Load_DOCX" targetRef="Create_CAs_for_unknown_DOCX"/>
       
       
       
@@ -112,20 +124,6 @@
       
       
       
-      
-      <serviceTask id="Create_CAs_for_DOCX" name="Load DOCX4444"
-                  activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadDocxActionHandler">
-      
-<!--Custom variable; adjust action handlers as appropriate. canode={${sourceFileName}}-->
-<!--Custom variable; adjust action handlers as appropriate. ca={Issue ${month}}-->
-<!--Custom variable; adjust action handlers as appropriate. folder={/Magazines/T and D/Volume ${volumeNumber}}-->
-<!--Custom variable; adjust action handlers as appropriate. attachImmediately={true}-->
-<!--Custom variable; adjust action handlers as appropriate. caIdCreatedName={articleCaId}-->
-<!--Custom variable; adjust action handlers as appropriate. replaceMOWithCAinRSuiteContents={true}-->
-
-
-            </serviceTask>
-      <sequenceFlow sourceRef="Create_CAs_for_DOCX" targetRef="Capture_Article_CA_MO_ID"/>
       <userTask id="Begin_Design"
                 name="Begin Design"
                 activiti:candidateGroups="Art Director">
@@ -145,27 +143,35 @@
 				stringValue="Only MS Word 2007 or later allowed. Please open in MS Word 2007 and save as a .docx file." />
 			<activiti:field name="errorIfExits" stringValue="true" />
 		</serviceTask>
-      <sequenceFlow sourceRef="Validate_File_Name" targetRef="Are_there_validation_errors_"/>
-      <exclusiveGateway id="Are_there_validation_errors_"/>
-      <sequenceFlow sourceRef="Are_there_validation_errors_" targetRef="Error_Alert">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${VALIDATION_MSGS!=Null == true]]></conditionExpression>
+		
+		
+		
+            <sequenceFlow sourceRef="Validate_File_Name" targetRef="loadErrorGateway"/>
+
+      <exclusiveGateway id="loadErrorGateway" name="Load Error?" />
+
+
+      
+
+
+      <sequenceFlow sourceRef="loadErrorGateway" targetRef="Error_Alert">
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${VALIDATION_MSGS != null}]]></conditionExpression>
       </sequenceFlow>
-      <sequenceFlow sourceRef="Are_there_validation_errors_" targetRef="Load_DOCX">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${VALIDATION_MSGS!=Null == false]]></conditionExpression>
+      <sequenceFlow sourceRef="loadErrorGateway" targetRef="Load_DOCX">
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${VALIDATION_MSGS == null}]]></conditionExpression>
       </sequenceFlow>
-      <userTask id="Error_Alert"
-                name="Error Alert"
-                activiti:candidateGroups="Managing Editor">
-         <documentation>${VALIDATION_MSGS}</documentation>
+
+
+	  
+	  
+      <userTask id="Error_Alert" name="Error Alert" 
+        activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
+			<documentation>${VALIDATION_MSGS}</documentation>
+
       </userTask>
+	  
+	  
       <sequenceFlow sourceRef="Error_Alert" targetRef="EndNode"/>
-      <exclusiveGateway id="Is_Unknown_DOCX_"/>
-      <sequenceFlow sourceRef="Is_Unknown_DOCX_" targetRef="Create_CAs_for_DOCX">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${volumeNumber=='99' == false]]></conditionExpression>
-      </sequenceFlow>
-      <sequenceFlow sourceRef="Is_Unknown_DOCX_" targetRef="Create_CAs_for_unknown_DOCX">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${volumeNumber=='99' == true]]></conditionExpression>
-      </sequenceFlow>
       
       
       
@@ -182,24 +188,32 @@
 <!--Custom variable; adjust action handlers as appropriate. caIdCreatedName={articleCaId}-->
 <!--Custom variable; adjust action handlers as appropriate. replaceMOWithCAinRSuiteContents={true}--></serviceTask>
       <sequenceFlow sourceRef="Create_CAs_for_unknown_DOCX"
-                    targetRef="Capture_Article_CA_MO_ID"/>
-      <userTask id="Edit_MS_Word1" name="Edit MS Word"
+                    targetRef="Set_Article_LM"/>
+     
+     
+     
+     
+      <userTask id="Edit_MS_Word" name="TD Edit MS Word (Associate Editor)"
                 activiti:candidateGroups="Managing Editor">
          <documentation>Document: ${fullFileName}</documentation>
       </userTask>
-      <sequenceFlow sourceRef="Edit_MS_Word" targetRef="DocX2XML_Transform"/>
-      <userTask id="Edit_MS_Word"
-                name="Edit MS Word"
+      <sequenceFlow sourceRef="Edit_MS_Word" targetRef="editorEditMSWord"/>
+      
+      
+      <userTask id="editorEditMSWord"
+                name="TD Edit MS Word (Editor)"
                 activiti:candidateGroups="Editor">
          <documentation>Document: ${fullFileName}</documentation>
       </userTask>
-      <sequenceFlow sourceRef="Edit_MS_Word" targetRef="Final_Edit"/>
+      <sequenceFlow sourceRef="editorEditMSWord" targetRef="Final_Edit"/>
+      
+      
       <userTask id="Review_First_Pages"
                 name="Review First Pages"
                 activiti:candidateGroups="Managing Editor">
          <documentation>Document: ${sourceFileName}.incx</documentation>
       </userTask>
-      <sequenceFlow sourceRef="Review_First_Pages" targetRef="gateway_Review_First_Pages"/>
+       <sequenceFlow sourceRef="Review_First_Pages" targetRef="gateway_Review_First_Pages"/>
       <exclusiveGateway id="gateway_Review_First_Pages"/>
       <sequenceFlow sourceRef="gateway_Review_First_Pages"
                     targetRef="Set_Minor_text_changes">
@@ -278,7 +292,7 @@
       activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetGlobalVariablesActionHandler">
 			 <activiti:field name="variableNames" stringValue="detail" />
 			 <activiti:field name="values" stringValue="no text changes"/>
-				stringValue="${astd.base.export.dir}${astd.xml.export.dir}/${pId};${astd.export.share}${astd.xml.export.dir}/${pId}" />
+		<!--		stringValue="${astd.base.export.dir}${astd.xml.export.dir}/${pId};${astd.export.share}${astd.xml.export.dir}/${pId}" /> -->
 <!--Custom variable; adjust action handlers as appropriate. variableNames={detail}-->
 <!--Custom variable; adjust action handlers as appropriate. values={no text changes}--></serviceTask>
  <sequenceFlow sourceRef="Set_No_Detail_Changes_2" targetRef="Create_Dummy"/>
@@ -337,11 +351,11 @@
                     targetRef="Docx_to_XML_after_Dummy_Review"/>
       <exclusiveGateway id="If_significant_changes_"/>
       <sequenceFlow sourceRef="If_significant_changes_" targetRef="XML_to_INCX_3">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${detail=='significant text changes' == true]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${detail=='significant text changes' == true}]]></conditionExpression>
       </sequenceFlow>
       <sequenceFlow sourceRef="If_significant_changes_"
                     targetRef="Make_Article_CA_Current_3">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${detail=='significant text changes' == false]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${detail=='significant text changes' == false}]]></conditionExpression>
       </sequenceFlow>
       
       
@@ -421,10 +435,10 @@
       <sequenceFlow sourceRef="Load_INCX_2" targetRef="Make_Article_CA_Current_2"/>
       <exclusiveGateway id="Is_significant_"/>
       <sequenceFlow sourceRef="Is_significant_" targetRef="XML_to_INCX_2">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${detail=='significant text changes' == true]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${detail=='significant text changes' == true}]]></conditionExpression>
       </sequenceFlow>
       <sequenceFlow sourceRef="Is_significant_" targetRef="Make_Article_CA_Current_2">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${detail=='significant text changes' == false]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${detail=='significant text changes' == false}]]></conditionExpression>
       </sequenceFlow>
       
       
@@ -464,10 +478,10 @@
       <sequenceFlow sourceRef="Set_No_detail_changes" targetRef="Make_First_Corrections"/>
       <exclusiveGateway id="DOCX2XML_Error_"/>
       <sequenceFlow sourceRef="DOCX2XML_Error_" targetRef="Word_to_XML_Error">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == true]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true}]]></conditionExpression>
       </sequenceFlow>
       <sequenceFlow sourceRef="DOCX2XML_Error_" targetRef="Import_DITA">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == false]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false}]]></conditionExpression>
       </sequenceFlow>
       <userTask id="Word_to_XML_Error"
                 name="Word to XML Error"
@@ -477,10 +491,10 @@
       <sequenceFlow sourceRef="Word_to_XML_Error" targetRef="EndNode"/>
       <exclusiveGateway id="INX_Generation_Failure_"/>
       <sequenceFlow sourceRef="INX_Generation_Failure_" targetRef="Load_INX">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == false]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false}]]></conditionExpression>
       </sequenceFlow>
       <sequenceFlow sourceRef="INX_Generation_Failure_" targetRef="INX_Generation_Error">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true == true]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true}]]></conditionExpression>
       </sequenceFlow>
       <userTask id="INX_Generation_Error"
                 name="INX Generation Error"
@@ -537,25 +551,13 @@
 <!--Custom variable; adjust action handlers as appropriate. topicContainerName={media}--></serviceTask>
       <sequenceFlow sourceRef="Update_XML_after_Dummy_Review"
                     targetRef="If_significant_changes_"/>
-      <exclusiveGateway id="DOCX_Load_Failed_"/>
-      <sequenceFlow sourceRef="DOCX_Load_Failed_" targetRef="Docx_Load_Error">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPOTION_OCCUR=='true' == true]]></conditionExpression>
-      </sequenceFlow>
-      <sequenceFlow sourceRef="DOCX_Load_Failed_" targetRef="Capture_DOCX_MO_ID">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPOTION_OCCUR=='true' == false]]></conditionExpression>
-      </sequenceFlow>
-      <userTask id="Docx_Load_Error"
-                name="Docx Load Error"
-                activiti:candidateGroups="RSuiteAdministrator">
-         <documentation>Load of file ${fullFileName} failed: ${exceptionMessage}</documentation>
-      </userTask>
-      <sequenceFlow sourceRef="Docx_Load_Error" targetRef="EndNode"/>
+      
       <exclusiveGateway id="DITA_Load_Failed_"/>
       <sequenceFlow sourceRef="DITA_Load_Failed_" targetRef="Load_of_DITA_Failed">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR=='true' == true]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true}]]></conditionExpression>
       </sequenceFlow>
       <sequenceFlow sourceRef="DITA_Load_Failed_" targetRef="XML_to_INCX">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR=='true' == false]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false}]]></conditionExpression>
       </sequenceFlow>
       <userTask id="Load_of_DITA_Failed"
                 name="Load of DITA Failed"
@@ -604,18 +606,10 @@
                     
                     
                     
-      <serviceTask id="Capture_DOCX_MO_ID" name="Capture DOCX MO ID"
-                    activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetVariableFromMoWorkflowListHandler"> 
-			<activiti:field name="targetVariableName" stringValue="docxMoId"/>
-<!--Custom variable; adjust action handlers as appropriate. targetVariableName={docxMoId}--></serviceTask>
-      <sequenceFlow sourceRef="Capture_DOCX_MO_ID" targetRef="Is_Unknown_DOCX_"/>
+
       
       
-      <serviceTask id="Capture_Article_CA_MO_ID" name="Capture Article CA MO ID"
-                   activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetVariableFromMoWorkflowListHandler"> 
-			<activiti:field name="targetVariableName" stringValue="${articleCaMoId}"/>
-<!--Custom variable; adjust action handlers as appropriate. targetVariableName={articleCaMoId}--></serviceTask>
-      <sequenceFlow sourceRef="Capture_Article_CA_MO_ID" targetRef="Set_Article_LM"/>
+      
       
       
       
