@@ -115,7 +115,7 @@
 <!--Custom variable; adjust action handlers as appropriate. neverTreatAsXml={}-->
 
 </serviceTask>
-      <sequenceFlow sourceRef="Load_DOCX" targetRef="DOCX_Load_Failed_"/>
+      <sequenceFlow sourceRef="Load_DOCX" targetRef="Create_CAs_for_unknown_DOCX"/>
       
       
       
@@ -124,20 +124,6 @@
       
       
       
-      
-      <serviceTask id="Create_CAs_for_DOCX" name="Create CAs for DOCX"
-                  activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadDocxActionHandler">
-      
-<!--Custom variable; adjust action handlers as appropriate. canode={${sourceFileName}}-->
-<!--Custom variable; adjust action handlers as appropriate. ca={Issue ${month}}-->
-<!--Custom variable; adjust action handlers as appropriate. folder={/Magazines/T and D/Volume ${volumeNumber}}-->
-<!--Custom variable; adjust action handlers as appropriate. attachImmediately={true}-->
-<!--Custom variable; adjust action handlers as appropriate. caIdCreatedName={articleCaId}-->
-<!--Custom variable; adjust action handlers as appropriate. replaceMOWithCAinRSuiteContents={true}-->
-
-
-            </serviceTask>
-      <sequenceFlow sourceRef="Create_CAs_for_DOCX" targetRef="Capture_Article_CA_MO_ID"/>
       <userTask id="Begin_Design"
                 name="Begin Design"
                 activiti:candidateGroups="Art Director">
@@ -160,18 +146,18 @@
 		
 		
 		
-            <sequenceFlow sourceRef="Validate_File_Name" targetRef="Are_there_validation_errors"/>
+            <sequenceFlow sourceRef="Validate_File_Name" targetRef="loadErrorGateway"/>
 
-      <exclusiveGateway id="Are_there_validation_errors" name="Load Error?" />
+      <exclusiveGateway id="loadErrorGateway" name="Load Error?" />
 
 
       
 
 
-      <sequenceFlow sourceRef="Are_there_validation_errors" targetRef="Error_Alert">
+      <sequenceFlow sourceRef="loadErrorGateway" targetRef="Error_Alert">
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${VALIDATION_MSGS != null}]]></conditionExpression>
       </sequenceFlow>
-      <sequenceFlow sourceRef="Are_there_validation_errors" targetRef="Load_DOCX">
+      <sequenceFlow sourceRef="loadErrorGateway" targetRef="Load_DOCX">
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${VALIDATION_MSGS == null}]]></conditionExpression>
       </sequenceFlow>
 
@@ -185,14 +171,8 @@
       </userTask>
 	  
 	  
-      sequenceFlow sourceRef="Error_Alert" targetRef="EndNode"/>
-      <exclusiveGateway id="Is_Unknown_DOCX_"  name="Unknown DOCX Error?" />
-      <sequenceFlow sourceRef="Is_Unknown_DOCX_" targetRef="Create_CAs_for_DOCX">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${volumeNumber=='99' == false}]]></conditionExpression>
-      </sequenceFlow>
-      <sequenceFlow sourceRef="Is_Unknown_DOCX_" targetRef="Create_CAs_for_unknown_DOCX">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${volumeNumber=='99' == true}]]></conditionExpression>
-      </sequenceFlow>
+      <sequenceFlow sourceRef="Error_Alert" targetRef="EndNode"/>
+      
       
       
       
@@ -208,7 +188,7 @@
 <!--Custom variable; adjust action handlers as appropriate. caIdCreatedName={articleCaId}-->
 <!--Custom variable; adjust action handlers as appropriate. replaceMOWithCAinRSuiteContents={true}--></serviceTask>
       <sequenceFlow sourceRef="Create_CAs_for_unknown_DOCX"
-                    targetRef="Capture_Article_CA_MO_ID"/>
+                    targetRef="Set_Article_LM"/>
      
      
      
@@ -571,19 +551,7 @@
 <!--Custom variable; adjust action handlers as appropriate. topicContainerName={media}--></serviceTask>
       <sequenceFlow sourceRef="Update_XML_after_Dummy_Review"
                     targetRef="If_significant_changes_"/>
-      <exclusiveGateway id="DOCX_Load_Failed_"/>
-      <sequenceFlow sourceRef="DOCX_Load_Failed_" targetRef="Docx_Load_Error">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true}]]></conditionExpression>
-      </sequenceFlow>
-      <sequenceFlow sourceRef="DOCX_Load_Failed_" targetRef="Capture_DOCX_MO_ID">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false}]]></conditionExpression>
-      </sequenceFlow>
-      <userTask id="Docx_Load_Error"
-                name="Docx Load Error"
-                activiti:candidateGroups="RSuiteAdministrator">
-         <documentation>Load of file ${fullFileName} failed: ${exceptionMessage}</documentation>
-      </userTask>
-      <sequenceFlow sourceRef="Docx_Load_Error" targetRef="EndNode"/>
+      
       <exclusiveGateway id="DITA_Load_Failed_"/>
       <sequenceFlow sourceRef="DITA_Load_Failed_" targetRef="Load_of_DITA_Failed">
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true}]]></conditionExpression>
@@ -638,18 +606,10 @@
                     
                     
                     
-      <serviceTask id="Capture_DOCX_MO_ID" name="Capture DOCX MO ID"
-                    activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetVariableFromMoWorkflowListHandler"> 
-			<activiti:field name="targetVariableName" stringValue="docxMoId"/>
-<!--Custom variable; adjust action handlers as appropriate. targetVariableName={docxMoId}--></serviceTask>
-      <sequenceFlow sourceRef="Capture_DOCX_MO_ID" targetRef="Is_Unknown_DOCX_"/>
+
       
       
-      <serviceTask id="Capture_Article_CA_MO_ID" name="Capture Article CA MO ID"
-                   activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetVariableFromMoWorkflowListHandler"> 
-			<activiti:field name="targetVariableName" stringValue="${articleCaMoId}"/>
-<!--Custom variable; adjust action handlers as appropriate. targetVariableName={articleCaMoId}--></serviceTask>
-      <sequenceFlow sourceRef="Capture_Article_CA_MO_ID" targetRef="Set_Article_LM"/>
+      
       
       
       
