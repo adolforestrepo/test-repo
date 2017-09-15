@@ -476,7 +476,9 @@
 <!--Custom variable; adjust action handlers as appropriate. variableNames={detail}-->
 <!--Custom variable; adjust action handlers as appropriate. values={no text changes}--></serviceTask>
       <sequenceFlow sourceRef="Set_No_detail_changes" targetRef="Make_First_Corrections"/>
-      <exclusiveGateway id="DOCX2XML_Error_"/>
+     
+     
+      <exclusiveGateway id="DOCX2XML_Error_" name="DOCX2XML Error ?"></exclusiveGateway>
       <sequenceFlow sourceRef="DOCX2XML_Error_" targetRef="Word_to_XML_Error">
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true}]]></conditionExpression>
       </sequenceFlow>
@@ -484,9 +486,15 @@
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false}]]></conditionExpression>
       </sequenceFlow>
       <userTask id="Word_to_XML_Error"
-                name="Word to XML Error"
-                activiti:candidateGroups="Managing Editor">
-         <documentation>${moDisplayName}: Generation of XML from DOCX failed: ${exceptionMessage} &lt;br/&gt;See conversion report &lt;a href='/rsuite/rest/v1/report/generated/${xformReportId}?skey=RSUITE-SESSION-KEY' target='_xformReport'&gt;${xformReportFileName}&lt;a/&gt;</documentation>
+       
+         name="Error Alert: Article Workflow: Word to XML Failed (Managing Editor)" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
+                <documentation>"#{moDisplayName}: Generation of XML from DOCX failed:
+                        #{exceptionMessage}
+                        &lt;br/&gt;See conversion report &lt;a
+                        href='/rsuite/rest/v1/report/generated/#{xformReportId}?skey=RSUITE-SESSION-KEY'
+                        target='_xformReport'&gt;#{xformReportFileName}&lt;a/&gt;"
+                </documentation>
+      
       </userTask>
       <sequenceFlow sourceRef="Word_to_XML_Error" targetRef="EndNode"/>
       <exclusiveGateway id="INX_Generation_Failure_"/>
@@ -677,7 +685,16 @@
 <!--Custom variable; adjust action handlers as appropriate. commitMessage={Loaded via workflow from hotfolder}-->
 <!--Custom variable; adjust action handlers as appropriate. importedMoListVarname={xmlMoId}-->
 <!--Custom variable; adjust action handlers as appropriate. topicContainerName={media}--></serviceTask>
-      <sequenceFlow sourceRef="Import_DITA" targetRef="DITA_Load_Failed_"/>
+      <sequenceFlow sourceRef="Import_DITA" targetRef="setTax"/>
+      
+      
+      
+      <serviceTask id="setTax" name="Set Tax" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdSetMoClassification">
+                <activiti:field name="moAlias" stringValue="${sourceFileName}.xml" />
+                <activiti:field name="data" stringValue="${articleClassification}" />
+        </serviceTask>
+      
+      <sequenceFlow id="fromsetTaxToDecision" sourceRef="setTax" targetRef="DITA_Load_Failed_"></sequenceFlow>
       
       
       <serviceTask id="Clear_PDF_Exception_Status" name="Clear PDF Exception Status"
