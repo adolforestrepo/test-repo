@@ -303,11 +303,9 @@ public class ProjectAstdXml2IncxActionHandler extends BaseWorkflowAction
 	    
            if (outputPath == null || resolveExpression(outputPath) == null || resolveVariablesAndExpressions(outputPath.getExpressionText()) == null) {
              outputPathVar = getParameter(OUTPUT_PATH_PARAM);
-             System.out.println("OutputPathVar set as OUTPUT_PATH_PARAM");
            }
            else {
              outputPathVar = resolveExpression(outputPath);
-             System.out.println("OutputPathVar set as outputPath");
            }
            
 	    outputPathVar = resolveVariables(outputPathVar);

@@ -179,7 +179,7 @@
 				<menuItem>
 					<type>action</type>
 					<actionName>rsuite:startWorkflow</actionName>
-					<label>ASTD: Reassign Article</label>
+					<label>ATD: Reassign Article</label>
 					<property name="formId" value="astdFormArticleRename" />
 					<property name="processDefinitionName" value="ASTD Reassign Article" />
 				</menuItem>
@@ -199,7 +199,7 @@
 				<menuItem>
 					<type>action</type>
 					<actionName>rsuite:startWorkflow</actionName>
-					<label>ASTD: Generate InCopy for Article</label>
+					<label>ATD: Generate InCopy for Article</label>
 					<property name="processDefinitionName" value="ATD Article To InDesign" />
 				</menuItem>
 			</menuItemList>
