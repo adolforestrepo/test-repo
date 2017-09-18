@@ -214,7 +214,7 @@
          <documentation>Document: ${sourceFileName}.incx</documentation>
       </userTask>
        <sequenceFlow sourceRef="Review_First_Pages" targetRef="gateway_Review_First_Pages"/>
-      <exclusiveGateway id="gateway_Review_First_Pages"/>
+      <exclusiveGateway id="gateway_Review_First_Pages" name="Gateway Review First Pages" />
       <sequenceFlow sourceRef="gateway_Review_First_Pages"
                     targetRef="Set_Minor_text_changes">
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${target == "Set_Minor_text_changes"}]]></conditionExpression>
@@ -239,7 +239,7 @@
          <documentation>${sourceFileName}.incx</documentation>
       </userTask>
       <sequenceFlow sourceRef="Review_Dummy" targetRef="gateway_Review_Dummy"/>
-      <exclusiveGateway id="gateway_Review_Dummy"/>
+      <exclusiveGateway id="gateway_Review_Dummy" name="Gateway Review Dummy"/>
       <sequenceFlow sourceRef="gateway_Review_Dummy" targetRef="Set_No_Detail_Changes_2">
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${target == "Set_No_Detail_Changes_2"}]]></conditionExpression>
       </sequenceFlow>
@@ -497,7 +497,7 @@
       
       </userTask>
       <sequenceFlow sourceRef="Word_to_XML_Error" targetRef="EndNode"/>
-      <exclusiveGateway id="INX_Generation_Failure_"/>
+      <exclusiveGateway id="INX_Generation_Failure_" name="INX Generation Failure" />
       <sequenceFlow sourceRef="INX_Generation_Failure_" targetRef="Load_INX">
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false}]]></conditionExpression>
       </sequenceFlow>
@@ -560,12 +560,12 @@
       <sequenceFlow sourceRef="Update_XML_after_Dummy_Review"
                     targetRef="If_significant_changes_"/>
       
-      <exclusiveGateway id="DITA_Load_Failed_"/>
-      <sequenceFlow sourceRef="DITA_Load_Failed_" targetRef="Load_of_DITA_Failed">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true}]]></conditionExpression>
+      <exclusiveGateway id="setTaxFailed?" name="Set Tax Failed?" />
+      <sequenceFlow sourceRef="setTaxFailed?" targetRef="Load_of_DITA_Failed">
+          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true}]]></conditionExpression>
       </sequenceFlow>
-      <sequenceFlow sourceRef="DITA_Load_Failed_" targetRef="XML_to_INCX">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false}]]></conditionExpression>
+      <sequenceFlow sourceRef="setTaxFailed?" targetRef="XML_to_INCX">
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
       </sequenceFlow>
       <userTask id="Load_of_DITA_Failed"
                 name="Load of DITA Failed"
@@ -670,21 +670,26 @@
       
       
       
-      <serviceTask id="Import_DITA" name="Import DITA"
-                   activiti:class="com.reallysi.rsuite.workflow.actions.TopicImporterActionHandler">
-			<activiti:field name="topicPath"
-				             stringValue="${exportDir}/${sourceFileName}/${sourceFileName}.xml" />
-			<activiti:field name="parentCaId" stringValue="${articleCaMoId}" />
-			<activiti:field name="commitMessage"
-				             stringValue="Loaded via workflow from hotfolder" />
-			<activiti:field name="importedMoListVarname"
-				             stringValue="xmlMoId" />
+				             
+				 <serviceTask id="Import_DITA" name="Import DITA" activiti:class="com.reallysi.rsuite.workflow.actions.TopicImporterActionHandler">
+                <activiti:field name="topicPath" stringValue="${exportDir}/${sourceFileName}/${sourceFileName}.xml" />
+                <activiti:field name="parentCaId" stringValue="${articleCaMoId}" />
+                <activiti:field name="commitMessage" stringValue="Loaded via workflow from hotfolder" />
+                <activiti:field name="importedMoListVarname" stringValue="xmlMoId" />
+                <activiti:field name="topicContainerName" stringValue="media" />
+        </serviceTask>
+				             
+				             
+				             
+				             
+				             
+				             
 			<activiti:field name="topicContainerName" stringValue="media" />
 <!--Custom variable; adjust action handlers as appropriate. topicPath={${exportDir}/${sourceFileName}/${sourceFileName}.xml}-->
 <!--Custom variable; adjust action handlers as appropriate. parentCaId={${articleCaMoId}}-->
 <!--Custom variable; adjust action handlers as appropriate. commitMessage={Loaded via workflow from hotfolder}-->
 <!--Custom variable; adjust action handlers as appropriate. importedMoListVarname={xmlMoId}-->
-<!--Custom variable; adjust action handlers as appropriate. topicContainerName={media}--></serviceTask>
+<!--Custom variable; adjust action handlers as appropriate. topicContainerName={media}-->
       <sequenceFlow sourceRef="Import_DITA" targetRef="setTax"/>
       
       
@@ -694,7 +699,7 @@
                 <activiti:field name="data" stringValue="${articleClassification}" />
         </serviceTask>
       
-      <sequenceFlow id="fromsetTaxToDecision" sourceRef="setTax" targetRef="DITA_Load_Failed_"></sequenceFlow>
+      <sequenceFlow id="fromsetTaxToDecision" sourceRef="setTax" targetRef="setTaxFailed?"></sequenceFlow>
       
       
       <serviceTask id="Clear_PDF_Exception_Status" name="Clear PDF Exception Status"
