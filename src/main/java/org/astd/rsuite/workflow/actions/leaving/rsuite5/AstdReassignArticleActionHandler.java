@@ -67,6 +67,7 @@ public class AstdReassignArticleActionHandler
             // Get form values: If a form value not set, we default to
             // value from current name.
             String pubCode = context.getVariableAsString(VAR_PUB_CODE);
+            wfLog.info("Outside if pubCode: "+pubCode);
             if (StringUtils.isEmpty(pubCode)) {
                 pubCode = curName.pubCode;
             }
@@ -156,7 +157,7 @@ public class AstdReassignArticleActionHandler
 
             // Re-fetch CA instance since previous operations change CA and we
             // need to make sure we are in-sync with cache.
-            us = context.getContentAssemblyService().getContentAssemblyById(user, moid);
+            us = context.getContentAssemblyService().getContentAssembly(user, moid);
 
             // Rename non-XML child nodes that follow article naming convention
     		List<? extends ContentAssemblyItem> items =
@@ -167,8 +168,10 @@ public class AstdReassignArticleActionHandler
     				wfLog.info("Check if need to rename "+item.getDisplayName());
     				if (item instanceof ManagedObjectReference) {
     					ManagedObjectReference mor = (ManagedObjectReference)item;
-    					@SuppressWarnings("deprecation")
-						String sid = mor.getSourceId();
+//    					@SuppressWarnings("deprecation")
+    					
+						String sid = mor.getTargetId();
+    					
     					if (!AstdActionUtils.isNonXml(mor)) {
     						// For xml objects, we need to set alias since
     						// transform/export operations may depend on it.
