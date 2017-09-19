@@ -98,6 +98,8 @@ public class AstdReassignArticleActionHandler
             String newName = pubCode + type + volume + issue + sequence + author;
             wfLog.info("Current CA name: "+curName);
             wfLog.info("New CA name: " + newName);
+            
+            /*******NOTE: In this part we have the current CA name and the new CA name. The new conten assembly should have the new CA name. **/
 
             if (!sameIssue) {
             	boolean isUnassigned = "99".equals(volume);
@@ -111,6 +113,21 @@ public class AstdReassignArticleActionHandler
             	}
             	wfLog.info("New folder location: " + folder);
             	try {
+            		
+     /**** This part is deprecated as we do not create folder but CA, as you can see the resulting folder is empty.
+      *  This method ca be replaced for a code similar to the one found in:
+      *  
+      *  ProjectCreateCAsActionHandler
+      *  
+      *  As you can see, in that class the Magazine folder is created by knowing the id of the root element "4".
+      *  Then the id of the Magazine Ca is used to create the publication Ca, then passes the resulting CA id as parent to create the Volume CA.
+      *  And this Volume Ca is the container you should use some lines below when creating the issue container.
+      *  Notice that sinse the option  caCreateOp.setSilentIfExists(true); No new container will be created is they exists.
+      *   
+      *   
+      *   */   
+            		
+            		
             		folder = AstdActionUtils.createFolder(
             				user, folder, context);
             	} catch (Exception e) {
@@ -125,6 +142,8 @@ public class AstdReassignArticleActionHandler
             	}
             	wfLog.info("New container CA: " + caContainer);
             	String caId = null;
+    /**NOTE: Since the previous folder variable is empty it is why the issue is attached to the root folder. 
+     * Here is where you use the id of the VOlume Ca created before, intead of the folder param. YOu should also use a diferent method. **/
             	try {
             		caId = AstdActionUtils.createCA(
             				context.getRepositoryService(), user, caContainer, folder, context);
@@ -138,8 +157,8 @@ public class AstdReassignArticleActionHandler
             		context.getContentAssemblyService().getContentAssembly(
             				user, caId);
             	try {
-            		wfLog.info("Moving CA");
-            		context.getContentAssemblyService().moveTo(
+            		wfLog.info("Moving CA"); /* NOTE: Seems like this method is failing. Try to atthac to the newParent and then deattach from the previous parent.  */ 
+            		context.getContentAssemblyService(). moveTo(
             				user, newParent.getId(), us.getId());
             	} catch (Exception e) {
             		reportAndThrowRSuiteException("Unable to move CA: " + e.getLocalizedMessage());
