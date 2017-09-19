@@ -71,6 +71,27 @@
 			</ruleList>
 		</contextMenuRuleSet>
 		
+		
+		
+		
+		<contextMenuRuleSet name="astd.contextmenu.exportArticlePDF">
+			<menuItemList>
+				<menuItem>
+					<type>action</type>
+					<actionName>rsuite:startWorkflow</actionName>
+					<label>ASTD: Export Article PDF</label>
+					<property name="processDefinitionName" value="ASTD Export Article PDF" />
+				</menuItem>
+			</menuItemList>
+			<ruleList>
+				<rule>exclude nodeType ca,canode,folder</rule>
+				<rule>include nodeType mononxml</rule>
+				<rule>include fileExtension pdf,PDF</rule>
+			</ruleList>
+		</contextMenuRuleSet>
+		
+		
+		
 		<contextMenuRuleSet name="astd.contextmenu.genXmlForArticle">
 			<menuItemList>
 				<menuItem>

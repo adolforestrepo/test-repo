@@ -280,7 +280,7 @@
                 activiti:candidateGroups="Super Editor">
          <documentation>Document: ${sourceFileName}</documentation>
       </userTask>
-      <sequenceFlow sourceRef="Approve_Blueline" targetRef="Set_No_Detail_Changes_2"/>
+      <sequenceFlow sourceRef="Approve_Blueline" targetRef="exportArticlePDF"/>
       
       
       
@@ -654,8 +654,18 @@
                     <activiti:field name="moSpecifyingVariableName"
 				       stringValue="xmlMoId" />
 <!--Custom variable; adjust action handlers as appropriate. moSpecifyingVariableName={xmlMoId}--></serviceTask>
-      <sequenceFlow sourceRef="Make_XML_Current" targetRef="Restore_Article_CA_After_Exports"/>
+      <sequenceFlow sourceRef="Make_XML_Current" targetRef="ExportArticleHTML"/>
       
+      
+      <callActivity id="ExportArticleHTML" name="Export Article HTML" calledElement="ATD Export Article HTML">
+                <extensionElements>
+                        <activiti:in source="rsuite contents" target="rsuite contents" />
+                        <activiti:in source="articleCaMoId" target="parentMoId" />
+                </extensionElements>
+        </callActivity>
+      
+      
+      <sequenceFlow id="flowToClearHtmlExportStatus" sourceRef="ExportArticleHTML" targetRef="Clear_HTML_Export_Status" />
       
       
       <serviceTask id="Restore_Article_CA_After_Exports" name="Restore Article CA After Exports"
@@ -701,10 +711,23 @@
       
       <sequenceFlow id="fromsetTaxToDecision" sourceRef="setTax" targetRef="setTaxFailed?"></sequenceFlow>
       
+       
+       <callActivity id="exportArticlePDF" name="Export Article PDF" calledElement="ASTD Export Article PDF">
+                <extensionElements>
+                        <activiti:in source="rsuite contents" target="rsuite contents" />
+                </extensionElements>
+        </callActivity>
+       
+       
+      <sequenceFlow sourceRef="exportArticlePDF" targetRef="Clear_PDF_Exception_Status"/>
+      
       
       <serviceTask id="Clear_PDF_Exception_Status" name="Clear PDF Exception Status"
                    activiti:class="com.reallysi.rsuite.system.workflow.actions.ClearExceptionStatus"/>
       <sequenceFlow sourceRef="Clear_PDF_Exception_Status" targetRef="Make_XML_Current"/>
+      
+      
+      
       
       
       
