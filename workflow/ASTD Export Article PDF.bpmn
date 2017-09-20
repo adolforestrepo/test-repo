@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:activiti="http://activiti.org/bpmn"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:jpdl2="urn:jbpm.org:jpdl-3.2"
+             xmlns:jpdl1="urn:jbpm.org:jpdl-3.1"
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd"
+             targetNamespace="http://www.jbpm.org/"
+             id="ASTD Export Article PDF Definitions"
+             name="ASTD Export Article PDF">
+   <process isExecutable="true"
+            id="ASTD Export Article PDF_Process"
+            name="ASTD Export Article PDF">
+            
+            
+      <startEvent name="StartNode" id="StartNode"/>
+      <sequenceFlow sourceRef="StartNode" targetRef="Set_PDF_Variable"/>
+      <endEvent name="EndNode" id="EndNode"/>
+      <serviceTask id="Set_PDF_Variable" name="Set PDF Variable"
+                   activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdSetArticlePdfVar">
+                   <activiti:field name="targetVariableName" stringValue="articlePdfMoId" />
+<!--Custom variable; adjust action handlers as appropriate. targetVariableName={articlePdfMoId}--></serviceTask>
+
+      <sequenceFlow sourceRef="Set_PDF_Variable" targetRef="Check_PDF_Var_Exception"/>
+      <exclusiveGateway id="Check_PDF_Var_Exception"/>
+      <sequenceFlow sourceRef="Check_PDF_Var_Exception" targetRef="Export_PDF_Error">
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true}]]></conditionExpression>
+      </sequenceFlow>
+      <sequenceFlow sourceRef="Check_PDF_Var_Exception" targetRef="Export_PDF_to_Share">
+          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
+      </sequenceFlow>
+      <userTask id="Export_PDF_Error"
+                name="Export PDF Error"
+                activiti:candidateGroups="Managing Editor">
+         <documentation>Export PDF Error: ${exceptionMessage}</documentation>
+      </userTask>
+      <sequenceFlow sourceRef="Export_PDF_Error" targetRef="EndNode"/>
+      
+      
+      <serviceTask id="Export_PDF_to_Share" name="Export PDF to Share"
+      
+      
+                   activiti:class="com.astd.rsuite.actions.AstdExportObjectsActionHandler">
+<!--Custom variable; adjust action handlers as appropriate. objectIds={${articlePdfMoId}}-->
+<!--Custom variable; adjust action handlers as appropriate. destinationPath={${astd.pdf.export.share}}-->
+<!--Custom variable; adjust action handlers as appropriate. useDisplayNames={true}--></serviceTask>
+      <sequenceFlow sourceRef="Export_PDF_to_Share" targetRef="Check_PDF_export"/>
+      <exclusiveGateway id="Check_PDF_export"/>
+      <sequenceFlow sourceRef="Check_PDF_export" targetRef="Export_PDF_Error">
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true}]]></conditionExpression>
+      </sequenceFlow>
+      <sequenceFlow sourceRef="Check_PDF_export" targetRef="EndNode">
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
+      </sequenceFlow>
+   </process>
+</definitions>
