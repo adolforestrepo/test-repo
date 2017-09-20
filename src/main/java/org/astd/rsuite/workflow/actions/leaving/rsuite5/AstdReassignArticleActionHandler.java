@@ -10,22 +10,14 @@ import com.reallysi.rsuite.api.ContentAssembly;
 import com.reallysi.rsuite.api.ContentAssemblyItem;
 import com.reallysi.rsuite.api.ManagedObject;
 import com.reallysi.rsuite.api.ManagedObjectReference;
-import com.reallysi.rsuite.api.RSuiteException;
 import com.reallysi.rsuite.api.User;
 import com.reallysi.rsuite.api.control.ContentAssemblyCreateOptions;
 import com.reallysi.rsuite.api.control.ObjectAttachOptions;
-import com.reallysi.rsuite.api.extensions.ExecutionContext;
-import com.reallysi.rsuite.api.security.ACE;
-import com.reallysi.rsuite.api.security.ACL;
-import com.reallysi.rsuite.api.security.ContentPermission;
-import com.reallysi.rsuite.api.security.Role;
+import com.reallysi.rsuite.api.control.ObjectCheckInOptions;
 import com.reallysi.rsuite.api.workflow.activiti.BaseWorkflowAction;
-import com.reallysi.rsuite.api.workflow.activiti.MoListWorkflowObject;
-import com.reallysi.rsuite.api.workflow.activiti.MoWorkflowObject;
 import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
 import com.reallysi.rsuite.service.ContentAssemblyService;
 import com.reallysi.rsuite.service.ManagedObjectService;
-import com.reallysi.rsuite.service.SecurityService;
 import com.reallysi.rsuite.service.WorkflowInstanceService;
 
 /**
@@ -215,23 +207,43 @@ public class AstdReassignArticleActionHandler
               + issue, caCreateOp);
           ContentAssembly articleCA = caSrv.createContentAssembly(user, monthCa.getId(), newName,
               caCreateOp);
-          caSrv.attach(user, articleCA.getId(), moid, new ObjectAttachOptions());
 
-          /*
-           * List<ManagedObject> molist =
-           * context.getManagedObjectService().getObjectsByAlias(user,"") caSrv.attach(user,
-           * articleCA.getId(), arg2, new ObjectAttachOptions()); System.out.println(
-           * "Test Print ..." + context.getVariable(ATD_VAR_CA_ID));
-           */ context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
-          /* System.out.println("Test Print ..." + context.getVariable(ATD_VAR_CA_ID)); */
-          contentCA = articleCA;
+
+          @SuppressWarnings("unchecked")
+          List<? extends ManagedObjectReference> moids =
+              (List<? extends ManagedObjectReference>) caSrv.getContentAssembly(user, moid)
+                  .getChildrenObjects();
+
+          for (ManagedObjectReference caid : moids) {
+            caSrv.attach(user, articleCA.getId(), caid.getTargetId(), new ObjectAttachOptions());
+            // Add code for rename the non-xml documents
+            System.out.println("caid.getTargetId() .." + caid.getTargetId());
+            System.out.println("Test Content Type..." + caid.getContentType());
+            System.out.println("Test Local Name..." + caid.getLocalName());
+            System.out.println("Test IsNonXml...." + AstdActionUtils.isNonXml(caid));
+            System.out.println("Display Name ... : " + caid.getDisplayName());
+            if (AstdActionUtils.isNonXml(caid)) {
+              /*
+               * context.getContentAssemblyService().renameCANode(user, caid.getTargetId(),
+               * articleCA .getDisplayName());
+               */
+              System.out.println("Inside True");
+              context.getManagedObjectService().checkOut(user, caid.getTargetId());
+              context.getManagedObjectService().setDisplayName(user, caid.getTargetId(), newName);
+              context.getManagedObjectService().checkIn(user, caid.getTargetId(),
+                  new ObjectCheckInOptions());
+              System.out.println("Display Name ... : " + caid.getDisplayName());
+              System.out.println("after rename Inside True");
+            }
+
+            /*
+             * context.getContentAssemblyService().renameCANode(user, caid.getTargetId(), articleCA
+             * .getDisplayName());
+             */
+          }
+          System.out.println("outside loop renamed all ");
 
         }
-
-        MoListWorkflowObject newMoList = new MoListWorkflowObject();
-        MoWorkflowObject newWFO = new MoWorkflowObject(contentCA.getId());
-        newMoList.addMoObject(newWFO);
-        context.setRSuiteContents(newMoList);
 
       }
 
@@ -318,16 +330,6 @@ public class AstdReassignArticleActionHandler
       context.setVariable("REASSIGN_MSGS", e.getLocalizedMessage());
       throw e;
     }
-  }
-
-  public final static ACL getAclForResubmittedApplicationMo(ExecutionContext context)
-      throws RSuiteException {
-    SecurityService securityService = context.getSecurityService();
-    ACE cptAdminAce = securityService.constructACE(Role.ROLE_NAME_RSUITE_USER_ADMIN,
-        ContentPermission.values());
-    ACE cptStaffAce = securityService.constructACE(Role.ROLE_NAME_ANY, ContentPermission.EDIT);
-
-    return securityService.constructACL(new ACE[] {cptAdminAce, cptStaffAce});
   }
 
 }
