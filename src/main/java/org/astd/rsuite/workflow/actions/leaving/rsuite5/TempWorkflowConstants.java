@@ -18,6 +18,13 @@ public interface TempWorkflowConstants {
   public static final String EXCEPTION_TYPE_SYSTEM = "EXCEPTION_TYPE_SYSTEM";
   public static final String ARTICLE_MO_ID_PARAM = "articleCaMoId";
   public static final String TARGET_VAR_PARAM = "targetVariableName";
+  
+  
+  public static final String OBJECT_IDS_PARAM = "objectIds";
+  public static final String DESTINATION_PATH_PARAM = "destinationPath";
+  public static String FAIL_IF_EMPTY_PARAM = "failIfEmpty";
+  public static String USE_DISPLAY_NAMES_PARAM = "useDisplayNames";
+  
 
   public static final String ATD_VAR_PUB_CODE = "pubCode";
   public static final String ATD_VAR_FULL_FILENAME = "fullFileName";
