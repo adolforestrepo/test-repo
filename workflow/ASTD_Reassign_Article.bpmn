@@ -11,29 +11,42 @@
              xmlns:xs="http://www.w3.org/2001/XMLSchema"
              xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd"
              targetNamespace="http://www.jbpm.org/"
-             id="ASTD Reassign Article"
-             name="ASTD Reassign Article">
+             id="ATD Reassign Article"
+             name="ATD Reassign Article">
    <process isExecutable="true"
-            id="ASTD Reassign Article"
-            name="ASTD Reassign Article">
+            id="ATD Reassign Article"
+            name="ATD Reassign Article">
       <startEvent name="StartNode" id="StartNode"/>
-      <sequenceFlow sourceRef="StartNode" targetRef="Reassign_Article"/>
-      <endEvent name="EndNode" id="EndNode"/>
-      <serviceTask id="Reassign_Article" name="Reassign_Article"
-                   activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdReassignArticleActionHandler"/>
-      <sequenceFlow sourceRef="Reassign_Article" targetRef="Exception_occurred_"/>
-      <exclusiveGateway id="Exception_occurred_"/>
-      <sequenceFlow sourceRef="Exception_occurred_" targetRef="EndNode">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == false]]></conditionExpression>
+      <sequenceFlow id="flowToReassign_Article" sourceRef="StartNode" targetRef="Reassign_Article"/>
+
+      <serviceTask id="Reassign_Article" name="Reassign_Article" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdReassignArticleActionHandler"/>
+      
+      <sequenceFlow id="flowFromReassign_ArticleToException_occurred" sourceRef="Reassign_Article" targetRef="Exception_occurred"/>
+      
+      <exclusiveGateway id="Exception_occurred" name="Exception occurred?"></exclusiveGateway>
+      
+      <sequenceFlow id="flowToReview_Exception" sourceRef="Exception_occurred" targetRef="Review_Exception">
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR=='true'}]]></conditionExpression>
       </sequenceFlow>
-      <sequenceFlow sourceRef="Exception_occurred_" targetRef="Review_Exception">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR == true]]></conditionExpression>
+      
+      <sequenceFlow id="flowToendWorkflow"  sourceRef="Exception_occurred" targetRef="endWorkflow">
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR=='false'}]]></conditionExpression>
       </sequenceFlow>
-      <userTask id="Review_Exception"
-                name="Review Exception"
-                activiti:candidateGroups="RSuiteAdministrator">
-         <documentation>Reassign error: ${REASSIGN_MSGS}</documentation>
+      
+      <userTask id="Review_Exception" name="Review Exception" activiti:candidateGroups="RSuiteAdministrator">
+         <documentation>Reassign error: #{REASSIGN_MSGS}</documentation>
       </userTask>
-      <sequenceFlow sourceRef="Review_Exception" targetRef="EndNode"/>
-   </process>
+
+      <sequenceFlow id="flowFromReview_ExceptionToendWorkflow" sourceRef="Review_Exception" targetRef="endWorkflow"/>
+
+
+    <endEvent id="endWorkflow" name="End Workflow"></endEvent>
+
+    <dataObject id="EXCEPTION_OCCUR" name="EXCEPTION_OCCUR" itemSubjectRef="xsd:string">
+      <extensionElements>
+        <activiti:value>""</activiti:value>
+      </extensionElements>
+    </dataObject>
+    <dataObject id="rsuiteUserId" name="rsuiteUserId" itemSubjectRef="xsd:string"></dataObject>
+  </process>
 </definitions>
