@@ -10,11 +10,9 @@
              xmlns:jpdl1="urn:jbpm.org:jpdl-3.1"
              xmlns:xs="http://www.w3.org/2001/XMLSchema"
              xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd"
-             targetNamespace="http://www.jbpm.org/"
-             id="ASTD Export Article PDF Definitions"
-             name="ASTD Export Article PDF">
+             targetNamespace="http://www.jbpm.org/">
    <process isExecutable="true"
-            id="ASTD Export Article PDF_Process"
+            id="ASTD Export Article PDF"
             name="ASTD Export Article PDF">
             
             
@@ -23,7 +21,7 @@
       <endEvent name="EndNode" id="EndNode"/>
       <serviceTask id="Set_PDF_Variable" name="Set PDF Variable"
                    activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdSetArticlePdfVar">
-                   <activiti:field name="targetVariableName" stringValue="articlePdfMoId" />
+                   <activiti:field name="targetVariableName" stringValue="${articlePdfMoId}" />
 <!--Custom variable; adjust action handlers as appropriate. targetVariableName={articlePdfMoId}--></serviceTask>
 
       <sequenceFlow sourceRef="Set_PDF_Variable" targetRef="Check_PDF_Var_Exception"/>
@@ -43,9 +41,12 @@
       
       
       <serviceTask id="Export_PDF_to_Share" name="Export PDF to Share"
+      activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdExportObjectsActionHandler">
+      <activiti:field name="targetVariableName" stringValue="${articlePdfMoId}" />
+       <activiti:field name="destinationPath" stringValue="{${astd.pdf.export.share}}" />
+       <activiti:field name="useDisplayNames" stringValue="true" />
       
       
-                   activiti:class="com.astd.rsuite.actions.AstdExportObjectsActionHandler">
 <!--Custom variable; adjust action handlers as appropriate. objectIds={${articlePdfMoId}}-->
 <!--Custom variable; adjust action handlers as appropriate. destinationPath={${astd.pdf.export.share}}-->
 <!--Custom variable; adjust action handlers as appropriate. useDisplayNames={true}--></serviceTask>
