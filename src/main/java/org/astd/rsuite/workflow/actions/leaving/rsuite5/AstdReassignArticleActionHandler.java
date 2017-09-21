@@ -2,6 +2,7 @@ package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
 import java.util.List;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.astd.rsuite.domain.ContainerType;
@@ -217,23 +218,29 @@ public class AstdReassignArticleActionHandler
           for (ManagedObjectReference caid : moids) {
             caSrv.attach(user, articleCA.getId(), caid.getTargetId(), new ObjectAttachOptions());
             // Add code for rename the non-xml documents
-            System.out.println("caid.getTargetId() .." + caid.getTargetId());
-            System.out.println("Test Content Type..." + caid.getContentType());
-            System.out.println("Test Local Name..." + caid.getLocalName());
-            System.out.println("Test IsNonXml...." + AstdActionUtils.isNonXml(caid));
-            System.out.println("Display Name ... : " + caid.getDisplayName());
+
+            wfLog.info("Check if need to rename " + caid.getDisplayName());
             if (AstdActionUtils.isNonXml(caid)) {
-              /*
-               * context.getContentAssemblyService().renameCANode(user, caid.getTargetId(),
-               * articleCA .getDisplayName());
-               */
-              System.out.println("Inside True");
+
+              String newDisplayName = newName + "." + FilenameUtils.getExtension(caid
+                  .getDisplayName());
+
+
+              wfLog.info("Attempting to rename " + caid.getDisplayName() + " to " + newDisplayName);
+
               context.getManagedObjectService().checkOut(user, caid.getTargetId());
-              context.getManagedObjectService().setDisplayName(user, caid.getTargetId(), newName);
+              context.getManagedObjectService().setDisplayName(user, caid.getTargetId(),
+                  newDisplayName);
               context.getManagedObjectService().checkIn(user, caid.getTargetId(),
                   new ObjectCheckInOptions());
-              System.out.println("Display Name ... : " + caid.getDisplayName());
-              System.out.println("after rename Inside True");
+
+              if (newDisplayName != null) {
+                wfLog.info("Setting alias for " + caid.getTargetId() + " to \"" + newDisplayName
+                    + "\"");
+                mosvc.setAlias(user, caid.getTargetId(), newDisplayName);
+              }
+
+
             }
 
             /*
@@ -241,13 +248,14 @@ public class AstdReassignArticleActionHandler
              * .getDisplayName());
              */
           }
-          System.out.println("outside loop renamed all ");
 
         }
 
       }
 
       // Attempt to rename article CA
+/*
+      
       try {
         wfLog.info("Renaming CA " + moid + " to " + newName);
         context.getContentAssemblyService().renameCANode(user, moid, newName);
@@ -285,6 +293,7 @@ public class AstdReassignArticleActionHandler
             // XXX: Bug in Rsuite 3.3.1 (and earlier) where alias
             // is not updated in previous utility method, therefore,
             // we explicitly set it here (again)
+
             if (newNonXmlName != null) {
               wfLog.info("Setting alias for " + sid + " to \"" + newNonXmlName + "\"");
               mosvc.setAlias(user, sid, newNonXmlName);
@@ -292,7 +301,7 @@ public class AstdReassignArticleActionHandler
           }
         }
       }
-
+*/
       // Update process variables
       String pid = mo.getLayeredMetadataValue(ASTD_ARTICLE_PID_LMD_FIELD);
       if (!StringUtils.isEmpty(pid)) {

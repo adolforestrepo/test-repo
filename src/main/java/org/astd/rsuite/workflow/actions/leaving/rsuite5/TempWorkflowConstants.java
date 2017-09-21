@@ -54,8 +54,8 @@ public interface TempWorkflowConstants {
   public static final String FOLDER_PATH_TD = "/" + FOLDER_MAGAZINE + "/" + ArticlePubCode.TD.getPubDesc();
 
   public static final String RSUITE_NS_URI = "http://www.reallysi.com/";
-  public static final String RSUITE_NON_XML_LOCAL_NAME = "NONXML";
-
+//  public static final String RSUITE_NON_XML_LOCAL_NAME = "NONXML";
+  public static final String RSUITE_NON_XML_LOCAL_NAME = "nonxml";
   public static final String ASTD_ARTICLE_PID_LMD_FIELD = "article-process-id";
 
 }
