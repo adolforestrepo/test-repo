@@ -8,7 +8,6 @@ import org.apache.commons.logging.Log;
 import org.astd.rsuite.domain.ContainerType;
 
 import com.reallysi.rsuite.api.ContentAssembly;
-import com.reallysi.rsuite.api.ContentAssemblyItem;
 import com.reallysi.rsuite.api.ManagedObject;
 import com.reallysi.rsuite.api.ManagedObjectReference;
 import com.reallysi.rsuite.api.User;
@@ -38,6 +37,7 @@ public class AstdReassignArticleActionHandler
   public static final String VAR_SEQUENCE = "form.sequence";
   public static final String VAR_AUTHOR = "form.author";
 
+  @SuppressWarnings("unchecked")
   @Override
   public void execute(WorkflowContext context) throws Exception {
     Log wfLog = context.getWorkflowLog();
@@ -218,91 +218,65 @@ public class AstdReassignArticleActionHandler
           for (ManagedObjectReference caid : moids) {
             caSrv.attach(user, articleCA.getId(), caid.getTargetId(), new ObjectAttachOptions());
             // Add code for rename the non-xml documents
-
             wfLog.info("Check if need to rename " + caid.getDisplayName());
             if (AstdActionUtils.isNonXml(caid)) {
-
               String newDisplayName = newName + "." + FilenameUtils.getExtension(caid
                   .getDisplayName());
-
-
               wfLog.info("Attempting to rename " + caid.getDisplayName() + " to " + newDisplayName);
-
               context.getManagedObjectService().checkOut(user, caid.getTargetId());
               context.getManagedObjectService().setDisplayName(user, caid.getTargetId(),
                   newDisplayName);
               context.getManagedObjectService().checkIn(user, caid.getTargetId(),
                   new ObjectCheckInOptions());
-
               if (newDisplayName != null) {
                 wfLog.info("Setting alias for " + caid.getTargetId() + " to \"" + newDisplayName
                     + "\"");
                 mosvc.setAlias(user, caid.getTargetId(), newDisplayName);
               }
 
-
             }
-
-            /*
-             * context.getContentAssemblyService().renameCANode(user, caid.getTargetId(), articleCA
-             * .getDisplayName());
-             */
           }
+
+          caSrv.removeContentAssembly(user, moid);
 
         }
 
       }
 
       // Attempt to rename article CA
-/*
-      
-      try {
-        wfLog.info("Renaming CA " + moid + " to " + newName);
-        context.getContentAssemblyService().renameCANode(user, moid, newName);
-      } catch (Exception e) {
-        reportAndThrowRSuiteException("Unable to rename CA: " + e.getLocalizedMessage());
-      }
-
-      // Re-fetch CA instance since previous operations change CA and we
-      // need to make sure we are in-sync with cache.
-      us = context.getContentAssemblyService().getContentAssembly(user, moid);
-
-      // Rename non-XML child nodes that follow article naming convention
-      List<? extends ContentAssemblyItem> items = us.getChildrenObjects();
-      wfLog.info("CA items = " + items);
-      if (items != null && items.size() > 0) {
-        for (ContentAssemblyItem item : items) {
-          wfLog.info("Check if need to rename " + item.getDisplayName());
-          if (item instanceof ManagedObjectReference) {
-            ManagedObjectReference mor = (ManagedObjectReference) item;
-            // @SuppressWarnings("deprecation")
-
-            String sid = mor.getTargetId();
-
-            if (!AstdActionUtils.isNonXml(mor)) {
-              // For xml objects, we need to set alias since
-              // transform/export operations may depend on it.
-              wfLog.info("Setting new alias for MO " + sid + ": " + newName + ".xml");
-              mosvc.setAlias(user, sid, newName + ".xml");
-              continue;
-            }
-            wfLog.info("Attempting to rename " + item.getDisplayName() + " to " + newName);
-            String newNonXmlName = AstdActionUtils.renameArticleNonXmlMo(user, mosvc, wfLog, sid,
-                newName);
-
-            // XXX: Bug in Rsuite 3.3.1 (and earlier) where alias
-            // is not updated in previous utility method, therefore,
-            // we explicitly set it here (again)
-
-            if (newNonXmlName != null) {
-              wfLog.info("Setting alias for " + sid + " to \"" + newNonXmlName + "\"");
-              mosvc.setAlias(user, sid, newNonXmlName);
-            }
-          }
-        }
-      }
-*/
+      /*
+       * 
+       * try { wfLog.info("Renaming CA " + moid + " to " + newName);
+       * context.getContentAssemblyService().renameCANode(user, moid, newName); } catch (Exception
+       * e) { reportAndThrowRSuiteException("Unable to rename CA: " + e.getLocalizedMessage()); }
+       * 
+       * // Re-fetch CA instance since previous operations change CA and we // need to make sure we
+       * are in-sync with cache. us = context.getContentAssemblyService().getContentAssembly(user,
+       * moid);
+       * 
+       * // Rename non-XML child nodes that follow article naming convention List<? extends
+       * ContentAssemblyItem> items = us.getChildrenObjects(); wfLog.info("CA items = " + items); if
+       * (items != null && items.size() > 0) { for (ContentAssemblyItem item : items) { wfLog.info(
+       * "Check if need to rename " + item.getDisplayName()); if (item instanceof
+       * ManagedObjectReference) { ManagedObjectReference mor = (ManagedObjectReference) item;
+       * // @SuppressWarnings("deprecation")
+       * 
+       * String sid = mor.getTargetId();
+       * 
+       * if (!AstdActionUtils.isNonXml(mor)) { // For xml objects, we need to set alias since //
+       * transform/export operations may depend on it. wfLog.info("Setting new alias for MO " + sid
+       * + ": " + newName + ".xml"); mosvc.setAlias(user, sid, newName + ".xml"); continue; }
+       * wfLog.info("Attempting to rename " + item.getDisplayName() + " to " + newName); String
+       * newNonXmlName = AstdActionUtils.renameArticleNonXmlMo(user, mosvc, wfLog, sid, newName);
+       * 
+       * // XXX: Bug in Rsuite 3.3.1 (and earlier) where alias // is not updated in previous utility
+       * method, therefore, // we explicitly set it here (again)
+       * 
+       * if (newNonXmlName != null) { wfLog.info("Setting alias for " + sid + " to \"" +
+       * newNonXmlName + "\""); mosvc.setAlias(user, sid, newNonXmlName); } } } }
+       */
       // Update process variables
+
       String pid = mo.getLayeredMetadataValue(ASTD_ARTICLE_PID_LMD_FIELD);
       if (!StringUtils.isEmpty(pid)) {
         wfLog.info("Attempting to update variables for process " + pid);
