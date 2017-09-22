@@ -39,7 +39,8 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
     
     protected Expression targetVariableName;
     protected Expression EXCEPTION_OCCUR;
-    protected Expression articleCaMoId; 
+    protected Expression articleCaMoId;
+    
     protected Expression articlePdfMoId;
     /**
      * (Optional) MO ID of article CA.

@@ -340,6 +340,7 @@
 	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdSetArticlePdfVar" /> 
 	        
 	        <actionHandler label="Local Copy of Load Non by Alias"
+	        
 	        description="Local Copy of Load Non by Alias"
 	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdExportObjectsActionHandler" /> 
 	        

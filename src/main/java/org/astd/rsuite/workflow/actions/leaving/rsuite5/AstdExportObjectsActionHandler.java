@@ -52,6 +52,7 @@ public class AstdExportObjectsActionHandler extends BaseWorkflowAction implement
 
 	/**
 	 * Holds a comma-delimited list of managed object IDs. If omitted,
+	 * 
 	 * the current workflow MO list is used.
 	 */
 	public static final String OBJECT_IDS_PARAM = "objectIds";
