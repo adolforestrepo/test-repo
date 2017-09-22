@@ -24,6 +24,8 @@ import com.reallysi.rsuite.api.workflow.activiti.MoListWorkflowObject;
 
 import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
 import com.reallysi.rsuite.api.workflow.activiti.MoWorkflowObject;
+
+import org.activiti.engine.delegate.Expression;
 //import com.reallysi.tools.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -42,6 +44,11 @@ public class AstdExportObjectsActionHandler extends BaseWorkflowAction implement
 {
 
 	private static final long serialVersionUID = -1L;
+	
+	 protected Expression EXCEPTION_OCCUR;
+	 protected Expression targetVariableName;
+	 protected Expression destinationPath;
+	 protected Expression useDisplayNames;
 
 	/**
 	 * Holds a comma-delimited list of managed object IDs. If omitted,

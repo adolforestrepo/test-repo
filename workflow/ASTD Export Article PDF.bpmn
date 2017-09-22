@@ -22,6 +22,7 @@
       <serviceTask id="Set_PDF_Variable" name="Set PDF Variable"
                    activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdSetArticlePdfVar">
                    <activiti:field name="targetVariableName" stringValue="${articlePdfMoId}" />
+                  
 <!--Custom variable; adjust action handlers as appropriate. targetVariableName={articlePdfMoId}--></serviceTask>
 
       <sequenceFlow sourceRef="Set_PDF_Variable" targetRef="Check_PDF_Var_Exception"/>

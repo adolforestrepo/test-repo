@@ -331,6 +331,31 @@
 	    <actionHandler label="Local Copy of Load Non by Alias"
 	        description="Local Copy of Load Non by Alias"
 	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler" /> 
+	        
+	        
+	        
+	        
+	        <actionHandler label="Local Copy of Load Non by Alias"
+	        description="Local Copy of Load Non by Alias"
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdSetArticlePdfVar" /> 
+	        
+	        <actionHandler label="Local Copy of Load Non by Alias"
+	        description="Local Copy of Load Non by Alias"
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdExportObjectsActionHandler" /> 
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
+	        
 	    
 	    
 	    <actionHandler label="Local Copy of Add Metadata Action Handler"
@@ -395,7 +420,8 @@
 	     <file key="ASTD Reassign Article" filename="WebContent/workflow/ASTD_Reassign_Article.bpmn"/>
 	     <file key="ATD T+D Article Word to XML to InDesign" filename="WebContent/workflow/ATD Article Word to XML to InDesign.bpmn"/>
 	     <file key="ATD Article To InDesign" filename="WebContent/workflow/ATD Article To InDesign.bpmn"/>
-	     <file key="ATD Article To InDesign" filename="WebContent/workflow/ASTD Export Article PDF.bpmn"/>
+	     <file key="ASTD Export Article PDF" filename="WebContent/workflow/ASTD Export Article PDF.bpmn "/>
+	                                                                        
 	   </workflowDefinitions>
 	    
 	</extensionProvider>

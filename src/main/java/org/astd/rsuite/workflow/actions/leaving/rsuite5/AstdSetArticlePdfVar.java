@@ -16,6 +16,7 @@ import com.reallysi.rsuite.api.workflow.activiti.BaseWorkflowAction;
 import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
 //import com.reallysi.tools.StringUtil;
 
+import org.activiti.engine.delegate.Expression;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.astd.rsuite.domain.ArticlePubCode;
@@ -36,6 +37,10 @@ import org.astd.rsuite.domain.ArticlePubCode;
 public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWorkflowConstants {
     private static final long serialVersionUID = 1L;
     
+    protected Expression targetVariableName;
+    protected Expression EXCEPTION_OCCUR;
+    protected Expression articleCaMoId; 
+    protected Expression articlePdfMoId;
     /**
      * (Optional) MO ID of article CA.
      */
@@ -45,6 +50,13 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
      * Name of the variable to hold the PDF MO ID.
      */
     public static final String TARGET_VAR_PARAM = "targetVariableName";
+    
+    
+    /**
+     * MO ID of PDF version of article.
+     */
+    public static final String ASTD_VAR_ARTICLE_PDF = "articlePdfMoId";
+
 
     @Override
     
@@ -56,18 +68,33 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
         
         
         User user =context.getAuthorizationService().getSystemUser();
-        String varName = resolveVariables(
+        
+    /*    String varName = resolveVariables(
                 getParameter(TARGET_VAR_PARAM));
         if (StringUtils.isEmpty(varName)) {
             reportAndThrowRSuiteException(
                     "Target variable name not specified");
-        }
+        }*/
 
+        
+        
+        
+        
+        String varName = resolveExpression(targetVariableName);
+        if (StringUtils.isBlank(varName)) {
+          reportAndThrowRSuiteException("Target variable name not specified");
+        }
+        
+        
+        
+        
+        
         String caId = resolveVariables(
                 getParameter(ARTICLE_MO_ID_PARAM));
         if (StringUtils.isEmpty(caId)) {
             MoListWorkflowObject moList = context.getMoListWorkflowObject();
-            if (moList == null || moList.isEmpty()) {
+            
+             if (moList == null || moList.isEmpty()) {
                 reportAndThrowRSuiteException(
                     "Article content assembly not specified");
             }
