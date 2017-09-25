@@ -17,10 +17,8 @@ import com.reallysi.rsuite.api.User;
 //import com.reallysi.rsuite.api.workflow.MoListWorkflowObject;
 import com.reallysi.rsuite.api.workflow.activiti.MoListWorkflowObject;
 //import com.reallysi.rsuite.api.workflow.MoWorkflowObject;
-import com.reallysi.rsuite.api.workflow.WorkflowExecutionContext;
 import com.reallysi.rsuite.api.workflow.activiti.BaseWorkflowAction;
 //import com.reallysi.rsuite.api.workflow.activiti.MoListWorkflowObject;
-import com.reallysi.rsuite.api.workflow.activiti.MoListWorkflowObject;
 
 import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
 import com.reallysi.rsuite.api.workflow.activiti.MoWorkflowObject;
@@ -28,10 +26,7 @@ import com.reallysi.rsuite.api.workflow.activiti.MoWorkflowObject;
 import org.activiti.engine.delegate.Expression;
 //import com.reallysi.tools.StringUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.astd.rsuite.domain.ArticlePubCode;
 
-import com.reallysi.rsuite.api.workflow.activiti.BaseNonLeavingWorkflowAction;
 
 //import com.reallysi.rsuite.api.extensions.ExecutionContext;
 //import com.reallysi.rsuite.api.extensions.ExecutionContextWrapper;
@@ -93,8 +88,7 @@ public class AstdExportObjectsActionHandler extends BaseWorkflowAction implement
 			useDisplayNames = s.toLowerCase().equals("true");
 		}
 		
-		String destinationPath = resolveVariables(
-				getParameter(DESTINATION_PATH_PARAM));
+		String destinationPath = resolveVariables(getParameter(DESTINATION_PATH_PARAM));
 		if (StringUtils.isEmpty(destinationPath)) {
 			reportAndThrowRSuiteException( DESTINATION_PATH_PARAM+" is not set");
 		}
