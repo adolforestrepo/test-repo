@@ -56,7 +56,7 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
     /**
      * MO ID of PDF version of article.
      */
-    public static final String ASTD_VAR_ARTICLE_PDF = "articlePdfMoId";
+   // public static final String ASTD_VAR_ARTICLE_PDF = "articlePdfMoId";
 
 
     @Override
@@ -89,11 +89,9 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
         
         
         
-        
-        String caId = resolveVariables(
-                getParameter(ARTICLE_MO_ID_PARAM));
-        if (StringUtils.isEmpty(caId)) {
-            MoListWorkflowObject moList = context.getMoListWorkflowObject();
+        String caId = resolveExpression(articleCaMoId);
+        if (StringUtils.isBlank(caId)) {
+        MoListWorkflowObject moList = context.getMoListWorkflowObject();
             
              if (moList == null || moList.isEmpty()) {
                 reportAndThrowRSuiteException(
