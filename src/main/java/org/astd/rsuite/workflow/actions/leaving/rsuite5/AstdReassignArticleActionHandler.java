@@ -10,15 +10,17 @@ import org.astd.rsuite.domain.ContainerType;
 import com.reallysi.rsuite.api.ContentAssembly;
 import com.reallysi.rsuite.api.ManagedObject;
 import com.reallysi.rsuite.api.ManagedObjectReference;
+import com.reallysi.rsuite.api.MetaDataItem;
 import com.reallysi.rsuite.api.User;
 import com.reallysi.rsuite.api.control.ContentAssemblyCreateOptions;
 import com.reallysi.rsuite.api.control.ObjectAttachOptions;
 import com.reallysi.rsuite.api.control.ObjectCheckInOptions;
+import com.reallysi.rsuite.api.control.ObjectMetaDataSetOptions;
 import com.reallysi.rsuite.api.workflow.activiti.BaseWorkflowAction;
 import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
 import com.reallysi.rsuite.service.ContentAssemblyService;
 import com.reallysi.rsuite.service.ManagedObjectService;
-import com.reallysi.rsuite.service.WorkflowInstanceService;
+import com.reallysi.tools.ditaot.DitaOtOptions;
 
 /**
  * Reassign an article.
@@ -42,6 +44,7 @@ public class AstdReassignArticleActionHandler
   public void execute(WorkflowContext context) throws Exception {
     Log wfLog = context.getWorkflowLog();
     wfLog.info("Attempting to reassign article...");
+    context.setVariable(DitaOtOptions.EXCEPTION_OCCUR, "false");
 
     try {
       User user = context.getAuthorizationService().getSystemUser();
@@ -49,6 +52,7 @@ public class AstdReassignArticleActionHandler
       wfLog.info("MOID (us): " + moid);
       ManagedObjectService mosvc = context.getManagedObjectService();
       ManagedObject mo = mosvc.getManagedObject(user, moid);
+
       if (!mo.isAssemblyNode()) {
         reportAndThrowRSuiteException("MO is not a content assembly");
       }
@@ -62,6 +66,7 @@ public class AstdReassignArticleActionHandler
       }
 
       ContentAssembly us = context.getContentAssemblyService().getContentAssembly(user, moid);
+
       if (AstdActionUtils.isArticleContentsLocked(us)) {
         reportAndThrowRSuiteException("Article " + curName
             + " has locked content, cannot reassign");
@@ -106,6 +111,9 @@ public class AstdReassignArticleActionHandler
        **/
 
       if (!sameIssue) {
+
+
+
         /*
          * boolean isUnassigned = "99".equals(volume); String folderRoot = "/" + FOLDER_MAGAZINE +
          * "/" + ArticlePubCode.getPubDesc(pubCode); String folder = null; if (isUnassigned) {
@@ -172,6 +180,11 @@ public class AstdReassignArticleActionHandler
         ContentAssembly contentCA = null;
 
         ContentAssemblyService caSrv = context.getContentAssemblyService();
+
+        String catypeArticle = caSrv.getContentAssembly(user, moid).getLayeredMetadataValue(
+            "ca-type").toString();
+
+
         if (volume.equals("99")) {
 
           ContentAssemblyCreateOptions caCreateOp = new ContentAssemblyCreateOptions();
@@ -218,18 +231,22 @@ public class AstdReassignArticleActionHandler
           for (ManagedObjectReference caid : moids) {
             caSrv.attach(user, articleCA.getId(), caid.getTargetId(), new ObjectAttachOptions());
             // Add code for rename the non-xml documents
-            wfLog.info("Check if need to rename " + caid.getDisplayName());
+            wfLog.info("Check if need to Rename " + caid.getDisplayName());
             if (AstdActionUtils.isNonXml(caid)) {
               String newDisplayName = newName + "." + FilenameUtils.getExtension(caid
                   .getDisplayName());
-              wfLog.info("Attempting to rename " + caid.getDisplayName() + " to " + newDisplayName);
+              wfLog.info("Attempting to Rename " + caid.getDisplayName() + " to " + newDisplayName);
+              wfLog.info("Checking out MO (" + caid.getTargetId() + ") under user " + user
+                  .getUserId());
               context.getManagedObjectService().checkOut(user, caid.getTargetId());
               context.getManagedObjectService().setDisplayName(user, caid.getTargetId(),
                   newDisplayName);
+              wfLog.info("Checking In MO (" + caid.getTargetId() + ") under user " + user
+                  .getUserId());
               context.getManagedObjectService().checkIn(user, caid.getTargetId(),
                   new ObjectCheckInOptions());
               if (newDisplayName != null) {
-                wfLog.info("Setting alias for " + caid.getTargetId() + " to \"" + newDisplayName
+                wfLog.info("Setting Alias for " + caid.getTargetId() + " to \"" + newDisplayName
                     + "\"");
                 mosvc.setAlias(user, caid.getTargetId(), newDisplayName);
               }
@@ -237,7 +254,33 @@ public class AstdReassignArticleActionHandler
             }
           }
 
+          String pid = mo.getLayeredMetadataValue(ASTD_ARTICLE_PID_LMD_FIELD);
+
+
+          ManagedObject mo1 = mosvc.getManagedObject(user, articleCA.getId());
+
+          wfLog.info("Attempting to update variables for ca-type " + articleCA.getId());
+
+          if (catypeArticle != null && !"".equals(catypeArticle.trim())) {
+
+            mosvc.addMetaDataEntry(user, mo1.getId(), new MetaDataItem("ca-type", catypeArticle),
+                new ObjectMetaDataSetOptions());
+
+          }
+
+          wfLog.info("Attempting to update variables for process " + pid);
+
+          if (pid != null && !"".equals(pid.trim())) {
+
+            mosvc.addMetaDataEntry(user, mo1.getId(), new MetaDataItem("article-process-id", pid),
+                new ObjectMetaDataSetOptions());
+
+          }
+
+          wfLog.info("Removing the existing CA : " + moid);
+
           caSrv.removeContentAssembly(user, moid);
+
 
         }
 
@@ -277,42 +320,40 @@ public class AstdReassignArticleActionHandler
        */
       // Update process variables
 
-      String pid = mo.getLayeredMetadataValue(ASTD_ARTICLE_PID_LMD_FIELD);
-      if (!StringUtils.isEmpty(pid)) {
-        wfLog.info("Attempting to update variables for process " + pid);
-        WorkflowInstanceService psvc = context.getWorkflowInstanceService();
-        Object pi = psvc.getWorkflowInstance(pid);
-        if (pi == null) {
-          wfLog.info("No process with id " + pid + " found, clearing LMD field");
-          AstdActionUtils.clearArticlePidLmdField(context, mo, user);
-        } else {
-          // FIXME: When API is made available to change variables, update
-          // block. The following code has no effect.
-          /*
-           * List pVars = pi.getVariables(); for (Object obj : pVars) { VariableInfo var =
-           * (VariableInfo)obj; String varName = var.getName(); wfLog.info("\t(old) "
-           * +varName+"="+var.getValue()); if
-           * (varName.equals(AstdWorkflowConstants.ASTD_VAR_PUB_CODE)) { var.setValue(pubCode); }
-           * else if (varName.equals(AstdWorkflowConstants.ASTD_VAR_FULL_FILENAME)) {
-           * var.setValue(newName+".docx"); } else if
-           * (varName.equals(AstdWorkflowConstants.ASTD_VAR_SOURCE_FILENAME)) {
-           * var.setValue(newName); } else if
-           * (varName.equals(AstdWorkflowConstants.ASTD_VAR_ARTICLE_TYPE)) { var.setValue(type); }
-           * else if (varName.equals(AstdWorkflowConstants.ASTD_VAR_VOLUME_NUMBER)) {
-           * var.setValue(volume); } else if (varName.equals(AstdWorkflowConstants.ASTD_VAR_ISSUE))
-           * { var.setValue(issue); } else if (varName.equals(AstdWorkflowConstants.ASTD_VAR_MONTH))
-           * { var.setValue(issue); } else if
-           * (varName.equals(AstdWorkflowConstants.ASTD_VAR_SEQUENCE)) { var.setValue(sequence); }
-           * else if (varName.equals(AstdWorkflowConstants.ASTD_VAR_FILENAME_AUTHOR)) {
-           * var.setValue(author); } wfLog.info("\t(new) "+varName+"="+var.getValue()); }
-           */
-        }
-      }
+
+
+      /*
+       * if (!StringUtils.isEmpty(pid)) { wfLog.info("Attempting to update variables for process " +
+       * pid); WorkflowInstanceService psvc = context.getWorkflowInstanceService(); Object pi =
+       * psvc.getWorkflowInstance(pid); if (pi == null) { wfLog.info("No process with id " + pid +
+       * " found, clearing LMD field"); AstdActionUtils.clearArticlePidLmdField(context, mo, user);
+       * } else { // FIXME: When API is made available to change variables, update // block. The
+       * following code has no effect.
+       * 
+       * List pVars = pi.getVariables(); for (Object obj : pVars) { VariableInfo var =
+       * (VariableInfo)obj; String varName = var.getName(); wfLog.info("\t(old) "
+       * +varName+"="+var.getValue()); if (varName.equals(AstdWorkflowConstants.ASTD_VAR_PUB_CODE))
+       * { var.setValue(pubCode); } else if
+       * (varName.equals(AstdWorkflowConstants.ASTD_VAR_FULL_FILENAME)) {
+       * var.setValue(newName+".docx"); } else if
+       * (varName.equals(AstdWorkflowConstants.ASTD_VAR_SOURCE_FILENAME)) { var.setValue(newName); }
+       * else if (varName.equals(AstdWorkflowConstants.ASTD_VAR_ARTICLE_TYPE)) { var.setValue(type);
+       * } else if (varName.equals(AstdWorkflowConstants.ASTD_VAR_VOLUME_NUMBER)) {
+       * var.setValue(volume); } else if (varName.equals(AstdWorkflowConstants.ASTD_VAR_ISSUE)) {
+       * var.setValue(issue); } else if (varName.equals(AstdWorkflowConstants.ASTD_VAR_MONTH)) {
+       * var.setValue(issue); } else if (varName.equals(AstdWorkflowConstants.ASTD_VAR_SEQUENCE)) {
+       * var.setValue(sequence); } else if
+       * (varName.equals(AstdWorkflowConstants.ASTD_VAR_FILENAME_AUTHOR)) { var.setValue(author); }
+       * wfLog.info("\t(new) "+varName+"="+var.getValue()); }
+       * 
+       * } }
+       */
 
     } catch (Exception e) {
       context.setVariable("REASSIGN_MSGS", e.getLocalizedMessage());
       throw e;
     }
+
   }
 
 }

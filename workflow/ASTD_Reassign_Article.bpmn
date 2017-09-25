@@ -26,11 +26,11 @@
       <exclusiveGateway id="Exception_occurred" name="Exception occurred?"></exclusiveGateway>
       
       <sequenceFlow id="flowToReview_Exception" sourceRef="Exception_occurred" targetRef="Review_Exception">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR=='true'}]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true}]]></conditionExpression>
       </sequenceFlow>
       
       <sequenceFlow id="flowToendWorkflow"  sourceRef="Exception_occurred" targetRef="endWorkflow">
-         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR=='false'}]]></conditionExpression>
+         <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
       </sequenceFlow>
       
       <userTask id="Review_Exception" name="Review Exception" activiti:candidateGroups="RSuiteAdministrator">
