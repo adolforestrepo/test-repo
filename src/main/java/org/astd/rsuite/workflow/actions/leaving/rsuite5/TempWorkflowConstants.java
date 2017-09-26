@@ -16,7 +16,7 @@ public interface TempWorkflowConstants {
   public static final String EXCEPTION_TYPE_CUSTOMED = "EXCEPTION_TYPE_CUSTOMED";
   public static final String EXCEPTION_TYPE_BUSINESSRULE = "EXCEPTION_TYPE_BUSINESSRULE";
   public static final String EXCEPTION_TYPE_SYSTEM = "EXCEPTION_TYPE_SYSTEM";
-  public static final String ARTICLE_MO_ID_PARAM = "articleCaMoId";
+ // public static final String ARTICLE_MO_ID_PARAM = "articleCaMoId";
   public static final String TARGET_VAR_PARAM = "targetVariableName";
   
   

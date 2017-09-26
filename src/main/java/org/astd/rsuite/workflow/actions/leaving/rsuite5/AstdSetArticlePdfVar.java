@@ -40,12 +40,11 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
     protected Expression targetVariableName;
     protected Expression EXCEPTION_OCCUR;
     protected Expression articleCaMoId;
-    
     protected Expression articlePdfMoId;
     /**
      * (Optional) MO ID of article CA.
      */
-    public static final String ARTICLE_MO_ID_PARAM = "articleCaMoId";
+    public static final String ATD_VAR_CA_ID = "articleCaMoId";
 
     /**
      * Name of the variable to hold the PDF MO ID.
@@ -68,8 +67,8 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
         
         
         
-        User user =context.getAuthorizationService().getSystemUser();
-        
+        User user = context.getAuthorizationService().getSystemUser();
+        wfLog.info("user .... "+user);
     /*    String varName = resolveVariables(
                 getParameter(TARGET_VAR_PARAM));
         if (StringUtils.isEmpty(varName)) {
@@ -86,9 +85,10 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
           reportAndThrowRSuiteException("Target variable name not specified");
         }
         
-        
-        
-        
+        wfLog.info("varName .... "+varName);
+        //wfLog.info("Testing !!!!! "+context.getVariable(ATD_VAR_CA_ID));
+      //  wfLog.info("Checkin !!!!! "+context.getContentAssemblyService().getContentAssembly(user, ATD_VAR_FULL_FILENAME).getId());
+       // context.setVariable(ATD_VAR_CA_ID, context.getContentAssemblyService().getContentAssembly(user, ATD_VAR_FULL_FILENAME).getId());
         String caId = resolveExpression(articleCaMoId);
         if (StringUtils.isBlank(caId)) {
         MoListWorkflowObject moList = context.getMoListWorkflowObject();
@@ -162,6 +162,6 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
     }
 
     public void setArticleCaMoId(String s) {
-        setParameter(ARTICLE_MO_ID_PARAM, s);
+        setParameter(ATD_VAR_CA_ID, s);
     }
 }

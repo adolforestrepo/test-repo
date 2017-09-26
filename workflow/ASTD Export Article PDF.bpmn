@@ -29,7 +29,13 @@
       <serviceTask id="Set_PDF_Variable" name="Set PDF Variable"
                    activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdSetArticlePdfVar">
 
-                   <activiti:field name="targetVariableName" stringValue="${articleCaMoId}" />
+                   <!-- <activiti:field name="targetVariableName" stringValue="${articleCaMoId}" /> -->
+                   
+                   <activiti:field name="targetVariableName" expression="${parentMoId}" />
+                   
+                   
+                   
+                   
                   
 <!--Custom variable; adjust action handlers as appropriate. targetVariableName={articlePdfMoId}--></serviceTask>
 

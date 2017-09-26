@@ -12,8 +12,8 @@
              xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd"
              targetNamespace="http://www.jbpm.org/">
    <process isExecutable="true"
-            id="ATD T+D Article Word to XML to InDesign"
-            name="ATD T+D Article Word to XML to InDesign">
+            id="ATD TD Article Word to XML to InDesign"
+            name="ATD TD Article Word to XML to InDesign">
             
             
       <startEvent name="StartNode" id="StartNode"/>
@@ -714,7 +714,10 @@
        
        <callActivity id="exportArticlePDF" name="Export Article PDF" calledElement="ASTD Export Article PDF">
                 <extensionElements>
-                        <activiti:in source="rsuite contents" target="rsuite contents" />
+                        
+                         <activiti:in source="rsuite:contents" target="rsuite contents" ></activiti:in>
+                        <activiti:in source="rsuite:contents" target="rsuite:contents" ></activiti:in>
+                        <activiti:in source="articleCaMoId" target="parentMoId" ></activiti:in>
                 </extensionElements>
         </callActivity>
        
