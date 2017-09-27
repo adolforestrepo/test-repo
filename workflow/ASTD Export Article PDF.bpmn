@@ -32,9 +32,7 @@
                    <!-- <activiti:field name="targetVariableName" stringValue="${articleCaMoId}" /> -->
                    
                    <activiti:field name="targetVariableName" expression="${parentMoId}" />
-                   
-                   
-                   
+                  
                    
                   
 <!--Custom variable; adjust action handlers as appropriate. targetVariableName={articlePdfMoId}--></serviceTask>
@@ -57,8 +55,9 @@
       
       <serviceTask id="Export_PDF_to_Share" name="Export PDF to Share"
       activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdExportObjectsActionHandler">
-      <activiti:field name="targetVariableName" stringValue="${articlePdfMoId}" />
+      <activiti:field name="targetVariableName" expression="${parentMoId}" />
        <activiti:field name="destinationPath" stringValue="{${astd.pdf.export.share}}" />
+       
        <activiti:field name="useDisplayNames" stringValue="true" />
       
       

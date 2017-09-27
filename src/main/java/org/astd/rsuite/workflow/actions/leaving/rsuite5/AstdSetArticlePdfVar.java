@@ -89,7 +89,11 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
         //wfLog.info("Testing !!!!! "+context.getVariable(ATD_VAR_CA_ID));
       //  wfLog.info("Checkin !!!!! "+context.getContentAssemblyService().getContentAssembly(user, ATD_VAR_FULL_FILENAME).getId());
        // context.setVariable(ATD_VAR_CA_ID, context.getContentAssemblyService().getContentAssembly(user, ATD_VAR_FULL_FILENAME).getId());
-        String caId = resolveExpression(articleCaMoId);
+        
+        String caId = resolveVariables(
+                getParameter(ATD_VAR_CA_ID));
+        wfLog.info("caId .... "+caId);
+       // String caId = resolveExpression(articleCaMoId);
         if (StringUtils.isBlank(caId)) {
         MoListWorkflowObject moList = context.getMoListWorkflowObject();
             
@@ -113,7 +117,8 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
         	foundPdf = true;
         
         } else {
-        	ContentAssembly us =
+        	@SuppressWarnings("deprecation")
+			ContentAssembly us =
         		context.getContentAssemblyService().getContentAssemblyById(
         				user, caId);
         	List<? extends ContentAssemblyItem> items = us.getChildrenObjects();
