@@ -26,7 +26,7 @@
 
 		<serviceTask id="loadInx" name="Load INX"
 			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
-			<activiti:field name="alias" expression="${sourceFileName}.incx" />
+			<activiti:field name="alias" expression="${sourceFileName}.icml" />
 			<activiti:field name="commitMessage" stringValue="Loaded by workflow" />
 			<activiti:field name="parentMoId" expression="${articleCaMoId}" />
 		</serviceTask>
@@ -175,7 +175,7 @@
 
 		<userTask id="Begin Design Task" name="Begin Design Task (Art Director)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
-			<documentation>"Document: ${sourceFileName}.incx"</documentation>
+			<documentation>"Document: ${sourceFileName}.icml"</documentation>
 		</userTask>
 
 		<sequenceFlow id="flowReviewProofs" sourceRef="Begin Design Task"
@@ -183,7 +183,7 @@
 
 		<userTask id="Review Proofs" name="Review Proofs (Associate Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
-			<documentation>"Document: ${sourceFileName}.incx"</documentation>
+			<documentation>"Document: ${sourceFileName}.icml"</documentation>
 		</userTask>
 
 		<!-- Link this task from the node Begin Design Task -->
