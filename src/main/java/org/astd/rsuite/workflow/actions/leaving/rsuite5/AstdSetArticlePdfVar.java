@@ -139,7 +139,10 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
         					wfLog.info(itemName+" type is "+type);
         					if (type != null && "PDF".equals(type.toUpperCase())) {
         						int dot = itemName.lastIndexOf('.');
+        						wfLog.info("..dot .... "+dot);
         						if (dot < 0) continue;
+        						wfLog.info("..articleName .... "+articleName);
+        						wfLog.info("..is it equal to item name .... "+itemName.substring(0, dot));
         						if (articleName.equals(
         								itemName.substring(0, dot))) {
         							wfLog.info("FOUND: "+sid);

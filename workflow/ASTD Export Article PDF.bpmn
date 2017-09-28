@@ -26,8 +26,7 @@
 			
 			
 			
-      <serviceTask id="Set_PDF_Variable" name="Set PDF Variable"
-                   activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdSetArticlePdfVar">
+      <serviceTask id="Set_PDF_Variable" name="Set PDF Variable" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdSetArticlePdfVar">
 
                    <!-- <activiti:field name="targetVariableName" stringValue="${articleCaMoId}" /> -->
                    
@@ -38,7 +37,7 @@
 <!--Custom variable; adjust action handlers as appropriate. targetVariableName={articlePdfMoId}--></serviceTask>
 
       <sequenceFlow sourceRef="Set_PDF_Variable" targetRef="Check_PDF_Var_Exception"/>
-      <exclusiveGateway id="Check_PDF_Var_Exception"/>
+      <exclusiveGateway id="Check_PDF_Var_Exception" name="Check PDF Var Exception"/>
       <sequenceFlow sourceRef="Check_PDF_Var_Exception" targetRef="Export_PDF_Error">
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==true}]]></conditionExpression>
       </sequenceFlow>
@@ -46,7 +45,7 @@
           <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
       </sequenceFlow>
       <userTask id="Export_PDF_Error"
-                name="Export PDF Error"
+                name="Export PDF Error (Managing Editor)"
                 activiti:candidateGroups="Managing Editor">
          <documentation>Export PDF Error: ${exceptionMessage}</documentation>
       </userTask>
@@ -64,6 +63,10 @@
 <!--Custom variable; adjust action handlers as appropriate. objectIds={${articlePdfMoId}}-->
 <!--Custom variable; adjust action handlers as appropriate. destinationPath={${astd.pdf.export.share}}-->
 <!--Custom variable; adjust action handlers as appropriate. useDisplayNames={true}--></serviceTask>
+
+
+
+
       <sequenceFlow sourceRef="Export_PDF_to_Share" targetRef="Check_PDF_export"/>
       <exclusiveGateway id="Check_PDF_export"/>
       <sequenceFlow sourceRef="Check_PDF_export" targetRef="Export_PDF_Error">
@@ -73,5 +76,7 @@
          <conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
          
       </sequenceFlow>
+      
+     
    </process>
 </definitions>
