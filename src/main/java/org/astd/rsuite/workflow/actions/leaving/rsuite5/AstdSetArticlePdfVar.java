@@ -16,6 +16,8 @@ import com.reallysi.rsuite.api.workflow.activiti.BaseWorkflowAction;
 import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
 //import com.reallysi.tools.StringUtil;
 
+
+
 import org.activiti.engine.delegate.Expression;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -38,7 +40,6 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
     private static final long serialVersionUID = 1L;
     
     protected Expression targetVariableName;
-    protected Expression EXCEPTION_OCCUR;
     protected Expression articleCaMoId;
     protected Expression articlePdfMoId;
     /**
@@ -63,7 +64,7 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
     public void execute(WorkflowContext context) throws Exception {
         Log wfLog = context.getWorkflowLog();
         wfLog.info("Attempting to pdf...");
-        
+        context.setVariable("EXCEPTION_OCCUR", "false");
         
         
         
@@ -155,13 +156,16 @@ public class AstdSetArticlePdfVar extends BaseWorkflowAction implements TempWork
 
         			} else {
         				wfLog.info(item.getDisplayName()+" is NOT a MOR");
+        				
         			}
         		}
         	}
         }
         if (!foundPdf) {
-            reportAndThrowRSuiteException(
-                    "No article PDF for "+articleName);
+        	context.setVariable("EXCEPTION_OCCUR", "true");
+        	String expmessage = "No article PDF for "+articleName;
+        	context.setVariable(TempWorkflowConstants.EXCEPTION_MESSAGE_VAR, expmessage);
+            reportAndThrowRSuiteException(expmessage);
         }
     }
 

@@ -394,9 +394,10 @@
 	        description="Create the CTDO CAs structure in the repository."
 	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsCTDOActionHandler" />  
 	        
+	        
 	        <actionHandler label="Action handler to create the TD CAs structure. "
 	        description="Create the TD CAs structure in the repository."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsTDActionHandler" />  
+	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsTandDActionHandler" />  
 	           
 	    <actionHandler label="Action handler to set the MO classfication."
 	        description="Set the MO classfication."
