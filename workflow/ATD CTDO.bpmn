@@ -204,7 +204,7 @@
 
         <sequenceFlow id="flowFromValidationXMLtoINCXErrorToEnd" sourceRef="xml2INCXError" targetRef="endWorkflow"></sequenceFlow>
 
-        <serviceTask id="xMLToINCX" name="XML to INCX" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IncxActionHandler">
+        <serviceTask id="xMLToINCX" name="XML to INCX" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IcmlActionHandler">
                 <activiti:field name="styleCatalogUri" stringValue="rsuite:/res/plugin/astd-plugin/xslt/ctdo2indesign/ctdo-dita-indesign-style-catalog.xml" />
                 <activiti:field name="xsltUriFromWorkflow" stringValue="rsuite:/res/plugin/astd-plugin/xslt/ctdo2indesign/ctdoArticle2InDesign.xsl" />
                 <activiti:field name="fileName" stringValue="${sourceFileName}" />
@@ -224,7 +224,7 @@
         </sequenceFlow>
 
         <serviceTask id="loadInx" name="Load INX" activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
-                <activiti:field name="alias" expression="${sourceFileName}.incx" />
+                <activiti:field name="alias" expression="${sourceFileName}.icml" />
                 <activiti:field name="commitMessage" stringValue="Loaded by workflow" />
                 <activiti:field name="parentMoId" expression="${articleCaMoId}" />
         </serviceTask>
@@ -259,13 +259,13 @@
         <sequenceFlow id="flowToBeginDesignTask" sourceRef="makeArticleCACurrent" targetRef="Begin Design Task"></sequenceFlow>
 
         <userTask id="Begin Design Task" name="CTDO Begin Design (Art Director)" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
-                <documentation>"Document: ${sourceFileName}.incx"</documentation>
+                <documentation>"Document: ${sourceFileName}.icml"</documentation>
         </userTask>
 
         <sequenceFlow id="flowReviewProofs" sourceRef="Begin Design Task" targetRef="Review Proofs"></sequenceFlow>
 
         <userTask id="Review Proofs" name="Review CTDO Proofs (Managing Editor)" activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
-                <documentation>"Document: ${sourceFileName}.incx"</documentation>
+                <documentation>"Document: ${sourceFileName}.icml"</documentation>
         </userTask>
 
         <sequenceFlow id="flowToSetNoDetailChanges" sourceRef="Review Proofs" targetRef="Set No detail changes"></sequenceFlow>

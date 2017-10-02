@@ -99,7 +99,7 @@
 			sourceRef="xml2INCXError" targetRef="endWorkflow"></sequenceFlow>
 
 		<serviceTask id="xMLToINCX" name="XML to INCX"
-			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IncxActionHandler">
+			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IcmlActionHandler">
 			<activiti:field name="styleCatalogUri"
 				stringValue="rsuite:/res/plugin/astd-plugin/xslt/newtpm2indesign/tpm-dita-indesign-style-catalog.xml" />
 			<activiti:field name="xsltUriFromWorkflow"

@@ -40,7 +40,7 @@
 
 
 		<serviceTask id="XML_to_INCX" name="XML to INCX2222"
-			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IncxActionHandler">
+			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IcmlActionHandler">
 			<activiti:field name="styleCatalogUri"
 				stringValue="rsuite:/res/plugin/astd-plugin/xslt/newtpm2indesign/tpm-dita-indesign-style-catalog.xml" />
 			<activiti:field name="xsltUriFromWorkflow"
@@ -58,7 +58,7 @@
 
 		<serviceTask id="Load_INX" name="Load INX3333"
 			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
-			<activiti:field name="alias" expression="${sourceFileName}.incx" />
+			<activiti:field name="alias" expression="${sourceFileName}.icml" />
 			<activiti:field name="commitMessage" stringValue="Loaded by workflow" />
 			<activiti:field name="parentMoId" expression="${articleCaMoId}" />
 		</serviceTask>
@@ -157,7 +157,7 @@
 
 		<userTask id="Begin_Design" name="Begin Design (Art Director)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
-			<documentation>Document: ${sourceFileName}.incx</documentation>
+			<documentation>Document: ${sourceFileName}.icml</documentation>
 		</userTask>
 		<sequenceFlow sourceRef="Begin_Design" targetRef="Review_First_Pages" />
 
@@ -228,7 +228,7 @@
 
 			<userTask id="Review_First_Pages" name="Review First Pages (Managing Editor)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
-				<documentation>Document: ${sourceFileName}.incx</documentation>
+				<documentation>Document: ${sourceFileName}.icml</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Review_First_Pages" targetRef="gateway_Review_First_Pages" />
 			<exclusiveGateway id="gateway_Review_First_Pages"
@@ -247,14 +247,14 @@
 			</sequenceFlow>
 			<userTask id="Make_First_Corrections" name="Make First Corrections (Art Director)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
-				<documentation>Document: ${sourceFileName}.incx Detail: ${detail}
+				<documentation>Document: ${sourceFileName}.icml Detail: ${detail}
 				</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Make_First_Corrections"
 				targetRef="Review_Dummy" />
 			<userTask id="Review_Dummy" name="Review Dummy (Managing Editor)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
-				<documentation>${sourceFileName}.incx</documentation>
+				<documentation>${sourceFileName}.icml</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Review_Dummy" targetRef="gateway_Review_Dummy" />
 			<exclusiveGateway id="gateway_Review_Dummy" name="Gateway Review Dummy" />
@@ -272,7 +272,7 @@
 			</sequenceFlow>
 			<userTask id="Create_Dummy" name="Create Dummy (Art Director)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
-				<documentation>Document: ${sourceFileName}.incx Detail: ${detail}
+				<documentation>Document: ${sourceFileName}.icml Detail: ${detail}
 				</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Create_Dummy" targetRef="Approve_Final_Dummy" />
@@ -410,7 +410,7 @@
 
 			<serviceTask id="Load_INCX_3" name="Load INCX 3"
 				activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
-				<activiti:field name="alias" expression="${sourceFileName}.incx" />
+				<activiti:field name="alias" expression="${sourceFileName}.icml" />
 				<activiti:field name="commitMessage" stringValue="Loaded by workflow" />
 				<activiti:field name="parentMoId" expression="${articleCaMoId}" />
 				<!--Custom variable; adjust action handlers as appropriate. commitMessage={Regenerated 
@@ -462,7 +462,7 @@
 
 			<serviceTask id="Load_INCX_2" name="Load INCX 2"
 				activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
-				<activiti:field name="alias" expression="${sourceFileName}.incx" />
+				<activiti:field name="alias" expression="${sourceFileName}.icml" />
 				<activiti:field name="commitMessage" stringValue="Loaded by workflow" />
 				<activiti:field name="parentMoId" expression="${articleCaMoId}" />
 				<!--Custom variable; adjust action handlers as appropriate. commitMessage={Regenerated 
@@ -716,7 +716,7 @@
 			</serviceTask>
 			<sequenceFlow sourceRef="Make_Article_CA_Current_3"
 				targetRef="Create_Dummy" />
-			<sequenceFlow sourceRef="Create_Dummy" targetRef="Clear_PDF_Exception_Status" />
+			<!--  <sequenceFlow sourceRef="Create_Dummy" targetRef="Clear_PDF_Exception_Status" />  -->
 
 
 			<serviceTask id="Make_XML_Current" name="Make XML Current"

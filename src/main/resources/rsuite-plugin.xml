@@ -1,45 +1,45 @@
-<rsuite-plugin
-        id="astd-plugin"
-        dependsOn="atd-main-doctypes, rsuite-container-wizard-plugin">
-    
-    <lifecycleListener
-        type="org.astd.rsuite.lifecycle.ProjectPluginLifecycleListener" />
-	
-	
-    <extensionProvider id="rsuite.ManagedObjectAdvisor">
-        
-    </extensionProvider>
+<rsuite-plugin id="astd-plugin"
+	dependsOn="atd-main-doctypes, rsuite-container-wizard-plugin">
 
-    <extensionProvider id="rsuite.EventBus">
-        <!-- no event handlers yet -->
-    </extensionProvider>
+	<lifecycleListener
+		type="org.astd.rsuite.lifecycle.ProjectPluginLifecycleListener" />
+
+
+	<extensionProvider id="rsuite.ManagedObjectAdvisor">
+
+	</extensionProvider>
+
+	<extensionProvider id="rsuite.EventBus">
+		<!-- no event handlers yet -->
+	</extensionProvider>
 
 	<extensionProvider id="rsuite.WebService">
 
 		<staticWebService root="/astd-plugin" path="/WebContent" />
 
 		<!-- Web services implemented for AMA, alphabetized. -->
-        <remoteApiDefinition id="astd.main.webservice.rsuite5.AddRoleToUser"
-            handler="org.astd.rsuite.webservices.rsuite5.AddRoleToUserWebService"
-            label="Grant a role to a user; fills gap in groovy API in v5..." />
-	    <remoteApiDefinition id="astd.main.webservice.AdjustDynamicConfiguration"
-	        handler="org.astd.rsuite.webservices.AdjustDynamicConfigurationWebService"
-	        label="Adjust Dynamic Configuration" />
-        <remoteApiDefinition id="astd.main.webservice.DeleteContainerAndReferencedContent"
-            handler="org.astd.rsuite.webservices.DeleteContainerAndReferencedContentWebService"
-            label="Delete Container" />
-        <remoteApiDefinition id="astd.main.webservice.GetMetadataAmp"
-            handler="org.astd.rsuite.webservices.GetMetadataAmpWebService"
-            label="Get Metadata (Amp User)" />
-	    <remoteApiDefinition id="astd.main.webservice.KillAllWorkflows"
-	        handler="org.astd.rsuite.webservices.KillAllWorkflowsWebService"
-	        label="Kill all workflows" />
-	    <remoteApiDefinition id="astd.main.webservice.ListAllWorkflows"
-	        handler="org.astd.rsuite.webservices.ListAllWorkflowsWebService"
-	        label="List all workflows" />
-	    <remoteApiDefinition id="astd.main.webservice.rsuite5.PerformProductSearchByProductNumber"
-	        handler="org.astd.rsuite.webservices.rsuite5.PerformProductSearchByProductNumberWebService"
-	        label="Given a product number return search result; fills gap in groovy API in v5..." />
+		<remoteApiDefinition id="astd.main.webservice.rsuite5.AddRoleToUser"
+			handler="org.astd.rsuite.webservices.rsuite5.AddRoleToUserWebService"
+			label="Grant a role to a user; fills gap in groovy API in v5..." />
+		<remoteApiDefinition id="astd.main.webservice.AdjustDynamicConfiguration"
+			handler="org.astd.rsuite.webservices.AdjustDynamicConfigurationWebService"
+			label="Adjust Dynamic Configuration" />
+		<remoteApiDefinition
+			id="astd.main.webservice.DeleteContainerAndReferencedContent"
+			handler="org.astd.rsuite.webservices.DeleteContainerAndReferencedContentWebService"
+			label="Delete Container" />
+		<remoteApiDefinition id="astd.main.webservice.GetMetadataAmp"
+			handler="org.astd.rsuite.webservices.GetMetadataAmpWebService" label="Get Metadata (Amp User)" />
+		<remoteApiDefinition id="astd.main.webservice.KillAllWorkflows"
+			handler="org.astd.rsuite.webservices.KillAllWorkflowsWebService"
+			label="Kill all workflows" />
+		<remoteApiDefinition id="astd.main.webservice.ListAllWorkflows"
+			handler="org.astd.rsuite.webservices.ListAllWorkflowsWebService"
+			label="List all workflows" />
+		<remoteApiDefinition
+			id="astd.main.webservice.rsuite5.PerformProductSearchByProductNumber"
+			handler="org.astd.rsuite.webservices.rsuite5.PerformProductSearchByProductNumberWebService"
+			label="Given a product number return search result; fills gap in groovy API in v5..." />
 		<remoteApiDefinition id="astd.main.webservice.SetTemporaryCptCode"
 			handler="org.astd.rsuite.webservices.SetTemporaryCptCodeWebService"
 			description="Web service for setting a temporary CPT code." />
@@ -47,14 +47,13 @@
 			handler="org.astd.rsuite.webservices.StartDitaOtWorkflowWebService"
 			description="Web service for starting a DITA-OT workflow." />
 		<remoteApiDefinition id="astd.main.webservice.TestTransform"
-            handler="org.astd.rsuite.webservices.TestTransformWebService"
-            label="Test Transform" />   
-            
+			handler="org.astd.rsuite.webservices.TestTransformWebService" label="Test Transform" />
+
 	</extensionProvider>
 
 	<extensionProvider id="rsuite.ContextMenu">
-	
-			<contextMenuRuleSet name="astd.contextmenu.exportArticleHTML">
+
+		<contextMenuRuleSet name="astd.contextmenu.exportArticleHTML">
 			<menuItemList>
 				<menuItem>
 					<type>action</type>
@@ -62,7 +61,7 @@
 					<label>ATD: Export Article HTML</label>
 					<property name="processDefinitionName" value="ATD Export Article HTML" />
 					<property name="parentMoId" value="" />
-					<property name="serviceParams.parentMoId" value=""/> 
+					<property name="serviceParams.parentMoId" value="" />
 				</menuItem>
 			</menuItemList>
 			<ruleList>
@@ -70,18 +69,18 @@
 				<rule>include elementType article</rule>
 			</ruleList>
 		</contextMenuRuleSet>
-		
-		
-		
-		
+
+
+
+
 		<contextMenuRuleSet name="astd.contextmenu.exportArticlePDF">
 			<menuItemList>
-		
+
 				<menuItem>
 					<type>action</type>
 					<actionName>rsuite:startWorkflow</actionName>
 					<label>ASTD: Export Article PDF</label>
-					<property name="processDefinitionName" value="ASTD Export Article PDF" /> 
+					<property name="processDefinitionName" value="ASTD Export Article PDF" />
 				</menuItem>
 			</menuItemList>
 			<ruleList>
@@ -90,9 +89,9 @@
 				<rule>include fileExtension pdf,PDF</rule>
 			</ruleList>
 		</contextMenuRuleSet>
-		
-		
-		
+
+
+
 		<contextMenuRuleSet name="astd.contextmenu.genXmlForArticle">
 			<menuItemList>
 				<menuItem>
@@ -108,95 +107,104 @@
 				<rule>include fileExtension docx,DOCX</rule>
 			</ruleList>
 		</contextMenuRuleSet>
-		
-        <contextMenuRuleSet name="astd.main.contextmenuitem.all.users.system.scope" scope="system">
-            <menuItemList>
-                <menuItem id="ama:viewAutomatedTestResults">
-				    <type>action</type>
-				    <actionName>rsuite:openWindow</actionName>
-				    <label>View Automated Test Results</label>
-				    <property name="rsuite:group" value="productTeamActions" />
-                    <property name="rsuite:icon" value="valid"/>
-                    <property name="windowOptions.href" value="/docs/project/test-output/html/" />
-                    <property name="windowOptions.name" value="automatedTestResults" />
-                    <property name="windowOptions.focus" value="true" />
-                    <property name="windowOptions.width" value="900" />
-                    <property name="windowOptions.height" value="500" />
-                    <property name="windowOptions.left" value="30" />
-				    <property name="windowOptions.top" value="30" />
-				    <property name="windowOptions.tab" value="true" />
+
+		<contextMenuRuleSet name="astd.main.contextmenuitem.all.users.system.scope"
+			scope="system">
+			<menuItemList>
+				<menuItem id="ama:viewAutomatedTestResults">
+					<type>action</type>
+					<actionName>rsuite:openWindow</actionName>
+					<label>View Automated Test Results</label>
+					<property name="rsuite:group" value="productTeamActions" />
+					<property name="rsuite:icon" value="valid" />
+					<property name="windowOptions.href" value="/docs/project/test-output/html/" />
+					<property name="windowOptions.name" value="automatedTestResults" />
+					<property name="windowOptions.focus" value="true" />
+					<property name="windowOptions.width" value="900" />
+					<property name="windowOptions.height" value="500" />
+					<property name="windowOptions.left" value="30" />
+					<property name="windowOptions.top" value="30" />
+					<property name="windowOptions.tab" value="true" />
 				</menuItem>
-            </menuItemList>
-            <ruleList>
-            </ruleList>
-        </contextMenuRuleSet>
-	    
-	    <contextMenuRuleSet name="astd.main.contextmenuitem.rsuiteadministrators.system.scope" scope="system">
-	        <menuItemList>
-	            <menuItem id="astd:adjustDynamicConfiguration">
-	                <type>action</type>
-	                <actionName>rsuite:invokeWebservice</actionName>
-	                <label>Adjust Dynamic Configuration</label>
-	                <property name="remoteApiName" value="astd.main.webservice.AdjustDynamicConfiguration"/>
-	                <property name="formId" value="ama.main.form.AdjustDynamicConfiguration" />
-	                <property name="formParams.dynamicConfigurationUsername" value="dconfigurator"/>
-	                <property name="formParams.dynamicSettingsPrefixNames" value="ama"/>
-	                <property name="rsuite:path" value="Administer" />
-	                <property name="rsuite:group" value="admin" />
-	                <property name="rsuite:icon" value="configuration2" />
-	            </menuItem>
-	            <menuItem id="astd:killAllWorkflows">
-	                <type>action</type>
-	                <actionName>rsuite:invokeWebservice</actionName>
-	                <label>Kill All Workflows</label>
-	                <property name="remoteApiName" value="astd.main.webservice.KillAllWorkflows"/>
-	                <property name="rsuite:path" value="Administer" />
-	                <property name="rsuite:group" value="admin" />
-	                <property name="showProgressMeter" value="true"/>
-	                <ruleList>
-	                    <rule>include role RSuiteAdministrator</rule>
-	                </ruleList>
-	            </menuItem>
-	            <menuItem id="astd:listAllWorkflows">
-	                <type>action</type>
-	                <actionName>rsuite:invokeWebservice</actionName>
-	                <label>List All Workflows</label>
-	                <property name="remoteApiName" value="astd.main.webservice.ListAllWorkflows"/>
-	                <property name="rsuite:path" value="Administer" />
-	                <property name="rsuite:group" value="admin" />
-	                <property name="showProgressMeter" value="true"/>
-	            </menuItem>
-	        </menuItemList>
-	        <ruleList>
-	            <rule>include role RSuiteAdministrator</rule>
-	        </ruleList>
-	    </contextMenuRuleSet>
-	  
-		
-        <contextMenuRuleSet name="astd.main.contextmenuitem.admin.only.actions" scope="allnodes,searchResults,browseTree,clipboard">
-            <menuItemList>
-                <menuItem id="astd:deleteContainerAndContents" 
-                          label="Permanently delete..."
-                          actionName="rsuite:invokeWebservice">
-                    <property name="formId" value="astd.main.form.ConfirmDeleteContainerAndContents" />
-                    <property name="remoteApiName" value="astd.main.webservice.DeleteContainerAndReferencedContent"/>
-                    <property name="showProgressMeter" value="true" />
-                    <property name="rsuite:icon" value="delete"/>
-                    <property name="rsuite:group" value="rsuite:manage" />
-                    <property name="rsuite:path" value="Organize" />
-                </menuItem>
-            </menuItemList>
-            <ruleList>
-                <rule>include role RSuiteAdministrator</rule>
-                <rule>include nodeType ca,canode,folder</rule>
-            </ruleList>
-        </contextMenuRuleSet>
-        
-        
-        
-        
-        
-        <contextMenuRuleSet name="astd.contextmenu.reassignIssue" scope="allnodes,searchResults,browseTree,clipboard">
+			</menuItemList>
+			<ruleList>
+			</ruleList>
+		</contextMenuRuleSet>
+
+		<contextMenuRuleSet
+			name="astd.main.contextmenuitem.rsuiteadministrators.system.scope"
+			scope="system">
+			<menuItemList>
+				<menuItem id="astd:adjustDynamicConfiguration">
+					<type>action</type>
+					<actionName>rsuite:invokeWebservice</actionName>
+					<label>Adjust Dynamic Configuration</label>
+					<property name="remoteApiName"
+						value="astd.main.webservice.AdjustDynamicConfiguration" />
+					<property name="formId" value="ama.main.form.AdjustDynamicConfiguration" />
+					<property name="formParams.dynamicConfigurationUsername"
+						value="dconfigurator" />
+					<property name="formParams.dynamicSettingsPrefixNames"
+						value="ama" />
+					<property name="rsuite:path" value="Administer" />
+					<property name="rsuite:group" value="admin" />
+					<property name="rsuite:icon" value="configuration2" />
+				</menuItem>
+				<menuItem id="astd:killAllWorkflows">
+					<type>action</type>
+					<actionName>rsuite:invokeWebservice</actionName>
+					<label>Kill All Workflows</label>
+					<property name="remoteApiName" value="astd.main.webservice.KillAllWorkflows" />
+					<property name="rsuite:path" value="Administer" />
+					<property name="rsuite:group" value="admin" />
+					<property name="showProgressMeter" value="true" />
+					<ruleList>
+						<rule>include role RSuiteAdministrator</rule>
+					</ruleList>
+				</menuItem>
+				<menuItem id="astd:listAllWorkflows">
+					<type>action</type>
+					<actionName>rsuite:invokeWebservice</actionName>
+					<label>List All Workflows</label>
+					<property name="remoteApiName" value="astd.main.webservice.ListAllWorkflows" />
+					<property name="rsuite:path" value="Administer" />
+					<property name="rsuite:group" value="admin" />
+					<property name="showProgressMeter" value="true" />
+				</menuItem>
+			</menuItemList>
+			<ruleList>
+				<rule>include role RSuiteAdministrator</rule>
+			</ruleList>
+		</contextMenuRuleSet>
+
+
+		<contextMenuRuleSet name="astd.main.contextmenuitem.admin.only.actions"
+			scope="allnodes,searchResults,browseTree,clipboard">
+			<menuItemList>
+				<menuItem id="astd:deleteContainerAndContents" label="Permanently delete..."
+					actionName="rsuite:invokeWebservice">
+					<property name="formId"
+						value="astd.main.form.ConfirmDeleteContainerAndContents" />
+					<property name="remoteApiName"
+						value="astd.main.webservice.DeleteContainerAndReferencedContent" />
+					<property name="showProgressMeter" value="true" />
+					<property name="rsuite:icon" value="delete" />
+					<property name="rsuite:group" value="rsuite:manage" />
+					<property name="rsuite:path" value="Organize" />
+				</menuItem>
+			</menuItemList>
+			<ruleList>
+				<rule>include role RSuiteAdministrator</rule>
+				<rule>include nodeType ca,canode,folder</rule>
+			</ruleList>
+		</contextMenuRuleSet>
+
+
+
+
+
+		<contextMenuRuleSet name="astd.contextmenu.reassignIssue"
+			scope="allnodes,searchResults,browseTree,clipboard">
 			<menuItemList>
 				<menuItem>
 					<type>action</type>
@@ -211,12 +219,13 @@
 				<rule>include lmdValue ca-type=article</rule>
 			</ruleList>
 		</contextMenuRuleSet>
-        
-        
-        
-        
-        
-        <contextMenuRuleSet name="astd.contextmenu.genIncxForArticle" scope="allnodes,searchResults,browseTree,clipboard">
+
+
+
+
+
+		<contextMenuRuleSet name="astd.contextmenu.genIncxForArticle"
+			scope="allnodes,searchResults,browseTree,clipboard">
 			<menuItemList>
 				<menuItem>
 					<type>action</type>
@@ -230,20 +239,20 @@
 				<rule>include elementType article</rule>
 			</ruleList>
 		</contextMenuRuleSet>
-        
-        
-        
-        
-        
-	
+
+
+
+
+
+
 	</extensionProvider>
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 
 	<extensionProvider id="rsuite.Search">
 
@@ -257,21 +266,21 @@
 			</columnList>
 		</searchResultsConfiguration>
 
-		
+
 	</extensionProvider>
 
 	<extensionProvider id="rsuite.Workflow">
-	
-	<workflowResultsConfiguration>
-            <columnList>
-                <column name="currentTask.workflowInstanceId" label="ID" />
-                <column name="currentTask.name" label="Task" />
-                <column name="currentTask.description" label="Description" />
-                <column name="currentTask.startDate" label="Start Date" />                
-                <column name="currentTask.assigneeUserId" label="Assignee" />
-                <!--<column name="currentTask.candidateRoles" label="Assigned Role" />-->
-            </columnList>
-        </workflowResultsConfiguration>
+
+		<workflowResultsConfiguration>
+			<columnList>
+				<column name="currentTask.workflowInstanceId" label="ID" />
+				<column name="currentTask.name" label="Task" />
+				<column name="currentTask.description" label="Description" />
+				<column name="currentTask.startDate" label="Start Date" />
+				<column name="currentTask.assigneeUserId" label="Assignee" />
+				<!--<column name="currentTask.candidateRoles" label="Assigned Role" /> -->
+			</columnList>
+		</workflowResultsConfiguration>
 
 		<taskUIConfiguration scope="user,roles">
 			<inboxRowsPerPage>20</inboxRowsPerPage>
@@ -281,7 +290,7 @@
 				<column name="currentTask.description" label="Description" />
 				<column name="currentTask.startDate" label="Start Date" />
 				<column name="currentTask.assigneeUserId" label="Assignee" />
-				<!--<column name="currentTask.candidateRoles" label="Assigned Role" />-->
+				<!--<column name="currentTask.candidateRoles" label="Assigned Role" /> -->
 			</inboxColumnList>
 			<inboxFilterList>
 				<filter name="name" label="Task Type" />
@@ -297,7 +306,7 @@
 				<column name="currentTask.description" label="Description" />
 				<column name="currentTask.startDate" label="Created Date" />
 				<column name="currentTask.assigneeUserId" label="Assignee" />
-				<!--<column name="currentTask.candidateRoles" label="Assigned Role" />-->
+				<!--<column name="currentTask.candidateRoles" label="Assigned Role" /> -->
 			</inboxColumnList>
 			<inboxFilterList>
 				<filter name="currentTask.name" label="Task Type" />
@@ -308,186 +317,196 @@
 
 		<!-- Action handlers -->
 
-		<actionHandler label="Clear exception"
-					   description="Clear exception"
-					   type="org.astd.rsuite.workflow.actions.nonleaving.ClearExceptionActionHandler" />
+		<actionHandler label="Clear exception" description="Clear exception"
+			type="org.astd.rsuite.workflow.actions.nonleaving.ClearExceptionActionHandler" />
 
-        <actionHandler label="Set Layered Metadata (Non-Leaving)"
-                       description="Set a piece of layered metadata on the content associated with the workflow"
-                       type="org.astd.rsuite.workflow.actions.nonleaving.SetLayeredMetadataWorkflowAction" />
-	    
-	    <actionHandler label="Ensure Map for Product"
-	                   description="Creates a DITA Map for a product"
-	                   type="org.astd.rsuite.workflow.actions.leaving.EnsureMapForProductActionHandler" /> 
-	    
-	    <!-- Local copies of Core / supported-plugin action handlers -->
-	    
-	    
-	    <actionHandler label="Local Copy of DitaOtPdfTaskRunningActionHandler"
-	        description="Local Copy of DitaOtPdfTaskRunningActionHandler"
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectDitaOtPdfTaskRunningActionHandler" />
-	    <actionHandler label="Local Copy of DitaOtXhtmlTaskRunningActionHandler"
-	        description="Local Copy of DitaOtXhtmlTaskRunningActionHandler"
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectDitaOtXhtmlTaskRunningActionHandler" />
-	    <actionHandler label="Local Copy of Load Non by Alias"
-	        description="Local Copy of Load Non by Alias"
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler" /> 
-	        
-	        
-	        
-	        
-	        <actionHandler label="Local Copy of Load Non by Alias"
-	        description="Local Copy of Load Non by Alias"
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdSetArticlePdfVar" /> 
-	        
-	        <actionHandler label="Local Copy of Load Non by Alias"
-	        
-	        description="Local Copy of Load Non by Alias"
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdExportObjectsActionHandler" /> 
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	    
-	    
-	    <actionHandler label="Local Copy of Add Metadata Action Handler"
-	        description="Local Copy of Load Non by Alias"
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAddLayeredMetadataActionHandler" /> 
-	    <actionHandler label="Action handler to validate the file name and set parameter in the workflow. "
-	        description="Validate File Name Structure"
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AtdValidateFileNameActionHandler" /> 
-	    <actionHandler label="Action handler to set a list of MO IDs as current in the workflow. "
-	        description="Set a list of MO IDs as current in the workflow."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler" /> 
-	    <actionHandler label="Action handler to set the classfication on a MO. "
-	        description="Set the classfication on a MO."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAtdSetClassificationVarActionHandler" /> 
-	    <actionHandler label="Action handler to set the browse uri as workflow variable. "
-	        description="Set the browse uri as workflow variable."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetParentBrowseTreeNodeToVariableHandler" /> 
-	    <actionHandler label="Action handler to set a target variable with a given mo id. "
-	        description="Set a target variable in the workflow with a given mo id."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetVariableFromMoWorkflowListHandler" />   
-	    <actionHandler label="Action handler to set some dynamic variables in the workflow. "
-	        description="set some dynamic variables in the workflow."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetDynamicValuesToVariablesActionHandler" />  
-	     <actionHandler label="Action handler to set global variables in the workflow. "
-	        description="set global variables in the workflow."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetGlobalVariablesActionHandler" />     
-	    <actionHandler label="Action handler to load the source file in the repository. "
-	        description="Load the docx in the repository."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadDocxActionHandler" />       
-	    <actionHandler label="Action handler to create the CAs structure. "
-	        description="Create the CAs structure in the repository."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsActionHandler" />     
-	    <actionHandler label="Action handler to create the CTDO CAs structure. "
-	        description="Create the CTDO CAs structure in the repository."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsCTDOActionHandler" />  
-	        
-	        
-	        <actionHandler label="Action handler to create the TD CAs structure. "
-	        description="Create the TD CAs structure in the repository."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsTandDActionHandler" />  
-	           
-	    <actionHandler label="Action handler to set the MO classfication."
-	        description="Set the MO classfication."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdSetMoClassification" />     
-	    <actionHandler label="Action handler to convert xml to Incx."
-	        description="Convert the MO to Incx."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IncxActionHandler" />    
-	    <actionHandler label="Action handler to convert docx to xml."
-	        description="Convert a docx to xml."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdDocxToXmlActionHandler" />    
-	    <actionHandler label="Action handler to Reassign an article."
-	        description="Reassign an article."
-	        type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdReassignArticleActionHandler" />    
-	        
+		<actionHandler label="Set Layered Metadata (Non-Leaving)"
+			description="Set a piece of layered metadata on the content associated with the workflow"
+			type="org.astd.rsuite.workflow.actions.nonleaving.SetLayeredMetadataWorkflowAction" />
 
-	    <!-- Load workflow definitions   -->
-	    <workflowDefinitions>
-	   
-	
-	     <file key="ATD CTDO" filename="WebContent/workflow/ATD CTDO.bpmn"/>
-	     <file key="ATD NEW TPM" filename="WebContent/workflow/ATD NEW TPM.bpmn"/>
-	     <file key="ATD Docx to XML" filename="WebContent/workflow/ATD Docx to XML.bpmn"/>
-	     <file key="ATD Reassign Article" filename="WebContent/workflow/ASTD_Reassign_Article.bpmn"/>
-	     <file key="ATD TD Article Word to XML to InDesign" filename="WebContent/workflow/ATD Article Word to XML to InDesign.bpmn"/>
-	     <file key="ATD Article To InDesign" filename="WebContent/workflow/ATD Article To InDesign.bpmn"/>
-	     <file key="ASTD Export Article PDF" filename="WebContent/workflow/ASTD Export Article PDF.bpmn"/>
-	     <file key="ATD Export Article HTML" filename="WebContent/workflow/ATD_Export_Article_HTML.bpmn"/>
-	                                                                        
-	   </workflowDefinitions>
-	    
+		<actionHandler label="Ensure Map for Product"
+			description="Creates a DITA Map for a product"
+			type="org.astd.rsuite.workflow.actions.leaving.EnsureMapForProductActionHandler" />
+
+		<!-- Local copies of Core / supported-plugin action handlers -->
+
+
+		<actionHandler label="Local Copy of DitaOtPdfTaskRunningActionHandler"
+			description="Local Copy of DitaOtPdfTaskRunningActionHandler"
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectDitaOtPdfTaskRunningActionHandler" />
+		<actionHandler label="Local Copy of DitaOtXhtmlTaskRunningActionHandler"
+			description="Local Copy of DitaOtXhtmlTaskRunningActionHandler"
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectDitaOtXhtmlTaskRunningActionHandler" />
+		<actionHandler label="Local Copy of Load Non by Alias"
+			description="Local Copy of Load Non by Alias"
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler" />
+
+
+
+
+		<actionHandler label="Local Copy of Load Non by Alias"
+			description="Local Copy of Load Non by Alias"
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdSetArticlePdfVar" />
+
+		<actionHandler label="Local Copy of Load Non by Alias"
+
+			description="Local Copy of Load Non by Alias"
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdExportObjectsActionHandler" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<actionHandler label="Local Copy of Add Metadata Action Handler"
+			description="Local Copy of Load Non by Alias"
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAddLayeredMetadataActionHandler" />
+		<actionHandler
+			label="Action handler to validate the file name and set parameter in the workflow. "
+			description="Validate File Name Structure"
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AtdValidateFileNameActionHandler" />
+		<actionHandler
+			label="Action handler to set a list of MO IDs as current in the workflow. "
+			description="Set a list of MO IDs as current in the workflow."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetWorkflowMoListFromVariableHandler" />
+		<actionHandler label="Action handler to set the classfication on a MO. "
+			description="Set the classfication on a MO."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAtdSetClassificationVarActionHandler" />
+		<actionHandler
+			label="Action handler to set the browse uri as workflow variable. "
+			description="Set the browse uri as workflow variable."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetParentBrowseTreeNodeToVariableHandler" />
+		<actionHandler
+			label="Action handler to set a target variable with a given mo id. "
+			description="Set a target variable in the workflow with a given mo id."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetVariableFromMoWorkflowListHandler" />
+		<actionHandler
+			label="Action handler to set some dynamic variables in the workflow. "
+			description="set some dynamic variables in the workflow."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetDynamicValuesToVariablesActionHandler" />
+		<actionHandler
+			label="Action handler to set global variables in the workflow. "
+			description="set global variables in the workflow."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectSetGlobalVariablesActionHandler" />
+		<actionHandler
+			label="Action handler to load the source file in the repository. "
+			description="Load the docx in the repository."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadDocxActionHandler" />
+		<actionHandler label="Action handler to create the CAs structure. "
+			description="Create the CAs structure in the repository."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsActionHandler" />
+		<actionHandler label="Action handler to create the CTDO CAs structure. "
+			description="Create the CTDO CAs structure in the repository."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsCTDOActionHandler" />
+
+
+		<actionHandler label="Action handler to create the TD CAs structure. "
+			description="Create the TD CAs structure in the repository."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectCreateCAsTandDActionHandler" />
+
+		<actionHandler label="Action handler to set the MO classfication."
+			description="Set the MO classfication."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdSetMoClassification" />
+		<actionHandler label="Action handler to convert xml to Incx."
+			description="Convert the MO to Incx."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IncxActionHandler" />
+		<actionHandler label="Action handler to convert xml to ICML"
+			description="Convert the MO to ICML."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IcmlActionHandler" />
+		<actionHandler label="Action handler to convert docx to xml."
+			description="Convert a docx to xml."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdDocxToXmlActionHandler" />
+		<actionHandler label="Action handler to Reassign an article."
+			description="Reassign an article."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdReassignArticleActionHandler" />
+
+
+		<!-- Load workflow definitions -->
+		<workflowDefinitions>
+
+
+			<file key="ATD CTDO" filename="WebContent/workflow/ATD CTDO.bpmn" />
+			<file key="ATD NEW TPM" filename="WebContent/workflow/ATD NEW TPM.bpmn" />
+			<file key="ATD Docx to XML" filename="WebContent/workflow/ATD Docx to XML.bpmn" />
+			<file key="ATD Reassign Article" filename="WebContent/workflow/ASTD_Reassign_Article.bpmn" />
+			<file key="ATD TD Article Word to XML to InDesign"
+				filename="WebContent/workflow/ATD Article Word to XML to InDesign.bpmn" />
+			<file key="ATD Article To InDesign" filename="WebContent/workflow/ATD Article To InDesign.bpmn" />
+			<file key="ASTD Export Article PDF" filename="WebContent/workflow/ASTD Export Article PDF.bpmn" />
+			<file key="ATD Export Article HTML" filename="WebContent/workflow/ATD_Export_Article_HTML.bpmn" />
+
+		</workflowDefinitions>
+
 	</extensionProvider>
 
-    <extensionProvider id="rsuite.UI">
-        <scriptInclude src="/astd-plugin/js/jquery.initialize.js" />  <!-- From: https://github.com/timpler/jquery.initialize -->
-	    <scriptInclude src="/astd-plugin/js/cms-ui-actions.js" />
-	    <scriptInclude src="/astd-plugin/js/cms-ui-overrides.js" />
-        <scriptInclude src="/astd-plugin/js/rsuite-openWindow-action.js" />
-        <scriptInclude src="/astd-plugin/js/cms-ui-rules.js" />
-        <styleInclude src="/astd-plugin/css/config/icons.less" /> 
-	    
+	<extensionProvider id="rsuite.UI">
+		<scriptInclude src="/astd-plugin/js/jquery.initialize.js" />  <!-- From: https://github.com/timpler/jquery.initialize -->
+		<scriptInclude src="/astd-plugin/js/cms-ui-actions.js" />
+		<scriptInclude src="/astd-plugin/js/cms-ui-overrides.js" />
+		<scriptInclude src="/astd-plugin/js/rsuite-openWindow-action.js" />
+		<scriptInclude src="/astd-plugin/js/cms-ui-rules.js" />
+		<styleInclude src="/astd-plugin/css/config/icons.less" />
+
 		<contentDisplayAdvisor id="astd.main.contentDisplayAdvisor"
 			type="org.astd.rsuite.advisors.content.ProjectContentDisplayAdvisor" />
 
 	</extensionProvider>
 
-    <extensionProvider id="rsuite.TransformationProvider">
+	<extensionProvider id="rsuite.TransformationProvider">
 
-        <transformationProvider 
-            name="astd.main.transformProvider"
-            type="org.astd.rsuite.transform.ProjectTransformationProvider"/>
-            
-    </extensionProvider>
-    
-    <extensionProvider id="rsuite.Forms">
-      
-        <formDefinition id="astd.main.form.AdjustDynamicConfiguration"
-            label="Adjust Dynamic Settings" 
-            description="Enables RSuiteAdministrators to change certain settings without restarting RSuite."
-            handler="com.rsicms.rsuite.dynamicconfiguration.advisors.form.DynamicConfigurationFormHandler"
-            >
-            <instructions>Please make your changes.</instructions>
-            <paramList>
-                <param>
-                    <col>1</col>
-                    <name>ama.xslt.and.merge.write.all</name>
-                    <label>Write XSLT and Merge input and output?</label>
-                    <formControlType>radiobutton</formControlType>
-                    <optionList>
-                        <option value="true" label="true"/>
-                        <option value="false" label="false"/>
-                    </optionList>
-                </param>  
-            </paramList>
-        </formDefinition>
+		<transformationProvider name="astd.main.transformProvider"
+			type="org.astd.rsuite.transform.ProjectTransformationProvider" />
 
-    </extensionProvider>
+	</extensionProvider>
 
-    <extensionProvider id="rsuite.Forms">
-        <formDefinition id="astd.main.form.ConfirmDeleteContainerAndContents"
-            label="Confirm Delete Request" 
-            description="Enables the user to confirm their intent.">
-            <instructions>Please confirm this container(s) and its contents are to be permanently deleted, 
-                even if that content is referenced by other containers or checked out by other users.</instructions>
-            <paramList />
-        </formDefinition>
-    </extensionProvider>
-    
-    
-    
-    <extensionProvider id="rsuite.Forms">
+	<extensionProvider id="rsuite.Forms">
+
+		<formDefinition id="astd.main.form.AdjustDynamicConfiguration"
+			label="Adjust Dynamic Settings"
+			description="Enables RSuiteAdministrators to change certain settings without restarting RSuite."
+			handler="com.rsicms.rsuite.dynamicconfiguration.advisors.form.DynamicConfigurationFormHandler">
+			<instructions>Please make your changes.</instructions>
+			<paramList>
+				<param>
+					<col>1</col>
+					<name>ama.xslt.and.merge.write.all</name>
+					<label>Write XSLT and Merge input and output?</label>
+					<formControlType>radiobutton</formControlType>
+					<optionList>
+						<option value="true" label="true" />
+						<option value="false" label="false" />
+					</optionList>
+				</param>
+			</paramList>
+		</formDefinition>
+
+	</extensionProvider>
+
+	<extensionProvider id="rsuite.Forms">
+		<formDefinition id="astd.main.form.ConfirmDeleteContainerAndContents"
+			label="Confirm Delete Request" description="Enables the user to confirm their intent.">
+			<instructions>Please confirm this container(s) and its contents are
+				to be permanently deleted,
+				even if that content is referenced by other containers or checked out by
+				other users.
+			</instructions>
+			<paramList />
+		</formDefinition>
+	</extensionProvider>
+
+
+
+	<extensionProvider id="rsuite.Forms">
 		<formDefinition id="astdFormArticleRename" label="Article Reassign"
 			description="Reassign article to different issue and/or volume.">
 			<instructions>To use the current value for a field, leave it blank.
@@ -547,14 +566,14 @@
 			</paramList>
 		</formDefinition>
 	</extensionProvider>
-    
-    
-    
-    
 
-    <extensionProvider id="rsuite.Reporting">
 
-  
-  </extensionProvider>
-  
+
+
+
+	<extensionProvider id="rsuite.Reporting">
+
+
+	</extensionProvider>
+
 </rsuite-plugin>
