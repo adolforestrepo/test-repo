@@ -296,7 +296,7 @@
 			</userTask>
 			<sequenceFlow sourceRef="Prep_for_Printer" targetRef="Approve_Blueline" />
 			<userTask id="Approve_Blueline" name="Approve Blueline (Super Editor)"
-				activiti:candidateGroups="Super Editor">
+				activiti:candidateGroups="Super_Editor">
 				<documentation>Document: ${sourceFileName}</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Approve_Blueline" targetRef="exportArticlePDF" />
@@ -731,7 +731,8 @@
 			<callActivity id="ExportArticleHTML" name="Export Article HTML"
 				calledElement="ATD Export Article HTML">
 				<extensionElements>
-					<activiti:in source="rsuite contents" target="rsuite contents" />
+					<activiti:in source="rsuite:contents" target="rsuite contents" />
+ 				    <activiti:in source="rsuite:contents" target="rsuite:contents" ></activiti:in>
 					<activiti:in source="articleCaMoId" target="parentMoId" />
 				</extensionElements>
 			</callActivity>

@@ -291,7 +291,8 @@
 
         <callActivity id="ExportArticleHTML" name="Export Article HTML" calledElement="ATD Export Article HTML">
                 <extensionElements>
-                        <activiti:in source="rsuite contents" target="rsuite contents" />
+                        <activiti:in source="rsuite:contents" target="rsuite contents" />
+				        <activiti:in source="rsuite:contents" target="rsuite:contents" ></activiti:in>
                         <activiti:in source="articleCaMoId" target="parentMoId" />
                 </extensionElements>
         </callActivity>
