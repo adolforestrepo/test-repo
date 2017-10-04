@@ -20,7 +20,7 @@
 
 
 
-		<serviceTask id="DocX2XML_Transform" name="DocX2XML Transform1111"
+		<serviceTask id="DocX2XML_Transform" name="DocX2XML Transform"
 			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdDocxToXmlActionHandler">
 
 			<activiti:field name="styleMapUri"
@@ -39,7 +39,7 @@
 
 
 
-		<serviceTask id="XML_to_INCX" name="XML to INCX2222"
+		<serviceTask id="XML_to_INCX" name="XML to INCX"
 			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IcmlActionHandler">
 			<activiti:field name="styleCatalogUri"
 				stringValue="rsuite:/res/plugin/astd-plugin/xslt/newtpm2indesign/tpm-dita-indesign-style-catalog.xml" />
@@ -56,7 +56,7 @@
 
 
 
-		<serviceTask id="Load_INX" name="Load INX3333"
+		<serviceTask id="Load_INX" name="Load INX"
 			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadNonXmlByAliasHandler">
 			<activiti:field name="alias" expression="${sourceFileName}.icml" />
 			<activiti:field name="commitMessage" stringValue="Loaded by workflow" />
@@ -125,7 +125,7 @@
 
 
 
-		<serviceTask id="Load_DOCX" name="Load DOCX4444"
+		<serviceTask id="Load_DOCX" name="Load DOCX"
 			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectLoadDocxActionHandler">
 
 
@@ -628,7 +628,7 @@
 			<sequenceFlow sourceRef="setTaxFailed?" targetRef="XML_to_INCX">
 				<conditionExpression xsi:type="tFormalExpression"><![CDATA[${EXCEPTION_OCCUR==false}]]></conditionExpression>
 			</sequenceFlow>
-			<userTask id="Load_of_DITA_Failed" name="Load of DITA Failed (RSuiteAdministrator)"
+			<userTask id="Load_of_DITA_Failed" name="Load of DITA Failed (RSuite Administrator)"
 				activiti:candidateGroups="RSuiteAdministrator">
 				<documentation>Load of DITA XML from DOCX ${fullFileName} failed:
 					${exceptionMessage}</documentation>
@@ -827,7 +827,7 @@
 				targetRef="Restore_Article_CA_After_Exports" />
 
 
-			<serviceTask id="Set_Article_LM" name="setArticleLM22"
+			<serviceTask id="Set_Article_LM" name="Set Article LM"
 				activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAddLayeredMetadataActionHandler">
 				<activiti:field name="metadataName" stringValue="ca-type;article-process-id" />
 				<activiti:field name="metadataValue" stringValue="article;${pId}" />
