@@ -203,8 +203,7 @@
 
 
 
-		<contextMenuRuleSet name="astd.contextmenu.reassignIssue"
-			scope="allnodes,searchResults,browseTree,clipboard">
+		<contextMenuRuleSet name="astd.contextmenu.reassignIssue">
 			<menuItemList>
 				<menuItem>
 					<type>action</type>
@@ -224,8 +223,7 @@
 
 
 
-		<contextMenuRuleSet name="astd.contextmenu.genIncxForArticle"
-			scope="allnodes,searchResults,browseTree,clipboard">
+		<contextMenuRuleSet name="astd.contextmenu.genIncxForArticle">
 			<menuItemList>
 				<menuItem>
 					<type>action</type>

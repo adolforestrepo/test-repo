@@ -99,8 +99,10 @@ public class AstdReassignArticleActionHandler
         author = curName.author;
       }
 
-      boolean sameIssue = curName.pubCode.equals(pubCode) && curName.issue.equals(issue)
-          && curName.volume.equals(volume);
+      boolean sameIssue = (curName.pubCode.equals(pubCode) || curName.pubCode.equals("CTDO")
+          || curName.pubCode.equals("T and D")) && curName.issue.equals(issue) && curName.volume
+              .equals(volume);
+
       String newName = pubCode + type + volume + issue + sequence + author;
       wfLog.info("Current CA name: " + curName);
       wfLog.info("New CA name: " + newName);
@@ -183,6 +185,16 @@ public class AstdReassignArticleActionHandler
 
         String catypeArticle = caSrv.getContentAssembly(user, moid).getLayeredMetadataValue(
             "ca-type").toString();
+
+        System.out.println("pubCode_NAME : " + pubCode_NAME);
+
+        if (pubCode_NAME.contentEquals("CT")) {
+          System.out.println("Inside if (pubCode equals CT)");
+          pubCode_NAME = "CTDO";
+        } else if (pubCode_NAME.contentEquals("TD")) {
+          System.out.println("Inside if (pubCode equals TD)");
+          pubCode_NAME = "T and D";
+        }
 
 
         if (volume.equals("99")) {
