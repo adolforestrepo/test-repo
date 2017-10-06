@@ -545,6 +545,16 @@
 						<option value="BK" label="Books"></option>
 						<option value="BX" label="Mini-book Review"></option>
 						<option value="CP" label="Career Path"></option>
+						<option value="SS" label="Special Section"></option>
+						<option value="IF" label="In Focus"></option>
+						<option value="CR" label="Career GPS"></option>
+						<option value="SX" label="Success With Less"></option>
+						<option value="QT" label="Quick Tips"></option>
+						<option value="OW" label="One to Watch"></option>
+						<option value="WE" label="Web Exclusive"></option>
+						
+						
+						
 					</optionList>
 				</param>
 				<param>

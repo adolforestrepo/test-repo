@@ -20,7 +20,15 @@ public enum TandDArticleType {
   RX("RX", "Workplace Rx"),
   BK("BK", "Books"),
   BX("BX", "Books"),
-  CP("CP", "Career Path");
+  CP("CP", "Career Path"),
+ SS("SS", "Special Section"),
+ IF("IF", "In Focus"),
+ CR("CR", "Career GPS"),
+ SX("SX", "Success With Less"),
+ QT("QT", "Quick Tips"),
+ OW("OW", "One to Watch"),
+ WE("WE", "Web Exclusive");
+	
 
   /**
    * Two-letter code indicating the type of article

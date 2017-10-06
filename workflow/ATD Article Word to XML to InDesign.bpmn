@@ -295,8 +295,8 @@
 				<documentation>Document: ${sourceFileName}</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Prep_for_Printer" targetRef="Approve_Blueline" />
-			<userTask id="Approve_Blueline" name="Approve Blueline (Super Editor)"
-				activiti:candidateGroups="Super_Editor">
+			<userTask id="Approve_Blueline" name="Approve Blueline (Managing Editor)"
+				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
 				<documentation>Document: ${sourceFileName}</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Approve_Blueline" targetRef="exportArticlePDF" />
