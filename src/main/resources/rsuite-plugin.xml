@@ -351,21 +351,6 @@
 			description="Local Copy of Load Non by Alias"
 			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdExportObjectsActionHandler" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		<actionHandler label="Local Copy of Add Metadata Action Handler"
 			description="Local Copy of Load Non by Alias"
 			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAddLayeredMetadataActionHandler" />
@@ -428,6 +413,9 @@
 			description="Reassign an article."
 			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.AstdReassignArticleActionHandler" />
 
+		<actionHandler label="Action handler to Update workflow variables."
+			description="Update workflow variables."
+			type="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
 
 		<!-- Load workflow definitions -->
 		<workflowDefinitions>

@@ -1,5 +1,6 @@
 package org.astd.rsuite.workflow.actions.leaving.rsuite5;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -243,39 +244,30 @@ public class AstdReassignArticleActionHandler extends BaseWorkflowAction
 				}
 
 			}
-			/*
-			 * TODO: Find a way to modify the Workflow variables. of the main workflow process.
-			 * 
-			 * 
-			 * String pid = mo
-			 * .getLayeredMetadataValue(ASTD_ARTICLE_PID_LMD_FIELD);
-			 * 
-			 * ManagedObject mo1 = mosvc.getManagedObject(user,
-			 * articleCA.getId());
-			 * 
-			 * 
-			 * 
-			 * if (!StringUtils.isEmpty(pid)) {
-			 * 
-			 * wfLog.info("Attempting to update variables for process " + pid);
-			 * WorkflowInstanceService psvc =
-			 * context.getWorkflowInstanceService(); WorkflowInstance pi =
-			 * psvc.getWorkflowInstance(pid);
-			 * 
-			 * 
-			 * if (pi == null) { wfLog.info("No process with id " + pid +
-			 * " found, clearing LMD field");
-			 * AstdActionUtils.clearArticlePidLmdField(context, mo, user); }
-			 * else {
-			 * 
-			 * WorkflowInstanceService wfsvr =
-			 * context.getWorkflowInstanceService(); context.get
-			 * 
-			 * 
-			 * 
-			 * 
-			 * } }
-			 */
+
+			// TODO: Find a way to modify the Workflow variables. of the main
+			// workflow process.
+
+			String pid = mo.getLayeredMetadataValue(ASTD_ARTICLE_PID_LMD_FIELD);
+
+			ManagedObject mo1 = mosvc.getManagedObject(user, articleCA.getId());
+
+			if (!StringUtils.isEmpty(pid)) {
+
+				wfLog.info("Attempting to update variables for process " + pid);
+				WorkflowInstanceService psvc = context
+						.getWorkflowInstanceService();
+				WorkflowInstance pi = psvc.getWorkflowInstance(pid);
+
+				if (pi == null) {
+					wfLog.info("No process with id " + pid
+							+ " found, clearing LMD field");
+					AstdActionUtils.clearArticlePidLmdField(context, mo, user);
+				} else {
+					
+					//This time is it not possuble to modify a INstace variable ouside the workflowcontext
+				}
+			}
 
 		} catch (Exception e) {
 			context.setVariable("REASSIGN_MSGS", e.getLocalizedMessage());
