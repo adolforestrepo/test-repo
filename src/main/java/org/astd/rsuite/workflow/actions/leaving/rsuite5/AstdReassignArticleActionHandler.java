@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.astd.rsuite.domain.ContainerType;
 
+import com.reallysi.rsuite.api.Alias;
 import com.reallysi.rsuite.api.ContentAssembly;
 import com.reallysi.rsuite.api.ManagedObject;
 import com.reallysi.rsuite.api.ManagedObjectReference;
@@ -211,32 +212,40 @@ public class AstdReassignArticleActionHandler extends BaseWorkflowAction
 			List<? extends ManagedObjectReference> moids = (List<? extends ManagedObjectReference>) caSrv
 					.getContentAssembly(user, moid).getChildrenObjects();
 
-			for (ManagedObjectReference caid : moids) {
+			for (ManagedObjectReference childid : moids) {
 				// caSrv.attach(user, articleCA.getId(), caid.getTargetId(), new
 				// ObjectAttachOptions());
 				// Add code for rename the non-xml documents
-				wfLog.info("Check if need to Rename " + caid.getDisplayName());
-				if (AstdActionUtils.isNonXml(caid)) {
+				wfLog.info("Check if need to Rename " + childid.getDisplayName());
+				if (AstdActionUtils.isNonXml(childid)) {
 					String newDisplayName = newName + "."
-							+ FilenameUtils.getExtension(caid.getDisplayName());
-					wfLog.info("Attempting to Rename " + caid.getDisplayName()
+							+ FilenameUtils.getExtension(childid.getDisplayName());
+					wfLog.info("Attempting to Rename " + childid.getDisplayName()
 							+ " to " + newDisplayName);
-					wfLog.info("Checking out MO (" + caid.getTargetId()
+					wfLog.info("Checking out MO (" + childid.getTargetId()
 							+ ") under user " + user.getUserId());
 					context.getManagedObjectService().checkOut(user,
-							caid.getTargetId());
+							childid.getTargetId());
 					context.getManagedObjectService().setDisplayName(user,
-							caid.getTargetId(), newDisplayName);
-					wfLog.info("Checking In MO (" + caid.getTargetId()
+							childid.getTargetId(), newDisplayName);
+					wfLog.info("Checking In MO (" + childid.getTargetId()
 							+ ") under user " + user.getUserId());
 					context.getManagedObjectService().checkIn(user,
-							caid.getTargetId(), new ObjectCheckInOptions());
+							childid.getTargetId(), new ObjectCheckInOptions());
 					if (newDisplayName != null) {
-						wfLog.info("Setting Alias for " + caid.getTargetId()
+						wfLog.info("Setting Alias for " + childid.getTargetId()
 								+ " to \"" + newDisplayName + "\"");
-						mosvc.setAlias(user, caid.getTargetId(), newDisplayName);
+						mosvc.setAlias(user, childid.getTargetId(), newDisplayName);
 					}
 
+				}
+		
+				else{
+					
+					Alias alias = new Alias(newName+".xml", "filename");
+				    wfLog.info("Setting Alias for " + childid.getTargetId()
+							+ " to \"" + newName + ".xml\"");
+					mosvc.setAlias(user, childid.getTargetId(), alias);
 				}
 
 			}
