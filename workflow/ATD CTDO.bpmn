@@ -133,6 +133,9 @@
 
 		<userTask id="finalEditTask" name="CTDO Final Edit (Managing Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>"Document: #{fullFileName}"</documentation>
 		</userTask>
 
@@ -341,6 +344,9 @@
 
 		<userTask id="Begin Design Task" name="CTDO Begin Design (Art Director)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>"Document: ${sourceFileName}.icml"</documentation>
 		</userTask>
 
@@ -349,6 +355,9 @@
 
 		<userTask id="Review Proofs" name="Review CTDO Proofs (Managing Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>"Document: ${sourceFileName}.icml"</documentation>
 		</userTask>
 
@@ -366,6 +375,9 @@
 
 		<userTask id="CTDO Create HTMLs" name="CTDO Create HTMLs (Art Director)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>"Document: #{sourceFileName}"</documentation>
 		</userTask>
 
@@ -411,6 +423,9 @@
 
 		<userTask id="CTDO Finalize Issue" name="CTDO Finalize Issue (Managing Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>"Article #{sourceFileName}: Bluelines have been
 				approved. Workflow is complete."</documentation>
 		</userTask>

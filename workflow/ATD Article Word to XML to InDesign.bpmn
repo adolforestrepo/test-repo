@@ -100,6 +100,9 @@
 
 		<userTask id="Final_Edit" name="Final Edit (Managing Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>Document: ${fullFileName}</documentation>
 		</userTask>
 		<sequenceFlow sourceRef="Final_Edit" targetRef="getTax" />
@@ -157,6 +160,9 @@
 
 		<userTask id="Begin_Design" name="Begin Design (Art Director)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>Document: ${sourceFileName}.icml</documentation>
 		</userTask>
 		<sequenceFlow sourceRef="Begin_Design" targetRef="Review_First_Pages" />
@@ -214,6 +220,9 @@
 
 			<userTask id="Edit_MS_Word" name="TD Edit MS Word (Managing Editor)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 				<documentation>Document: ${fullFileName}</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Edit_MS_Word" targetRef="editorEditMSWord" />
@@ -221,6 +230,9 @@
 
 			<userTask id="editorEditMSWord" name="TD Edit MS Word (Editor)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 				<documentation>Document: ${fullFileName}</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="editorEditMSWord" targetRef="Final_Edit" />
@@ -228,6 +240,9 @@
 
 			<userTask id="Review_First_Pages" name="Review First Pages (Managing Editor)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 				<documentation>Document: ${sourceFileName}.icml</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Review_First_Pages" targetRef="gateway_Review_First_Pages" />
@@ -247,6 +262,9 @@
 			</sequenceFlow>
 			<userTask id="Make_First_Corrections" name="Make First Corrections (Art Director)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 				<documentation>Document: ${sourceFileName}.icml Detail: ${detail}
 				</documentation>
 			</userTask>
@@ -254,6 +272,9 @@
 				targetRef="Review_Dummy" />
 			<userTask id="Review_Dummy" name="Review Dummy (Managing Editor)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 				<documentation>${sourceFileName}.icml</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Review_Dummy" targetRef="gateway_Review_Dummy" />
@@ -272,12 +293,18 @@
 			</sequenceFlow>
 			<userTask id="Create_Dummy" name="Create Dummy (Art Director)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 				<documentation>Document: ${sourceFileName}.icml Detail: ${detail}
 				</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Create_Dummy" targetRef="Approve_Final_Dummy" />
 			<userTask id="Approve_Final_Dummy" name="Approve Final Dummy (Managing Editor)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 				<documentation>Document: ${sourceFileName}</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Approve_Final_Dummy" targetRef="gateway_Approve_Final_Dummy" />
@@ -292,11 +319,17 @@
 			</sequenceFlow>
 			<userTask id="Prep_for_Printer" name="Prep for Printer (Art Director)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 				<documentation>Document: ${sourceFileName}</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Prep_for_Printer" targetRef="Approve_Blueline" />
 			<userTask id="Approve_Blueline" name="Approve Blueline (Managing Editor)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 				<documentation>Document: ${sourceFileName}</documentation>
 			</userTask>
 			<sequenceFlow sourceRef="Approve_Blueline" targetRef="exportArticlePDF" />
@@ -645,6 +678,9 @@
 			</sequenceFlow>
 			<userTask id="Workflow_Complete" name="Workflow Complete (Managing Editor)"
 				activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Managing_Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 				<documentation>Article ${sourceFileName}: Bluelines have been
 					approved. Workflow is complete.</documentation>
 			</userTask>

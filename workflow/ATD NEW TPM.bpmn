@@ -149,7 +149,9 @@
 
 		<userTask id="associateEditMSWord" name="TPM Edit MS Word (Associate Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
-												
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>"Document: #{fullFileName}"</documentation>
 		</userTask>
 
@@ -158,6 +160,9 @@
 
 		<userTask id="editorEditMSWord" name="TPM Edit MS Word (Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>"Document: #{fullFileName}"</documentation>
 		</userTask>
 
@@ -175,6 +180,9 @@
 
 		<userTask id="Begin Design Task" name="Begin Design Task (Art Director)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>"Document: ${sourceFileName}.icml"</documentation>
 		</userTask>
 
@@ -183,6 +191,9 @@
 
 		<userTask id="Review Proofs" name="Review Proofs (Associate Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>"Document: ${sourceFileName}.icml"</documentation>
 		</userTask>
 
@@ -201,6 +212,9 @@
 
 		<userTask id="TPM Create HTMLs" name="TPM Create HTMLs (Art Director)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Art_Director">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>"Document: #{sourceFileName}"</documentation>
 		</userTask>
 
@@ -246,6 +260,9 @@
 
 		<userTask id="TPM Finalize Issue" name="TPM Finalize Issue (Associate Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>"Article #{sourceFileName}: Bluelines have been
 				approved. Workflow is complete."</documentation>
 		</userTask>
@@ -335,6 +352,9 @@
 
 		<userTask id="finalEditTask" name="Final Edit Task (Associate Editor)"
 			activiti:assignee="${rsuiteUserId}" activiti:candidateGroups="Associate_Editor">
+				<activiti:taskListener event="complete"
+				class="org.astd.rsuite.workflow.actions.leaving.rsuite5.UpdateWorkflowVariablesActionHandler" />
+			
 			<documentation>"Document: #{fullFileName}"</documentation>
 		</userTask>
 

@@ -140,13 +140,9 @@ public class AstdReassignArticleActionHandler extends BaseWorkflowAction
 				String catypeArticle = caSrv.getContentAssembly(user, moid)
 						.getLayeredMetadataValue("ca-type").toString();
 
-				System.out.println("pubCode_NAME : " + pubCode_NAME);
-
 				if (pubCode_NAME.contentEquals("CT")) {
-					System.out.println("Inside if (pubCode equals CT)");
 					pubCode_NAME = "CTDO";
 				} else if (pubCode_NAME.contentEquals("TD")) {
-					System.out.println("Inside if (pubCode equals TD)");
 					pubCode_NAME = "T and D";
 				}
 
