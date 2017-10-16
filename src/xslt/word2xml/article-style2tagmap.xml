@@ -35,8 +35,8 @@
            bodyType="body"
            format="article"   
            level="0"
-           outputclass="Headline"
-    ><mapProperties
+           outputclass="Headline">
+           <mapProperties
    			format="map"
    			prologType="topicmeta"
    			tagName="mainpubtitle"/>
@@ -762,6 +762,103 @@
 	  outputclass="AuthorTitle"
       />
       
+   <!-- New TandD styles added 2017-10-13  -->
+   
+    <style styleId="copysidebaritalic"
+      outputclass = "CopySansItalic"
+      tagName="i"
+      topicZone="inline"
+    />
+   
+   	<style styleId="copysidebarupsized"      
+      tagName="p"
+      topicZone="body"
+	  outputclass="CopySansUpsized"
+    />
+    
+   <style styleId="copysmall"
+      tagName="p"
+      topicZone="body"
+      outputclass="SmallSans"
+    />
+    
+   <style styleId="headingsidebarfeature"
+      tagName="p"
+      topicZone="body"
+      outputclass="SidebarHeadFeature"
+    />
+    
+   <style styleId="heading_sidebar_dept"
+      tagName="p"
+      topicZone="body"
+      outputclass="SidebarHeadDept"
+    />
+    
+    <style styleId="inteltag"
+      tagName="p"
+      topicZone="body"
+      outputclass="Tag"
+    />
+    
+   <style styleId="bignumber"
+      tagName="p"
+      topicZone="body"
+      outputclass="BigNumber"
+    />
+   
+   <style styleId="BookQuote"
+      tagName="p"
+      topicZone="body"
+      outputclass="BookQuote"
+    />
+    
+    
+        <style styleId="headinginfocusfeature"
+           structureType="topicTitle"
+           tagName="title"
+           topicType="article"
+           prologType="prolog"
+           bodyType="body"
+           format="article"   
+           level="0"
+           outputclass="InFocusHead">
+           <mapProperties
+   			format="map"
+   			prologType="topicmeta"
+   			tagName="mainpubtitle"/>
+   			      <topicrefProperties
+        topicrefType="topicref"/>
+      <topicProperties
+        bodyType="body"
+        format="article"
+        topicDoc="yes"
+        topicType="article"
+        outputclass="Title"/>
+		</style>
+			
+        <style styleId="headinginfocusdept"
+           structureType="topicTitle"
+           tagName="title"
+           topicType="article"
+           prologType="prolog"
+           bodyType="body"
+           format="article"   
+           level="0"
+           outputclass="InFocusHeadDept">
+           <mapProperties
+   			format="map"
+   			prologType="topicmeta"
+   			tagName="mainpubtitle"/>
+      <topicrefProperties
+        topicrefType="topicref"/>
+      <topicProperties
+        bodyType="body"
+        format="article"
+        topicDoc="yes"
+        topicType="article"
+        outputclass="Title"/>
+			
+			</style>
    
   </styles>
 </style2tagmap>
