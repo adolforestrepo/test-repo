@@ -551,7 +551,7 @@
       Self="rc_u11a"/>
     <idsc:pStyle
       name="BookTitle"
-	  basd="o_u6b"
+	        basd="o_u6b"
       smpt="b_f"
       nxpa="o_ue6"
       kbsc="x_2_s_0_s_0"
@@ -576,7 +576,7 @@
       Self="rc_ue6"
     />
     <idsc:pStyle
-      name="BookInfo"
+      name="BookSpecs"
 	        basd="o_u6b"
       smpt="b_f"
       nxpa="o_ue6"
@@ -624,7 +624,7 @@
       font="c_DINOT"
       Self="rc_u11c"/>
     <idsc:pStyle
-      name="DeckDept"
+      name="Deck"
       basd="o_ue7"
       smpt="b_f"
       nxpa="o_u11c"
@@ -636,110 +636,9 @@
       szld="U_12"
       font="c_DINOT"
       Self="rc_u11c"/>
-      
-            <!-- New TandD Styles -->
-      
-          <idsc:pStyle
-      name="InFocusHeadDept"
-      basd="o_u6b"
-      smpt="b_f"
-      nxpa="o_uf0"
-      kbsc="x_2_s_0_s_0"
-      pclr="e_nada"
-      ptfs="c_Black"
-      ptsz="U_80"
-      trak="D_-30"
-      szld="U_70"
-      Self="rc_uf0"/>
-      
-        <idsc:pStyle
-      name="InFocusHead"
-      basd="o_u6b"
-      smpt="b_f"
-      nxpa="o_uf0"
-      kbsc="x_2_s_0_s_0"
-      pclr="e_nada"
-      ptfs="c_Black"
-      ptsz="U_80"
-      trak="D_-30"
-      szld="U_70"
-      Self="rc_uf0"/>
-      
-         <idsc:pStyle
-      name="BookQuote"
-      basd="o_u11a"
-      smpt="b_f"
-      nxpa="o_u195"
-      kbsc="x_2_s_0_s_0"
-      pclr="e_nada"
-      Self="rc_u195"/>
-
-         <idsc:pStyle
-      name="BigNumber"
-      basd="o_u11a"
-      smpt="b_f"
-      nxpa="o_u195"
-      kbsc="x_2_s_0_s_0"
-      pclr="e_nada"
-      Self="rc_u195"/>
-      
-           <idsc:pStyle
-      name="Tag"
-      basd="o_u11a"
-      smpt="b_f"
-      nxpa="o_u195"
-      kbsc="x_2_s_0_s_0"
-      pclr="e_nada"
-      Self="rc_u195"/>  
-      
-        <idsc:pStyle
-      name="SidebarHeadDept"
-      basd="o_u6b"
-      smpt="b_f"
-      nxpa="o_uf4"
-      kbsc="x_2_s_0_s_0"
-      pclr="e_nada"
-      ptfs="c_Black"
-      ptsz="U_36"
-      trak="D_-8"
-      szld="U_33"
-      Self="rc_uf4"/>
-      
-              <idsc:pStyle
-      name="SidebarHeadFeature"
-      basd="o_u6b"
-      smpt="b_f"
-      nxpa="o_uf4"
-      kbsc="x_2_s_0_s_0"
-      pclr="e_nada"
-      ptfs="c_Black"
-      ptsz="U_36"
-      trak="D_-8"
-      szld="U_33"
-      Self="rc_uf4"/>
-      
-          <idsc:pStyle
-      name="HeadlineDept"
-      basd="k_[No paragraph style]"
-      smpt="b_f"
-      nxpa="o_uf6"
-      kbsc="x_2_s_0_s_0"
-      pclr="e_nada"
-      ptfs="c_Black"
-      ptsz="U_20"
-      trak="D_-8"
-      szld="U_20"
-      font="c_DINOT"
-      Self="rc_uf6"/>
-      
-      
   </idsc:ParagraphStyles>
-  
-  
-  
-  
-  
   <idsc:CharacterStyles>
+
     <idsc:cStyle
       smpt="b_f"
       name="[No character style]"
@@ -878,17 +777,6 @@
       smpt="b_f"
       kbsc="x_2_s_0_s_0"
       name="italics"
-      pclr="e_nada"
-      ptfs="c_Italic"
-      font="c_Utopia"
-      Self="rc_u18d"/>
-      
-    <!-- New TandD Styles -->     
-  	<idsc:cStyle
-      basd="k_[No character style]"
-      smpt="b_f"
-      kbsc="x_2_s_0_s_0"
-      name="CopySansItalic"
       pclr="e_nada"
       ptfs="c_Italic"
       font="c_Utopia"
