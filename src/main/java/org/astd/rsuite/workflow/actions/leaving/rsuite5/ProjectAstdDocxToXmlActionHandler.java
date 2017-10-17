@@ -64,6 +64,8 @@ implements TempWorkflowConstants {
 
   @Override
   public void execute(WorkflowContext context) throws Exception {
+	  
+	context.setVariable(DitaOtOptions.EXCEPTION_OCCUR, "false");
     
     Log wfLog = context.getWorkflowLog();
     
@@ -192,6 +194,7 @@ implements TempWorkflowConstants {
         File reportFile; exceptionOccured = true;
         String msg = "Exception transforming document: " + e.getMessage();
         reportAndThrowRSuiteException(msg);
+        context.setVariable(DitaOtOptions.EXCEPTION_OCCUR, "true");
         throw e;
       } finally {
       StringBuilder reportStr = new StringBuilder("DOCX 2 DITA Transformation report\n\n").append("Source DOCX: ").append(mo.getDisplayName()).append(" [").append(mo.getId()).append("]\n").append("Result file: ").append(resultMapFile.getAbsolutePath()).append("\n").append("Time performed: ").append(DitaOtOptions.getNowString()).append("\n\n").append(logger.getLogString());
