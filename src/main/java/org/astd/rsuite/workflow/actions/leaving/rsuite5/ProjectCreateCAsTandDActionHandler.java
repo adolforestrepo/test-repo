@@ -79,14 +79,12 @@ public class ProjectCreateCAsTandDActionHandler extends BaseWorkflowAction
 					volumeCa.getId(),
 					"Issue " + context.getVariableAsString(ATD_VAR_MONTH),
 					caCreateOp);
+		
+
+			/** Changes related to lastest isue igestin old articles */
 			String sourceFilename = context
 					.getVariableAsString(ATD_VAR_SOURCE_FILENAME);
-
-			wfLog.info("ISSUE ID: " + monthCa.getId());
-			wfLog.info("Display name ID: " + sourceFilename);
 			ContentAssembly articleCA = null;
-			
-			/** Changes related to lastest isue igestin old articles */
 			String canodeId = AstdActionUtils.getCAnodeIdbyName(monthCa,
 					sourceFilename);
 

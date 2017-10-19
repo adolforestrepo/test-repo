@@ -69,8 +69,23 @@ private static String MAGAZINES_NAME = "Magazines";
 
       caCreateOp.setType(ContainerType.CA.getSystemName());
       ContentAssembly monthCa = caSrv.createContentAssembly(user, volumeCa.getId(), "Issue " + context.getVariableAsString(ATD_VAR_MONTH), caCreateOp);
-      ContentAssembly articleCA = caSrv.createContentAssembly(user, monthCa.getId(), context.getVariableAsString(ATD_VAR_SOURCE_FILENAME), caCreateOp);
+    
+  	/** Changes related to lastest isue igestin old articles */
+		String sourceFilename = context
+				.getVariableAsString(ATD_VAR_SOURCE_FILENAME);
+		ContentAssembly articleCA = null;
+		String canodeId = AstdActionUtils.getCAnodeIdbyName(monthCa,
+				sourceFilename);
 
+		if (!canodeId.isEmpty()) {
+			articleCA = caSrv.getContentAssembly(user,
+					AstdActionUtils.convertCAnodeToCA(context, canodeId));
+		} else {
+			articleCA = caSrv.createContentAssembly(user, monthCa.getId(),
+					context.getVariableAsString(ATD_VAR_SOURCE_FILENAME),
+					caCreateOp);
+		}
+		/** end of changes */
       caSrv.attach(user, articleCA.getId(), docxId, new ObjectAttachOptions());
       context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
       
