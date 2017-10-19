@@ -22,75 +22,108 @@ import com.reallysi.rsuite.api.workflow.activiti.WorkflowContext;
 import com.reallysi.rsuite.service.ContentAssemblyService;
 import com.reallysi.rsuite.service.SecurityService;
 
-public class ProjectCreateCAsTandDActionHandler
-    extends BaseWorkflowAction
-    implements TempWorkflowConstants {
+public class ProjectCreateCAsTandDActionHandler extends BaseWorkflowAction
+		implements TempWorkflowConstants {
 
-  private static final String VOLUME_STRING = "Volume";
-  private static String MAGAZINES_NAME = "Magazines";
-  private static String TandD_NAME = "T and D";
-  protected Log wfLog;
+	private static final String VOLUME_STRING = "Volume";
+	private static String MAGAZINES_NAME = "Magazines";
+	private static String TandD_NAME = "T and D";
+	protected Log wfLog;
 
-  @Override
-  public void execute(WorkflowContext context) throws Exception {
+	@Override
+	public void execute(WorkflowContext context) throws Exception {
 
-    wfLog = context.getWorkflowLog();
-    User user = context.getAuthorizationService().getSystemUser();
-    ContentAssembly contentCA = null;
+		wfLog = context.getWorkflowLog();
+		User user = context.getAuthorizationService().getSystemUser();
+		ContentAssembly contentCA = null;
 
-       
-    String volume = context.getVariableAsString(ATD_VAR_VOLUME_NUMBER);
-    String docxId = context.getVariableAsString(ATD_VAR_DOCX_ID);
-    ContentAssemblyService caSrv = context.getContentAssemblyService();
-    if (volume.equals("99")) {
+		String volume = context.getVariableAsString(ATD_VAR_VOLUME_NUMBER);
+		String docxId = context.getVariableAsString(ATD_VAR_DOCX_ID);
+		ContentAssemblyService caSrv = context.getContentAssemblyService();
+		if (volume.equals("99")) {
 
-      ContentAssemblyCreateOptions caCreateOp = new ContentAssemblyCreateOptions();
-      caCreateOp.setSilentIfExists(true);
+			ContentAssemblyCreateOptions caCreateOp = new ContentAssemblyCreateOptions();
+			caCreateOp.setSilentIfExists(true);
 
-      caCreateOp.setType(ContainerType.FOLDER.getSystemName());
-      ContentAssembly magazinesCa = caSrv.createContentAssembly(user, "4", MAGAZINES_NAME, caCreateOp);
-      ContentAssembly tpmCa = caSrv.createContentAssembly(user, magazinesCa.getId(), TandD_NAME, caCreateOp);
-      caCreateOp.setType(ContainerType.CA.getSystemName());
-      ContentAssembly articleCA = caSrv.createContentAssembly(user, tpmCa.getId(), context.getVariableAsString(ATD_VAR_SOURCE_FILENAME), caCreateOp);
+			caCreateOp.setType(ContainerType.FOLDER.getSystemName());
+			ContentAssembly magazinesCa = caSrv.createContentAssembly(user,
+					"4", MAGAZINES_NAME, caCreateOp);
+			ContentAssembly tpmCa = caSrv.createContentAssembly(user,
+					magazinesCa.getId(), TandD_NAME, caCreateOp);
+			caCreateOp.setType(ContainerType.CA.getSystemName());
+			ContentAssembly articleCA = caSrv.createContentAssembly(user,
+					tpmCa.getId(),
+					context.getVariableAsString(ATD_VAR_SOURCE_FILENAME),
+					caCreateOp);
 
-      caSrv.attach(user, articleCA.getId(), docxId, new ObjectAttachOptions());
-      context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
-      contentCA = articleCA;
+			caSrv.attach(user, articleCA.getId(), docxId,
+					new ObjectAttachOptions());
+			context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
+			contentCA = articleCA;
 
-    } else {
+		} else {
 
-      ContentAssemblyCreateOptions caCreateOp = new ContentAssemblyCreateOptions();
-      caCreateOp.setSilentIfExists(true);
+			ContentAssemblyCreateOptions caCreateOp = new ContentAssemblyCreateOptions();
+			caCreateOp.setSilentIfExists(true);
 
-      caCreateOp.setType(ContainerType.FOLDER.getSystemName());
-      ContentAssembly magazinesCa = caSrv.createContentAssembly(user, "4", MAGAZINES_NAME, caCreateOp);
-      ContentAssembly tpmCa = caSrv.createContentAssembly(user, magazinesCa.getId(), TandD_NAME, caCreateOp);
-      ContentAssembly volumeCa = caSrv.createContentAssembly(user, tpmCa.getId(), VOLUME_STRING+" "+volume, caCreateOp);
+			caCreateOp.setType(ContainerType.FOLDER.getSystemName());
+			ContentAssembly magazinesCa = caSrv.createContentAssembly(user,
+					"4", MAGAZINES_NAME, caCreateOp);
+			ContentAssembly tpmCa = caSrv.createContentAssembly(user,
+					magazinesCa.getId(), TandD_NAME, caCreateOp);
+			ContentAssembly volumeCa = caSrv.createContentAssembly(user,
+					tpmCa.getId(), VOLUME_STRING + " " + volume, caCreateOp);
 
-      caCreateOp.setType(ContainerType.CA.getSystemName());
-      ContentAssembly monthCa = caSrv.createContentAssembly(user, volumeCa.getId(), "Issue " + context.getVariableAsString(ATD_VAR_MONTH), caCreateOp);
-      ContentAssembly articleCA = caSrv.createContentAssembly(user, monthCa.getId(), context.getVariableAsString(ATD_VAR_SOURCE_FILENAME), caCreateOp);
+			caCreateOp.setType(ContainerType.CA.getSystemName());
+			ContentAssembly monthCa = caSrv.createContentAssembly(user,
+					volumeCa.getId(),
+					"Issue " + context.getVariableAsString(ATD_VAR_MONTH),
+					caCreateOp);
+			String sourceFilename = context
+					.getVariableAsString(ATD_VAR_SOURCE_FILENAME);
 
-      caSrv.attach(user, articleCA.getId(), docxId, new ObjectAttachOptions());
-      context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
-      
-      contentCA = articleCA;
+			wfLog.info("ISSUE ID: " + monthCa.getId());
+			wfLog.info("Display name ID: " + sourceFilename);
+			ContentAssembly articleCA = null;
+			
+			/** Changes related to lastest isue igestin old articles */
+			String canodeId = AstdActionUtils.getCAnodeIdbyName(monthCa,
+					sourceFilename);
 
-    }
-    
-    MoListWorkflowObject newMoList = new MoListWorkflowObject();
-    MoWorkflowObject newWFO = new MoWorkflowObject(contentCA.getId());
-    newMoList.addMoObject(newWFO);
-    context.setRSuiteContents(newMoList);
-    
-    
-  }
+			if (!canodeId.isEmpty()) {
+				articleCA = caSrv.getContentAssembly(user,
+						AstdActionUtils.convertCAnodeToCA(context, canodeId));
+			} else {
+				articleCA = caSrv.createContentAssembly(user, monthCa.getId(),
+						context.getVariableAsString(ATD_VAR_SOURCE_FILENAME),
+						caCreateOp);
+			}
+			/** end of changes */
+			
+			caSrv.attach(user, articleCA.getId(), docxId,
+					new ObjectAttachOptions());
+			context.setVariable(ATD_VAR_CA_ID, articleCA.getId());
 
-  public final static ACL getAclForResubmittedApplicationMo(ExecutionContext context) throws RSuiteException {
-    SecurityService securityService = context.getSecurityService();
-    ACE cptAdminAce = securityService.constructACE(Role.ROLE_NAME_RSUITE_USER_ADMIN, ContentPermission.values());
-    ACE cptStaffAce = securityService.constructACE(Role.ROLE_NAME_ANY, ContentPermission.EDIT);
+			contentCA = articleCA;
 
-    return securityService.constructACL(new ACE[] {cptAdminAce, cptStaffAce});
-  }
+		}
+
+		MoListWorkflowObject newMoList = new MoListWorkflowObject();
+		MoWorkflowObject newWFO = new MoWorkflowObject(contentCA.getId());
+		newMoList.addMoObject(newWFO);
+		context.setRSuiteContents(newMoList);
+
+	}
+
+	public final static ACL getAclForResubmittedApplicationMo(
+			ExecutionContext context) throws RSuiteException {
+		SecurityService securityService = context.getSecurityService();
+		ACE cptAdminAce = securityService.constructACE(
+				Role.ROLE_NAME_RSUITE_USER_ADMIN, ContentPermission.values());
+		ACE cptStaffAce = securityService.constructACE(Role.ROLE_NAME_ANY,
+				ContentPermission.EDIT);
+
+		return securityService.constructACL(new ACE[] { cptAdminAce,
+				cptStaffAce });
+	}
 }

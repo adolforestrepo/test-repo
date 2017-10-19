@@ -49,6 +49,10 @@
 		<remoteApiDefinition id="astd.main.webservice.TestTransform"
 			handler="org.astd.rsuite.webservices.TestTransformWebService" label="Test Transform" />
 
+		<remoteApiDefinition id="atd.ConvertCanodeToCA"
+			handler="org.astd.rsuite.webservices.rsuite5.ConvertCanodeToCA"
+			label="Converts CAnodes to CA containers." />
+
 	</extensionProvider>
 
 	<extensionProvider id="rsuite.ContextMenu">
@@ -87,6 +91,22 @@
 				<rule>exclude nodeType ca,canode,folder</rule>
 				<rule>include nodeType mononxml</rule>
 				<rule>include fileExtension pdf,PDF</rule>
+			</ruleList>
+		</contextMenuRuleSet>
+
+		<contextMenuRuleSet name="astd.contextmenu.ConvertCanodeToCA">
+			<menuItemList>
+				<menuItem id="astd:ConvertCanodeToCA">
+					<type>action</type>
+					<actionName>rsuite:invokeWebservice</actionName>
+					<label>Convert old Article CAnode to CA</label>
+					<property name="remoteApiName"
+						value="atd.ConvertCanodeToCA" />
+					<property name="rsuite:icon" value="configuration2" />
+				</menuItem>
+			</menuItemList>
+			<ruleList>
+				<rule>include nodeType canode</rule>
 			</ruleList>
 		</contextMenuRuleSet>
 
@@ -483,7 +503,8 @@
 			label="Confirm Delete Request" description="Enables the user to confirm their intent.">
 			<instructions>Please confirm this container(s) and its contents are
 				to be permanently deleted,
-				even if that content is referenced by other containers or checked out by
+				even if that content is referenced by
+				other containers or checked out by
 				other users.
 			</instructions>
 			<paramList />
@@ -538,9 +559,9 @@
 						<option value="QT" label="Quick Tips"></option>
 						<option value="OW" label="One to Watch"></option>
 						<option value="WE" label="Web Exclusive"></option>
-						
-						
-						
+
+
+
 					</optionList>
 				</param>
 				<param>
