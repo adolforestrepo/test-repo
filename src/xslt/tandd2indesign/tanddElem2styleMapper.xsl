@@ -15,9 +15,19 @@
     
   -->
   
-  <xsl:template match="/*[df:class(., 'topic/topic')]/*[df:class(., 'topic/title')]" 
+  <xsl:template match="/*[df:class(., 'topic/topic')]/*[df:class(., 'topic/title')][@outputclass = 'Headline']" 
     mode="style-map-pstyle">
-    <xsl:sequence select="'Headline'"/>
+    <xsl:sequence select="'HeadlineDept'"/>
+  </xsl:template>
+  
+  <xsl:template match="/*[df:class(., 'topic/topic')]/*[df:class(., 'topic/title')][@outputclass = 'InFocusHeadDept']" 
+    mode="style-map-pstyle">
+    <xsl:sequence select="'InFocusHeadDept'"/>
+  </xsl:template>
+  
+  <xsl:template match="/*[df:class(., 'topic/topic')]/*[df:class(., 'topic/title')][@outputclass = 'InFocusHead']" 
+    mode="style-map-pstyle">
+    <xsl:sequence select="'InFocusHead'"/>
   </xsl:template>
   
  
@@ -29,7 +39,7 @@
   
   <xsl:template match="/*[df:class(., 'topic/topic')]/*[df:class(., 'topic/topic')]/*[df:class(., 'topic/topic')]/*[df:class(., 'topic/title')]" 
     mode="style-map-pstyle">
-    <xsl:sequence select="'Heading 3'"/>
+    <xsl:sequence select="'SidebarSubhead'"/>
   </xsl:template>
 
   <xsl:template match="*[df:class(., 'sidebar/sidebar')]/*[df:class(., 'topic/title')]" 
@@ -48,6 +58,74 @@
     <xsl:message> + [DEBUG] p with outputclass='BookTitle': <xsl:value-of select="@outputclass"/></xsl:message>
       <xsl:sequence select="string(./@outputclass)"/>
   </xsl:template>
+  
+ <xsl:template match="*[df:class(., 'topic/p')][@outputclass = 'BookSpecs']" priority="20" 
+    mode="style-map-pstyle">
+    <xsl:message> + [DEBUG] p with outputclass='BookSpecs': <xsl:value-of select="@outputclass"/></xsl:message>
+      <xsl:sequence select="'BookInfo'"/>
+  </xsl:template>
+  
+  <!-- New TD styles 2017  -->
+    
+ <xsl:template match="*[df:class(., 'topic/p')][@outputclass = 'InFocusHeadDept']" priority="20" 
+    mode="style-map-pstyle">
+    <xsl:message> + [DEBUG] p with outputclass='InFocusHeadDept': <xsl:value-of select="@outputclass"/></xsl:message>
+      <xsl:sequence select="'InFocusHeadDept'"/>
+  </xsl:template>
+  
+   <xsl:template match="*[df:class(., 'topic/p')][@outputclass = 'InFocusHead']" priority="20" 
+    mode="style-map-pstyle">
+    <xsl:message> + [DEBUG] p with outputclass='InFocusHead': <xsl:value-of select="@outputclass"/></xsl:message>
+      <xsl:sequence select="'InFocusHead'"/>
+  </xsl:template>
+  
+     <xsl:template match="*[df:class(., 'topic/p')][@outputclass = 'BookQuote']" priority="20" 
+    mode="style-map-pstyle">
+    <xsl:message> + [DEBUG] p with outputclass='BookQuote': <xsl:value-of select="@outputclass"/></xsl:message>
+      <xsl:sequence select="'BookQuote'"/>
+  </xsl:template>
+  
+  
+ <xsl:template match="*[df:class(., 'topic/p')][@outputclass = 'BigNumber']" priority="20" 
+    mode="style-map-pstyle">
+    <xsl:message> + [DEBUG] p with outputclass='BigNumber': <xsl:value-of select="@outputclass"/></xsl:message>
+      <xsl:sequence select="'BigNumber'"/>
+  </xsl:template>
+  
+  
+   <xsl:template match="*[df:class(., 'topic/p')][@outputclass = 'Tag']" priority="20" 
+    mode="style-map-pstyle">
+    <xsl:message> + [DEBUG] p with outputclass='Tag': <xsl:value-of select="@outputclass"/></xsl:message>
+      <xsl:sequence select="'Tag'"/>
+  </xsl:template>
+  
+ 
+       <xsl:template match="*[df:class(., 'topic/p')][@outputclass = 'SidebarHeadDept']" priority="20" 
+    mode="style-map-pstyle">
+    <xsl:message> + [DEBUG] p with outputclass='SidebarHeadDept': <xsl:value-of select="@outputclass"/></xsl:message>
+      <xsl:sequence select="'SidebarHeadDept'"/>
+  </xsl:template>
+  
+     <xsl:template match="*[df:class(., 'topic/p')][@outputclass = 'SmallSans']" priority="20" 
+    mode="style-map-pstyle">
+    <xsl:message> + [DEBUG] p with outputclass='SmallSans': <xsl:value-of select="@outputclass"/></xsl:message>
+      <xsl:sequence select="'SmallSans'"/>
+  </xsl:template>
+  
+       <xsl:template match="*[df:class(., 'topic/p')][@outputclass = 'CopySansNumbered']" priority="20" 
+    mode="style-map-pstyle">
+    <xsl:message> + [DEBUG] p with outputclass='CopySansNumbered': <xsl:value-of select="@outputclass"/></xsl:message>
+      <xsl:sequence select="'CopySansNumbered'"/>
+  </xsl:template>
+  
+       <xsl:template match="*[df:class(., 'topic/p')][@outputclass = 'CopySansUpsized']" priority="20" 
+    mode="style-map-pstyle">
+    <xsl:message> + [DEBUG] p with outputclass='CopySansUpsized': <xsl:value-of select="@outputclass"/></xsl:message>
+      <xsl:sequence select="'CopySansUpsized'"/>
+  </xsl:template>
+  
+  
+  <!-- END NEW STYLES -->
   
   <xsl:template match="*[df:class(., 'sidebar/sidebar')]/*[df:class(., 'topic/body')]//*[df:class(., 'topic/p')]" priority="10"
     mode="style-map-pstyle">
@@ -115,7 +193,7 @@
   
   <xsl:template match="*[df:class(., 'article/deck')]" 
     mode="style-map-pstyle" priority="10">
-    <xsl:sequence select="'Deck'"/>
+    <xsl:sequence select="'DeckDept'"/>
   </xsl:template>
   
   <!-- Depreciated since #93
@@ -160,8 +238,7 @@
     match="*[df:class(., 'topic/ol')]/
     *[df:class(., 'topic/li')][count(preceding-sibling::*[df:class(.,'topic/li')]) = 0]"
     priority="10" 
-    mode="style-map-pstyle"
-    >
+    mode="style-map-pstyle">
     <xsl:sequence select="'CopyNumbered'"/>
   </xsl:template>
   
@@ -175,9 +252,14 @@
     <xsl:sequence select="'Copy'"/>
   </xsl:template>
   
-  <xsl:template match="*[df:class(., 'topic/ol')]/*[df:class(., 'topic/li')]" 
+  <xsl:template match="*[df:class(., 'topic/ol')]/*[df:class(., 'topic/li')][@outputclass = 'CopyNumberedList']" 
     mode="style-map-pstyle">
     <xsl:sequence select="'CopyNumbered'"/>
+  </xsl:template>
+  
+  <xsl:template match="*[df:class(., 'topic/ol')]/*[df:class(., 'topic/li')][@outputclass = 'CopySidebarNumberedList']" 
+    mode="style-map-pstyle">
+    <xsl:sequence select="'CopySansNumbered'"/>
   </xsl:template>
   
   <xsl:template match="*[df:class(., 'topic/fig')]/*[df:class(., 'topic/title')]" 
@@ -188,7 +270,7 @@
   <xsl:template match="*[df:class(., 'topic/section')]" 
     mode="style-map-pstyle">
     <!-- FIXME: account for outputclass -->
-    <xsl:sequence select="'Heading 3'"/>
+    <xsl:sequence select="'SidebarSubhead'"/>
   </xsl:template>
   
   <xsl:template match="*[df:class(., 'topic/cite')]" 
