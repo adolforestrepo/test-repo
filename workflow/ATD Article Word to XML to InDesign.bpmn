@@ -42,9 +42,9 @@
 		<serviceTask id="XML_to_INCX" name="XML to INCX"
 			activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IcmlActionHandler">
 			<activiti:field name="styleCatalogUri"
-				stringValue="rsuite:/res/plugin/astd-plugin/xslt/newtpm2indesign/tpm-dita-indesign-style-catalog.xml" />
+				stringValue="rsuite:/res/plugin/astd-plugin/xslt/tandd2indesign/tandd-dita-indesign-style-catalog.xml" />
 			<activiti:field name="xsltUriFromWorkflow"
-				stringValue="rsuite:/res/plugin/astd-plugin/xslt/newtpm2indesign/tpmArticle2InDesign.xsl" />
+				stringValue="rsuite:/res/plugin/astd-plugin/xslt/tandd2indesign/tanddArticle2InDesign.xsl" />
 			<activiti:field name="fileName" stringValue="${sourceFileName}" />
 			<activiti:field name="xmlMoId" stringValue="${xmlMoId}" />
 		</serviceTask>
@@ -425,9 +425,9 @@
 			<serviceTask id="XML_to_INCX_3" name="XML to INCX 3"
 				activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IncxActionHandler">
 				<activiti:field name="styleCatalogUri"
-					stringValue="rsuite:/res/plugin/astd-plugin/xslt/newtpm2indesign/tpm-dita-indesign-style-catalog.xml" />
+					stringValue="rsuite:/res/plugin/astd-plugin/xslt/tandd2indesign/tandd-dita-indesign-style-catalog.xml" />
 				<activiti:field name="xsltUriFromWorkflow"
-					stringValue="rsuite:/res/plugin/astd-plugin/xslt/newtpm2indesign/tpmArticle2InDesign.xsl" />
+					stringValue="rsuite:/res/plugin/astd-plugin/xslt/tandd2indesign/tanddArticle2InDesign.xsl" />
 				<activiti:field name="fileName" stringValue="${sourceFileName}" />
 				<activiti:field name="xmlMoId" stringValue="${xmlMoId}" />
 
@@ -479,9 +479,9 @@
 			<serviceTask id="XML_to_INCX_2" name="XML to INCX 2"
 				activiti:class="org.astd.rsuite.workflow.actions.leaving.rsuite5.ProjectAstdXml2IncxActionHandler">
 				<activiti:field name="styleCatalogUri"
-					stringValue="rsuite:/res/plugin/astd-plugin/xslt/newtpm2indesign/tpm-dita-indesign-style-catalog.xml" />
+					stringValue="rsuite:/res/plugin/astd-plugin/xslt/tandd2indesign/tandd-dita-indesign-style-catalog.xml" />
 				<activiti:field name="xsltUriFromWorkflow"
-					stringValue="rsuite:/res/plugin/astd-plugin/xslt/newtpm2indesign/tpmArticle2InDesign.xsl" />
+					stringValue="rsuite:/res/plugin/astd-plugin/xslt/tandd2indesign/tanddArticle2InDesign.xsl" />
 				<activiti:field name="fileName" stringValue="${sourceFileName}" />
 				<activiti:field name="xmlMoId" stringValue="${xmlMoId}" />
 				<!--Custom variable; adjust action handlers as appropriate. styleCatalogUri={rsuite:/res/plugin/astd/xslt/tandd2indesign/tandd-dita-indesign-style-catalog.xml} -->
