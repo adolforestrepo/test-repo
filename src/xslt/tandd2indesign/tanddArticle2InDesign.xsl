@@ -202,11 +202,11 @@
       <xsl:call-template name="makeBlock-cont">
         <xsl:with-param name="pStyle" tunnel="yes" select="e2s:getPStyleForElement(., $articleType)"/>
       </xsl:call-template>
-       <xsl:if test="../*[df:class(.,'topic/prolog')]/*[df:class(.,'astd-author-d/astd-author')]">
+   <!--  <xsl:if test="../*[df:class(.,'topic/prolog')]/*[df:class(.,'astd-author-d/astd-author')]">
         <xsl:call-template name="makeBlock-cont">
           <xsl:with-param name="pStyle" tunnel="yes" select="'ByLine'"/>
           <xsl:with-param name="content" as="node()*">
-            <xsl:value-of select="'By '"/>
+            <xsl:value-of select="."/>
             <xsl:for-each select="../*[df:class(.,'topic/prolog')]/*[df:class(.,'astd-author-d/astd-author')]/*[df:class(.,'astd-author-d/author-name')]">
               <xsl:choose>
                 <xsl:when test="position() > 1 and position() = last()">
@@ -215,14 +215,13 @@
                 <xsl:when test="position() > 1">
                   <xsl:text>, </xsl:text>
                 </xsl:when>
-                <xsl:otherwise/><!-- do nothing -->
+                <xsl:otherwise/>
               </xsl:choose>          
               <xsl:value-of select="."/>
             </xsl:for-each>
           </xsl:with-param>
         </xsl:call-template>    
-      </xsl:if> 
-      
+      </xsl:if> -->
     </xsl:if>
   </xsl:template>
 

@@ -701,6 +701,24 @@
       pclr="e_nada"
       Self="rc_u195"/>  
       
+               <idsc:pStyle
+      name="CopySidebar"
+      basd="o_u11a"
+      smpt="b_f"
+      nxpa="o_u195"
+      kbsc="x_2_s_0_s_0"
+      pclr="e_nada"
+      Self="rc_u195"/>  
+      
+    <idsc:pStyle
+      name="CopySidebarNoIndent"
+      basd="o_u11a"
+      smpt="b_f"
+      nxpa="o_u195"
+      kbsc="x_2_s_0_s_0"
+      pclr="e_nada"
+      Self="rc_u195"/>  
+      
            <idsc:pStyle
       name="Tag"
       basd="o_u11a"
