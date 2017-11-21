@@ -94,11 +94,13 @@ Properties:
             <fileset dir="${lib.home}">
                 <!-- Other required plugins -->
                 <include name="team-edition-dashboard-plugin.jar"/>
+                <include name="team-edition-workflow-quick-plugin.jar"/>
+            	<include name="team-edition-workflow-status-plugin.jar"/>
+                <include name="team-edition-results-reporter-plugin.jar"/>
+                <include name="team-edition-results-reporter-wf-plugin.jar"/>
                 <include name="rsuite-zip-downloader-plugin.jar"/>
-                
                 <include name="rsuite-lmd-editor-plugin.jar"/>
                 <!-- TBD if desired on this project --> 
-<!--                <include name="team-edition-workflow-quick-plugin.jar"/>-->
 <!--                <include name="team-edition-results-reporter-plugin.jar"/>-->
 <!--                <include name="rsuite-workflow-visualizer-plugin.jar"/>--> <!-- no v5.0.5 equivalent yet -->
 <!--                <include name="rsuite-system-monitoring-plugin.jar"/>-->

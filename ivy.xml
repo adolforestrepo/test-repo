@@ -8,13 +8,10 @@
     <dependency org="rsi" name="rsuite-tools-zip" rev="20090327"/>
     <dependency org="rsi" name="rsuite-lmd-editor-plugin" rev="1.2"/>
     <dependency org="rsi" name="rsuite-zip-downloader-plugin" rev="1.3"/>
-    <dependency org="rsi" name="team-edition-workflow-quick-plugin" rev="3.0"/>
     <!--<dependency org="rsi" name="rsuite-system-monitoring-plugin" rev="4.0.13"/>
     <dependency org="rsi" name="rsuite-system-monitoring-module" rev="4.0.13">
       <artifact name="system-monitoring" type="xqy"/>     
     </dependency>-->
-    <dependency org="rsi" name="team-edition-dashboard-plugin" rev="2.1-qa002"/>
-    
 
     <!-- DITA-related zip and jar files. -->
     <dependency org="rsi" name="rsuite-dita-support-plugin" rev="3.5.0a" />
@@ -36,7 +33,11 @@
     
     
 	<!-- RSuite Team Edition Plugins -->
-	<dependency org="rsi" name="team-edition-results-reporter-plugin" rev="2.0"/>
+	<dependency org="rsi" name="team-edition-dashboard-plugin" rev="2.1-qa006"/>
+	<dependency org="rsi" name="team-edition-results-reporter-plugin" rev="2.0" />
+	<dependency org="rsi" name="team-edition-results-reporter-wf-plugin" rev="2.0" />
+	<dependency org="rsi" name="team-edition-workflow-quick-plugin" rev="3.2-qa001" />
+	<dependency org="rsi" name="team-edition-workflow-status-plugin" rev="2.2-qa001"/>
     
     <!-- Libraries used for activiti workflow -->
     <dependency org="org.activiti" name="activiti-engine" rev="5.16.4"/>
