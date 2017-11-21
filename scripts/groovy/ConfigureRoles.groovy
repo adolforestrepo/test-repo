@@ -20,7 +20,15 @@ try {
     createRoleIfnotExist("Editor", "Editor.");
 	createRoleIfnotExist("Reviewer", "Reviewer.");
 	createRoleIfnotExist("Production_Specialist", "Production Specialist.");
-    
+
+    /* Book workflow roles */
+	createRoleIfnotExist("DevelopmentalEditor", "Developmental Editor.");
+	createRoleIfnotExist("CopyEditor", "Copy Editor (Production Editor).");
+	createRoleIfnotExist("Proofreader", "Proofreader.");
+	createRoleIfnotExist("Designer", "Designer.");
+	createRoleIfnotExist("DesignReviewer", "Design Reviewer.");
+	createRoleIfnotExist("ProductionManager", "Production Manager.");
+	createRoleIfnotExist("Author", "Author.");
 }
  finally {
 	rsuite.logout();

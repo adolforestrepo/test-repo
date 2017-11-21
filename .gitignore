@@ -5,3 +5,5 @@
 /java/
 /build.properties
 .idea/
+/.settings/
+/.gitignore
