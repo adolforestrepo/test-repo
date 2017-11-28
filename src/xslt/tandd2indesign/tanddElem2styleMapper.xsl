@@ -173,9 +173,17 @@
 
 	<!-- #93 process as copysandNoindent if output calss is present -->
 	<xsl:template
-		match="*[df:class(., 'sidebar/sidebar')]/*[df:class(., 'topic/body')]//*[df:class(., 'topic/p') and @outputclass = 'CopySansNoIndent']"
+		match="*[df:class(., 'sidebar/sidebar')]/*[df:class(., 'topic/body')]//*[df:class(., 'topic/p') and @outputclass = 'CopySidebarNoIndent']"
 		priority="15" mode="style-map-pstyle">
 		<xsl:sequence select="'CopySansNoIndent'" />
+	</xsl:template>
+	
+		<!--Changes from 11-23-2017 -->
+	
+	<xsl:template
+		match="*[df:class(., 'sidebar/sidebar')]/*[df:class(., 'topic/body')]//*[df:class(., 'topic/p') and @outputclass = 'CopySidebar']"
+		priority="15" mode="style-map-pstyle">
+		<xsl:sequence select="'CopySans'" />
 	</xsl:template>
 
 	<xsl:template match="*[df:class(., 'topic/p')]" priority="5"
@@ -269,7 +277,7 @@
 		priority="12" mode="style-map-pstyle">
 		<xsl:sequence select="'CopySansBullet'" />
 	</xsl:template>
-
+	
 	<xsl:template
 		match="*[df:class(., 'topic/ol')]/
     *[df:class(., 'topic/li')][count(preceding-sibling::*[df:class(.,'topic/li')]) = 0]"
@@ -295,6 +303,12 @@
 		match="*[df:class(., 'topic/ol')]/*[df:class(., 'topic/li')][@outputclass = 'CopySidebarNumberedList']"
 		mode="style-map-pstyle">
 		<xsl:sequence select="'CopySansNumbered'" />
+	</xsl:template>
+	
+	<xsl:template
+		match="*[df:class(., 'topic/ol')]/*[df:class(., 'topic/li')][@outputclass = 'CopySidebarBullet']"
+		mode="style-map-pstyle">
+		<xsl:sequence select="'CopySansBullet'" />
 	</xsl:template>
 
 	<xsl:template
