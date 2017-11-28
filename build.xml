@@ -201,6 +201,7 @@
 
 	
 	<target name="package-toolkit-plugins-plugin" depends="package-project-dita-toolkit-plugins-no-doctypes">
+		<!-- 
 		<copy file="${src.main.resources.home}/rsuite-toolkit-plugins-plugin.xml" tofile="${toolkit.plugins.plugin.target.home}/rsuite-plugin.xml" />
 
 		<jar destfile="${target.home}/${toolkit.plugins.plugin.target.jar}">
@@ -209,6 +210,7 @@
 				<include name="**/**.*" />
 			</fileset>
 		</jar>
+		-->
 	</target>
 
 	<target name="deploy-typical" description="Covers a bit more than the minimum" depends="resolve, clean, deploy-minimal" />

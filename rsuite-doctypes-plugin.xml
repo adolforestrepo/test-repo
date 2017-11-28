@@ -8,7 +8,7 @@
     
     <!-- WARNING: When MO definitions change, see if ProjectQName enum also needs to change. -->
     <extensionProvider id="rsuite.ditaOpenToolkit">
-        <ditaOpenToolkit toolkitName="rsuite:all">
+        <ditaOpenToolkit toolkitName="default">
             <toolkitPlugin toolkitPluginId="com.deltaxml.doctypes">
                 <zipfile>com.deltaxml.doctypes.zip</zipfile>
             </toolkitPlugin>

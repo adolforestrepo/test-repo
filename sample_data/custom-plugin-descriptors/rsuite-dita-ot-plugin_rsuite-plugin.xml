@@ -1,0 +1,29 @@
+<!-- Changes
+
+Changed toolkitName to deploy to v1.8.5
+
+-->
+<rsuite-plugin id="rsuite-dita-ot-plugin" version="1.5-qa003 at 2015-11-03 11:33:124 CST" 
+description="Contributes foundational DITA Open Toolkit plugins, including DITA for Publishers (1.0.0RC09), doctype declarations for Word to DITA and DITA to InCopy conversion configuration, and RSuite ID attribute declarations.">
+
+	<extensionProvider id="rsuite.WebService">
+    	<staticWebService root="/dita4publishers" path="/WebContent"/>
+	</extensionProvider>
+
+	<extensionProvider id="rsuite.ditaOpenToolkit">
+		<ditaOpenToolkit toolkitName="v185">
+			<toolkitPlugin toolkitPluginId="org.dita4publishers.doctypes">
+				<zipfile>dita4publishers-toolkit-plugins.zip</zipfile>
+			</toolkitPlugin>
+			<toolkitPlugin toolkitPluginId="com.reallysi.rsuite.doctypes">
+				<zipfile>com-reallysi-rsuite_toolkit-plugins.zip</zipfile>
+				<doctype type="DTD" publicId="urn:pubid:com.rsicms.rsuitebuiltin:doctypes:dita:conversion_configuration">
+					<file>doctypes/conversion_configuration/dtd/conversion_configuration.dtd</file>
+					<managedObjectDefinitions>
+						<moDef name="conversion_configuration" displayNameXPath="if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else if (@title) then string(@title) else '{No title found}'" />
+					</managedObjectDefinitions>
+				</doctype>
+			</toolkitPlugin>
+		</ditaOpenToolkit>
+	</extensionProvider>
+</rsuite-plugin>

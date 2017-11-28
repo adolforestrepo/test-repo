@@ -7,7 +7,7 @@
     </extensionProvider>
     
     <extensionProvider id="rsuite.ditaOpenToolkit">
-        <ditaOpenToolkit toolkitName="rsuite:all">
+        <ditaOpenToolkit toolkitName="default">
             <toolkitPlugin>
                 <zipfile>astd-main-toolkit-plugins-plugin.zip</zipfile>
             </toolkitPlugin>

@@ -15,7 +15,7 @@
 
     <!-- DITA-related zip and jar files. -->
     <dependency org="rsi" name="rsuite-dita-support-plugin" rev="3.5.0a" />
-	<dependency org="rsi" name="rsuite-dita-ot-plugin" rev="1.4" />
+	<dependency org="rsi" name="rsuite-dita-ot-plugin" rev="1.5-qa003" />
 	<dependency org="rsi" name="rsuite-dita-support-workflows-plugin" rev="2.0"/>
 	<dependency org="rsi" name="rsuite-dita-support-actions-plugin" rev="2.0"/>  
 	<dependency org="dita2indesign" name="dita2indesign-rsuite-plugin" rev="20091030"/>  

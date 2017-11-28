@@ -57,6 +57,8 @@ moDefList = [
 ]
 
 loadSchema(schemaType, schemaDir, schemaName, publicId, schemaName, previewXsltFile, null, moDefList);
+// Loading same DTD without public id for backward compatibility.
+loadSchema(schemaType, schemaDir, schemaName, "", schemaName, previewXsltFile, null, moDefList);
 
 
 

@@ -1,45 +1,16 @@
 <rsuite-plugin
-        id="atd-main-doctypes"
+        id="atd-doctypes"
         dependsOn="rsuite-dita-ot-plugin,rsuite-dita-support-plugin">
         
     <extensionProvider id="rsuite.WebService">
-        <staticWebService root="/astd-doctypes" path="/WebContent" />
+        <staticWebService root="/atd-doctypes" path="/WebContent" />
     </extensionProvider>
     
     <!-- WARNING: When MO definitions change, see if ProjectQName enum also needs to change. -->
 	<extensionProvider id="rsuite.ditaOpenToolkit">
-		<ditaOpenToolkit toolkitName="rsuite:all">
-			<toolkitPlugin toolkitPluginId="com.astd.doctypes">
-				<zipfile>astd-toolkit-plugins.zip</zipfile>
-<!--				<doctype type="DTD" publicId="urn:pubid:com.astd.doctypes:doctypes:dita:article">
-					<file>doctypes/article/dtd/article.dtd</file>
-					<previewXsl>src/xslt/preview/dita-preview-shell.xsl
-					</previewXsl>
-					<managedObjectDefinitions>
-						<moDef name="article" displayNameXPath="*[contains(@class, ' topic/title ')]" />
-					</managedObjectDefinitions>
-				</doctype>-->
-				<doctype type="DTD" publicId="urn:pubid:com.astd.doctypes:doctypes:dita:article">
-					<file>doctypes/article/dtd/article.dtd</file>
-					<previewXsl>src/xslt/preview/dita-preview-shell.xsl</previewXsl>
-					<managedObjectDefinitions>
-						<moDef name="chapter" displayNameXPath="*[contains(@class, ' topic/title ')]" />
-						<moDef name="article" displayNameXPath="*[contains(@class, ' topic/title ')]" />
-						<moDef name="concept" displayNameXPath="*[contains(@class, ' topic/title ')]" />
-						<moDef name="conversion_configuration" displayNameXPath="*[contains(@class, ' topic/title ')]" />
-						<moDef name="d4pQuestionTopic"
-							displayNameXPath="concat('Question: ', substring( normalize-space(./d4pQuestionTopicBody), 1, 148), '...')" />
-						<moDef name="fig"
-							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Figure: ', substring(., 1, 30), '...'))" />
-						<moDef name="part" displayNameXPath="*[contains(@class, ' topic/title ')]" />
-						<moDef name="sidebar" displayNameXPath="*[contains(@class, ' topic/title ')]" />
-						<moDef name="subsection" displayNameXPath="*[contains(@class, ' topic/title ')]" />
-						<moDef name="table"
-							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Table: ', substring(., 1, 30), '...'))" />
-						<moDef name="task" displayNameXPath="*[contains(@class, ' topic/title ')]" />
-						<moDef name="topic" displayNameXPath="*[contains(@class, ' topic/title ')]" />
-					</managedObjectDefinitions>
-				</doctype>
+		<ditaOpenToolkit toolkitName="v185">
+			<toolkitPlugin toolkitPluginId="org.astd.doctypes">
+				<zipfile>astd-doctypes-plugin.zip</zipfile>
 			</toolkitPlugin>
 		</ditaOpenToolkit>
 	</extensionProvider>

@@ -73,14 +73,19 @@ Properties:
     <target name="delete-old-plugins" depends="delete-old-plugins-project-doctypes, delete-old-plugins-project-main, delete-old-plugins-project-toolkit-plugins">
 	    <!-- This project's plugin file names have changed over time.  The following helps prevent having older ones installed. -->
 	</target>
+      	
+	<target name="prepare-v185-ot-plugins">
+		<zip destfile="${lib.home}/rsuite-dita-ot-plugin.jar" update="true">
+			 <zipfileset file="sample_data/custom-plugin-descriptors/rsuite-dita-ot-plugin_rsuite-plugin.xml" fullpath="rsuite-plugin.xml"/>
+		</zip>
+	</target>
 
-    <target name="deploy-rsuite-plugins" depends="package-rsuite-plugins, delete-old-plugins">
+    <target name="deploy-rsuite-plugins" depends="package-rsuite-plugins, delete-old-plugins, prepare-v185-ot-plugins">
     	
         <copy todir="${rsuite.plugins.dir}" verbose="true" overwrite="true" force="true" failonerror="true">
             <fileset dir="${lib.home}">
                 <!-- DITA plugins -->
-              <!--  This plugin has been included since we will use the old dita libraries. -->
-             <!--    <include name="rsuite-dita-ot-plugin.jar"/> -->
+              	<include name="rsuite-dita-ot-plugin.jar"/>
             	<include name="dita2indesign-rsuite-plugin.jar" />
                 <include name="rsuite-dita-support-plugin.jar"/>
             	<include name="dita4publishers-rsuite-plugin.jar"/>
@@ -106,7 +111,7 @@ Properties:
 <!--                <include name="rsuite-system-monitoring-plugin.jar"/>-->
             </fileset>
         </copy>
-        
+
         <!-- In lieu of a more elegant solution, allow each environment to 
              tune how long to give RSuite to load the plugins.  This wait is
              needed to ensure the schemas are loaded before we try to load
