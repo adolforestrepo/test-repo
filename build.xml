@@ -232,8 +232,10 @@
 	</target>
 
 	<target name="deploy-minimal-toolkit-plugins-plugin" description="Compile and deploy the project's DITA Open Toolkit plugins plugin" depends="package-toolkit-plugins-plugin, delete-old-plugins-project-toolkit-plugins">
+		<!--
 		<fail unless="rsuite.plugins.dir">Property 'rsuite.plugins.dir'! is not set</fail>
 		<copy todir="${rsuite.plugins.dir}" file="${target.home}/${toolkit.plugins.plugin.target.jar}" />
+		-->
 	</target>
 
 	<target name="prepare-for-deploy" depends="package-rsuite-plugins" description="Build the plugin and the ancillary dependencies">

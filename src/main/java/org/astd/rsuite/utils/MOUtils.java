@@ -1,5 +1,7 @@
 package org.astd.rsuite.utils;
 
+import static com.reallysi.rsuite.api.ObjectType.*;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,20 +34,7 @@ import org.astd.rsuite.utils.browse.filters.ChildMoFilter;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-import com.reallysi.rsuite.api.Alias;
-import com.reallysi.rsuite.api.ContentAssemblyItem;
-import com.reallysi.rsuite.api.ManagedObject;
-import com.reallysi.rsuite.api.ManagedObjectReference;
-import com.reallysi.rsuite.api.MetaDataItem;
-import com.reallysi.rsuite.api.ObjectType;
-import com.reallysi.rsuite.api.RSuiteException;
-import com.reallysi.rsuite.api.Session;
-import com.reallysi.rsuite.api.User;
-import com.reallysi.rsuite.api.UserAgent;
-import com.reallysi.rsuite.api.VersionEntry;
-import com.reallysi.rsuite.api.VersionHistory;
-import com.reallysi.rsuite.api.VersionSpecifier;
-import com.reallysi.rsuite.api.VersionType;
+import com.reallysi.rsuite.api.*;
 import com.reallysi.rsuite.api.control.ManagedObjectAdvisor;
 import com.reallysi.rsuite.api.control.NonXmlObjectSource;
 import com.reallysi.rsuite.api.control.ObjectCheckInOptions;
@@ -58,6 +47,7 @@ import com.reallysi.rsuite.api.control.XmlObjectSource;
 import com.reallysi.rsuite.api.extensions.ExecutionContext;
 import com.reallysi.rsuite.api.extensions.Plugin;
 import com.reallysi.rsuite.api.security.ACL;
+import com.reallysi.rsuite.api.tools.*;
 import com.reallysi.rsuite.service.ManagedObjectService;
 import com.reallysi.rsuite.service.SecurityService;
 import com.reallysi.rsuite.service.SessionService;
@@ -1019,4 +1009,41 @@ public class MOUtils
 
     return caRef;
   }
+  
+	public static ManagedObject getMoByFileNameAliasFromContainer(ExecutionContext context, User user, String fileName,
+			ContentAssemblyNodeContainer caContainer) throws RSuiteException {
+		ManagedObjectService moService = context.getManagedObjectService();
+
+		AliasHelper aliasHelper = moService.getAliasHelper();
+
+		for (ContentAssemblyItem item : caContainer.getChildrenObjects()) {
+			ObjectType objectType = item.getObjectType();
+			if (objectType == MANAGED_OBJECT_REF) {
+				ManagedObjectReference moRef = (ManagedObjectReference) item;
+				ManagedObject candidateMo = moService.getManagedObject(user, moRef.getTargetId());
+				String filenameAliasRealMo = aliasHelper.getFilename(user, candidateMo);
+				if (StringUtils.equals(fileName, filenameAliasRealMo)) {
+					return candidateMo;
+				}
+			}
+		}
+		return null;
+	}
+	
+	public static void updateAndCheckIn(User user, ManagedObjectService moService, ObjectSource objectSource,
+			ManagedObject existingMo, String versionNote) throws RSuiteException, ValidationException {
+		moService.update(
+				user, 
+				existingMo.getId(), 
+				objectSource,
+				new ObjectUpdateOptions());
+			
+		// Check in the MO
+		ObjectCheckInOptions checkInOptions = new ObjectCheckInOptions();
+		checkInOptions.setVersionType(VersionType.MINOR);
+		checkInOptions.setVersionNote(versionNote);
+		moService.checkIn(user, existingMo.getId(), checkInOptions);
+	}
+
+
 }
