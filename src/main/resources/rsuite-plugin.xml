@@ -18,6 +18,7 @@
 		<staticWebService root="/astd-plugin" path="/WebContent" />
 		
 		<remoteApiDefinition id="atd:webservice.canodetoditamap" handler="org.astd.rsuite.webservices.CaNodeToDitaMapWebService"/>
+		<remoteApiDefinition id="atd:webservice.docxToXml" handler="com.reallysi.rsuite.webservice.Docx2XmlWebService" />
 
 		<!-- Web services implemented for AMA, alphabetized. -->
 		<remoteApiDefinition id="astd.main.webservice.rsuite5.AddRoleToUser"
@@ -71,6 +72,39 @@
 					<property name="timeout" value="0" />
 					<property name="rsuite:group" value="dita" />
 					<property name="rsuite:icon" value="generateXml" />
+				</menuItem>
+			</menuItemList>
+			<ruleList>
+				<rule>include nodeType ca,canode,folder</rule>
+			</ruleList>
+		</contextMenuRuleSet>
+
+		<contextMenuRuleSet
+			name="rsuiteditasupport.contextmenuitem.docx2dita.transform">
+			<menuItemList>
+				<menuItem id="rsuite:wordToDita">
+					<actionName>rsuite:invokeWebservice</actionName>
+					<label>Create XML from Word</label>
+					<property name="remoteApiName" value="atd:webservice.docxToXml" />
+					<property name="showProgressMeter" value="true" />
+					<property name="rsuite:group" value="dita" />
+					<property name="rsuite:icon" value="generateXml" />
+				</menuItem>
+			</menuItemList>
+			<ruleList>
+				<rule>include nodeType ca,canode,folder</rule>
+			</ruleList>
+		</contextMenuRuleSet>
+		
+		<contextMenuRuleSet scope="allNodes"
+			id="atd:conversion-config-id-action">
+			<menuItemList>
+				<menuItem id="lmdEdit">
+					<actionName>rsuite:editMetaData</actionName>
+					<label>Conversion Config ID</label>
+					<property name="formId" value="atd:conversion-config-id-form" />
+					<property name="rsuite:group" value="atd:metadata-group" />
+					<property name="rsuite:path" value="Edit metadata" />
 				</menuItem>
 			</menuItemList>
 			<ruleList>
@@ -515,6 +549,23 @@
 					</optionList>
 				</param>
 			</paramList>
+		</formDefinition>
+
+		<formDefinition id="atd:conversion-config-id-form"
+			description="Conversion Config ID Form" label="Conversion Config ID Form">
+			<instructions>Set Conversion Config ID value</instructions>
+			<column name="metadata">
+				<param>
+					<name>conversion_config_id</name>
+					<label>Conversion Config ID</label>
+					<optionList>
+						<option value="Book Conversion Configuration" 
+								label="Book Conversion Configuration"/>
+					</optionList>
+					<formControlType>select</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+			</column>
 		</formDefinition>
 
 	</extensionProvider>

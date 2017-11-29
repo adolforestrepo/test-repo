@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<style2tagmap
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:public:dita4publishers.org:namespaces:word2dita:style2tagmap ../../doctypes/style2tagmap/xsd/style2tagmap.xsd"
+  xmlns="urn:public:dita4publishers.org:namespaces:word2dita:style2tagmap">
+   <title>RSuite Simple Book Style-to-Tag Map</title>
+   <documentation
+      xmlns:html="http://www.w3.org/1999/xhtml">
+      <html:div
+         xmlns="http://www.w3.org/1999/xhtml">
+         <p>Defines the RSuite TE mapping from MS Word styles to DITA markup.</p>
+         <p>NOTE: The first non-skipped paragraph in the document should styled as "Title", which is mapped to &lt;title&gt;
+            within &lt;pubmap&gt; and triggers the generation of the root output map.</p>
+      </html:div>
+   </documentation>
+   <styles>
+
+      <!-- define outputs first -->
+     
+   </styles>
+</style2tagmap>
+
+
+

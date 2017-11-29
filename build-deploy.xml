@@ -89,6 +89,7 @@ Properties:
             	<include name="dita2indesign-rsuite-plugin.jar" />
                 <include name="rsuite-dita-support-plugin.jar"/>
             	<include name="dita4publishers-rsuite-plugin.jar"/>
+            	<include name="rsuite-alias-setting-mo-advisor-plugin.jar"/>
             </fileset>
             <fileset dir="${target.home}">
                 <!-- Project schemas and customizations and toolkit plugins-->

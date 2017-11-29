@@ -53,5 +53,6 @@ def nonXmlMoTypes = ['nonxml']
 
 addOrReplaceLMDDefinition("ca-type", assemblyTypes, null, true, false, false);
 addOrReplaceLMDDefinition("article-process-id", assemblyTypes, null, true, false, false);
+addOrReplaceLMDDefinition("conversion_config_id", assemblyTypes, null, false, false, true)
 
 
