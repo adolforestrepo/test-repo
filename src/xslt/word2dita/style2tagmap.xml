@@ -3,7 +3,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="urn:public:dita4publishers.org:namespaces:word2dita:style2tagmap ../../doctypes/style2tagmap/xsd/style2tagmap.xsd"
   xmlns="urn:public:dita4publishers.org:namespaces:word2dita:style2tagmap">
-   <title>RSuite Simple Book Style-to-Tag Map</title>
+   <title>Style-to-Tag Map</title>
    <documentation
       xmlns:html="http://www.w3.org/1999/xhtml">
       <html:div
@@ -16,9 +16,27 @@
    <styles>
 
       <!-- define outputs first -->
+      <output
+         doctype-public="urn:pubid:astd.com/doctypes/dita/pubmap"
+         doctype-system="pubmap.dtd"
+         mapType="pubmap"
+         name="pubmap"
+         prologType="topicmeta"/>
+
+      <output
+         doctype-public="urn:pubid:astd.com/doctypes/dita/topic"
+         doctype-system="topic.dtd"
+         name="topic"/>
+      
+      <output
+         doctype-public="urn:pubid:astd.com/doctypes/dita/chapter"
+         doctype-system="chapter.dtd"
+         name="chapter"/>
      
+      <output
+         doctype-public="urn:pubid:astd.com/doctypes/dita/subsection"
+         doctype-system="subsection.dtd"
+         name="subsection"/>
+
    </styles>
 </style2tagmap>
-
-
-
