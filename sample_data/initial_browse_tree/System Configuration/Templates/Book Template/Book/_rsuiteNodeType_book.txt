@@ -6,5 +6,12 @@ ACL {
     Art_Director="list,view,edit,delete,copy,reuse,admin"
     Production_Specialist="list,view,edit,delete,copy,reuse,admin"
     Associate_Editor="list,view,edit,delete,copy,reuse,admin"
+    DevelopmentalEditor="list,view,edit,delete,copy,reuse,admin"
+    CopyEditor="list,view,edit,delete,copy,reuse,admin"
+    Proofreader="list,view,edit,delete,copy,reuse,admin"
+    Designer="list,view,edit,delete,copy,reuse,admin"
+    DesignReviewer="list,view,edit,delete,copy,reuse,admin"
+    ProductionManager="list,view,edit,delete,copy,reuse,admin"
+    Author="list,view,edit,delete,copy,reuse,admin"
   }
 }
