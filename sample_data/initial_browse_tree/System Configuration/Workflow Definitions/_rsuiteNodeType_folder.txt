@@ -1,0 +1,6 @@
+ACL {
+  roles {
+    any="list,view"
+  }
+}
+

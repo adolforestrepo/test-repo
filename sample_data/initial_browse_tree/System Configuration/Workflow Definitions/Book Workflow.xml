@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<status-workflow name="Book Workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="status-workflow.xsd">
+	
+	<!-- upload step -->
+	<status content-status="upload" email-notification="true" name="Submit for Book Workflow" role="DevelopmentalEditor" default-user="" due-date-offset="2 day" allow-to-reroute="true">
+		<instructions>Developmental editor uploads the file into RSuite</instructions>
+	</status>
+	
+	<status content-status="edits" email-notification="true" name="Edit manuscript" role="DevelopmentalEditor" default-user="" due-date-offset="2 day" allow-to-reroute="true">
+		<instructions>DE edits manuscript in word, checking in, checking out file using RSuite as repository (as opposed to the editor’s local storage)</instructions>
+	</status>
+	
+	
+
+</status-workflow>
