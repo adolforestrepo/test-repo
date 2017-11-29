@@ -1,0 +1,10 @@
+ACL {
+  roles {
+    any="list,view"
+    Editor="list,view,edit,delete,copy,reuse,admin"
+    Managing_Editor="list,view,edit,delete,copy,reuse,admin"
+    Art_Director="list,view,edit,delete,copy,reuse,admin"
+    Production_Specialist="list,view,edit,delete,copy,reuse,admin"
+    Associate_Editor="list,view,edit,delete,copy,reuse,admin"
+  }
+}

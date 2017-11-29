@@ -112,6 +112,22 @@
 			</ruleList>
 		</contextMenuRuleSet>
 
+		<contextMenuRuleSet scope="allNodes"
+			id="atd:action.book">
+			<menuItemList>
+				<menuItem id="lmdEdit">
+					<actionName>rsuite:editMetaData</actionName>
+					<label>Edit Book metadata</label>
+					<property name="formId" value="atd:form.book" />
+					<property name="rsuite:group" value="atd:group.book" />
+					<property name="rsuite:path" value="Edit metadata" />
+				</menuItem>
+			</menuItemList>
+			<ruleList>
+				<rule>include caType book</rule>
+			</ruleList>
+		</contextMenuRuleSet>
+
 		<contextMenuRuleSet name="astd.contextmenu.exportArticleHTML">
 			<menuItemList>
 				<menuItem>
@@ -563,6 +579,144 @@
 								label="Book Conversion Configuration"/>
 					</optionList>
 					<formControlType>select</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+			</column>
+		</formDefinition>
+		
+		<formDefinition id="atd:form.book"
+			description="Book metadata" label="Book metadata">
+			<instructions>Set Book metadata values</instructions>
+			<column name="metadata-1">
+				<param>
+					<name>book_date</name>
+					<label>Date:</label>
+					<formControlType>date</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>submitted_by</name>
+					<label>Submitted By:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>new_or_revision</name>
+					<label>New or Revision:</label>
+					<optionList>
+						<option value="new" label="New"/>
+						<option value="revision" label="Revision"/>
+					</optionList>
+					<formControlType>select</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>pub_date</name>
+					<label>Pub Date:</label>
+					<formControlType>date</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>title</name>
+					<label>Title:</label>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>subtitle</name>
+					<label>Subtitle:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>edition</name>
+					<label>Edition:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>long_description</name>
+					<label>Long Description:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>short_description</name>
+					<label>Short Description:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>author_bio</name>
+					<label>Author Bio:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+			</column>
+			<column name="metadata-2">
+				<param>
+					<name>keywords</name>
+					<label>Keywords:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>list_price</name>
+					<label>List Price:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>member_price</name>
+					<label>Member Price:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>trim_size</name>
+					<label>Trim Size:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>format</name>
+					<label>Format:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>page_count</name>
+					<label>Page Count:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>bisac</name>
+					<label>BISAC:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>store_category</name>
+					<label>Store Category:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>audience</name>
+					<label>Audience:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>table_of_contents</name>
+					<label>Table of Contents:</label>
+					<formControlType>text</formControlType>
+					<allowMultiple>false</allowMultiple>
+				</param>
+				<param>
+					<name>endorsements</name>
+					<label>Endorsements:</label>
+					<formControlType>text</formControlType>
 					<allowMultiple>false</allowMultiple>
 				</param>
 			</column>

@@ -162,6 +162,9 @@ def createBrowseTreeFromFolder(dirFile, parentFolder, parentId, level, skipIfExi
     case "folder":
       createContentAssemblyFromDirectory(dirFile, parentId, level, nodeType)
       break
+    case "book":
+      createContentAssemblyFromDirectory(dirFile, parentId, level, nodeType)
+      break
     case "root":      
     default:
       setPermissions(parentId,dirFile)

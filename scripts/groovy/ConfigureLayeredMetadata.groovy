@@ -49,10 +49,32 @@ def addOrReplaceLMDDefinition(lmdName, associatedElements, allowedValues, versio
 println"Updating definitions"
 
 def assemblyTypes = ['rs_ca', 'rs_canode']
+def bookType = ['book']
 def nonXmlMoTypes = ['nonxml']
 
 addOrReplaceLMDDefinition("ca-type", assemblyTypes, null, true, false, false);
 addOrReplaceLMDDefinition("article-process-id", assemblyTypes, null, true, false, false);
 addOrReplaceLMDDefinition("conversion_config_id", assemblyTypes, null, false, false, true)
 
-
+// Book metadata
+addOrReplaceLMDDefinition("book_date", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("submitted_by", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("new_or_revision", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("pub_date", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("title", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("subtitle", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("edition", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("long_description", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("short_description", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("author_bio", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("keywords", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("list_price", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("member_price", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("trim_size", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("format", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("page_count", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("bisac", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("store_category", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("audience", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("table_of_contents", bookType, null, false, false, true)
+addOrReplaceLMDDefinition("endorsements", bookType, null, false, false, true)

@@ -19,6 +19,7 @@
 	<dependency org="rsi" name="rsuite-dita-support-workflows-plugin" rev="2.0"/>
 	<dependency org="rsi" name="rsuite-dita-support-actions-plugin" rev="2.0"/>  
     <dependency org="rsi" name="rsuite-alias-setting-mo-advisor-plugin" rev="1.2" /> 
+    <dependency org="rsi" name="rsuite-templates-manager-plugin" rev="20131210" />
 	<dependency org="dita2indesign" name="dita2indesign-rsuite-plugin" rev="20091030"/>  
     <dependency org="dita4publishers" name="dita4publishers-rsuite-plugin" rev="20100119"/>
     <dependency org="dita2indesign" name="dita2indesign-inx-util" rev="0.9.18RC18"/>

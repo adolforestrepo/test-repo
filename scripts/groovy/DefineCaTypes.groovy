@@ -10,33 +10,22 @@
  *        (e.g., "article" may be a good default for "issue")
  */
  
-def defineContentAssemblyType(name, label, requiresCheckout, 
-  defaultChildType) {
-   info("Defining CA type where name is \"" + name + 
-      "\", label is \"" + label + 
-      "\", requiresCheckout is \"" + requiresCheckout + 
-      "\" and defaultChildType is \"" + defaultChildType + "\"...")
-   def result = rsuite.createContentAssemblyTypeDefinition(
-      name, 
-      label, 
-      requiresCheckout, 
-      defaultChildType)
-}
+def defineContentAssemblyType(typeName, label, requiresCheckout, defaultChildType) {
+	println " + [INFO] Defining content assembly types:"
+	println " + [INFO] Type Name: ${typeName}"
+	println " + [INFO] Label: ${label}"
+	println " + [INFO] Requires Checkout: ${requiresCheckout}"
+	println " + [INFO] Default Child Type: ${defaultChildType}"
 
-/**
- * Print an informational message to stdout
- *
- * @param msg
- */
-def info(msg) {
-   println " + [INFO] ${msg}"
+	def result = rsuite.createContentAssemblyTypeDefinition(
+		typeName, 
+		label, 
+		requiresCheckout, 
+		defaultChildType)
 }
 
 rsuite.login()
 
-try {
-
-}
- finally {
-	rsuite.logout();
-}
+/* Required by rsuite-templates-manager-plugin. */
+defineContentAssemblyType("ca_template", "CA Template", false, null)
+defineContentAssemblyType("book", "Book", false, null)
