@@ -1,16 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status-workflow name="Book Workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:noNamespaceSchemaLocation="status-workflow.xsd">
-	
-	<!-- upload step -->
-	<status content-status="upload" email-notification="true" name="Submit for Book Workflow" role="DevelopmentalEditor" default-user="" due-date-offset="2 day" allow-to-reroute="true">
-		<instructions>Developmental editor uploads the file into RSuite</instructions>
+
+	<!-- 1-8 Developmental Editor collaborating with author. (Assumption: Author is out of RSuite scope) -->
+	<status content-status="edit-I" email-notification="true" name="Edit manuscript (Developmental Editor)" role="DevelopmentalEditor" default-user="" due-date-offset="6 day" allow-to-reroute="true">
+		<instructions>Edit manuscript in word. Collaborate with Author.</instructions>
+	</status>
+
+	<!-- 9-15 CopyEditor (Production Editor) collaborating with author. -->
+	<status content-status="edit-II" email-notification="true" name="Edit manuscript (Production Editor)" role="CopyEditor" default-user="" due-date-offset="6 day" allow-to-reroute="true">
+		<instructions>Edit manuscript in word. Apply styles to Word. Collaborate with Author.</instructions>
+	</status>
+
+	<!-- 16-18: Designer. -->
+	<status content-status="edit-III" email-notification="true" name="InDesign and PDF (Designer)" role="Designer" default-user="" due-date-offset="6 day" allow-to-reroute="true">
+		<instructions>Lay out files in InDesign. Create PDF proof and InCopy files.</instructions>
 	</status>
 	
-	<status content-status="edits" email-notification="true" name="Edit manuscript" role="DevelopmentalEditor" default-user="" due-date-offset="2 day" allow-to-reroute="true">
-		<instructions>DE edits manuscript in word, checking in, checking out file using RSuite as repository (as opposed to the editor’s local storage)</instructions>
+	<!-- 19: CopyEditor -->
+	<status content-status="edit-IV" email-notification="true" name="Review PDF (Production Editor)" role="CopyEditor" default-user="" due-date-offset="6 day" allow-to-reroute="true">
+		<instructions>Review PDF. Send PDF to Author for review.</instructions>
 	</status>
 	
+	<!-- 20: Proofreader -->
+	<status content-status="edit-V" email-notification="true" name="Review PDF (Proofreader)" role="Proofreader" default-user="" due-date-offset="2 day" allow-to-reroute="true">
+		<instructions>Return changes to Copy Editor.</instructions>
+	</status>
 	
+	<!-- 21, 22: CopyEditor -->
+	<status content-status="edit-VI" email-notification="true" name="Make Proofread and Author edits (Production Editor)" role="CopyEditor" default-user="" due-date-offset="6 day" allow-to-reroute="true">
+		<instructions>Make Proofread and Author edits. Send InCopy files.</instructions>
+	</status>
+	
+	<!-- 23, 25: Designer -->
+	<status content-status="edit-VII" email-notification="true" name="InDesign and PDF proof (Designer)" role="Designer" default-user="" due-date-offset="6 day" allow-to-reroute="true">
+		<instructions>Make additional changes in InDesign. Generate new PDF proof.</instructions>
+	</status>
+	
+	<!-- 26: Editorial -->
+	<status content-status="edit-VIII" email-notification="true" name="Approve final layout (Editorial)" role="" default-user="" due-date-offset="2 day" allow-to-reroute="true">
+		<instructions>Approve final layout.</instructions>
+	</status>
+	
+	<!-- 27: Designer -->
+	<status content-status="edit-IX" email-notification="true" name="PDF to Design team for approval (Designer)" role="Designer" default-user="" due-date-offset="6 day" allow-to-reroute="true">
+		<instructions>PDF circulates through Design team for approval. Design team marks up design edits and send it back to the book Designer to make final changes. Final PDF file goes to Production Manager for print.</instructions>
+	</status>
+	
+	<!-- 28: Production Manager -->
+	<status content-status="edit-X" email-notification="true" name="Final PDF to print (Production Manager)" role="ProductionManager" default-user="" due-date-offset="6 day" allow-to-reroute="true">
+		<instructions>Final PDF to print</instructions>
+	</status>
+	
+	<!-- 29: Upload cover -->
+	<status content-status="edit-XI" email-notification="true" name="Upload cover" role="" default-user="" due-date-offset="2 day" allow-to-reroute="true">
+		<instructions>Upload cover</instructions>
+	</status>
+	
+	<!-- 30: Generate other file types (xml, PDF, epub, mobi) -->
+	<status content-status="edit-XII" email-notification="true" name="Generate other file types" role="" default-user="" due-date-offset="6 day" allow-to-reroute="true">
+		<instructions>Generate other file types (XML, PDF, EPUB, MOBI)</instructions>
+	</status>
 
 </status-workflow>
