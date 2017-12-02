@@ -111,6 +111,20 @@
 					<property name="rsuite:path" value="Create output" />
 					<property name="rsuite:group" value="dita" />
 				</menuItem>
+				<menuItem id="rsuite:ditaToIndesign">
+					<actionName>rsuite:invokeWebservice</actionName>
+					<property name="rsuite:icon" value="adobeIncopy" />
+					<label>InDesign (InCopy)</label>
+					<property name="remoteApiName" value="atd:webservice.RunDitaOTWebService" />
+					<property name="serviceParams.transtype" value="indesign"/>
+					<property name="serviceParams.openToolkitName" value="v185" />
+					<property name="showProgressMeter" value="true" />
+					<property name="timeout" value="0" />
+					<property name="rsuite:path" value="Create output" />
+					<property name="rsuite:group" value="dita" />
+					<property name="serviceParams.outputExtension" value="icml" />
+					<property name="serviceParams.attachingFolderName" value="ICML" />
+				</menuItem>
 			</menuItemList>
 			<ruleList>
 				<rule>include nodeType ca,canode,mo,folder</rule>
