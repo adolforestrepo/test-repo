@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================= -->
+<!--                    DOMAIN EXTENSIONS                          -->
+<!--                    Common (default) integrations              -->
+<!-- ============================================================= -->
+
+<!ENTITY % fig          
+  "fig |
+   %d4p_math-d-fig;
+  "      
+>
+
+<!ENTITY % ph
+  "ph | 
+   %hi-d-ph; |
+   %d4p_math-d-ph; |
+   %d4p_formatting-d-ph;
+  "
+>
+
+<!ENTITY % p
+  "p | 
+   %d4p_math-d-p; |
+   %d4p_formatting-d-p;
+  "
+>
+
+<!ENTITY % lines
+  "lines |
+   %d4p_verse-d-lines;
+  "
+>
+
+<!ENTITY % bodydiv
+  "bodydiv |
+   %learning2-d-div; |
+   %d4p_pubcontent-d-bodydiv;
+  "  
+>
+
+<!ENTITY % section 
+ "section 
+ "
+>
+
+<!ENTITY % sectiondiv
+ "sectiondiv |
+   %learning2-d-div;
+ "
+>
+
+<!ENTITY % data
+  "data | 
+   %d4p_enumerationTopic-d-data; | 
+   %d4p_variables-d-data; | 
+   %d4p_simpleEnumeration-d-data; | 
+   %sdClassification-d-data;
+  "
+>
+
+<!ENTITY % keyword
+  "keyword |
+   %d4p_variables-d-keyword; |
+   %xml-d-keyword;
+  "
+>
+                      
+<!ENTITY % text
+  "text |
+   %d4p_variables-d-text;
+  "
+>
+                      
+<!ENTITY % object
+  "object |
+   %d4p_media-d-object;
+  "
+>
+                      
+<!ENTITY % foreign
+  "foreign |
+   %d4p_math-d-foreign;
+  "
+>
+
+<!ENTITY % xref
+  "xref |
+   %d4p_formatting-d-xref;
+  "
+>
+
+<!ENTITY % lcInteractionBase "lcInteractionBase 
+                        ">                        
+<!ENTITY % lcInteractionBase2 "lcInteractionBase2 |
+                          %learning-d-lcInteractionBase2;
+                        ">                        
+
+
+<!-- ============================================================= -->
+<!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
+<!-- ============================================================= -->
+<!--                    Must be declared ahead of the DTDs, which
+                        puts @domains first in order               -->
+
+ 
+ <!ENTITY included-domains 
+    "&hi-d-att; 
+     &indexing-d-att;
+     &d4p_formatting-d-att;
+     &d4p_renditionTargetAtt-d-att;
+     &d4p_math-d-att;
+     &d4p_variables-d-att;
+     &d4p_verse-d-att;
+     &learning2-d-att;
+     &learningBase-att;
+     &learningInteractionBase-d-att;
+     &learningInteractionBase2-d-att;
+     &xml-d-att;
+     &rsuiteIdAtt-d-att;
+     &sdClassification-d-att;
+     &mpg_semanticAtt-d-att;
+    "                
+ >
+
+
+<!--                    Definitions of declared elements           -->
+<!ENTITY % topicDefns   PUBLIC 
+                       "-//OASIS//ENTITIES DITA Topic Definitions//EN" 
+                       "topicDefn.ent"                              >
+%topicDefns;
+
+<!ENTITY % props-attribute-extensions "
+%d4p_renditionTargetAtt-d-attribute; 
+%rsuiteIdAtt-d-attribute;" >
+<!ENTITY % base-attribute-extensions 
+"%mpg_semanticAtt-d-attribute;" >
+
+<!-- =================== End of declaration set ==================== -->

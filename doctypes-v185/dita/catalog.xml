@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+  
+  <!-- domain modules -->
+
+  <nextCatalog catalog="rsuiteIdAttDomain/catalog.xml"/>
+  <nextCatalog catalog="mpg_semanticAttDomain/catalog.xml"/>
+  <nextCatalog catalog="learning2Domain/catalog.xml"/>
+  <nextCatalog catalog="sdClassificationDomain/catalog.xml"/>
+
+  <!-- Topic types -->
+  
+  <nextCatalog catalog="article/catalog.xml"/>
+  <nextCatalog catalog="chapter/catalog.xml"/>
+  <nextCatalog catalog="common/catalog.xml"/>
+  <nextCatalog catalog="concept/catalog.xml"/>
+  <nextCatalog catalog="glossentry/catalog.xml"/>
+  <nextCatalog catalog="part/catalog.xml"/>
+  <nextCatalog catalog="reference/catalog.xml"/>
+  <nextCatalog catalog="sidebar/catalog.xml"/>
+  <nextCatalog catalog="subjectScheme/catalog.xml"/>
+  <nextCatalog catalog="subsection/catalog.xml"/>
+  <nextCatalog catalog="task/catalog.xml"/>
+  <nextCatalog catalog="topic/catalog.xml"/>
+  
+  <!-- Map types -->
+
+  <nextCatalog catalog="bookmap/catalog.xml"/>
+  <nextCatalog catalog="map/catalog.xml"/>
+  <nextCatalog catalog="pubmap/catalog.xml"/>
+  
+  <!-- Non-DITA types -->
+  
+  
+</catalog>

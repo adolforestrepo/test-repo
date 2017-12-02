@@ -1,0 +1,180 @@
+<!--=============================================================
+    Local shell for RSI
+    ============================================================= -->
+
+
+<!ENTITY % bookmap-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 BookMap//EN" 
+         "bookmap.ent"
+>%bookmap-dec;
+
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ENTITY DECLARATIONS                 -->
+<!-- ============================================================= -->
+
+<!ENTITY % d4p_enumerationMap-d-dec     PUBLIC 
+"urn:pubid:dita4publishers.org:entities:dtd:dita:d4p_enumerationMap:entities" 
+"d4p_enumerationMapDomain.ent"                                                
+>
+%d4p_enumerationMap-d-dec;
+
+<!ENTITY % d4p_simpleEnumeration-d-dec     PUBLIC 
+"urn:pubid:dita4publishers.org:entities:dtd:dita:d4p_simpleEnumerationDomain:entities" 
+"d4p_simpleEnumerationDomain.ent"                                                
+>
+%d4p_simpleEnumeration-d-dec;
+
+<!ENTITY % d4p_variables-d-dec     PUBLIC 
+"urn:pubid:dita4publishers.org:doctypes:dita:modules:d4p_variablesDomain:entities" 
+"d4p_variablesDomain.ent"                                                
+>
+%d4p_variables-d-dec;
+
+<!ENTITY % mapgroup-d-dec 
+                        PUBLIC 
+"-//OASIS//ENTITIES DITA 1.2 Map Group Domain//EN" 
+"mapGroup.ent"                                                 >
+%mapgroup-d-dec;
+
+<!ENTITY % indexing-d-dec     PUBLIC 
+"-//OASIS//ENTITIES DITA 1.2 Indexing Domain//EN" 
+"indexingDomain.ent"                                           >
+%indexing-d-dec;
+
+<!ENTITY % delay-d-dec     
+  PUBLIC "-//OASIS//ENTITIES DITA 1.2 Delayed Resolution Domain//EN" 
+         "delayResolutionDomain.ent"                                                       
+>%delay-d-dec;
+
+<!ENTITY % xnaldomain-d-dec 
+                        PUBLIC 
+"-//OASIS//ENTITIES DITA 1.2 XNAL Domain//EN" 
+"xnalDomain.ent"                                      >
+%xnaldomain-d-dec;
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE DECLARATIONS              -->
+<!-- ============================================================= -->
+
+<!ENTITY % rsuiteIdAttDomain
+  PUBLIC "urn:www.rsuite.com:domains:rsuite_id_att:entities" 
+         "rsuiteIdAttDomain.ent"
+>%rsuiteIdAttDomain;
+
+<!ENTITY % d4p_renditionTargetAtt-d-dec     
+  PUBLIC "urn:pubid:dita4publishers.org:doctypes:dita:modules:d4p_renditionTargetAttDomain:entities" 
+         "d4p_renditionTargetAttDomain.ent"                                                
+>
+%d4p_renditionTargetAtt-d-dec;
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN EXTENSIONS                          -->
+<!-- ============================================================= -->
+<!--                    One for each extended base element, with
+                        the name of the domain(s) in which the
+                        extension was declared                     -->
+<!ENTITY % author       "author | 
+                         %xnal-d-author;
+                        ">
+<!ENTITY % topicref     "topicref |
+                         %mapgroup-d-topicref;
+                        ">
+<!ENTITY % index-base   "index-base |
+                         %indexing-d-index-base;
+                        ">
+<!ENTITY % keywords     "keywords | 
+                         %delay-d-keywords;
+                        ">
+
+<!ENTITY % data
+  "data |   
+   %d4p_simpleEnumeration-d-data; |
+   %d4p_variables-d-data;
+  "
+>
+
+<!ENTITY % keyword
+  "keyword |
+   %d4p_variables-d-keyword;
+  "
+>
+                      
+<!ENTITY % text
+  "text |
+   %d4p_variables-d-text;
+  "
+>
+
+
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ATTRIBUTE EXTENSIONS                -->
+<!-- ============================================================= -->
+<!ENTITY % props-attribute-extensions "
+  %d4p_renditionTargetAtt-d-attribute; 
+  %rsuiteIdAtt-d-attribute;
+  " >
+<!ENTITY % base-attribute-extensions   ""                            >
+
+<!-- ============================================================= -->
+<!--                    DOMAINS ATTRIBUTE OVERRIDE                 -->
+<!-- ============================================================= -->
+<!--                    Must be declared ahead of the DTDs, which
+                        puts @domains first in order               -->
+<!ENTITY included-domains 
+                        "&bookmap-att;
+                         &delay-d-att;
+                         &mapgroup-d-att;
+                         &indexing-d-att; 
+                         &xnal-d-att;
+                         &d4p_enumerationMap-d-att;
+                         &d4p_simpleEnumerationMap-d-att;
+                         &d4p_variables-d-att;
+                        ">
+
+
+<!-- ============================================================= -->
+<!--                    MAP ELEMENT INTEGRATION                    -->
+<!-- ============================================================= -->
+
+<!ENTITY % map-type PUBLIC 
+"-//OASIS//ELEMENTS DITA 1.2 Map//EN" 
+"../../base/dtd/map.mod"                                                      >
+%map-type;
+
+<!ENTITY % bookmap-type PUBLIC 
+"-//OASIS//ELEMENTS DITA 1.2 BookMap//EN" 
+"bookmap.mod"                                                        >
+%bookmap-type;
+
+<!-- ============================================================= -->
+<!--                    DOMAIN ELEMENT INTEGRATION                 -->
+<!-- ============================================================= -->
+
+<!ENTITY % mapgroup-d-def  
+                        PUBLIC 
+"-//OASIS//ELEMENTS DITA 1.2 Map Group Domain//EN" 
+"../../base/dtd/mapGroup.mod"                                                 >
+%mapgroup-d-def;
+
+<!ENTITY % indexing-d-def
+                        PUBLIC 
+"-//OASIS//ELEMENTS DITA 1.2 Indexing Domain//EN" 
+"../../base/dtd/indexingDomain.mod"                                           >
+%indexing-d-def;
+
+<!ENTITY % delay-d-def     
+  PUBLIC "-//OASIS//ELEMENTS DITA 1.2 Delayed Resolution Domain//EN" 
+         "../../base/dtd/delayResolutionDomain.mod"
+>%delay-d-def;
+
+<!ENTITY % xnaldomain-d-def  
+                        PUBLIC 
+"-//OASIS//ELEMENTS DITA 1.2 XNAL Domain//EN" 
+"../../xnal/dtd/xnalDomain.mod"                                      >
+%xnaldomain-d-def;
+
+<!-- ================== End DITA Map DTD  ======================== -->

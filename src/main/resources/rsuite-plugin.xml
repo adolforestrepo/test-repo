@@ -19,6 +19,7 @@
 		
 		<remoteApiDefinition id="atd:webservice.canodetoditamap" handler="org.astd.rsuite.webservices.CaNodeToDitaMapWebService"/>
 		<remoteApiDefinition id="atd:webservice.docxToXml" handler="com.reallysi.rsuite.webservice.Docx2XmlWebService" />
+		<remoteApiDefinition id="atd:webservice.RunDitaOTWebService" handler="com.reallysi.rsuite.webservice.RunDitaOTWebService" />
 
 		<!-- Web services implemented for AMA, alphabetized. -->
 		<remoteApiDefinition id="astd.main.webservice.rsuite5.AddRoleToUser"
@@ -95,7 +96,27 @@
 				<rule>include nodeType ca,canode,folder</rule>
 			</ruleList>
 		</contextMenuRuleSet>
-		
+
+		<contextMenuRuleSet name="ditaOutputActions">
+			<menuItemList>
+				<menuItem id="rsuite.ditaToPdfService">
+					<actionName>rsuite:invokeWebservice</actionName>
+					<label>PDF</label>
+					<property name="rsuite:icon" value="pdf" />
+					<property name="remoteApiName" value="atd:webservice.RunDitaOTWebService" />
+					<property name="serviceParams.transtype" value="pdf2" />
+					<property name="serviceParams.openToolkitName" value="v185" />
+					<property name="showProgressMeter" value="true" />
+					<property name="timeout" value="0" />
+					<property name="rsuite:path" value="Create output" />
+					<property name="rsuite:group" value="dita" />
+				</menuItem>
+			</menuItemList>
+			<ruleList>
+				<rule>include nodeType ca,canode,mo,folder</rule>
+			</ruleList>
+		</contextMenuRuleSet>
+
 		<contextMenuRuleSet scope="allNodes"
 			id="atd:conversion-config-id-action">
 			<menuItemList>

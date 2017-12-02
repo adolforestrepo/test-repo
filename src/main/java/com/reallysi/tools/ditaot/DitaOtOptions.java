@@ -54,7 +54,7 @@ public class DitaOtOptions extends ProcessMessageContainerImpl implements Execut
 	public static final String CA_NODE_ID_PARAM = "caNodeId";
 	
 	
-	public static final String DEFAULT_CA_TO_MAP_TRANSFORM_URL = "rsuite:/res/plugin/rsuite-dita-support/canode2map/canode2map_shell.xsl"; 
+	public static final String DEFAULT_CA_TO_MAP_TRANSFORM_URL = "rsuite:/res/plugin/astd-plugin/xslt/canode2map/canode2map_shell.xsl"; 
 	
 	/**
 	 * Controls debugging messages in the transform. Set to "true" turn debugging
@@ -172,7 +172,7 @@ public class DitaOtOptions extends ProcessMessageContainerImpl implements Execut
 		this.transtype = transtype;
 		this.log = LogFactory.getLog( DitaOtOptions.class);
 		
-		setCommonTaskProperties();
+		//setCommonTaskProperties();
 	}
 
 	@Override
@@ -414,7 +414,7 @@ public class DitaOtOptions extends ProcessMessageContainerImpl implements Execut
 		return buildFile;
 	}
 	
-	protected void setCommonTaskProperties() {
+	public void setCommonTaskProperties() {
 		properties.setProperty("transtype", getTranstype());
 		try {
 			File tempDir = getTempDir();

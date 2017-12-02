@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"          
+  prefer="public">  
+  <public publicId="urn:pubid:astd.com/doctypes/dita/subsection"
+    uri="subsection.dtd"
+  />
+  <system systemId="urn:pubid:astd.com/doctypes/dita/subsection.dtd"
+          uri="subsection.dtd"
+  />
+
+  <public publicId="urn:pubid:com.mpg.doctypes:modules:subsection"
+        uri="subsection.mod"
+    />
+  <system systemId="urn:pubid:com.mpg.doctypes:modules:subsection.mod"
+        uri="subsection.mod"
+    />
+  
+  <public publicId="urn:pubid:com.mpg.doctypes:modules:subsection:entities"
+    uri="subsection.ent"
+  />
+  <system systemId="urn:pubid:com.mpg.doctypes:modules:subsection:subsection.ent"
+    uri="subsection.ent"
+  />
+</catalog>  

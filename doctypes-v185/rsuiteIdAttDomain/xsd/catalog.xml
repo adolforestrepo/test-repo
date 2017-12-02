@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"          
+  prefer="public">  
+  
+  <uri name="urn:www.rsuite.com:domains:rsuiteIdAtt"
+    uri="rsuiteIdAttDomain.xsd"
+  />
+  <system systemId="urn:www.rsuite.com:domains:rsuiteIdAtt"
+    uri="rsuiteIdAttDomain.xsd"
+  />
+  
+</catalog>  

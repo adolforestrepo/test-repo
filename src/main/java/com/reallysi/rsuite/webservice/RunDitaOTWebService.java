@@ -1,5 +1,6 @@
 package com.reallysi.rsuite.webservice;
 
+import static com.reallysi.tools.ditaot.DitaOtOptions.*;
 import static org.apache.commons.lang3.StringUtils.*;
 
 import java.io.File;
@@ -156,6 +157,11 @@ public class RunDitaOTWebService extends DefaultRemoteApiHandler {
 		writer.flush(); // Make sure everything is written to the underlying stream.
 
 		DitaOtOptions ditaotOptions = new DitaOtOptions(context, user, transtype);
+		// Set OT
+		String otValue = args.getFirstString(OPEN_TOOLKIT_NAME_PARAM, "default");
+		ditaotOptions.setParameter(OPEN_TOOLKIT_NAME_PARAM, otValue);
+		ditaotOptions.setCommonTaskProperties();
+
 		ditaotOptions.setSession(session);
 		try {
 			ditaotOptions.setMessageWriter(writer);

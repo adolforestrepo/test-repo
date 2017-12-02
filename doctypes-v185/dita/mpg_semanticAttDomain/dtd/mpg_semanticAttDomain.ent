@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ============================================================
+     MPG Semantic attribute
+     
+     This attribute captures the semantic meaning of a generic DITA element.
+           
+     ===========================================================-->
+<!ENTITY % mpg_semanticAtt-d-attribute "semantic CDATA #IMPLIED">
+
+<!ENTITY mpg_semanticAtt-d-att "a(base semantic)" >
+
+<!-- ===== End of MPG Semantic Attribute Module ==== -->

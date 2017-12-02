@@ -21,8 +21,8 @@ Properties:
     	    description="Package this project's DITA toolkit doctypes plugin - only the doctypes" 
     	    depends="dita-init">
 	    <delete dir="${target.home}/${toolkit.dirname}" />
-        <copy todir="${target.home}/${toolkit.dirname}/org.astd.doctypes/doctypes">
-            <fileset dir="${basedir}/doctypes" includes="**" />
+        <copy todir="${target.home}/${toolkit.dirname}/org.astd.doctypes">
+            <fileset dir="${basedir}/doctypes-v185/dita" includes="**" />
         </copy>
 	    <copy todir="${target.home}/${toolkit.dirname}">
 	        <fileset dir="${basedir}/${toolkit.dirname}" includes="**/org.astd.doctypes/**" />
