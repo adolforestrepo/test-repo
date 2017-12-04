@@ -118,7 +118,7 @@
      &xml-d-att;
      &rsuiteIdAtt-d-att;
      &sdClassification-d-att;
-     &mpg_semanticAtt-d-att;
+     &astd_semanticAtt-d-att;
     "                
  >
 
@@ -133,6 +133,6 @@
 %d4p_renditionTargetAtt-d-attribute; 
 %rsuiteIdAtt-d-attribute;" >
 <!ENTITY % base-attribute-extensions 
-"%mpg_semanticAtt-d-attribute;" >
+"%astd_semanticAtt-d-attribute;" >
 
 <!-- =================== End of declaration set ==================== -->

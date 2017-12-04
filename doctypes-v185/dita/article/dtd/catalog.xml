@@ -8,17 +8,17 @@
           uri="article.dtd"
   />
 
-  <public publicId="urn:pubid:com.mpg.doctypes:modules:article"
+  <public publicId="urn:pubid:astd.com/modules:article"
         uri="article.mod"
     />
-  <system systemId="urn:pubid:com.mpg.doctypes:modules:article.mod"
+  <system systemId="urn:pubid:astd.com/modules:article.mod"
         uri="article.mod"
     />
   
-  <public publicId="urn:pubid:com.mpg.doctypes:modules:article:entities"
+  <public publicId="urn:pubid:astd.com/modules:article:entities"
     uri="article.ent"
   />
-  <system systemId="urn:pubid:com.mpg.doctypes:modules:article:article.ent"
+  <system systemId="urn:pubid:astd.com/modules:article:article.ent"
     uri="article.ent"
   />
 </catalog>  

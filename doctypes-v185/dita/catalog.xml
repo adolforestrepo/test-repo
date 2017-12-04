@@ -4,7 +4,7 @@
   <!-- domain modules -->
 
   <nextCatalog catalog="rsuiteIdAttDomain/catalog.xml"/>
-  <nextCatalog catalog="mpg_semanticAttDomain/catalog.xml"/>
+  <nextCatalog catalog="astd_semanticAttDomain/catalog.xml"/>
   <nextCatalog catalog="learning2Domain/catalog.xml"/>
   <nextCatalog catalog="sdClassificationDomain/catalog.xml"/>
 

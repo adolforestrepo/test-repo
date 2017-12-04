@@ -6,11 +6,11 @@
 <!--                    all HK topic shells                       -->
 <!-- ============================================================= -->
 
-<!ENTITY % mpg_semanticAttDomain-d-dec  
-   PUBLIC "urn:pubid:astd.com/doctypes/dita/modules:mpg_semanticAttDomain:entities"
-   "../mpg_semanticAttDomain/dtd/mpg_semanticAttDomain.ent"                                                
+<!ENTITY % astd_semanticAttDomain-d-dec  
+   PUBLIC "urn:pubid:astd.com/doctypes/dita/modules:astd_semanticAttDomain:entities"
+   "../astd_semanticAttDomain/dtd/astd_semanticAttDomain.ent"                                                
 >
-%mpg_semanticAttDomain-d-dec;
+%astd_semanticAttDomain-d-dec;
 
 <!ENTITY % imagemap "imagemap"> <!-- Fix for bug in learningDomain decls -->
 

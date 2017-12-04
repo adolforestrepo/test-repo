@@ -8,17 +8,17 @@
           uri="subsection.dtd"
   />
 
-  <public publicId="urn:pubid:com.mpg.doctypes:modules:subsection"
+  <public publicId="urn:pubid:astd.com/modules:subsection"
         uri="subsection.mod"
     />
-  <system systemId="urn:pubid:com.mpg.doctypes:modules:subsection.mod"
+  <system systemId="urn:pubid:astd.com/modules:subsection.mod"
         uri="subsection.mod"
     />
   
-  <public publicId="urn:pubid:com.mpg.doctypes:modules:subsection:entities"
+  <public publicId="urn:pubid:astd.com/modules:subsection:entities"
     uri="subsection.ent"
   />
-  <system systemId="urn:pubid:com.mpg.doctypes:modules:subsection:subsection.ent"
+  <system systemId="urn:pubid:astd.com/modules:subsection:subsection.ent"
     uri="subsection.ent"
   />
 </catalog>  

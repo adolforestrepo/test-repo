@@ -13,7 +13,7 @@
 <!-- ============================================================= -->
 
 <!ENTITY % article-dec     
-  PUBLIC "urn:pubid:com.mpg.doctypes:modules:article:entities" 
+  PUBLIC "urn:pubid:astd.com/modules:article:entities" 
          "article.ent"
 >%article-dec;
 
@@ -40,7 +40,7 @@
 <!ENTITY % props-attribute-extensions  ""                            >
 <!ENTITY % base-attribute-extensions   
 "%rsuiteIdAtt-d-attribute; |
-%mpg_semanticAtt-d-attribute;"                            >
+%astd_semanticAtt-d-attribute;"                            >
 
 
 <!-- ============================================================= -->

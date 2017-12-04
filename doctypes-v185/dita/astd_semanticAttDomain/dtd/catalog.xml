@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"          
+  prefer="public">  
+
+	<public publicId="urn:pubid:astd.com/doctypes/dita/modules:astd_semanticAttDomain:entities"
+  	uri="astd_semanticAttDomain.ent"
+  />
+	<system systemId="urn:pubid:astd.com/doctypes/dita/modules:astd_semanticAttDomain.ent"
+  	uri="astd_semanticAttDomain.ent"
+  />
+</catalog>  

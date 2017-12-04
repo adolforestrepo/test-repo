@@ -34,7 +34,7 @@
 <!-- ============================================================= -->
 <!ENTITY % props-attribute-extensions  ""                            >
 <!ENTITY % base-attribute-extensions   
-"%mpg_semanticAtt-d-attribute;"                            >
+"%astd_semanticAtt-d-attribute;"                            >
 
 
 <!-- ============================================================= -->
