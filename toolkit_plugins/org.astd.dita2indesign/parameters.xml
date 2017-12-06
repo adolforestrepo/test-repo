@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<params>
+
+	<param name="linked-frames-processing" expression="${linked-frames-processing}" if="linked-frames-processing"/>
+
+</params>

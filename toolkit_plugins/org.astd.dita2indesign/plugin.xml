@@ -1,0 +1,17 @@
+<plugin id="org.astd.dita2indesign">
+  
+  <require plugin="org.dita4publishers.dita2indesign"/> 
+  
+  <template file="build_transtype-astd-indesign_template.xml"/>
+  
+  <template file="xsl/dita2indesign_template.xsl"/>
+
+  <feature extension="dita.conductor.transtype.check" value="astd-indesign" type="txt"/>
+  <feature extension="dita.conductor.target.relative" value="build.xml" type="file"/>
+  <feature extension="d4p.indesign.xslt.param" file="parameters.xml"/>
+
+  <!-- New way of specifying metadata with parameters contributed by the transtype:
+        https://github.com/dita-ot/dita-ot/issues/1757
+   -->
+  <transtype name="astd-indesign" extends="d4pCommons" desc="InDesign (DITA 4 Publishers)"/>
+</plugin>
