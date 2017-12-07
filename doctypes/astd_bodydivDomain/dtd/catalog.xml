@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"          
+  prefer="public">  
+  <public publicId="urn:pubid:astd.com/doctypes/dita/modules/astd_bodydivDomain"
+    uri="astd_bodydivDomain.mod"
+  />
+  <system systemId="urn:pubid:astd.com/doctypes/dita/modules/astd_bodydivDomain.mod"
+    uri="astd_bodydivDomain.mod"
+  />
+  <public publicId="urn:pubid:astd.com/doctypes/dita/modules/astd_bodydivDomain/entities"
+    uri="astd_bodydivDomain.ent"
+  />
+  <system systemId="urn:pubid:astd.com/doctypes/dita/modules/astd_bodydivDomain.ent"
+    uri="astd_bodydivDomain.ent"
+  />
+</catalog>  

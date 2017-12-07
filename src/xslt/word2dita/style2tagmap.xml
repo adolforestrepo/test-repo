@@ -7,7 +7,8 @@
    <documentation
       xmlns:html="http://www.w3.org/1999/xhtml">
       <html:div
-         xmlns="http://www.w3.org/1999/xhtml">        
+         xmlns="http://www.w3.org/1999/xhtml">
+         <p>Defines the RSuite TE mapping from MS Word styles to DITA markup.</p>
          <p>NOTE: The first non-skipped paragraph in the document should styled as "Title", which is mapped to &lt;title&gt;
             within &lt;pubmap&gt; and triggers the generation of the root output map.</p>
       </html:div>
@@ -16,6 +17,7 @@
 
       <!-- define outputs first -->
       <output
+         doctype-public="urn:pubid:astd.com/doctypes/dita/pubmap"
          doctype-system="pubmap.dtd"
          mapType="pubmap"
          name="pubmap"
@@ -35,51 +37,6 @@
          doctype-public="urn:pubid:astd.com/doctypes/dita/subsection"
          doctype-system="subsection.dtd"
          name="subsection"/>
-
-      <paragraphStyle
-         level="0"
-         structureType="mapTitle"
-         containerType="pubtitle"
-         styleName="ATD DOCTYPE BOOK"
-         tagName="mainpubtitle">
-         <mapProperties format="pubmap" prologType="topicmeta" tagName="title"/>
-         <!--         <topicrefProperties topicrefType="topicref"/>
-         <topicProperties
-            bodyType="body"
-            format="topic"
-            topicDoc="yes"
-            topicType="topic"
-            outputclass="Professional_Book"/>
--->      </paragraphStyle>
-
-      <paragraphStyle
-         level="1"
-         structureType="topicTitle"
-         styleName="ATD CHAPTER"
-         tagName="title"
-         outputclass="Title">
-         <topicrefProperties topicrefType="topicref"/>
-         <topicProperties
-            bodyType="body"
-            format="chapter"
-            topicDoc="yes"
-            topicType="chapter"/>
-      </paragraphStyle> 
-
-
-      <paragraphStyle
-         level="2"
-         structureType="topicTitle"
-         styleName="Overview"
-         tagName="title">
-         <topicrefProperties topicrefType="topicref"/>
-         <topicProperties
-            bodyType="body"
-            format="subsection"
-            topicDoc="no"
-            topicType="subsection"
-            outputclass="Section"/>
-      </paragraphStyle>
 
    </styles>
 </style2tagmap>

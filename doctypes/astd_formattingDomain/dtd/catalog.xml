@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"          
+  prefer="public">  
+  <public publicId="urn:pubid:astd.com/doctypes/dita/modules/astd_formattingDomain"
+    uri="astd_formattingDomain.mod"
+  />
+  <system systemId="urn:pubid:astd.com/doctypes/dita/modules/astd_formattingDomain.mod"
+    uri="astd_formattingDomain.mod"
+  />
+  <public publicId="urn:pubid:astd.com/doctypes/dita/modules/astd_formattingDomain/entities"
+    uri="astd_formattingDomain.ent"
+  />
+  <system systemId="urn:pubid:astd.com/doctypes/dita/modules/astd_formattingDomain.ent"
+    uri="astd_formattingDomain.ent"
+  />
+</catalog>  
