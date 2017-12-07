@@ -116,7 +116,7 @@
 					<property name="rsuite:icon" value="adobeIncopy" />
 					<label>InDesign (InCopy)</label>
 					<property name="remoteApiName" value="atd:webservice.RunDitaOTWebService" />
-					<property name="serviceParams.transtype" value="indesign"/>
+					<property name="serviceParams.transtype" value="astd-indesign"/>
 					<property name="serviceParams.openToolkitName" value="v185" />
 					<property name="showProgressMeter" value="true" />
 					<property name="timeout" value="0" />
