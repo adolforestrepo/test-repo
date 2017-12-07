@@ -2,7 +2,7 @@
 
   <target name="dita2astd-indesign" unless="noMap">
     <antcall target="dita2astd">
-    	<param name="map2indesign.style" value="${dita.dir}/plugins/org.astd.dita2indesign/xsl/dita2indesign.xsl"/>
+    	<param name="map2indesign.style" value="${dita.dir}/plugins/org.astd.dita2indesign/xsl/dita2indesignImpl.xsl"/>
     </antcall>
   </target>
 
