@@ -16,7 +16,7 @@
 
       <!-- define outputs first -->
       <output
-         doctype-public="urn:pubid:astd.com/doctypes/dita/pubmap"
+         doctype-public="urn:pubid:astd.com/doctypes/dita/dtd:pubmap"
          doctype-system="pubmap.dtd"
          mapType="pubmap"
          name="pubmap"
@@ -65,7 +65,37 @@
             format="chapter"
             topicDoc="yes"
             topicType="chapter"/>
-      </paragraphStyle> 
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="1"
+         structureType="topicTitle"
+         styleName="ATD TOC"
+         tagName="title"
+         outputclass="Title">
+         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="TOC"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="1"
+         structureType="topicTitle"
+         styleName="ATD INDEX"
+         tagName="title"
+         outputclass="Title">
+         <topicrefProperties topicrefType="topicref"/>
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="INDEX"/>
+      </paragraphStyle>
 
 
       <paragraphStyle
@@ -82,5 +112,292 @@
             outputclass="Section"/>
       </paragraphStyle>
 
+      <paragraphStyle 
+         styleName="ATD 1st Paragraph Example/Tool" 
+         tagName="p" 
+         outputclass="1st_Paragraph_Example/Tool"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="ATD 1s Paragraph" 
+         tagName="p" 
+         outputclass="1st_Paragraph"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="ATD body" 
+         tagName="p" 
+         outputclass="Body"
+         topicZone="body" 
+         level="1"/>
+
+      
+      <paragraphStyle 
+         styleName="ATD body Example/Tool" 
+         tagName="p" 
+         outputclass="Body_Example/Tool"
+         topicZone="body" 
+         level="1"/>      
+
+      <paragraphStyle 
+         styleName="ATD bullet Example/Tool" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Bullet_Example/Tool"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="ATD bullet level 2 Example/Tool" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Bullet_Example/Tool_L2"
+         topicZone="body" 
+         level="2"/>      
+
+      <paragraphStyle 
+         styleName="ATD bullet level 3 Example/Tool" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Bullet_Example/Tool_L3"
+         topicZone="body" 
+         level="3"/>
+      
+      <paragraphStyle 
+         styleName="ATD Bullet List" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Bullet_List"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="ATD Bullet List - 2nd Level" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Bullet_List_L2"
+         topicZone="body" 
+         level="2"/>      
+      
+      <paragraphStyle 
+         styleName="ATD Bullet List - 3rd Level" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Bullet_List_L3"
+         topicZone="body" 
+         level="3"/>      
+
+      <paragraphStyle 
+         styleName="ATD Callout" 
+         tagName="p" 
+         outputclass="Callout"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="ATD Ch num" 
+         tagName="p" 
+         outputclass="Chapter_Number"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="ATD Copyright" 
+         tagName="p" 
+         outputclass="Copyright"
+         topicZone="body" 
+         level="1"/>      
+
+      <paragraphStyle 
+         styleName="ATD Example/Tool" 
+         tagName="p" 
+         outputclass="Example_Tool"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="ATD Example/Tool Title" 
+         tagName="p" 
+         outputclass="Example_Tool_Title"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="ATD Extract First" 
+         tagName="p" 
+         outputclass="Extract_First"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="ATD Extract" 
+         tagName="p" 
+         outputclass="Extract"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="ATD Extract Last Line" 
+         tagName="p" 
+         outputclass="Extract_Last"
+         topicZone="body" 
+         level="1"/>      
+
+      <paragraphStyle 
+         styleName="ATD Figure Title" 
+         tagName="p" 
+         outputclass="Figure_Title"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="ATD H1" 
+         tagName="p" 
+         outputclass="H1"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="ATD H2" 
+         tagName="p" 
+         outputclass="H2"
+         topicZone="body" 
+         level="1"/>      
+
+      <paragraphStyle 
+         styleName="ATD H3" 
+         tagName="p" 
+         outputclass="H3"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="ATD index-ahead" 
+         tagName="p" 
+         outputclass="Index_AHead"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="ATD index-main" 
+         tagName="p" 
+         outputclass="Index_Main"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="ATD index-sub1" 
+         tagName="p" 
+         outputclass="Index_Sub1"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="ATD index-sub2" 
+         tagName="p" 
+         outputclass="Index_Sub2"
+         topicZone="body" 
+         level="2"/>
+
+      <paragraphStyle 
+         styleName="ATD index-sub3" 
+         tagName="p" 
+         outputclass="Index_Sub3"
+         topicZone="body" 
+         level="3"/>
+
+      <paragraphStyle 
+         styleName="ATD Num List" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Numbered_List"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="ATD Num List 2" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Numbered_List_L2"
+         topicZone="body" 
+         level="2"/> 
+      
+      <paragraphStyle 
+         styleName="ATD Num List 3" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Numbered_List_L3"
+         topicZone="body" 
+         level="3"/>      
+
+      <paragraphStyle 
+         styleName="ATD Overview" 
+         tagName="p" 
+         outputclass="Overview"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="ATD Pointer" 
+         tagName="p" 
+         outputclass="Pointer"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="ATD Pointer Text" 
+         tagName="p" 
+         outputclass="Pointer_Text"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="ATD REF H1" 
+         tagName="p" 
+         outputclass="REF_H1"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="ATD Reference Body" 
+         tagName="p" 
+         outputclass="Reference_Body"
+         topicZone="body" 
+         level="1"/>      
+      
+      <paragraphStyle 
+         styleName="ATD Source" 
+         tagName="p" 
+         outputclass="Source"
+         topicZone="body" 
+         level="1"/>      
+      
+      <paragraphStyle 
+         styleName="ATD Table Title" 
+         tagName="p" 
+         outputclass="Table_Title"
+         topicZone="body" 
+         level="1"/>      
+
+      <paragraphStyle 
+         styleName="ATD toc paragraph"  
+         tagName="p" 
+         outputclass="TOC_para"
+         topicZone="body" 
+         level="1"/>     
+      
+
+      <characterStyle
+         styleName="ATD bold"
+         tagName="b"
+         topicZone="body" />
+      
+      <characterStyle
+         styleName="ATD italics"
+         tagName="i"
+         topicZone="body" />      
+      
    </styles>
 </style2tagmap>
