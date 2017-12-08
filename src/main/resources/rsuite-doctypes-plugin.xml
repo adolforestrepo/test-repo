@@ -11,6 +11,241 @@
 		<ditaOpenToolkit toolkitName="v185">
 			<toolkitPlugin toolkitPluginId="org.astd.doctypes">
 				<zipfile>astd-doctypes-plugin.zip</zipfile>
+				
+				<doctype type="DTD" publicId="urn:pubid:astd.com/doctypes/dita/bookmap">
+					<file>bookmap/dtd/bookmap.dtd</file>
+					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl</previewXsl>
+					<managedObjectDefinitions>
+						<moDef name="bookmap" displayNameXPath="if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else if (@title) then string(@title) else '{No title found}'" />
+					</managedObjectDefinitions>
+				</doctype>
+				<doctype type="DTD" publicId="urn:pubid:astd.com/doctypes/dita/article">
+					<file>article/dtd/article.dtd</file>
+					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl
+					</previewXsl>
+					<managedObjectDefinitions>
+						<moDef name="chapter" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="article" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="concept" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="d4pQuestionTopic"
+							displayNameXPath="concat('Question: ', substring( normalize-space(./d4pQuestionTopicBody), 1, 148), '...')" />
+						<moDef name="fig"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Figure: ', substring(., 1, 30), '...'))" />
+						<moDef name="part" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="sidebar" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="subsection" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="table"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Table: ', substring(., 1, 30), '...'))" />
+						<moDef name="task" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="topic" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+					</managedObjectDefinitions>
+				</doctype>
+				
+				<doctype type="DTD"
+					publicId="urn:pubid:astd.com/doctypes/dita/chapter">
+					<file>chapter/dtd/chapter.dtd</file>
+					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl
+					</previewXsl>
+					<managedObjectDefinitions>
+						<moDef name="article" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="chapter" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="concept" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="d4pQuestionTopic"
+							displayNameXPath="concat('Question: ', substring( normalize-space(./d4pQuestionTopicBody), 1, 148), '...')" />
+						<moDef name="fig"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Figure: ', substring(., 1, 30), '...'))" />
+						<moDef name="part" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="sidebar" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="subsection" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="table"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Table: ', substring(., 1, 30), '...'))" />
+						<moDef name="task" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="topic" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+					</managedObjectDefinitions>
+				</doctype>
+				
+				<doctype type="DTD"
+					publicId="urn:pubid:astd.com/doctypes/dita/concept">
+					<file>concept/dtd/concept.dtd</file>
+					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl
+					</previewXsl>
+					<managedObjectDefinitions>
+						<moDef name="article" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="chapter" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="concept" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="d4pQuestionTopic"
+							displayNameXPath="concat('Question: ', substring( normalize-space(./d4pQuestionTopicBody), 1, 148), '...')" />
+						<moDef name="fig"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Figure: ', substring(., 1, 30), '...'))" />
+						<moDef name="part" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="sidebar" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="subsection" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="table"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Table: ', substring(., 1, 30), '...'))" />
+						<moDef name="task" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="topic" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+					</managedObjectDefinitions>
+				</doctype>
+
+				<doctype type="DTD"
+					publicId="urn:pubid:astd.com/doctypes/dita/map">
+					<file>map/dtd/map.dtd</file>
+					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl
+					</previewXsl>
+					<managedObjectDefinitions>
+						<moDef name="map"
+							displayNameXPath="if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else if (@title) then string(@title) else '{No title found}'" />
+					</managedObjectDefinitions>
+				</doctype>
+				
+				<doctype type="DTD"
+					publicId="urn:pubid:astd.com/doctypes/dita/part">
+					<file>part/dtd/part.dtd</file>
+					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl
+					</previewXsl>
+					<managedObjectDefinitions>
+						<moDef name="article" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="chapter" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="concept" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="d4pQuestionTopic"
+							displayNameXPath="concat('Question: ', substring( normalize-space(./d4pQuestionTopicBody), 1, 148), '...')" />
+						<moDef name="fig"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Figure: ', substring(., 1, 30), '...'))" />
+						<moDef name="part" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="sidebar" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="subsection" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="table"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Table: ', substring(., 1, 30), '...'))" />
+						<moDef name="task" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="topic" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+					</managedObjectDefinitions>
+				</doctype>
+				
+				<doctype type="DTD"
+					publicId="urn:pubid:astd.com/doctypes/dita/pubmap">
+					<file>pubmap/dtd/pubmap.dtd</file>
+					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl
+					</previewXsl>
+					<managedObjectDefinitions>
+						<moDef name="pubmap"
+							displayNameXPath="if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else if (@title) then string(@title) else '{No title found}'" />
+					</managedObjectDefinitions>
+				</doctype>
+				
+				<doctype type="DTD"
+					publicId="urn:pubid:astd.com/doctypes/dita/reference">
+					<file>reference/dtd/reference.dtd</file>
+					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl
+					</previewXsl>
+					<managedObjectDefinitions>
+						<!-- <moDef name="reference" -->
+						<!-- displayNameXPath="" /> -->
+					</managedObjectDefinitions>
+				</doctype>
+				
+				<doctype type="DTD"
+					publicId="urn:pubid:astd.com/doctypes/dita/sidebar">
+					<file>sidebar/dtd/sidebar.dtd</file>
+					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl
+					</previewXsl>
+					<managedObjectDefinitions>
+						<moDef name="article" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="chapter" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="concept" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="d4pQuestionTopic"
+							displayNameXPath="concat('Question: ', substring( normalize-space(./d4pQuestionTopicBody), 1, 148), '...')" />
+						<moDef name="fig"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Figure: ', substring(., 1, 30), '...'))" />
+						<moDef name="part" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="sidebar" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="subsection" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="table"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Table: ', substring(., 1, 30), '...'))" />
+						<moDef name="task" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="topic" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+					</managedObjectDefinitions>
+				</doctype>
+				
+				<doctype type="DTD"
+					publicId="urn:pubid:astd.com/doctypes/dita/subjectScheme">
+					<file>subjectScheme/dtd/subjectScheme.dtd</file>
+					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl
+					</previewXsl>
+					<managedObjectDefinitions>
+						<moDef name="subjectScheme"
+						       displayNameXPath="if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else if (@title) then string(@title) else '{No title found}'" />
+					</managedObjectDefinitions>
+				</doctype>
+				
+				<doctype type="DTD"
+					publicId="urn:pubid:astd.com/doctypes/dita/subsection">
+					<file>subsection/dtd/subsection.dtd</file>
+					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl
+					</previewXsl>
+					<managedObjectDefinitions>
+						<moDef name="article" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="chapter" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="concept" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="d4pQuestionTopic"
+							displayNameXPath="concat('Question: ', substring( normalize-space(./d4pQuestionTopicBody), 1, 148), '...')" />
+						<moDef name="fig"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Figure: ', substring(., 1, 30), '...'))" />
+						<moDef name="part" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="sidebar" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="subsection" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="table"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Table: ', substring(., 1, 30), '...'))" />
+						<moDef name="task" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="topic" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+					</managedObjectDefinitions>
+				</doctype>
+				
+				<doctype type="DTD"
+					publicId="urn:pubid:astd.com/doctypes/dita/task">
+					<file>task/dtd/task.dtd</file>
+					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl
+					</previewXsl>
+					<managedObjectDefinitions>
+						<moDef name="article" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="chapter" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="concept" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="d4pQuestionTopic"
+							displayNameXPath="concat('Question: ', substring( normalize-space(./d4pQuestionTopicBody), 1, 148), '...')" />
+						<moDef name="fig"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Figure: ', substring(., 1, 30), '...'))" />
+						<moDef name="part" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="sidebar" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="subsection" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="table"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Table: ', substring(., 1, 30), '...'))" />
+						<moDef name="task" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="topic" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+					</managedObjectDefinitions>
+				</doctype>
+				
+				<doctype type="DTD"
+					publicId="urn:pubid:astd.com/doctypes/dita/topic">
+					<file>topic/dtd/topic.dtd</file>
+					<previewXsl>WebContent/xslt/preview/dita-preview-shell.xsl
+					</previewXsl>
+					<managedObjectDefinitions>
+						<moDef name="article" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="chapter" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="concept" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="d4pQuestionTopic"
+							displayNameXPath="concat('Question: ', substring( normalize-space(./d4pQuestionTopicBody), 1, 148), '...')" />
+						<moDef name="fig"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Figure: ', substring(., 1, 30), '...'))" />
+						<moDef name="part" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="sidebar" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="subsection" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="table"
+							displayNameXPath="(if (*[contains(@class, ' topic/title ')]) then *[contains(@class, ' topic/title ')] else concat('Table: ', substring(., 1, 30), '...'))" />
+						<moDef name="task" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+						<moDef name="topic" displayNameXPath="*[contains(@class, ' topic/title ')]" />
+					</managedObjectDefinitions>
+				</doctype>				
+				
 			</toolkitPlugin>
 		</ditaOpenToolkit>
 	</extensionProvider>

@@ -18,7 +18,7 @@
 		<staticWebService root="/astd-plugin" path="/WebContent" />
 		
 		<remoteApiDefinition id="atd:webservice.canodetoditamap" handler="org.astd.rsuite.webservices.CaNodeToDitaMapWebService"/>
-		<remoteApiDefinition id="atd:webservice.docxToXml" handler="com.reallysi.rsuite.webservice.Docx2XmlWebService" />
+		<remoteApiDefinition id="atd:webservice.docxToXml" handler="com.reallysi.rsuite.webservice.ATDDocx2XmlWebService" />
 		<remoteApiDefinition id="atd:webservice.RunDitaOTWebService" handler="com.reallysi.rsuite.webservice.RunDitaOTWebService" />
 
 		<!-- Web services implemented for AMA, alphabetized. -->

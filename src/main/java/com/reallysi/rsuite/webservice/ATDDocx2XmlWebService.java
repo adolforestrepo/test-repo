@@ -39,7 +39,7 @@ import com.reallysi.tools.dita.BosVisitor;
 import com.reallysi.tools.dita.BoundedObjectSet;
 import com.reallysi.tools.dita.BrowseTreeConstructingBosVisitor;
 import com.reallysi.tools.dita.DitaMapImportOptions;
-import com.reallysi.tools.dita.DitaSupportRSuiteUtils;
+import com.reallysi.tools.dita.ATDDitaSupportRSuiteUtils;
 import com.reallysi.tools.dita.DitaUtil;
 import com.reallysi.tools.dita.DomUtil;
 import com.reallysi.tools.dita.RSuiteDitaHelper;
@@ -59,7 +59,7 @@ import com.rsicms.rsuite.helpers.utils.RSuiteUtils;
  * 
  * 
  */
-public class Docx2XmlWebService extends
+public class ATDDocx2XmlWebService extends
         DefaultRemoteApiHandler {
 
 	// FIXME: These constants are in anticipation of future code to 
@@ -247,7 +247,7 @@ public class Docx2XmlWebService extends
     }
 
     private static final String WEB_SERVICE_TITLE = "Word to XML";
-    private static Log log = LogFactory.getLog(Docx2XmlWebService.class);
+    private static Log log = LogFactory.getLog(ATDDocx2XmlWebService.class);
     public static final String DATE_FORMAT_STRING = "yyyyMMdd-HHmmss";
     public static final DateFormat DATE_FORMAT = new SimpleDateFormat(DATE_FORMAT_STRING);
 
@@ -405,7 +405,7 @@ public class Docx2XmlWebService extends
             String host = context.getRSuiteServerConfiguration().getHostName();
             validationReportTransform = context.getXmlApiManager().
                     getTransformer(new URL("http://" + host + ":" + port + 
-                    		"/rsuite/rest/v1/static/rsuite-dita-support/validation-report/validation-report.xsl"));
+                    		"/rsuite/rest/v1/static/astd-plugin/xslt/validation-report/validation-report.xsl"));
         } catch (Exception e) {
             messages.addFailureMessage(
                     "Load Map to Browse Tree", 
@@ -438,7 +438,7 @@ public class Docx2XmlWebService extends
                 DitaMapImportOptions importOptions = new DitaMapImportOptions();
                 
                 importOptions.setRootCa(rootCaNode);
-                importOptions.setMissingGraphicUri("/rsuite-dita-support/images/missingGraphic");
+                importOptions.setMissingGraphicUri("/astd-plugin/xslt/images/missingGraphic");
                 importOptions.setTopicContainerName("content");
                 importOptions.setNonXmlContainerName("media");
                 importOptions.setUser(user);
@@ -502,7 +502,7 @@ public class Docx2XmlWebService extends
                     RemoteApiExecutionContext context,
                     User user, 
                     ProcessMessageContainer messages) throws RSuiteException {
-        DitaOpenToolkit toolkit = context.getXmlApiManager().getDitaOpenToolkitManager().getDefaultToolkit();
+        DitaOpenToolkit toolkit = context.getXmlApiManager().getDitaOpenToolkitManager().getToolkit("v185");
         if (toolkit == null) {
             String msg = "No default DITA Open Toolkit provided by Open Toolkit Manager. Cannot continue.";
             messages.addFailureMessage("No DITA Open Toolkit", "default", msg);
@@ -594,7 +594,7 @@ public class Docx2XmlWebService extends
                 generationOptions.setMessageWriter(writer);
 
                 try {
-                    outputDir = DitaSupportRSuiteUtils.generateXmlFromContentAssembly(context,
+                    outputDir = ATDDitaSupportRSuiteUtils.generateXmlFromContentAssembly(context,
                             basePath,
                             ca.getDisplayName(),
                             docxOptions,

@@ -206,7 +206,6 @@ Properties:
 				 deploy-hotfolders,
 		  		 build-project-package,
 		         deploy-Astd-Conversion-Configuration,
-				 LoadDtds,
 				 ImportAndMathML2,				
 		ConfigureLayeredMetadata,
 		deploy-initial-content"

@@ -16,7 +16,7 @@
 
       <!-- define outputs first -->
       <output
-         doctype-public="urn:pubid:astd.com/doctypes/dita/dtd:pubmap"
+         doctype-public="urn:pubid:astd.com/doctypes/dita/pubmap"
          doctype-system="pubmap.dtd"
          mapType="pubmap"
          name="pubmap"
