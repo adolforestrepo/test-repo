@@ -28,8 +28,12 @@
     <!--    <xsl:import
         href="rsuite:/res/plugin/dita4publishers/toolkit_plugins/org.dita4publishers.dita2indesign/xsl/dita2indesignImpl.xsl"/>
 -->
-    <xsl:import href="plugin:org.dita4publishers.dita2indesign:xsl/dita2indesign.xsl"/>
+    <xsl:import href="plugin:org.dita2indesign.dita2indesign:xsl/dita2indesignImpl.xsl"/>
 
 
     <xsl:param name="debug" select="'true'"/>
+    
+    <xsl:include href="elem2styleMapperIcml.xsl"/>
+    <xsl:include href="topic2icmlImpl.xsl"/>
+    
 </xsl:stylesheet>
