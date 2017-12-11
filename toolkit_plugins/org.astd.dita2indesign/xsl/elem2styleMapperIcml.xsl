@@ -23,11 +23,22 @@
   
   -->
 
-    <xsl:template match="*[df:class(., 'topic/title')][@outputclass = 'Title']"
+
+    <xsl:template match="*[df:class(., 'topic/title')]"
         mode="style-map-pstyle">
-        <xsl:sequence select="'Heading 1'"/>
+        <xsl:sequence select="'ATD TOC'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass = 'TOC_para']"
+        mode="style-map-pstyle">
+        <xsl:sequence select="'ATD toc paragraph'"/>
     </xsl:template>
     
+    <xsl:template match="*[df:class(., 'topic/title')][@outputclass = 'Title']"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'Heading 1'"/>
+    </xsl:template>
+
     <xsl:template match="*[df:class(., 'topic/p')][@outputclass = 'Chapter_Number']"
         mode="style-map-pstyle">
         <xsl:sequence select="'Heading 2'"/>
@@ -91,6 +102,31 @@
         <xsl:sequence select="'Bullet_List_1'"/>
     </xsl:template>
 
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Index_AHead']"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'ATD index-ahead'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Index_Main']"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'ATD index-main'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Index_Sub1']"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'ATD index-sub1'"/>
+    </xsl:template>
+    
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Index_Sub2']"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'ATD index-sub2'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Index_Sub3']"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'ATD index-sub3'"/>
+    </xsl:template>
+    
     <xsl:template match="*"
         mode="style-map-pstyle" priority="-1">
         <xsl:sequence select="'Copy'"/>
