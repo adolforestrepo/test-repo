@@ -199,7 +199,6 @@ Properties:
                  deploy-lmd-config,
                  deploy-ca-types,
                  deploy-workflows,
-                 deploy-remove-schemas,
                  deploy-custom-runtime-xquery-files,
                  deploy-deltaxml-merge-libraries,
                  deploy-rsuite-plugins,
