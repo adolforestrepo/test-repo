@@ -311,7 +311,7 @@
       <paragraphStyle 
          styleName="ATD Num List" 
          tagName="li" 
-         containerType="ul"
+         containerType="ol"
          containerOutputclass="Numbered_List"
          topicZone="body" 
          level="1"/>
@@ -319,7 +319,7 @@
       <paragraphStyle 
          styleName="ATD Num List 2" 
          tagName="li" 
-         containerType="ul"
+         containerType="ol"
          containerOutputclass="Numbered_List_L2"
          topicZone="body" 
          level="2"/> 
@@ -327,7 +327,7 @@
       <paragraphStyle 
          styleName="ATD Num List 3" 
          tagName="li" 
-         containerType="ul"
+         containerType="ol"
          containerOutputclass="Numbered_List_L3"
          topicZone="body" 
          level="3"/>      
