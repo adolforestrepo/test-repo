@@ -97,20 +97,150 @@
             outputclass="INDEX"/>
       </paragraphStyle>
 
-
       <paragraphStyle
-         level="2"
+         level="1"
          structureType="topicTitle"
-         styleName="Overview"
-         tagName="title">
-         <topicrefProperties topicrefType="topicref"/>
+         styleName="AUTHOR BIO Title"
+         tagName="title"
+         outputclass="Title">
          <topicProperties
             bodyType="body"
-            format="subsection"
-            topicDoc="no"
-            topicType="subsection"
-            outputclass="Section"/>
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Author_Bio"/>
       </paragraphStyle>
+
+      <paragraphStyle
+         level="1"
+         structureType="topicTitle"
+         styleName="APPENDIX Title"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Appendix"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="1"
+         structureType="topicTitle"
+         styleName="INTRO Title"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Intro"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="1"
+         structureType="topicTitle"
+         styleName="CH Title"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="chapter"
+            topicDoc="yes"
+            topicType="chapter"/>
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="1"
+         structureType="topicTitle"
+         styleName="COPYRIGHT"
+         tagName="title"
+         outputclass="Copyright">
+         <topicProperties
+            bodyType="body"
+            format="chapter"
+            topicDoc="yes"
+            topicType="chapter"/>
+      </paragraphStyle>      
+      
+      <paragraphStyle
+         level="1"
+         structureType="topicTitle"
+         styleName="INDEX"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclas="Index"/>
+      </paragraphStyle>      
+
+      <paragraphStyle
+         level="1"
+         structureType="topicTitle"
+         styleName="PREFACE Title"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Preface"/>
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="1"
+         structureType="topicTitle"
+         styleName="REF Title"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Reference"/>
+      </paragraphStyle>
+
+      <paragraphStyle
+         level="1"
+         structureType="topicTitle"
+         styleName="TITLE PAGE Title"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="Title_Page"/>
+      </paragraphStyle>
+      
+      <paragraphStyle
+         level="1"
+         structureType="topicTitle"
+         styleName="TOC Title"
+         tagName="title"
+         outputclass="Title">
+         <topicProperties
+            bodyType="body"
+            format="topic"
+            topicDoc="yes"
+            topicType="topic"
+            outputclass="TOC"/>
+      </paragraphStyle>      
+
+      <paragraphStyle 
+         styleName="1st Paragraph" 
+         tagName="p" 
+         outputclass="1st_Paragraph"
+         topicZone="body" 
+         level="1"/>
 
       <paragraphStyle 
          styleName="ATD 1st Paragraph Example/Tool" 
@@ -120,9 +250,16 @@
          level="1"/>
       
       <paragraphStyle 
-         styleName="ATD 1s Paragraph" 
+         styleName="ATD 1st Paragraph" 
          tagName="p" 
          outputclass="1st_Paragraph"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="1st Paragraph Example/Tool" 
+         tagName="p" 
+         outputclass="1st_Paragraph_Example/Tool"
          topicZone="body" 
          level="1"/>
 
@@ -251,27 +388,6 @@
          outputclass="Figure_Title"
          topicZone="body" 
          level="1"/>
-
-      <paragraphStyle 
-         styleName="ATD H1" 
-         tagName="p" 
-         outputclass="H1"
-         topicZone="body" 
-         level="1"/>
-      
-      <paragraphStyle 
-         styleName="ATD H2" 
-         tagName="p" 
-         outputclass="H2"
-         topicZone="body" 
-         level="1"/>      
-
-      <paragraphStyle 
-         styleName="ATD H3" 
-         tagName="p" 
-         outputclass="H3"
-         topicZone="body" 
-         level="1"/>
       
       <paragraphStyle 
          styleName="ATD index-ahead" 
@@ -387,7 +503,312 @@
          outputclass="TOC_para"
          topicZone="body" 
          level="1"/>     
+
+      <paragraphStyle 
+         styleName="App Heading" 
+         tagName="p" 
+         outputclass="App_Heading"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="body" 
+         tagName="p" 
+         outputclass="Body"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="body Example/Tool" 
+         tagName="p" 
+         outputclass="Body_Example/Tool"
+         topicZone="body" 
+         level="1"/>      
       
+      <paragraphStyle 
+         styleName="bullet Example/Tool" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Bullet_Example/Tool"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="bullet level 2 Example/Tool" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Bullet_Example/Tool_L2"
+         topicZone="body" 
+         level="2"/>      
+      
+      <paragraphStyle 
+         styleName="bullet level 3 Example/Tool" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Bullet_Example/Tool_L3"
+         topicZone="body" 
+         level="3"/>
+
+      <paragraphStyle 
+         styleName="Bullet List" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Bullet_List"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="Bullet List - 2nd Level" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Bullet_List_L2"
+         topicZone="body" 
+         level="2"/>      
+      
+      <paragraphStyle 
+         styleName="Bullet List - 3rd Level" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Bullet_List_L3"
+         topicZone="body" 
+         level="3"/>
+
+      <paragraphStyle 
+         styleName="Callout" 
+         tagName="p" 
+         outputclass="Callout"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="Callout/Sidebar Body" 
+         tagName="p" 
+         outputclass="Sidebar"
+         topicZone="body" 
+         level="1"/>      
+      
+      <paragraphStyle 
+         styleName="Ch num" 
+         tagName="p" 
+         outputclass="Chapter_Number"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="Copyright" 
+         tagName="p" 
+         outputclass="Copyright"
+         topicZone="body" 
+         level="1"/>   
+
+      <paragraphStyle 
+         styleName="Example/Tool" 
+         tagName="p" 
+         outputclass="Example_Tool"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="Example/Tool Title" 
+         tagName="p" 
+         outputclass="Example_Tool_Title"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="Extract First" 
+         tagName="p" 
+         outputclass="Extract_First"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="Extract" 
+         tagName="p" 
+         outputclass="Extract"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="Extract Last Line" 
+         tagName="p" 
+         outputclass="Extract_Last"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="Figure Title" 
+         tagName="p" 
+         outputclass="Figure_Title"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="H1" 
+         tagName="p" 
+         outputclass="H1"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="H2" 
+         tagName="p" 
+         outputclass="H2"
+         topicZone="body" 
+         level="1"/>      
+      
+      <paragraphStyle 
+         styleName="H3" 
+         tagName="p" 
+         outputclass="H3"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle
+         level="1"
+         structureType="section"
+         styleName="index-ahead"
+         sectionType="section"
+         topicZone="body"
+         useAsTitle="yes"
+         outputclass="Index_Ahead_Title">         
+      </paragraphStyle>
+
+      <paragraphStyle 
+         styleName="index-main" 
+         tagName="p" 
+         outputclass="Index_Main"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="index-sub1" 
+         tagName="p" 
+         outputclass="Index_Sub1"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="index-sub2" 
+         tagName="p" 
+         outputclass="Index_Sub2"
+         topicZone="body" 
+         level="2"/>
+      
+      <paragraphStyle 
+         styleName="index-sub3" 
+         tagName="p" 
+         outputclass="Index_Sub3"
+         topicZone="body" 
+         level="3"/>
+
+      <paragraphStyle 
+         styleName="Learning Preference" 
+         tagName="p" 
+         outputclass="Learning_Preference"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="Normal" 
+         tagName="p" 
+         outputclass="Normal"
+         topicZone="body" 
+         level="1"/>      
+
+      <paragraphStyle 
+         styleName="Num List" 
+         tagName="li" 
+         containerType="ol"
+         containerOutputclass="Numbered_List"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="Num List 2" 
+         tagName="li" 
+         containerType="ol"
+         containerOutputclass="Numbered_List_L2"
+         topicZone="body" 
+         level="2"/> 
+      
+      <paragraphStyle 
+         styleName="Num List 3" 
+         tagName="li" 
+         containerType="ol"
+         containerOutputclass="Numbered_List_L3"
+         topicZone="body" 
+         level="3"/>
+
+      <paragraphStyle 
+         styleName="Overview" 
+         tagName="p" 
+         outputclass="Overview"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="Pa2" 
+         tagName="p" 
+         outputclass="Para_2"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="Pointer" 
+         tagName="p" 
+         outputclass="Pointer"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
+         styleName="Pointer Text" 
+         tagName="p" 
+         outputclass="Pointer_Text"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="Subtitle" 
+         tagName="p" 
+         outputclass="Subtitle"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="Table Body" 
+         tagName="p" 
+         outputclass="Table_Body"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="Table Header" 
+         tagName="p" 
+         outputclass="Table_Header"
+         topicZone="body" 
+         level="1"/>
+
+      <paragraphStyle 
+         styleName="Table Title" 
+         tagName="p" 
+         outputclass="Table_Title"
+         topicZone="body" 
+         level="1"/>   
+
+      <paragraphStyle 
+         styleName="Title" 
+         tagName="p" 
+         outputclass="Title"
+         topicZone="body" 
+         level="1"/>      
+
+      <paragraphStyle 
+         styleName="toc"  
+         tagName="p" 
+         outputclass="toc_para"
+         topicZone="body" 
+         level="1"/>
 
       <characterStyle
          styleName="ATD bold"
@@ -397,7 +818,12 @@
       <characterStyle
          styleName="ATD italics"
          tagName="i"
-         topicZone="body" />      
+         topicZone="body" />
+
+      <characterStyle
+         styleName="italics"
+         tagName="i"
+         topicZone="body" />
       
    </styles>
 </style2tagmap>
