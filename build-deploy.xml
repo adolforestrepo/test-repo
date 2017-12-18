@@ -106,6 +106,7 @@ Properties:
                 <include name="team-edition-results-reporter-plugin.jar"/>
                 <include name="team-edition-results-reporter-wf-plugin.jar"/>
                 <include name="rsuite-zip-downloader-plugin.jar"/>
+            	<include name="rsuite-zip-uploader-plugin.jar"/>
                 <include name="rsuite-lmd-editor-plugin.jar"/>
                 <!-- TBD if desired on this project --> 
 <!--                <include name="team-edition-results-reporter-plugin.jar"/>-->
