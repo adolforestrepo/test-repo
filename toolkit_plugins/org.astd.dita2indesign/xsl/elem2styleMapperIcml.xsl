@@ -35,7 +35,7 @@
     </xsl:template>
     
     <xsl:template match="*[df:class(., 'topic/title')][@outputclass = 'Title']"
-        mode="style-map-pstyle" priority="10">
+        mode="style-map-pstyle" priority="5">
         <xsl:sequence select="'Heading 1'"/>
     </xsl:template>
 
@@ -84,24 +84,6 @@
         <xsl:sequence select="'Copy'"/>
     </xsl:template>
 
-    <xsl:template match="*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]
-        /*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]
-        /*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]"
-        mode="style-map-pstyle" priority="30">
-        <xsl:sequence select="'Bullet_List_3'"/>
-    </xsl:template>
-
-    <xsl:template match="*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]
-        /*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]"
-        mode="style-map-pstyle" priority="20">
-        <xsl:sequence select="'Bullet_List_2'"/>
-    </xsl:template>
-
-    <xsl:template match="*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]"
-        mode="style-map-pstyle" priority="10">
-        <xsl:sequence select="'Bullet_List_1'"/>
-    </xsl:template>
-
     <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Index_AHead']"
         mode="style-map-pstyle" priority="10">
         <xsl:sequence select="'ATD index-ahead'"/>
@@ -126,6 +108,68 @@
         mode="style-map-pstyle" priority="10">
         <xsl:sequence select="'ATD index-sub3'"/>
     </xsl:template>
+    
+<!-- ********************* Start of How We Learn **************************** -->
+
+    <xsl:template match="*[df:class(., 'chapter/chapter')]/*[df:class(., 'topic/title')][@outputclass='Title']"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'CH Title'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Chapter_Number']"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'Ch Num'"/>
+    </xsl:template>
+    
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass='1st_Paragraph']"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'1st Paragraph'"/>
+    </xsl:template>
+    
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass='H1']"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'H1'"/>
+    </xsl:template>
+ 
+    <xsl:template match="*[df:class(., 'topic/p')]"
+        mode="style-map-pstyle" priority="1">
+        <xsl:sequence select="'body'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'hi-d/i')]" 
+        mode="style-map-cstyle">
+        <xsl:sequence select="'italics'"/>
+    </xsl:template>
+    
+    <xsl:template match="*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]
+        /*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]
+        /*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]"
+        mode="style-map-pstyle" priority="30">
+        <xsl:sequence select="'Bullet_List_3'"/>
+    </xsl:template>
+    
+    <xsl:template match="*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]
+        /*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]"
+        mode="style-map-pstyle" priority="20">
+        <xsl:sequence select="'Bullet_List_2'"/>
+    </xsl:template>
+    
+    <xsl:template match="*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'Bullet List'"/>
+    </xsl:template>
+    
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Table_Title']"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'Figure/Table Title'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Callout']"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'Callout'"/>
+    </xsl:template>
+    
+    <!-- ********************* End of How We Learn **************************** -->
     
     <xsl:template match="*"
         mode="style-map-pstyle" priority="-1">
