@@ -131,6 +131,11 @@
         <xsl:sequence select="'H1'"/>
     </xsl:template>
  
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass='H2']"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'H2'"/>
+    </xsl:template>
+    
     <xsl:template match="*[df:class(., 'topic/p')]"
         mode="style-map-pstyle" priority="1">
         <xsl:sequence select="'body'"/>
@@ -153,10 +158,26 @@
         mode="style-map-pstyle" priority="20">
         <xsl:sequence select="'Bullet_List_2'"/>
     </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/ol')]/*[df:class(., 'topic/li')]
+        /*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]"
+        mode="style-map-pstyle" priority="20">
+        <xsl:sequence select="'Bullet List - 2nd Level'"/>
+    </xsl:template>
     
     <xsl:template match="*[df:class(., 'topic/ul')]/*[df:class(., 'topic/li')]"
         mode="style-map-pstyle" priority="10">
         <xsl:sequence select="'Bullet List'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/ol')]/*[df:class(., 'topic/li')][count(preceding-sibling::*)=0]"
+        mode="style-map-pstyle" priority="11">
+        <xsl:sequence select="'Num List_First'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/ol')]/*[df:class(., 'topic/li')]"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'Num List'"/>
     </xsl:template>
     
     <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Table_Title']"
