@@ -456,6 +456,13 @@
          level="1"/>
 
       <paragraphStyle 
+         styleName="callout" 
+         tagName="p" 
+         outputclass="Callout"
+         topicZone="body" 
+         level="1"/>
+      
+      <paragraphStyle 
          styleName="ATD Pointer" 
          tagName="p" 
          outputclass="Pointer"
@@ -559,6 +566,14 @@
       
       <paragraphStyle 
          styleName="Bullet List - 2nd Level" 
+         tagName="li" 
+         containerType="ul"
+         containerOutputclass="Bullet_List_L2"
+         topicZone="body" 
+         level="2"/>      
+      
+      <paragraphStyle 
+         styleName="Bullet 2nd Level" 
          tagName="li" 
          containerType="ul"
          containerOutputclass="Bullet_List_L2"
