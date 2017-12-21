@@ -116,6 +116,26 @@
         <xsl:sequence select="'CH Title'"/>
     </xsl:template>
 
+    <xsl:template match="*[df:class(., 'topic/topic')][@outputclass='Title_Page']/*[df:class(., 'topic/title')]"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'CH Title'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/topic')][@outputclass='Preface']/*[df:class(., 'topic/title')]"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'CH Title'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/topic')][@outputclass='Intro']/*[df:class(., 'topic/title')]"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'CH Title'"/>
+    </xsl:template>
+    
+    <xsl:template match="*[df:class(., 'topic/topic')][@outputclass='Author_Bio']/*[df:class(., 'topic/title')]"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'CH Title'"/>
+    </xsl:template>
+
     <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Chapter_Number']"
         mode="style-map-pstyle" priority="10">
         <xsl:sequence select="'Ch Num'"/>
@@ -134,6 +154,16 @@
     <xsl:template match="*[df:class(., 'topic/p')][@outputclass='H2']"
         mode="style-map-pstyle" priority="10">
         <xsl:sequence select="'H2'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Subtitle']"
+        mode="style-map-pstyle" priority="11">
+        <xsl:sequence select="'H3'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/topic')][@outputclass='Title_Page']/*[df:class(., 'topic/body')]/*[df:class(., 'topic/p')]"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'H3'"/>
     </xsl:template>
     
     <xsl:template match="*[df:class(., 'topic/p')]"
@@ -188,6 +218,11 @@
     <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Callout']"
         mode="style-map-pstyle" priority="10">
         <xsl:sequence select="'Callout'"/>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/p')][preceding::*[df:class(., 'topic/title')][@outputclass='Copyright']]"
+        mode="style-map-pstyle" priority="10">
+        <xsl:sequence select="'Copyright'"/>
     </xsl:template>
     
     <!-- ********************* End of How We Learn **************************** -->
