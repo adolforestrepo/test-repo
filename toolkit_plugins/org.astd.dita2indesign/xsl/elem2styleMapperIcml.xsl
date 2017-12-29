@@ -166,6 +166,11 @@
         <xsl:sequence select="'H3'"/>
     </xsl:template>
     
+    <xsl:template match="*[df:class(., 'topic/p')][contains(ancestor::chapter/title, 'References')]"
+        mode="style-map-pstyle" priority="2">
+        <xsl:sequence select="'reference body'"/>
+    </xsl:template>
+
     <xsl:template match="*[df:class(., 'topic/p')]"
         mode="style-map-pstyle" priority="1">
         <xsl:sequence select="'body'"/>
