@@ -231,6 +231,47 @@
     </xsl:template>
     
     <!-- ********************* End of How We Learn **************************** -->
+    <!-- ********************* Start 10 Steps t Business Writing **************************** -->
+
+    <xsl:template match="*[df:class(., 'topic/p')][contains(@outputclass, 'Overview')]"
+        mode="style-map-pstyle" priority="2">
+        <xsl:sequence select="'Overview'"/>
+    </xsl:template>
+    
+    <xsl:template match="*[df:class(., 'topic/p')][contains(@outputclass, 'Example_Tool')]"
+        mode="style-map-pstyle" priority="2">
+        <xsl:sequence select="'Example/Tool'"/>
+    </xsl:template>
+    
+    <xsl:template match="*[df:class(., 'topic/p')][contains(@outputclass, 'Example_Tool_Title')]"
+        mode="style-map-pstyle" priority="2">
+        <xsl:sequence select="'Example/Tool Title'"/>
+    </xsl:template>
+    
+    <xsl:template match="*[df:class(., 'topic/p')][contains(@outputclass, 'Extract')]"
+        mode="style-map-pstyle" priority="2">
+        <xsl:variable name="preceding_element" select="(preceding-sibling::*)[last()]"/> 
+        <xsl:variable name="following_element" select="(following-sibling::*)[1]"/> 
+        <xsl:choose>
+            <xsl:when test="$preceding_element/@outputclass='Extract' and $following_element/@outputclass='Extract'">
+                <xsl:sequence select="'Extract'"/>
+            </xsl:when>
+            <xsl:when test="$preceding_element/@outputclass!='Extract'">
+                <xsl:sequence select="'Extract First'"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:sequence select="'Extract Last Line'"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    
+    <xsl:template match="*[df:class(., 'topic/ul')][@outputclass='Bullet_Example/Tool']/*[df:class(., 'topic/li')]"
+        mode="style-map-pstyle" priority="11">
+        <xsl:sequence select="'num Example/Tool 2'"/>
+    </xsl:template>
+    
+    <!-- ********************* End 10 Steps t Business Writing **************************** -->
     
     <xsl:template match="*"
         mode="style-map-pstyle" priority="-1">
