@@ -20,7 +20,53 @@
        Copyright (c) 2011 DITA2InDesign Project
        
   -->
+    <!-- Reverse Chapter Numaber and Chapter Title -->
     
+    <xsl:template 
+        match="*[df:class(., 'chapter/chapter')]/*[df:class(., 'topic/title')]
+        ">
+        <xsl:param name="doDebug" as="xs:boolean" tunnel="yes" select="$debugBoolean"/>
+        <xsl:param name="articleType" as="xs:string" tunnel="yes"/>
+        <xsl:apply-templates select="following::*[df:class(., 'topic/p')][@outputclass='Chapter_Number']" mode="Chapter_Number"/>        
+        <!-- Elements that are not inherently block elements but are rendered as 
+         blocks by default.
+      -->
+        <xsl:call-template name="makeBlock-cont">
+            <xsl:with-param name="pStyle" tunnel="yes" select="e2s:getPStyleForElement(., $articleType)"/>
+        </xsl:call-template>
+    </xsl:template>
+
+    <xsl:template match="*[df:class(., 'topic/p')][@outputclass='Chapter_Number']"/>
+        
+    <xsl:template match="
+        *[df:class(., 'topic/p')]
+        " mode="Chapter_Number">
+        <!-- Correctly handle paragraphs that contain mixed content with block-creating elements.
+      -->
+        <xsl:param name="doDebug" as="xs:boolean" tunnel="yes" select="$debugBoolean"/>
+        <xsl:param name="articleType" as="xs:string" tunnel="yes"/>
+        
+        <xsl:variable name="pStyle" select="e2s:getPStyleForElement(., $articleType)" as="xs:string"/>
+        <xsl:variable name="cStyle" select="e2s:getCStyleForElement(.)" as="xs:string"/>
+        <xsl:for-each-group select="* | text()"
+            group-adjacent="if (self::*) then if (df:isBlock(.)) then 'block' else 'text' else 'text'">
+            <xsl:choose>
+                <xsl:when test="self::* and df:isBlock(.)">
+                    <xsl:apply-templates select="current-group()">
+                        <xsl:with-param name="doDebug" as="xs:boolean" tunnel="yes" select="$doDebug"/>
+                    </xsl:apply-templates>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:call-template name="makeBlock-cont">
+                        <xsl:with-param name="pStyle" select="$pStyle" as="xs:string" tunnel="yes"/>
+                        <xsl:with-param name="cStyle" select="$cStyle" as="xs:string" tunnel="yes"/>
+                        <xsl:with-param name="content" as="node()*" select="current-group()"/>          
+                    </xsl:call-template>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each-group>
+    </xsl:template>
+
     <xsl:template match="
         *[df:class(., 'topic/li')][*[df:isBlock(.)]]
         ">
