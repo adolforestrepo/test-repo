@@ -115,6 +115,13 @@ Properties:
             </fileset>
         </copy>
 
+		<copy overwrite="true" file="${rsuite.home}/developer/plugins/rsuite-cms-action-menu-config-plugin.jar" todir="${rsuite.plugins.dir}"/>
+		<copy overwrite="true" file="${rsuite.home}/developer/plugins/rsuite-cms-config-plugin.jar" todir="${rsuite.plugins.dir}"/>
+		<copy overwrite="true" file="${rsuite.home}/developer/plugins/rsuite-cms-search-config-plugin.jar" todir="${rsuite.plugins.dir}"/>
+		<copy overwrite="true" file="${rsuite.home}/developer/plugins/rsuite-cms-theme-plugin.jar" todir="${rsuite.plugins.dir}"/>
+		<copy overwrite="true" file="${rsuite.home}/developer/plugins/rsuite-cms-workflow-config-plugin.jar" todir="${rsuite.plugins.dir}"/>
+		<copy overwrite="true" file="${rsuite.home}/developer/plugins/rsuite-language-plugin.jar" todir="${rsuite.plugins.dir}"/>
+
         <!-- In lieu of a more elegant solution, allow each environment to 
              tune how long to give RSuite to load the plugins.  This wait is
              needed to ensure the schemas are loaded before we try to load
