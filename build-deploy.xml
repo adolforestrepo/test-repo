@@ -72,6 +72,7 @@ Properties:
     
     <target name="delete-old-plugins" depends="delete-old-plugins-project-doctypes, delete-old-plugins-project-main, delete-old-plugins-project-toolkit-plugins">
 	    <!-- This project's plugin file names have changed over time.  The following helps prevent having older ones installed. -->
+    	<delete file="${rsuite.plugins.dir}/rsuite-zip-downloader-plugin.jar"/>
 	</target>
       	
 	<target name="prepare-v185-ot-plugins">
@@ -105,7 +106,6 @@ Properties:
             	<include name="team-edition-workflow-status-plugin.jar"/>
                 <include name="team-edition-results-reporter-plugin.jar"/>
                 <include name="team-edition-results-reporter-wf-plugin.jar"/>
-                <include name="rsuite-zip-downloader-plugin.jar"/>
             	<include name="rsuite-zip-uploader-plugin.jar"/>
                 <include name="rsuite-lmd-editor-plugin.jar"/>
                 <!-- TBD if desired on this project --> 

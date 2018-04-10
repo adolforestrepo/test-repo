@@ -33,7 +33,6 @@
 	<classpathentry kind="lib" path="java/lib/rsuite-tools-zip.jar"/>
 	<classpathentry kind="lib" path="java/lib/rsuite-web-services-lib.jar"/>
 	<classpathentry kind="lib" path="java/lib/rsuite-xml-utils-lib.jar"/>
-	<classpathentry kind="lib" path="java/lib/rsuite-zip-downloader-plugin.jar"/>
 	<classpathentry kind="lib" path="java/lib/saxon9-ant.jar"/>
 	<classpathentry kind="lib" path="java/lib/saxon9-dom.jar"/>
 	<classpathentry kind="lib" path="java/lib/saxon9-s9api.jar"/>
